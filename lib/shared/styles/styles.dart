@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'colors.dart';
+
 
 abstract class AppTextStyles {
   /// - weight: w200
@@ -18,8 +18,8 @@ abstract class AppTextStyles {
 
   /// - weight: w400
   /// - family: cairo
-  static TextStyle hittext = TextStyle(
-      color: AppColors.Bluehint, fontWeight:FontWeight.w600,fontSize: 14);
+  // static TextStyle hittext = TextStyle(
+  //     color: AppColors.Bluehint, fontWeight:FontWeight.w600,fontSize: 14);
 
   /// - weight: w500
   /// - family: cairo
