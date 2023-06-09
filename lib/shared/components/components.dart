@@ -77,7 +77,8 @@ class TextFieldTemplate extends StatefulWidget {
       this.validator,
       this.isPassword = false,
       this.suffixIcon,
-      this.prefixIcon})
+      this.prefixIcon,
+      this.textInputType = TextInputType.visiblePassword})
       : super(key: key);
 
   final String hintText;
@@ -86,6 +87,7 @@ class TextFieldTemplate extends StatefulWidget {
   final Widget? suffixIcon;
   final bool isPassword;
   final Widget? prefixIcon;
+  final TextInputType textInputType;
 
   @override
   State<TextFieldTemplate> createState() => _TextFieldTemplateState();
@@ -123,7 +125,11 @@ class _TextFieldTemplateState extends State<TextFieldTemplate> {
 }
 
 class ButtonText extends StatelessWidget {
-  const ButtonText({super.key, required this.text, required this.onPressed, this.borderRadius=16});
+  const ButtonText(
+      {super.key,
+      required this.text,
+      required this.onPressed,
+      this.borderRadius = 16});
   final String text;
   final void Function()? onPressed;
   final double borderRadius;
@@ -158,6 +164,208 @@ class ButtonText extends StatelessWidget {
   }
 }
 
+class TextFormFiledStepper extends StatelessWidget {
+  const TextFormFiledStepper(
+      {super.key,
+      required this.textEditingController,
+      required this.labelname,
+      this.textInputType = TextInputType.text});
+  final String labelname;
+  final TextInputType textInputType;
+  final TextEditingController textEditingController;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: TextFormField(
+        controller: textEditingController,
+        cursorColor: AppColors.primarycolor,
+        keyboardType: textInputType,
+        smartQuotesType: SmartQuotesType.enabled,
+        decoration: InputDecoration(
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: const BorderSide(
+              color: AppColors.primarycolor,
+              width: 2,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: const BorderSide(
+              color: AppColors.primarycolor,
+              width: 2,
+            ),
+          ),
+          labelText: labelname,
+          labelStyle:
+              TextStyle(color: Colors.black.withOpacity(0.26), fontSize: 20),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: const BorderSide(
+              color: AppColors.primarycolor,
+              width: 2,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class DropdownButtonItem extends StatefulWidget {
+  const DropdownButtonItem({
+    super.key,
+    required this.lableName,
+    required this.itemList,
+  });
+  final String lableName;
+  final List<String> itemList;
+  // final TextEditingController textEditing;
+  @override
+  State<DropdownButtonItem> createState() => _DropdownButtonItemState();
+}
+
+class DividerItem extends StatelessWidget {
+  const DividerItem({super.key, required this.text});
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const Expanded(
+          child: Divider(
+            color: AppColors.grey,
+            thickness: 1,
+          ),
+        ),
+        Text(
+          text,
+          style: const TextStyle(fontSize: 16),
+        ),
+        const Expanded(
+          child: Divider(
+            color: AppColors.grey,
+            thickness: 1,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _DropdownButtonItemState extends State<DropdownButtonItem> {
+  String? _selectedGender;
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButtonFormField<String>(
+      onSaved: (newValue) => _selectedGender = newValue,
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      isExpanded: true,
+      iconEnabledColor: AppColors.primarycolor,
+      decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
+          borderSide: const BorderSide(
+            color: AppColors.primarycolor,
+            width: 2,
+          ),
+        ),
+        labelText: widget.lableName,
+        labelStyle:
+            TextStyle(color: Colors.black.withOpacity(0.26), fontSize: 20),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: const BorderSide(
+              color: AppColors.primarycolor,
+              width: 2,
+            )),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
+          borderSide: const BorderSide(
+            color: AppColors.primarycolor,
+            width: 2,
+          ),
+        ),
+      ),
+      value: _selectedGender,
+      onChanged: (newValue) {
+        setState(() {
+          _selectedGender = newValue;
+          // widget.textEditing.text = _selectedGender!;
+        });
+      },
+      items: widget.itemList.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          // onTap: () => widget.textEditing.text = value,
+          value: value,
+          child: Text(
+            value,
+          ),
+        );
+      }).toList(),
+    );
+  }
+}
+
+class ShowBottomSheetItems extends StatefulWidget {
+  const ShowBottomSheetItems({super.key, required this.name,required this.contecnt});
+  final String name;
+  final Widget contecnt;
+
+  @override
+  State<ShowBottomSheetItems> createState() => _ShowBottomSheetItemsState();
+}
+
+class _ShowBottomSheetItemsState extends State<ShowBottomSheetItems> {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 10),
+      child: TextFormField(
+        readOnly: true,
+        decoration: InputDecoration(
+          label: Text(widget.name),
+          suffixIcon: IconButton(
+              onPressed: () => showBottomSheetItem(context, widget.contecnt),
+              icon: const Icon(
+                Icons.add,
+                color: AppColors.primarycolor,
+              )),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: const BorderSide(
+              color: AppColors.primarycolor,
+              width: 2,
+            ),
+          ),
+          // labelText: 'Developmental Milestones ',
+          labelStyle:
+              TextStyle(color: Colors.black.withOpacity(0.26), fontSize: 20),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: const BorderSide(
+              color: AppColors.primarycolor,
+              width: 2,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+Future showBottomSheetItem(context, Widget content) {
+  return showModalBottomSheet(
+    isScrollControlled: true,
+    context: context,
+    builder: (context) {
+      return content;
+    },
+  );
+}
 // class BottomText extends StatelessWidget {
 //   const BottomText({
 //     Key? key,
