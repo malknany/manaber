@@ -6,6 +6,8 @@ import 'package:manaber/shared/components/navigator.dart';
 import 'package:manaber/shared/styles/colors.dart';
 import 'package:manaber/shared/styles/images.dart';
 
+import '../../our_sections/view.dart';
+
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
 
@@ -25,7 +27,7 @@ class _LogInScreenState extends State<LogInScreen> {
           // crossAxisAlignment: CrossAxisAlignment.start,
           textDirection: TextDirection.rtl,
           children: [
-            Image.asset('assets/images/logo2'),
+            Image.asset('assets/images/ux.png'),
             const Text(
               'تسجيل الدخول ',
               style: TextStyle(
@@ -54,7 +56,7 @@ class _LogInScreenState extends State<LogInScreen> {
             ),
             ElevatedButton(
               onPressed: () {
-                navigateTo(context, const FileAssassemntScreen());
+                navigateTo(context, const Oursectiosn());
               },
               style: ElevatedButton.styleFrom(
                 fixedSize: Size(MediaQuery.of(context).size.width, 50),
