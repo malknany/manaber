@@ -6,9 +6,9 @@ import 'colors.dart';
 ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor: const Color(0xffF5F5F5),
   platform: TargetPlatform.iOS,
-  fontFamily: 'Schyler',
+  fontFamily: "Schyler",
   primaryColor: AppColors.primarycolor,
-  primarySwatch: Colors.green,
+ // primarySwatch: Colors.green,
   iconTheme: const IconThemeData(color: AppColors.primarycolor),
   buttonTheme: const ButtonThemeData(
     splashColor: AppColors.primarycolor,
@@ -29,17 +29,18 @@ ThemeData lightTheme = ThemeData(
   //       color: AppColors.blueDark,
   //     ),
   //   ),
-  //   appBarTheme: const AppBarTheme(
-  //       backgroundColor: AppColors.white,
-  //       toolbarHeight: 60,
-  //       elevation: 0,
-  //       centerTitle: true,
-  //       iconTheme: IconThemeData(color: AppColors.primarycolor, size: 25),
-  //       titleTextStyle: TextStyle(
-  //         color: AppColors.primarycolor,
-  //         fontSize: 32,
-  //         fontWeight: FontWeight.w500,
-  //       ),
+    appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.white,
+        toolbarHeight: 60,
+        elevation: 0,
+        centerTitle: true,
+        iconTheme: IconThemeData(color: AppColors.primarycolor, size: 30),
+        titleTextStyle: TextStyle(
+          color: AppColors.primarycolor,
+          fontSize: 32,
+          fontWeight: FontWeight.w500,
+          
+        ),)
   //       systemOverlayStyle: SystemUiOverlayStyle(
   //           statusBarColor: AppColors.primarycolor,
   //           statusBarIconBrightness: Brightness.light)),
