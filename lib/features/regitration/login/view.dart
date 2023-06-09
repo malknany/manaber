@@ -27,7 +27,9 @@ class _LogInScreenState extends State<LogInScreen> {
           // crossAxisAlignment: CrossAxisAlignment.start,
           textDirection: TextDirection.rtl,
           children: [
+
             Image.asset('assets/images/ux.png'),
+
             const Text(
               'تسجيل الدخول ',
               style: TextStyle(

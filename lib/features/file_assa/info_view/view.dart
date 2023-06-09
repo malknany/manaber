@@ -1,5 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:manaber/features/file_assa/stpper/view.dart';
+import 'package:manaber/features/file_assa/stpper/widget/ICF_body_function_structure.dart';
+import 'package:manaber/features/file_assa/stpper/widget/Muscloskeletal_Examination.dart';
+import 'package:manaber/features/file_assa/stpper/widget/Participation_And_Participation_Restriction.dart';
+import 'package:manaber/features/file_assa/stpper/widget/goal.dart';
+import 'package:manaber/features/file_assa/stpper/widget/level_of_selctivety.dart';
+import 'package:manaber/features/file_assa/stpper/widget/motor_system.dart';
+import 'package:manaber/features/file_assa/stpper/widget/neurological_examination.dart';
+import 'package:manaber/features/file_assa/stpper/widget/note.dart';
+import 'package:manaber/features/file_assa/stpper/widget/patientInfo.dart';
+import 'package:manaber/features/file_assa/stpper/widget/rom.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/components/navigator.dart';
 import 'package:manaber/shared/styles/colors.dart';
@@ -17,11 +27,29 @@ class _FileAssassemntScreenState extends State<FileAssassemntScreen> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            navigateTo(context, FileStteper());
+            // navigateTo(context, const FileStteper());
+
+            navigateAndFinished(
+              context,
+              PageView(
+                children: [
+                  PatientInformation(),
+                  ICFBodyfunctionAndstructure(),
+                  NeurologicalExamination(),
+                  MotorSystem(),
+                  LevelofSelectivity(),
+                  MuscloskeletalExamination(),
+                  Activity(),
+                  Rom(),
+                  Goals(),
+                  Note(), 
+                ],
+              ),
+            );
           },
-          child: Icon(Icons.edit_outlined),
           backgroundColor: AppColors.primarycolor,
-          elevation: 0),
+          elevation: 0,
+          child: const Icon(Icons.edit_outlined)),
       body: SizedBox(
         height: double.infinity,
         width: double.infinity,
