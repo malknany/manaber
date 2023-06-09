@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/members/view.dart';
 import 'package:manaber/features/our_sections/widgets/section_item.dart';
+import 'package:manaber/shared/components/navigator.dart';
 import 'package:manaber/shared/styles/styles.dart';
 
 class Oursectiosn extends StatelessWidget {
@@ -26,10 +28,16 @@ class Oursectiosn extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
                 children: [
-                  SectionItem(sectionname: 'العلاج الطبيعي'),
-                  SectionItem(sectionname: 'العلاج الوظيفي'),
+                  SectionItem(sectionname: 'العلاج الطبيعي',ontab: (){
+                    navigateTo(context, Members());
+                  }),
+                  SectionItem(sectionname: 'العلاج الوظيفي',ontab: (){
+                    navigateTo(context, Members());
+                  }),
                   SectionItem(
-                    sectionname: 'التخاطب',
+                    sectionname: 'التخاطب',ontab: (){
+                    navigateTo(context, Members());
+                  }
                   )
                 ],
               )

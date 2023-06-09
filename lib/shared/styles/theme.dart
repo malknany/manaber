@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'colors.dart';
 
 ThemeData lightTheme = ThemeData(
-  scaffoldBackgroundColor: const Color(0xffF5F5F5),
+  scaffoldBackgroundColor: Colors.white,
   platform: TargetPlatform.iOS,
   fontFamily: "Schyler",
   primaryColor: AppColors.primarycolor,
@@ -39,7 +39,7 @@ ThemeData lightTheme = ThemeData(
           color: AppColors.primarycolor,
           fontSize: 32,
           fontWeight: FontWeight.w500,
-          
+
         ),)
   //       systemOverlayStyle: SystemUiOverlayStyle(
   //           statusBarColor: AppColors.primarycolor,
