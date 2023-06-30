@@ -1,32 +1,17 @@
 class AppImages {
-  static const String logo = "assets/images/logo.png";
-  // static const String recent = 'assets/images/recent.png';
-  // static const String box = 'assets/images/box.png';
-  // static const String booking = 'assets/images/booking.png';
-  // static const String pin = 'assets/images/logosmall.png';
-  // static const String filter = 'assets/images/filter.png';
-  // static const String eye = 'assets/images/eye.png';
-  // static const String care = 'assets/images/care.png';
-  // static const String health = 'assets/images/health.png';
-  // static const String medicine = 'assets/images/medicine.png';
-  // static const String rooge = 'assets/images/item.png';
-  // static const String loading = 'assets/images/loading.png';
-  // static const String x = 'assets/images/x.png';
-  // static const String indicator = 'assets/images/indicator.png';
-  // static const String basket = 'assets/images/basket.png';
-  // static const String search = 'assets/images/search.png';
-  // // static const String notifications = 'assets/images/notify.png';
-  // static const String notificationsSelect = 'assets/images/notifysel.png';
-  // static const String notifications = 'assets/images/not.jpg';
-  // static const String notificationsSelect = 'assets/images/notsel.jpg';
-  // static const String profile = 'assets/images/profile.png';
-  // static const String profileselsect = 'assets/images/profilesel.png';
-  // static const String favourite = 'assets/images/fav.png';
-  // static const String favouriteSelect = 'assets/images/favsel.png';
-  // static const String home = 'assets/images/home.png';
-  // static const String homeselect = 'assets/images/homesel.png';
-  // static const String img = 'assets/images/image.png';
-  // static const String barvan = 'assets/images/barvan.png';
-  // static const String food = 'assets/images/food.png';
-  // static const String confirmsceen = 'assets/images/confirmsceen.png';
+  static const String logo = "assets/image/logo_test.jpg";
+  static const String admin = "assets/image/admin.png";
+  static const String doctor = "assets/image/doctor.png";
+  static const String fileAssessment = "assets/image/file_assessment.png";
+  static const String login = "assets/image/login.png";
+  static const String naturalTherapy = "assets/image/natural_therapy.png";
+  static const String occupationalTherapy =
+      "assets/image/occupational_therapy.png";
+  static const String occupational = "assets/image/occupational.png";
+  static const String receptionist = "assets/image/receptionist.png";
+  static const String signup = "assets/image/signup.jpg";
+  static const String tretmentPlan = "assets/image/tretment_plan.png";
+  static const String video = "assets/image/video.png";
+  static const String xRey = "assets/image/x-rey.png";
+  static const String conversational = "assets/image/x-conversational.png";
 }

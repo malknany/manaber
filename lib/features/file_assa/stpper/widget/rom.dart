@@ -2,10 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
-class Rom extends StatelessWidget {
-  Rom({super.key});
+class Rom extends StatefulWidget {
+  const Rom({super.key});
 
+  @override
+  State<Rom> createState() => _RomState();
+}
+
+class _RomState extends State<Rom> {
   final TextEditingController controller1 = TextEditingController();
+
+  String hip = '';
+
+  String hip1 = '';
+
+  String hip2 = '';
+
+  String hip3 = '';
+
+  String hip4 = '';
 
   @override
   Widget build(BuildContext context) {
@@ -25,21 +40,27 @@ class Rom extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const DropdownButtonItem(
-                  lableName: 'Hip',
-                  itemList: ['restricted', 'Normal', 'hyper', 'flexibility']),
-              const DropdownButtonItem(
+              DropdownButtonItem(
+                controller: controller1,
+                lableName: 'Hip',
+                itemList: const ['restricted', 'Normal', 'hyper', 'flexibility'],
+              ),
+              DropdownButtonItem(
+                  controller: controller1,
                   lableName: 'knee',
-                  itemList: ['restricted', 'Normal', 'hyper', 'flexibility']),
-              const DropdownButtonItem(
+                  itemList: const ['restricted', 'Normal', 'hyper', 'flexibility']),
+              DropdownButtonItem(
+                  controller: controller1,
                   lableName: 'Ankle',
-                  itemList: ['restricted', 'Normal', 'hyper', 'flexibility']),
-              const DropdownButtonItem(
+                  itemList: const ['restricted', 'Normal', 'hyper', 'flexibility']),
+              DropdownButtonItem(
+                controller: controller1,
                   lableName: 'shoulder',
-                  itemList: ['restricted', 'Normal', 'hyper', 'flexibility']),
-              const DropdownButtonItem(
+                  itemList: const ['restricted', 'Normal', 'hyper', 'flexibility']),
+               DropdownButtonItem(
+                 controller: controller1,
                   lableName: 'elbow',
-                  itemList: ['restricted', 'Normal', 'hyper', 'flexibility']),
+                  itemList: const ['restricted', 'Normal', 'hyper', 'flexibility']),
               TextFormFiledStepper(
                   labelname: 'Note', textEditingController: controller1),
             ],

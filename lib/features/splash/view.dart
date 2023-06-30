@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:manaber/features/regitration/login/view.dart';
-import 'package:manaber/features/regitration/sign_up/view.dart';
-// import 'package:manaber/shared/components/constants.dart';
 import 'package:manaber/shared/components/navigator.dart';
 import 'package:manaber/shared/styles/images.dart';
 
@@ -28,9 +26,11 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SizedBox(
-        height: 400,
-        width: 400,
-        child:Image.asset("assets/images/ux.png"),
+        height: double.infinity,
+        width: double.infinity,
+        child: Center(
+          child: Image.asset(AppImages.logo),
+        ),
       ),
     );
   }
