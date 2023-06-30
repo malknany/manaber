@@ -20,18 +20,18 @@ class LevelofSelectivity  extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
         child: Column(
           children: [
-            DropdownButtonItem(lableName: 'Upper limb', itemList: [
-              'No',
-              'Poor',
-              'Moderate',
-              'Normal'
-            ]),
-            DropdownButtonItem(lableName: 'Lower limb ', itemList: [
-              'No',
-              'Poor',
-              'Moderate',
-              'Normal'
-            ]),
+            // DropdownButtonItem(lableName: 'Upper limb', itemList: [
+            //   'No',
+            //   'Poor',
+            //   'Moderate',
+            //   'Normal'
+            // ]),
+            // DropdownButtonItem(lableName: 'Lower limb ', itemList: [
+            //   'No',
+            //   'Poor',
+            //   'Moderate',
+            //   'Normal'
+            // ]),
             //! body of bottunsheet not fineshed
             ShowBottomSheetItems(
               name: ' Muscle Tone',
@@ -42,12 +42,12 @@ class LevelofSelectivity  extends StatelessWidget {
                   child: Column(
                     children: [
                       DividerItem(text: 'Advanced Reflex'),
-                      DropdownButtonItem(
-                          lableName: 'Protective',
-                          itemList: ['integrated', 'weak', 'Not integrated']),
-                      DropdownButtonItem(
-                          lableName: 'Righting and Equilibrium reflex	',
-                          itemList: ['integrated', 'weak', 'Not integrated']),
+                      // DropdownButtonItem(
+                      //     lableName: 'Protective',
+                      //     itemList: ['integrated', 'weak', 'Not integrated']),
+                      // DropdownButtonItem(
+                      //     lableName: 'Righting and Equilibrium reflex	',
+                      //     itemList: ['integrated', 'weak', 'Not integrated']),
                     ],
                   ),
                 ),

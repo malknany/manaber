@@ -4,8 +4,8 @@ import 'package:manaber/shared/styles/colors.dart';
 import 'package:manaber/shared/styles/styles.dart';
 
 class SectionItem extends StatelessWidget {
-   SectionItem({required this.sectionname,Key? key}) : super(key: key);
-  String sectionname;
+   const SectionItem({required this.sectionname,Key? key}) : super(key: key);
+  final String sectionname;
 
   @override
   Widget build(BuildContext context) {

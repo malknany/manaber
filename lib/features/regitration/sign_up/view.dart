@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/components/constants.dart';
 import 'package:manaber/shared/styles/colors.dart';
+import 'package:manaber/shared/styles/images.dart';
 
 enum JobType { doctor, receptionist }
 
@@ -25,6 +25,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           // crossAxisAlignment: CrossAxisAlignment.start,
           textDirection: TextDirection.rtl,
           children: [
+            Image.asset(AppImages.signup),
             const Text(
               'انشاء حساب جديد',
               style: TextStyle(

@@ -98,28 +98,159 @@ class _TextFieldTemplateState extends State<TextFieldTemplate> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      textAlign: TextAlign.right,
-      textDirection: TextDirection.rtl,
-      keyboardType: TextInputType.phone,
-      decoration: InputDecoration(
-        enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: AppColors.grey),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10.0),
+      child: TextFormField(
+        obscureText: widget.isPassword,
+        textAlign: TextAlign.right,
+        textDirection: TextDirection.rtl,
+        keyboardType: widget.textInputType,
+        decoration: InputDecoration(
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: AppColors.grey),
+          ),
+          focusedBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: AppColors.grey),
+          ),
+          border: const OutlineInputBorder(
+            borderSide: BorderSide.none,
+          ),
+          hintText: widget.hintText,
+          hintStyle: const TextStyle(
+              color: AppColors.grey,
+              fontFamily: 'Schyler',
+              fontWeight: FontWeight.normal),
+          suffixIcon: widget.suffixIcon,
+          prefixIcon: widget.prefixIcon,
         ),
-        focusedBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: AppColors.grey),
-        ),
-        border: const OutlineInputBorder(
-          borderSide: BorderSide.none,
-        ),
-        hintText: widget.hintText,
-        hintStyle: const TextStyle(
-            color: AppColors.grey,
-            fontFamily: 'Schyler',
-            fontWeight: FontWeight.normal),
-        suffixIcon: widget.suffixIcon,
-        prefixIcon: widget.prefixIcon,
       ),
+    );
+  }
+}
+
+class InfoRowItem extends StatelessWidget {
+  const InfoRowItem({
+    super.key,
+    required this.columnWidth,
+    required this.title,
+    required this.value,
+  });
+  final double columnWidth;
+  final String title;
+  final String value;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: columnWidth,
+              child: Text(
+                '$title:',
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+            ),
+            const SizedBox(width: 16.0),
+            Expanded(
+              child: Text(
+                value,
+                softWrap: true,
+                style: const TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        const Divider(
+          color: AppColors.grey,
+          thickness: 1,
+        ),
+      ],
+    );
+  }
+}
+
+class RowItemRightLeft extends StatelessWidget {
+  const RowItemRightLeft({
+    required this.right,
+    required this.left,
+    super.key,
+    required this.columnWidth,
+    required this.title,
+  });
+  final double columnWidth;
+  final String title;
+  final String left;
+  final String right;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: columnWidth,
+              child: Text(
+                '$title:',
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+            ),
+            const SizedBox(width: 16.0),
+            Expanded(
+              child: Column(children: [
+                Text(
+                  "Right",
+                  softWrap: true,
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                Text(
+                  right,
+                  softWrap: true,
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+              ]),
+            ),
+            Expanded(
+              child: Column(children: [
+                Text(
+                  "Left",
+                  softWrap: true,
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                Text(
+                  left,
+                  softWrap: true,
+                  style: const TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+              ]),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        const Divider(
+          color: AppColors.grey,
+          thickness: 1,
+        ),
+      ],
     );
   }
 }
@@ -138,7 +269,7 @@ class ButtonText extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 14.0),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           fixedSize: Size(
             MediaQuery.of(context).size.width,
@@ -179,6 +310,9 @@ class TextFormFiledStepper extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: TextFormField(
         controller: textEditingController,
+        onSaved: (newValue) {
+          textEditingController.text = newValue!;
+        },
         cursorColor: AppColors.primarycolor,
         keyboardType: textInputType,
         smartQuotesType: SmartQuotesType.enabled,
@@ -213,19 +347,6 @@ class TextFormFiledStepper extends StatelessWidget {
   }
 }
 
-class DropdownButtonItem extends StatefulWidget {
-  const DropdownButtonItem({
-    super.key,
-    required this.lableName,
-    required this.itemList,
-  });
-  final String lableName;
-  final List<String> itemList;
-  // final TextEditingController textEditing;
-  @override
-  State<DropdownButtonItem> createState() => _DropdownButtonItemState();
-}
-
 class DividerItem extends StatelessWidget {
   const DividerItem({super.key, required this.text});
   final String text;
@@ -255,16 +376,97 @@ class DividerItem extends StatelessWidget {
   }
 }
 
-class _DropdownButtonItemState extends State<DropdownButtonItem> {
-  String? _selectedGender;
+class CustomDropdown extends StatefulWidget {
+  final String hint;
+  final List<String> items;
+  final ValueChanged<String?> onChanged;
+
+  const CustomDropdown({
+    Key? key,
+    required this.hint,
+    required this.items,
+    required this.onChanged,
+  }) : super(key: key);
+
+  @override
+  _CustomDropdownState createState() => _CustomDropdownState();
+}
+
+class _CustomDropdownState extends State<CustomDropdown> {
+  late String? _selectedItem;
+
+  @override
+  void initState() {
+    super.initState();
+    // Read the value from the PageStorage for this widget's key
+    _selectedItem = PageStorage.of(context).readState(context) as String?;
+  }
+
+  @override
+  void dispose() {
+    // Save the value to the PageStorage before disposing of the widget
+    PageStorage.of(context).writeState(context, _selectedItem);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
-      onSaved: (newValue) => _selectedGender = newValue,
+      value: _selectedItem,
+      decoration: InputDecoration(
+        hintText: widget.hint,
+        border: const OutlineInputBorder(),
+      ),
+      items: widget.items.map((item) {
+        return DropdownMenuItem<String>(
+          value: item,
+          child: Text(item),
+        );
+      }).toList(),
+      onChanged: (value) {
+        setState(() {
+          _selectedItem = value;
+        });
+        widget.onChanged(value);
+      },
+    );
+  }
+}
+
+class DropdownButtonItem extends StatefulWidget {
+  final String lableName;
+  final List<String> itemList;
+  
+  final TextEditingController controller;
+
+  const DropdownButtonItem(
+      {Key? key,
+      required this.controller,
+      required this.lableName,
+      required this.itemList,
+      })
+      : super(key: key);
+
+  @override
+  _DropdownButtonItemState createState() => _DropdownButtonItemState();
+}
+
+class _DropdownButtonItemState extends State<DropdownButtonItem> {
+  String? _selectedItem;
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButtonFormField<String>(
+      onChanged: (value) {
+        setState(() {
+          _selectedItem = value!;
+        });
+        widget.controller.text = _selectedItem!;
+      },
       padding: const EdgeInsets.symmetric(vertical: 5),
       isExpanded: true,
       iconEnabledColor: AppColors.primarycolor,
+      value: _selectedItem,
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5),
@@ -273,15 +475,13 @@ class _DropdownButtonItemState extends State<DropdownButtonItem> {
             width: 2,
           ),
         ),
-        labelText: widget.lableName,
-        labelStyle:
-            TextStyle(color: Colors.black.withOpacity(0.26), fontSize: 20),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
             borderSide: const BorderSide(
               color: AppColors.primarycolor,
               width: 2,
             )),
+        labelText: widget.lableName,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5),
           borderSide: const BorderSide(
@@ -290,28 +490,80 @@ class _DropdownButtonItemState extends State<DropdownButtonItem> {
           ),
         ),
       ),
-      value: _selectedGender,
-      onChanged: (newValue) {
-        setState(() {
-          _selectedGender = newValue;
-          // widget.textEditing.text = _selectedGender!;
-        });
-      },
-      items: widget.itemList.map<DropdownMenuItem<String>>((String value) {
+      items: widget.itemList.map((item) {
         return DropdownMenuItem<String>(
-          // onTap: () => widget.textEditing.text = value,
-          value: value,
-          child: Text(
-            value,
-          ),
+          value: item,
+          child: Text(item),
         );
       }).toList(),
     );
   }
 }
 
+// class DropdownButtonItem extends StatefulWidget {
+//   const DropdownButtonItem({
+//     super.key,
+//     required this.lableName,
+//     required this.itemList,
+//   });
+//   final String lableName;
+//   final List<String> itemList;
+//   // final TextEditingController textEditing;
+//   @override
+//   State<DropdownButtonItem> createState() => _DropdownButtonItemState();
+// }
+
+// class _DropdownButtonItemState extends State<DropdownButtonItem> {
+//   String? _selectedGender;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return DropdownButtonFormField<String>(
+//       padding: const EdgeInsets.symmetric(vertical: 5),
+//       isExpanded: true,
+//       iconEnabledColor: AppColors.primarycolor,
+//       decoration: InputDecoration(
+//         focusedBorder: OutlineInputBorder(
+//           borderRadius: BorderRadius.circular(5),
+//           borderSide: const BorderSide(
+//             color: AppColors.primarycolor,
+//             width: 2,
+//           ),
+//         ),
+//         labelText: widget.lableName,
+//         labelStyle:
+//             TextStyle(color: Colors.black.withOpacity(0.26), fontSize: 20),
+//         border: OutlineInputBorder(
+//           borderRadius: BorderRadius.circular(5),
+//           borderSide: const BorderSide(
+//             color: AppColors.primarycolor,
+//             width: 2,
+//           ),
+//         ),
+//       ),
+//       value: _selectedGender,
+//       onChanged: (newValue) {
+//         setState(() {
+//           _selectedGender = newValue;
+//           // widget.textEditing.text = _selectedGender!;
+//         });
+//       },
+//       items: widget.itemList.map<DropdownMenuItem<String>>((String value) {
+//         return DropdownMenuItem<String>(
+//           // onTap: () => widget.textEditing.text = value,
+//           value: value,
+//           child: Text(
+//             value,
+//           ),
+//         );
+//       }).toList(),
+//     );
+//   }
+// }
+
 class ShowBottomSheetItems extends StatefulWidget {
-  const ShowBottomSheetItems({super.key, required this.name,required this.contecnt});
+  const ShowBottomSheetItems(
+      {super.key, required this.name, required this.contecnt});
   final String name;
   final Widget contecnt;
 
@@ -323,7 +575,7 @@ class _ShowBottomSheetItemsState extends State<ShowBottomSheetItems> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: TextFormField(
         readOnly: true,
         decoration: InputDecoration(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/file_assa/info_view/view.dart';
 import 'package:manaber/features/regitration/sign_up/view.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/components/navigator.dart';
@@ -24,12 +23,9 @@ class _LogInScreenState extends State<LogInScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.start,
           textDirection: TextDirection.rtl,
           children: [
-
-            Image.asset('assets/images/ux.png'),
-
+            Image.asset(AppImages.login),
             const Text(
               'تسجيل الدخول ',
               style: TextStyle(
@@ -43,6 +39,8 @@ class _LogInScreenState extends State<LogInScreen> {
               suffixIcon: Icon(Icons.phone),
             ),
             TextFieldTemplate(
+              isPassword: true,
+              textInputType: TextInputType.visiblePassword,
               hintText: 'كلمة السر',
               suffixIcon: const Icon(
                 Icons.lock,
@@ -58,7 +56,7 @@ class _LogInScreenState extends State<LogInScreen> {
             ),
             ElevatedButton(
               onPressed: () {
-                navigateTo(context, const Oursectiosn());
+                navigateTo(context,  Oursectiosn());
               },
               style: ElevatedButton.styleFrom(
                 fixedSize: Size(MediaQuery.of(context).size.width, 50),

@@ -20,7 +20,7 @@ class NeurologicalExamination extends StatelessWidget {
         centerTitle: true,
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: Column(
           children: [
             TextFormFiledStepper(
@@ -40,39 +40,39 @@ class NeurologicalExamination extends StatelessWidget {
                     child: Column(
                       children: [
                         DividerItem(text: 'Reflex'),
-                        DropdownButtonItem(
-                            lableName: 'Palmar reflex',
-                            itemList: ['integrated', 'Not integrated']),
-                        DropdownButtonItem(
-                            lableName: 'Planter reflex',
-                            itemList: ['integrated', 'Not integrated']),
-                        DropdownButtonItem(
-                            lableName: 'Rooting reflex',
-                            itemList: ['integrated', 'Not integrated']),
-                        DropdownButtonItem(
-                            lableName: 'Sucking reflex',
-                            itemList: ['integrated', 'Not integrated']),
-                        DropdownButtonItem(
-                            lableName: 'Supine labyrinthine',
-                            itemList: ['integrated', 'Not integrated']),
-                        DropdownButtonItem(
-                            lableName: 'Prone labyrinthine',
-                            itemList: ['integrated', 'Not integrated']),
-                        DropdownButtonItem(
-                            lableName: 'Symmetrical tonic neck reflex',
-                            itemList: ['integrated', 'Not integrated']),
-                        DropdownButtonItem(
-                            lableName: 'Asymmetrical tonic neck reflex',
-                            itemList: ['integrated', 'Not integrated']),
-                        DropdownButtonItem(
-                            lableName: 'Foot-hand replacement',
-                            itemList: ['integrated', 'Not integrated']),
-                        DropdownButtonItem(
-                            lableName: 'Moro reflex',
-                            itemList: ['integrated', 'Not integrated']),
-                        DropdownButtonItem(
-                            lableName: 'Landau reflex',
-                            itemList: ['integrated', 'Not integrated']),
+                        // DropdownButtonItem(
+                        //     lableName: 'Palmar reflex',
+                        //     itemList: ['integrated', 'Not integrated']),
+                        // DropdownButtonItem(
+                        //     lableName: 'Planter reflex',
+                        //     itemList: ['integrated', 'Not integrated']),
+                        // DropdownButtonItem(
+                        //     lableName: 'Rooting reflex',
+                        //     itemList: ['integrated', 'Not integrated']),
+                        // DropdownButtonItem(
+                        //     lableName: 'Sucking reflex',
+                        //     itemList: ['integrated', 'Not integrated']),
+                        // DropdownButtonItem(
+                        //     lableName: 'Supine labyrinthine',
+                        //     itemList: ['integrated', 'Not integrated']),
+                        // DropdownButtonItem(
+                        //     lableName: 'Prone labyrinthine',
+                        //     itemList: ['integrated', 'Not integrated']),
+                        // DropdownButtonItem(
+                        //     lableName: 'Symmetrical tonic neck reflex',
+                        //     itemList: ['integrated', 'Not integrated']),
+                        // DropdownButtonItem(
+                        //     lableName: 'Asymmetrical tonic neck reflex',
+                        //     itemList: ['integrated', 'Not integrated']),
+                        // DropdownButtonItem(
+                        //     lableName: 'Foot-hand replacement',
+                        //     itemList: ['integrated', 'Not integrated']),
+                        // DropdownButtonItem(
+                        //     lableName: 'Moro reflex',
+                        //     itemList: ['integrated', 'Not integrated']),
+                        // DropdownButtonItem(
+                        //     lableName: 'Landau reflex',
+                        //     itemList: ['integrated', 'Not integrated']),
                       ],
                     )),
               ),
@@ -86,12 +86,12 @@ class NeurologicalExamination extends StatelessWidget {
                   child: Column(
                     children: [
                       DividerItem(text: 'Advanced Reflex'),
-                      DropdownButtonItem(
-                          lableName: 'Protective',
-                          itemList: ['integrated', 'weak', 'Not integrated']),
-                      DropdownButtonItem(
-                          lableName: 'Righting and Equilibrium reflex	',
-                          itemList: ['integrated', 'weak', 'Not integrated']),
+                      // DropdownButtonItem(
+                      //     lableName: 'Protective',
+                      //     itemList: ['integrated', 'weak', 'Not integrated']),
+                      // DropdownButtonItem(
+                      //     lableName: 'Righting and Equilibrium reflex	',
+                      //     itemList: ['integrated', 'weak', 'Not integrated']),
                     ],
                   ),
                 ),

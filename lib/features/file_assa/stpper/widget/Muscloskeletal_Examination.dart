@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
@@ -38,12 +40,12 @@ class MuscloskeletalExamination extends StatelessWidget {
                 labelname: 'Pelvic', textEditingController: controller1),
             //normal _ in risk _ sublaxed _ dislocated )
             const DividerItem(text: 'Hip'),
-            const DropdownButtonItem(
-                lableName: 'Right',
-                itemList: ['Normal', 'In risk', 'Sublaxed', 'dislocated']),
-            const DropdownButtonItem(
-                lableName: 'Left',
-                itemList: ['Normal', 'In risk', 'Sublaxed', 'dislocated'])
+            // const DropdownButtonItem(
+            //     lableName: 'Right',
+            //     itemList: ['Normal', 'In risk', 'Sublaxed', 'dislocated']),
+            // const DropdownButtonItem(
+            //     lableName: 'Left',
+            //     itemList: ['Normal', 'In risk', 'Sublaxed', 'dislocated'])
           ],
         ),
       ),

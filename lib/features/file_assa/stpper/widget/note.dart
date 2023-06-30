@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/file_assa/info_view/view.dart';
+import 'package:manaber/features/file_assa/stpper/controller.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
 class Note extends StatelessWidget {
-  Note({super.key});
+  Note({super.key,required this.control});
 
   final TextEditingController controller1 = TextEditingController();
+  final StepperControl control;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +30,11 @@ class Note extends StatelessWidget {
             children: [
               TextFormFiledStepper(
                   labelname: 'Note', textEditingController: controller1),
+              ButtonText(
+                  text: 'Save',
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => FileAssassemntScreen(control: control),));
+                  })
             ],
           ),
         ),

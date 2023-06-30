@@ -1,4 +1,7 @@
 
+
+// ignore_for_file: non_constant_identifier_names
+
 var BASEURL = 'https://acnoria-backend.spider-te8.com/api/';
 const REGISTER = 'customer/register';
 const LOGIN = 'customer/login';

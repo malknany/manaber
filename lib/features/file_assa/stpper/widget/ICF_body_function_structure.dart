@@ -1,11 +1,25 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
-class ICFBodyfunctionAndstructure extends StatelessWidget {
-  ICFBodyfunctionAndstructure({super.key});
+class ICFBodyfunctionAndstructure extends StatefulWidget {
+  const ICFBodyfunctionAndstructure({super.key});
+
+  @override
+  State<ICFBodyfunctionAndstructure> createState() =>
+      _ICFBodyfunctionAndstructureState();
+}
+
+class _ICFBodyfunctionAndstructureState
+    extends State<ICFBodyfunctionAndstructure> {
   final TextEditingController contolr = TextEditingController();
+
   final TextEditingController contolr1 = TextEditingController();
+
+  String slectedMentalStatus = '';
+  String slectedFunctionOfMetabolicAndEndocrine = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,13 +42,15 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               DropdownButtonItem(
+                  controller: contolr,
                   lableName: 'Mental status',
-                  itemList: ['Normal', 'Less than nomal', 'Mental retarted']),
+                  itemList: const ['Normal', 'Less than nomal', 'Mental retarted']),
               TextFormFiledStepper(
                   labelname: 'Voice Speech ', textEditingController: contolr),
-              const DropdownButtonItem(
+               DropdownButtonItem(
+                controller: contolr,
                   lableName: 'Function of metabolic and endocrine',
-                  itemList: ['Normal', 'Less than nomal', 'Malnutrition']),
+                  itemList: const ['Normal', 'Less than nomal', 'Malnutrition']),
               TextFormFiledStepper(
                   labelname: 'Function of Cardiovascular ',
                   textEditingController: contolr),
@@ -63,7 +79,7 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
                 contecnt: SizedBox(
                   height: 900,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                     child: Column(
                       children: [
                         TextFormFiledStepper(
@@ -93,7 +109,7 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
                 ),
               ),
               TextFormFiledStepper(
-                  labelname: 'Fine Motor Function (Hand Function ',
+                  labelname: 'Fine Motor Function (Hand Function) ',
                   textEditingController: contolr),
             ],
           ),

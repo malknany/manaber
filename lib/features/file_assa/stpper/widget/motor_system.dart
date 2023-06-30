@@ -30,12 +30,12 @@ class MotorSystem extends StatelessWidget {
                   child: Column(
                     children: [
                       DividerItem(text: 'Advanced Reflex'),
-                      DropdownButtonItem(
-                          lableName: 'Protective',
-                          itemList: ['integrated', 'weak', 'Not integrated']),
-                      DropdownButtonItem(
-                          lableName: 'Righting and Equilibrium reflex	',
-                          itemList: ['integrated', 'weak', 'Not integrated']),
+                      // DropdownButtonItem(
+                      //     lableName: 'Protective',
+                      //     itemList: ['integrated', 'weak', 'Not integrated']),
+                      // DropdownButtonItem(
+                      //     lableName: 'Righting and Equilibrium reflex	',
+                      //     itemList: ['integrated', 'weak', 'Not integrated']),
                     ],
                   ),
                 ),
@@ -51,23 +51,23 @@ class MotorSystem extends StatelessWidget {
                   child: Column(
                     children: [
                       DividerItem(text: 'Advanced Reflex'),
-                      DropdownButtonItem(
-                          lableName: 'Protective',
-                          itemList: ['integrated', 'weak', 'Not integrated']),
-                      DropdownButtonItem(
-                          lableName: 'Righting and Equilibrium reflex	',
-                          itemList: ['integrated', 'weak', 'Not integrated']),
+                      // DropdownButtonItem(
+                      //     lableName: 'Protective',
+                      //     itemList: ['integrated', 'weak', 'Not integrated']),
+                      // DropdownButtonItem(
+                      //     lableName: 'Righting and Equilibrium reflex	',
+                      //     itemList: ['integrated', 'weak', 'Not integrated']),
                     ],
                   ),
                 ),
               ),
             ),
-            DropdownButtonItem(lableName: 'Muscle Bulk', itemList: [
-              'Atrophy',
-              'Less than normal',
-              'Normal',
-              'speudo trophy'
-            ])
+            // DropdownButtonItem(lableName: 'Muscle Bulk', itemList: [
+            //   'Atrophy',
+            //   'Less than normal',
+            //   'Normal',
+            //   'speudo trophy'
+            // ])
           ],
         ),
       ),

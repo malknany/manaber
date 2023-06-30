@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:manaber/features/file_assa/stpper/widget/ICF_body_function_structure.dart';
-import 'package:manaber/features/file_assa/stpper/widget/patientInfo.dart';
 
 class StepperControl {
-  // final name = TextEditingController();
-  // final jobTitle = TextEditingController();
-  // final email = TextEditingController();
-  // final address = TextEditingController();
-  // final phone = TextEditingController();
-  // final universityName = TextEditingController();
-  // final period = TextEditingController();
-  // final link = TextEditingController();
-  // final description = TextEditingController();
-  // final language = TextEditingController();
-  // final tSkills = TextEditingController();
-  // final nTSkills = TextEditingController();
-  // final certificates = TextEditingController();
-  // final degree = TextEditingController();
-  // final years = TextEditingController();
+  final name = TextEditingController();
+  final jobTitle = TextEditingController();
+  final email = TextEditingController();
+  final address = TextEditingController();
+  final phone = TextEditingController();
+  final universityName = TextEditingController();
+  final period = TextEditingController();
+  final link = TextEditingController();
+  final description = TextEditingController();
+  final language = TextEditingController();
+  final tSkills = TextEditingController();
+  final nTSkills = TextEditingController();
+  final certificates = TextEditingController();
+  final degree = TextEditingController();
+  final years = TextEditingController();
   int currentStep = 0;
 
   List<Step> getSteps() {
@@ -39,7 +38,7 @@ class StepperControl {
           title: const Text(
             'ICF Body function And structure',
           ),
-          content:  ICFBodyfunctionAndstructure()),
+          content:  const ICFBodyfunctionAndstructure()),
       Step(
         state: currentStep > 2 ? StepState.complete : StepState.indexed,
         isActive: currentStep >= 2,
