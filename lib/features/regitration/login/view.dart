@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/file_assa/info_view/view.dart';
+import 'package:manaber/features/admin/accepte_home_page/view.dart';
+import 'package:manaber/features/receptionist/our_section/view.dart';
 import 'package:manaber/features/regitration/sign_up/view.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/components/navigator.dart';
 import 'package:manaber/shared/styles/colors.dart';
 import 'package:manaber/shared/styles/images.dart';
 
-import '../../our_sections/view.dart';
+import '../../doctor/our_sections/view.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
@@ -16,21 +17,22 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
+  final TextEditingController number = TextEditingController();
+  final TextEditingController password = TextEditingController();
+  bool isPassword = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: SingleChildScrollView(
-            child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-        child: Column(
+
+
+
+        child: SingleChildScrollView(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            // crossAxisAlignment: CrossAxisAlignment.start,
             textDirection: TextDirection.rtl,
             children: [
-
-              Image.asset('assets/images/free-logo.png'),
-
+              Image.asset(AppImages.login),
               const Text(
                 'تسجيل الدخول ',
                 style: TextStyle(
@@ -39,27 +41,45 @@ class _LogInScreenState extends State<LogInScreen> {
                     fontFamily: 'Schyler',
                     fontWeight: FontWeight.bold),
               ),
-              const TextFieldTemplate(
+
+              TextFieldTemplate(
+                controller: number,
+                textInputType: TextInputType.number,
                 hintText: 'رثم الهاتف',
-                suffixIcon: Icon(Icons.phone),
+                suffixIcon: const Icon(
+                  Icons.phone,
+                  color: AppColors.primarycolor,
+                ),
               ),
               TextFieldTemplate(
+                controller: password,
+                isPassword: isPassword,
                 hintText: 'كلمة السر',
                 suffixIcon: const Icon(
                   Icons.lock,
-                  color: AppColors.grey,
+                  color: AppColors.primarycolor,
                 ),
                 prefixIcon: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.visibility,
+                  onPressed: () {
+                    setState(() {
+                      isPassword = !isPassword;
+                    });
+                  },
+                  icon: Icon(
+                    isPassword ? Icons.visibility : Icons.visibility_off,
                     color: AppColors.grey,
                   ),
                 ),
               ),
               ElevatedButton(
                 onPressed: () {
-                  navigateTo(context, const Oursectiosn());
+                  if (number.text == '5050' && password.text == '123') {
+                    navigateTo(context, Oursectiosn());
+                  } else if (number.text == '1010' && password.text == '123') {
+                    navigateTo(context, OurSectiosnReceptionist());
+                  } else if (number.text == '2020' && password.text == '123') {
+                    navigateTo(context, const AdminHomePage());
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size(MediaQuery.of(context).size.width, 50),
@@ -98,9 +118,9 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
               )
             ],
+          )
         ),
       ),
-          )),
-    );
+          );
   }
 }

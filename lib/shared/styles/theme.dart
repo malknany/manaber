@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'colors.dart';
 
 ThemeData lightTheme = ThemeData(
-  scaffoldBackgroundColor: Colors.white,
+
+  scaffoldBackgroundColor:Colors.white,
   platform: TargetPlatform.iOS,
   fontFamily: "Schyler",
   primaryColor: AppColors.primarycolor,
