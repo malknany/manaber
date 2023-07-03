@@ -28,7 +28,7 @@ class _LogInScreenState extends State<LogInScreen> {
           textDirection: TextDirection.rtl,
           children: [
 
-            Image.asset('assets/images/ux.png'),
+            Image.asset('assets/images/free-logo.png'),
 
             const Text(
               'تسجيل الدخول ',
