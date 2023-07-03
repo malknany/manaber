@@ -20,85 +20,87 @@ class _LogInScreenState extends State<LogInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: Padding(
+          child: SingleChildScrollView(
+            child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          textDirection: TextDirection.rtl,
-          children: [
+            mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.start,
+            textDirection: TextDirection.rtl,
+            children: [
 
-            Image.asset('assets/images/free-logo.png'),
+              Image.asset('assets/images/free-logo.png'),
 
-            const Text(
-              'تسجيل الدخول ',
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontFamily: 'Schyler',
-                  fontWeight: FontWeight.bold),
-            ),
-            const TextFieldTemplate(
-              hintText: 'رثم الهاتف',
-              suffixIcon: Icon(Icons.phone),
-            ),
-            TextFieldTemplate(
-              hintText: 'كلمة السر',
-              suffixIcon: const Icon(
-                Icons.lock,
-                color: AppColors.grey,
+              const Text(
+                'تسجيل الدخول ',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontFamily: 'Schyler',
+                    fontWeight: FontWeight.bold),
               ),
-              prefixIcon: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.visibility,
+              const TextFieldTemplate(
+                hintText: 'رثم الهاتف',
+                suffixIcon: Icon(Icons.phone),
+              ),
+              TextFieldTemplate(
+                hintText: 'كلمة السر',
+                suffixIcon: const Icon(
+                  Icons.lock,
                   color: AppColors.grey,
                 ),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                navigateTo(context, const Oursectiosn());
-              },
-              style: ElevatedButton.styleFrom(
-                fixedSize: Size(MediaQuery.of(context).size.width, 50),
-                elevation: 0,
-                backgroundColor: AppColors.primarycolor,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16)),
-              ),
-              child: const Text(
-                ' تسجيل',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                  fontFamily: 'Schyler',
-                  fontWeight: FontWeight.normal,
+                prefixIcon: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.visibility,
+                    color: AppColors.grey,
+                  ),
                 ),
               ),
-            ),
-            const Text(
-              'او',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'Schyler',
-                  fontWeight: FontWeight.bold),
-            ),
-            TextButton(
-              onPressed: () {
-                navigateTo(context, const SignUpScreen());
-              },
-              child: const Text(
-                'تسجيل حساب جديد',
+              ElevatedButton(
+                onPressed: () {
+                  navigateTo(context, const Oursectiosn());
+                },
+                style: ElevatedButton.styleFrom(
+                  fixedSize: Size(MediaQuery.of(context).size.width, 50),
+                  elevation: 0,
+                  backgroundColor: AppColors.primarycolor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16)),
+                ),
+                child: const Text(
+                  ' تسجيل',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontFamily: 'Schyler',
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+              ),
+              const Text(
+                'او',
                 style: TextStyle(
                     color: Colors.black,
                     fontFamily: 'Schyler',
                     fontWeight: FontWeight.bold),
               ),
-            )
-          ],
+              TextButton(
+                onPressed: () {
+                  navigateTo(context, const SignUpScreen());
+                },
+                child: const Text(
+                  'تسجيل حساب جديد',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: 'Schyler',
+                      fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
         ),
-      )),
+      ),
+          )),
     );
   }
 }
