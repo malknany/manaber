@@ -8,6 +8,7 @@ import 'package:manaber/features/doctor/occupation_therapy/stepper/controler.dar
 import 'package:manaber/features/doctor/our_sections/widgets/section_item.dart';
 import 'package:manaber/features/doctor/profile_doctor/view.dart';
 import 'package:manaber/shared/components/navigator.dart';
+import 'package:manaber/shared/styles/images.dart';
 import 'package:manaber/shared/styles/styles.dart';
 
 class Oursectiosn extends StatelessWidget {
@@ -80,7 +81,10 @@ class Oursectiosn extends StatelessWidget {
                             controlBodyFunction: controlBodyFunction,
                             control: control,
                           )),
-                      child: const SectionItem(sectionname: 'العلاج الطبيعي')),
+                      child: const SectionItem(
+                        sectionname: 'العلاج الطبيعي',
+                        image: AppImages.occupationalTherapy,
+                      )),
                   InkWell(
                       onTap: () {
                         navigateTo(
@@ -96,7 +100,10 @@ class Oursectiosn extends StatelessWidget {
                                   controlerOccupationPreformance,
                             ));
                       },
-                      child: const SectionItem(sectionname: 'العلاج الوظيفي')),
+                      child: const SectionItem(
+                        sectionname: 'العلاج الوظيفي',
+                        image: AppImages.naturalTherapy,
+                      )),
                   InkWell(
                     onTap: () {
                       navigateTo(
@@ -116,6 +123,7 @@ class Oursectiosn extends StatelessWidget {
                     },
                     child: const SectionItem(
                       sectionname: 'التخاطب',
+                      image: AppImages.occupational,
                     ),
                   )
                 ],

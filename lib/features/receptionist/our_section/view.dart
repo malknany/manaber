@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:manaber/features/doctor/our_sections/widgets/section_item.dart';
+
 import 'package:manaber/features/receptionist/insert_data/controler.dart';
 import 'package:manaber/features/receptionist/insert_data/view.dart';
+import 'package:manaber/features/receptionist/our_section/widgets/section_item.dart';
 import 'package:manaber/features/receptionist/receptionist_profile/view.dart';
 import 'package:manaber/shared/components/navigator.dart';
 import 'package:manaber/shared/styles/styles.dart';

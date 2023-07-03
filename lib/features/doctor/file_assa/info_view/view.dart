@@ -92,7 +92,7 @@ class FileAssassemntScreen extends StatelessWidget {
                   },
                   borderRadius: 7),
               ButtonText(
-                  text: 'Participation And Participation Restriction',
+                  text: 'Participation',
                   onPressed: () {
                     navigateTo(
                         context,
