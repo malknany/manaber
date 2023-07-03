@@ -13,6 +13,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  bool isPassword = true;
   JobType _jobType = JobType.doctor;
   @override
   Widget build(BuildContext context) {
@@ -37,37 +38,48 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               const TextFieldTemplate(
                 hintText: 'الاسم',
-                suffixIcon: Icon(Icons.person),
+                suffixIcon: Icon(Icons.person, color: AppColors.primarycolor),
               ),
               const TextFieldTemplate(
+                textInputType: TextInputType.phone,
                 hintText: 'رثم الهاتف',
-                suffixIcon: Icon(Icons.phone),
+                suffixIcon: Icon(Icons.phone, color: AppColors.primarycolor),
               ),
               TextFieldTemplate(
+                isPassword: isPassword,
                 hintText: 'كلمة السر',
                 suffixIcon: const Icon(
                   Icons.lock,
                   color: AppColors.primarycolor,
                 ),
                 prefixIcon: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.visibility,
-                    color: AppColors.primarycolor,
+                  onPressed: () {
+                    setState(() {
+                      isPassword = !isPassword;
+                    });
+                  },
+                  icon: Icon(
+                    isPassword ? Icons.visibility : Icons.visibility_off,
+                    color: AppColors.grey,
                   ),
                 ),
               ),
               TextFieldTemplate(
                 hintText: 'تأكيد كلمة السر',
+                isPassword: isPassword,
                 suffixIcon: const Icon(
                   Icons.lock,
                   color: AppColors.primarycolor,
                 ),
                 prefixIcon: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.visibility,
-                    color: AppColors.primarycolor,
+                  onPressed: () {
+                    setState(() {
+                      isPassword = !isPassword;
+                    });
+                  },
+                  icon: Icon(
+                    isPassword ? Icons.visibility : Icons.visibility_off,
+                    color: AppColors.grey,
                   ),
                 ),
               ),

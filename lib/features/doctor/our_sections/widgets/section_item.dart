@@ -4,8 +4,10 @@ import 'package:manaber/shared/styles/colors.dart';
 import 'package:manaber/shared/styles/styles.dart';
 
 class SectionItem extends StatelessWidget {
-  const SectionItem({required this.sectionname, Key? key}) : super(key: key);
+  const SectionItem({required this.sectionname, Key? key, required this.image})
+      : super(key: key);
   final String sectionname;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +28,13 @@ class SectionItem extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Image.asset('assets/image/ux.png',
-                  height: 100, color: AppColors.primarycolor),
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height / 8,
+                width: MediaQuery.sizeOf(context).width / 8,
+                child: Image.asset(
+                  image,
+                ),
+              ),
               Text(
                 sectionname,
                 style: AppTextStyles.lrTitles
