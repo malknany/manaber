@@ -12,7 +12,7 @@ import 'package:manaber/shared/components/navigator.dart';
 import 'package:manaber/shared/styles/colors.dart';
 import 'package:manaber/shared/styles/images.dart';
 
-class InfoOccupationScreen extends StatelessWidget {
+class InfoOccupationScreen extends StatefulWidget {
   const InfoOccupationScreen(
       {super.key,
       required this.controleAssociatedDisorders,
@@ -27,6 +27,11 @@ class InfoOccupationScreen extends StatelessWidget {
   final StepperOccupationPreformance controleOccupationPreformance;
 
   @override
+  State<InfoOccupationScreen> createState() => _InfoOccupationScreenState();
+}
+
+class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -35,16 +40,21 @@ class InfoOccupationScreen extends StatelessWidget {
         elevation: 0,
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            navigateTo(
+          onPressed: () async {
+            final resulte = await navigateTo(
                 context,
                 StepperOccupation(
-                    controlerAssociatedDisorders: controleAssociatedDisorders,
-                    controlerBehaviorADLS: controleBehaviorADLS,
-                    controlerBodyFunctionStrucer: controleBodyFunctionStrucer,
+                    controlerAssociatedDisorders:
+                        widget.controleAssociatedDisorders,
+                    controlerBehaviorADLS: widget.controleBehaviorADLS,
+                    controlerBodyFunctionStrucer:
+                        widget.controleBodyFunctionStrucer,
                     controlerOccupationPreformance:
-                        controleOccupationPreformance,
-                    controlerPersonal: controlePersonalHistory));
+                        widget.controleOccupationPreformance,
+                    controlerPersonal: widget.controlePersonalHistory));
+            if (resulte == 'refresh') {
+              setState(() {});
+            }
           },
           backgroundColor: AppColors.primarycolor,
           elevation: 0,
@@ -84,7 +94,8 @@ class InfoOccupationScreen extends StatelessWidget {
                       navigateTo(
                         context,
                         PersonalHistoryView(
-                          controlePersonalHistory: controlePersonalHistory,
+                          controlePersonalHistory:
+                              widget.controlePersonalHistory,
                         ),
                       );
                     },
@@ -96,7 +107,7 @@ class InfoOccupationScreen extends StatelessWidget {
                         context,
                         AssociatedDisordersView(
                           controleAssociatedDisorders:
-                              controleAssociatedDisorders,
+                              widget.controleAssociatedDisorders,
                         ),
                       );
                     },
@@ -108,7 +119,7 @@ class InfoOccupationScreen extends StatelessWidget {
                         context,
                         BodyFunctionAndStrucerView(
                           controleBodyFunctionStrucer:
-                              controleBodyFunctionStrucer,
+                              widget.controleBodyFunctionStrucer,
                         ),
                       );
                     },
@@ -119,7 +130,7 @@ class InfoOccupationScreen extends StatelessWidget {
                       navigateTo(
                         context,
                         BehaviorADLSView(
-                          controleBehaviorADLS: controleBehaviorADLS,
+                          controleBehaviorADLS: widget.controleBehaviorADLS,
                         ),
                       );
                     },
@@ -131,7 +142,7 @@ class InfoOccupationScreen extends StatelessWidget {
                         context,
                         OccupationalPerformanceView(
                           controleOccupationPreformance:
-                              controleOccupationPreformance,
+                              widget.controleOccupationPreformance,
                         ),
                       );
                     },
@@ -143,7 +154,7 @@ class InfoOccupationScreen extends StatelessWidget {
                           context,
                           NoteOccupationalView(
                             controleOccupationPreformance:
-                                controleOccupationPreformance,
+                                widget.controleOccupationPreformance,
                           ));
                     },
                     borderRadius: 7),

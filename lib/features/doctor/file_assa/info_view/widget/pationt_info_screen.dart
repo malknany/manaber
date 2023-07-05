@@ -96,21 +96,16 @@ class PatientInfoView extends StatelessWidget {
                   title: "Assistive Devices",
                   value: stepperControl.assistiveDevices.text),
               InfoRowItem(
-                  //columnWidth: columnWidth,
                   title: "Other Associated Problems",
                   value: stepperControl.otherAssociatedProblems.text),
               InfoRowItem(
-                  //columnWidth: columnWidth,
                   title: "Similar cases in the family",
                   value: stepperControl.similarCasesInTheFamily.text),
               InfoRowItem(
-                  //columnWidth: columnWidth,
                   title: "Investigations",
                   value: stepperControl.investigations.text),
               InfoRowItem(
-                  //columnWidth: columnWidth,
-                  title: "Diagnosis",
-                  value: stepperControl.diagnosis.text),
+                  title: "Diagnosis", value: stepperControl.diagnosis.text),
             ],
           ),
         ),

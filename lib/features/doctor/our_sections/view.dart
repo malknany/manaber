@@ -74,7 +74,7 @@ class Oursectiosn extends StatelessWidget {
                   GestureDetector(
                       onTap: () => navigateTo(
                           context,
-                          FileAssassemntScreen(
+                          FileAssassemntView(
                             controlActivityAndActivityLimitation:
                                 controlActivityAndActivityLimitation,
                             controlGoalsAndNote: controlGoalsAndNote,

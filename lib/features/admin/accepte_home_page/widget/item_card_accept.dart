@@ -12,9 +12,7 @@ class ItemAccepteAdmin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 10,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Material(
         shadowColor: AppColors.primarycolor,
         elevation: 10,

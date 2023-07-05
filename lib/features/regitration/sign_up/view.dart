@@ -24,7 +24,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            // crossAxisAlignment: CrossAxisAlignment.start,
             textDirection: TextDirection.rtl,
             children: [
               Image.asset(AppImages.signup),
@@ -137,29 +136,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ],
               ),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  fixedSize: Size(
-                    MediaQuery.of(context).size.width,
-                    50,
-                  ),
-                  elevation: 0,
-                  backgroundColor: AppColors.primarycolor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-                child: const Text(
-                  ' تسجيل',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontFamily: 'Schyler',
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-              ),
+              ButtonText(text: 'تسجيل', onPressed: () {}),
               const Text(
                 'او',
                 style: TextStyle(

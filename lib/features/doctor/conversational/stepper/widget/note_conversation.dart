@@ -23,23 +23,27 @@ class NoteConversation extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              textDirection:  TextDirection.rtl,
+              textDirection: TextDirection.rtl,
               children: [
                 TextFormFiledStepper(
-                  textDirection: TextDirection.rtl,
+                    textDirection: TextDirection.rtl,
                     labelname: 'المعززات ',
                     textEditingController:
                         controleNoteConversation.reinforcers),
                 TextFormFiledStepper(
-                  textDirection: TextDirection.rtl,
+                    textDirection: TextDirection.rtl,
                     labelname: 'الاھداف المبدئیة ',
                     textEditingController:
                         controleNoteConversation.initialGoals),
                 TextFormFiledStepper(
-                  textDirection: TextDirection.rtl,
+                    textDirection: TextDirection.rtl,
                     labelname: 'ملاحظات ',
                     textEditingController: controleNoteConversation.note),
-                ButtonText(text: "حفظ", onPressed: () {})
+                ButtonText(
+                    text: "حفظ",
+                    onPressed: () {
+                      Navigator.pop(context, 'refresh');
+                    })
               ],
             ),
           )),
