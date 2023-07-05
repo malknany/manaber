@@ -65,12 +65,7 @@ class FileStteper extends StatelessWidget {
                     controlActivityAndActivityLimitation:
                         controlActivityAndActivityLimitation),
                 Goals(controlGoalsAndNote: controlGoalsAndNote),
-                Note(
-                    controlActivityAndActivityLimitation:
-                        controlActivityAndActivityLimitation,
-                    control: controle,
-                    controlBodyFunction: controlBodyFunction,
-                    controlGoalsAndNote: controlGoalsAndNote),
+                Note(controlGoalsAndNote: controlGoalsAndNote),
               ],
             ),
           ),

@@ -37,20 +37,21 @@ class AdminHomePage extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                ItemAccepteAdmin(
+                const ItemAccepteAdmin(
                     name: 'محمد الكناني', job: 'طبيب', number: '0506184132'),
-                ItemAccepteAdmin(
+                const ItemAccepteAdmin(
                     name: 'احمد الكناني',
                     job: 'موظف استقبال',
                     number: '050964753'),
-                ItemAccepteAdmin(
+                const ItemAccepteAdmin(
                     name: 'احمد الكناني',
                     job: 'موظف استقبال',
                     number: '050964753'),
-                ItemAccepteAdmin(
-                    name: 'احمد الكناني',
-                    job: 'موظف استقبال',
-                    number: '050964753'),
+                const ItemAccepteAdmin(
+                  name: 'احمد الكناني',
+                  job: 'موظف استقبال',
+                  number: '050964753',
+                ),
               ],
             ),
           ),
