@@ -46,48 +46,55 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 const SizedBox(
                   height: 16,
                 ),
-                Column(
-                  children: List.generate(
-                    controleUserAccepte.userAcceptore.length,
-                    (index) => ItemAccepteAdmin(
-                        onPressedNo: () {
-                          setState(() {
-                            controleUserAccepte.userAcceptore.removeAt(index);
-                          });
-                          final snackBar = SnackBar(
-                            duration: const Duration(seconds: 2),
-                            content: Text(
-                              textDirection: TextDirection.rtl,
-                              'تم الرفض',
-                              style: AppTextStyles.lrTitles
-                                  .copyWith(color: Colors.white),
-                            ),
-                            backgroundColor: Colors.red,
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        },
-                        onPressedOk: () {
-                          setState(() {
-                            controleUserAccepte.userAcceptore.removeAt(index);
-                          });
-                          final snackBar = SnackBar(
-                            duration: const Duration(seconds: 2),
-                            content: Text(
-                              textDirection: TextDirection.rtl,
-                              'تم مقبول',
-                              style: AppTextStyles.lrTitles
-                                  .copyWith(color: Colors.white),
-                            ),
-                            backgroundColor: AppColors.primarycolor,
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        },
-                        name: controleUserAccepte.userAcceptore[index].name,
-                        job: controleUserAccepte.userAcceptore[index].job,
-                        number:
-                            controleUserAccepte.userAcceptore[index].number),
-                  ),
-                ),
+                controleUserAccepte.userAcceptore.isEmpty
+                    ? Center(child: Text('لا يوجد طلبات '))
+                    : Column(
+                        children: List.generate(
+                          controleUserAccepte.userAcceptore.length,
+                          (index) => ItemAccepteAdmin(
+                              onPressedNo: () {
+                                setState(() {
+                                  controleUserAccepte.userAcceptore
+                                      .removeAt(index);
+                                });
+                                final snackBar = SnackBar(
+                                  duration: const Duration(seconds: 2),
+                                  content: Text(
+                                    textDirection: TextDirection.rtl,
+                                    'تم الرفض',
+                                    style: AppTextStyles.lrTitles
+                                        .copyWith(color: Colors.white),
+                                  ),
+                                  backgroundColor: Colors.red,
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              },
+                              onPressedOk: () {
+                                setState(() {
+                                  controleUserAccepte.userAcceptore
+                                      .removeAt(index);
+                                });
+                                final snackBar = SnackBar(
+                                  duration: const Duration(seconds: 2),
+                                  content: Text(
+                                    textDirection: TextDirection.rtl,
+                                    'تم مقبول',
+                                    style: AppTextStyles.lrTitles
+                                        .copyWith(color: Colors.white),
+                                  ),
+                                  backgroundColor: AppColors.primarycolor,
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              },
+                              name:
+                                  controleUserAccepte.userAcceptore[index].name,
+                              job: controleUserAccepte.userAcceptore[index].job,
+                              number: controleUserAccepte
+                                  .userAcceptore[index].number),
+                        ),
+                      ),
               ],
             ),
           ),

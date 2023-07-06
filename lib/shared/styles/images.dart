@@ -13,5 +13,7 @@ class AppImages {
   static const String tretmentPlan = "assets/image/tretment_plan.png";
   static const String video = "assets/image/video.png";
   static const String xRey = "assets/image/x-rey.png";
-  static const String conversational = "assets/image/x-conversational.png";
+  static const String conversational = "assets/image/conversational.png";
+  static const String ux = "assets/image/ux.png";
+  static const String user = "assets/image/user.png";
 }

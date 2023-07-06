@@ -136,3 +136,174 @@
 //     super.dispose();
 //   }
 // }
+// import 'package:flutter/material.dart';
+// import 'package:file_picker/file_picker.dart';
+// import 'dart:io';
+// import 'package:video_player/video_player.dart';
+
+// class VideoScreen extends StatefulWidget {
+//   @override
+//   _VideoScreenState createState() => _VideoScreenState();
+// }
+
+// class _VideoScreenState extends State<VideoScreen> {
+//   VideoPlayerController? _controller;
+//   File? _videoFile;
+
+//   Future pickVideo() async {
+//     final result = await FilePicker.platform.pickFiles(
+//       type: FileType.video,
+//       allowMultiple: false,
+//     );
+
+//     if (result != null) {
+//       setState(() {
+//         _videoFile = File(result.files.single.path!);
+//         _controller = VideoPlayerController.file(_videoFile!)
+//           ..initialize().then((_) {
+//             setState(() {});
+//           });
+//       });
+//     } else {
+//       // User canceled the picker
+//     }
+//   }
+
+//   @override
+//   void dispose() {
+//     _controller?.dispose();
+//     super.dispose();
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Video Screen'),
+//       ),
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: <Widget>[
+//             _videoFile == null
+//                 ? Text('No video selected.')
+//                 : _controller!.value.isInitialized
+//                     ? SizedBox(
+//                         height: MediaQuery.sizeOf(context).height / 2,
+//                         width: double.infinity,
+//                         child: AspectRatio(
+//                           aspectRatio: _controller!.value.aspectRatio,
+//                           child: VideoPlayer(_controller!),
+//                         ),
+//                       )
+//                     : CircularProgressIndicator(),
+//             SizedBox(height: 20),
+//             IconButton(
+//               onPressed: pickVideo,
+//               icon: Text('Pick Video'),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+import 'package:flutter/material.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:manaber/shared/components/components.dart';
+import 'dart:io';
+import 'package:video_player/video_player.dart';
+
+class VideoScreen extends StatefulWidget {
+  const VideoScreen({super.key});
+
+  @override
+  _VideoScreenState createState() => _VideoScreenState();
+}
+
+class _VideoScreenState extends State<VideoScreen> {
+  VideoPlayerController? _controller;
+  File? _videoFile;
+  bool _isPlaying = false;
+
+  Future pickVideo() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.video,
+      allowMultiple: false,
+    );
+
+    if (result != null) {
+      setState(() {
+        _videoFile = File(result.files.single.path!);
+        _controller = VideoPlayerController.file(_videoFile!)
+          ..initialize().then((_) {
+            setState(() {});
+          });
+      });
+    } else {
+      // User canceled the picker
+    }
+  }
+
+  void _togglePlayPause() {
+    setState(() {
+      if (_controller!.value.isPlaying) {
+        _controller!.pause();
+        _isPlaying = false;
+      } else {
+        _controller!.play();
+        _isPlaying = true;
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Video Screen'),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _videoFile == null
+                  ? const Text('No video selected.')
+                  : _controller!.value.isInitialized
+                      ? Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            SizedBox(
+                              height: MediaQuery.sizeOf(context).height / 2,
+                              child: AspectRatio(
+                                aspectRatio: _controller!.value.aspectRatio,
+                                child: VideoPlayer(_controller!),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: _togglePlayPause,
+                              child: Icon(
+                                _isPlaying ? Icons.pause : Icons.play_arrow,
+                                size: 100,
+                              ),
+                            ),
+                          ],
+                        )
+                      : const CircularProgressIndicator(),
+              const SizedBox(height: 20),
+              ButtonText(text: 'select video', onPressed: pickVideo),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

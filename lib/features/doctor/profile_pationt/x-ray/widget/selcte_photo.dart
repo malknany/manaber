@@ -8,7 +8,7 @@ import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
 class SlectePhotoView extends StatefulWidget {
-  const SlectePhotoView({super.key,required this.controle});
+  const SlectePhotoView({super.key, required this.controle});
   final ControleXray controle;
 
   @override
@@ -16,7 +16,7 @@ class SlectePhotoView extends StatefulWidget {
 }
 
 class _SlectePhotoViewState extends State<SlectePhotoView> {
-    List<File> _images = [];
+  List<File> _images = [];
   final TextEditingController editingController = TextEditingController();
 
   Future pickImages() async {
@@ -73,9 +73,26 @@ class _SlectePhotoViewState extends State<SlectePhotoView> {
                       ),
                       itemCount: _images.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return Image.file(
-                          _images[index],
-                          fit: BoxFit.cover,
+                        return Stack(
+                          children: [
+                            Image.file(
+                              _images[index],
+                              fit: BoxFit.fill,
+                            ),
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _images.removeAt(index);
+                                    });
+                                  },
+                                  icon: Icon(
+                                    Icons.delete,
+                                    color: Colors.red,
+                                  )),
+                            )
+                          ],
                         );
                       },
                     ),

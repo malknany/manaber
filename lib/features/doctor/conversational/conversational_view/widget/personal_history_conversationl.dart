@@ -12,12 +12,12 @@ class PersonalHistoryConversationalView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: AppColors.primarycolor,
-        elevation: 0,
-        child: const Icon(Icons.edit_outlined),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {},
+      //   backgroundColor: AppColors.primarycolor,
+      //   elevation: 0,
+      //   child: const Icon(Icons.edit_outlined),
+      // ),
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const Text(
@@ -37,7 +37,7 @@ class PersonalHistoryConversationalView extends StatelessWidget {
                 SizedBox(
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height / 3.5,
-                    child: Image.asset(AppImages.occupational)),
+                    child: Image.asset(AppImages.conversational)),
                 const SizedBox(height: 16.0),
                 InfoRowItem(
                     textDirection: TextDirection.rtl,
