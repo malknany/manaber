@@ -77,7 +77,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   } else if (number.text == '1010' && password.text == '123') {
                     navigateTo(context, OurSectiosnReceptionist());
                   } else if (number.text == '2020' && password.text == '123') {
-                    navigateTo(context, const AdminHomePage());
+                    navigateTo(context,  AdminHomePage());
                   }
                 },
               ),

@@ -1,66 +1,119 @@
-// import 'package:flutter/material.dart';
-// import 'package:file_picker/file_picker.dart';
-// import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:manaber/features/doctor/profile_pationt/x-ray/controle.dart';
+import 'package:manaber/features/doctor/profile_pationt/x-ray/widget/data_view_entry.dart';
+import 'package:manaber/features/doctor/profile_pationt/x-ray/widget/selcte_photo.dart';
+import 'package:manaber/shared/styles/colors.dart';
+import 'package:manaber/shared/components/constants.dart';
+import 'package:manaber/shared/components/navigator.dart';
+import 'package:manaber/shared/styles/styles.dart';
 
-// import 'package:manaber/shared/styles/colors.dart';
+class XrayView extends StatefulWidget {
+  XrayView({
+    super.key,
+  });
+  final ControleXray controle = ControleXray();
 
-// class GalleryScreen extends StatefulWidget {
-//   @override
-//   _GalleryScreenState createState() => _GalleryScreenState();
-// }
+  @override
+  State<XrayView> createState() => _XrayViewState();
+}
 
-// class _GalleryScreenState extends State<GalleryScreen> {
-//   List<File> _images = [];
+class _XrayViewState extends State<XrayView> {
+  bool isRefresh = false;
 
-//   Future pickImages() async {
-//     FilePickerResult? result = await FilePicker.platform.pickFiles(
-//       type: FileType.image,
-//       allowMultiple: true,
-//     );
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('X-ray'),
+        backgroundColor: Colors.white,
+      ),
+      body: isRefresh
+          ? Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 1.0,
+                    crossAxisSpacing: 20,
+                  ),
+                  itemCount: widget.controle.itemes.length,
+                  itemBuilder: (context, index) => GestureDetector(
+                        onTap: () {
+                          navigateTo(
+                              context,
+                              XrayDataView(
+                                modelXray: widget.controle.itemes[index],
+                              ));
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Material(
+                            shadowColor: AppColors.primarycolor,
+                            elevation: 10,
+                            borderRadius: BorderRadius.circular(20),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              height: MediaQuery.sizeOf(context).height / 4,
+                              width:
+                                  MediaQueryHelper.sizeFromWidth(context, 1.2),
+                              child: Column(
+                                children: [
+                                  const SizedBox(
+                                    height: 25,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      "X_ray${index + 1}",
+                                      style: AppTextStyles.lrTitles.copyWith(
+                                          color: AppColors.primarycolor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 2,
+                                    child: IconButton(
+                                        onPressed: () {
+                                          widget.controle.itemes
+                                              .removeAt(index);
+                                          setState(() {});
+                                        },
+                                        icon: const Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        )),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      )),
+            )
+          : const SizedBox(
+              height: double.infinity,
+              width: double.infinity,
+              child: Center(
+                child: Text("No X-ray",
+                    style:
+                        TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
+              ),
+            ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.primarycolor,
+        child: const Icon(Icons.add, color: Colors.white),
+        onPressed: () async {
+          final refresh = await navigateTo(
+              context, SlectePhotoView(controle: widget.controle));
 
-//     if (result != null) {
-//       setState(() {
-//         _images = result.paths.map((path) => File(path!)).toList();
-//       });
-//     } else {
-//       // User canceled the picker
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       floatingActionButton: FloatingActionButton(
-//           onPressed: pickImages, backgroundColor: AppColors.primarycolor),
-//       appBar: AppBar(
-//         title: Text('Gallery Screen'),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             _images.isEmpty
-//                 ? Text('No images selected.')
-//                 : Expanded(
-//                     child: GridView.builder(
-//                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                         crossAxisCount: 3,
-//                         crossAxisSpacing: 4,
-//                         mainAxisSpacing: 4,
-//                       ),
-//                       itemCount: _images.length,
-//                       itemBuilder: (BuildContext context, int index) {
-//                         return Image.file(
-//                           _images[index],
-//                           fit: BoxFit.cover,
-//                         );
-//                       },
-//                     ),
-//                   ),
-//             SizedBox(height: 20),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+          if (refresh == 'refresh') {
+            setState(() {
+              isRefresh = true;
+            });
+          }
+        },
+      ),
+    );
+  }
+}

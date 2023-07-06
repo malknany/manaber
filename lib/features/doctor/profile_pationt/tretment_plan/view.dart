@@ -57,17 +57,35 @@ class _TretmentPlanViewState extends State<TretmentPlanView> {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              height:
-                                  MediaQueryHelper.sizeFromHeight(context, 4.5),
+                              height: MediaQuery.sizeOf(context).height / 4,
                               width:
                                   MediaQueryHelper.sizeFromWidth(context, 1.2),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                // mainAxisAlignment:
+                                //     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    "Plan${index + 1}",
-                                    style: AppTextStyles.lrTitles.copyWith(
-                                        color: AppColors.primarycolor),
+                                  const SizedBox(
+                                    height: 25,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      "Plan${index + 1}",
+                                      style: AppTextStyles.lrTitles.copyWith(
+                                          color: AppColors.primarycolor),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 2,
+                                    child: IconButton(
+                                        onPressed: () {
+                                          planControle.listofModel
+                                              .removeAt(index);
+                                          setState(() {});
+                                        },
+                                        icon: const Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        )),
                                   )
                                 ],
                               ),
@@ -76,7 +94,7 @@ class _TretmentPlanViewState extends State<TretmentPlanView> {
                         ),
                       )),
             )
-          : SizedBox(
+          : const SizedBox(
               height: double.infinity,
               width: double.infinity,
               child: Center(
