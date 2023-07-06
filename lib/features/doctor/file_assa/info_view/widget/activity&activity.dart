@@ -5,9 +5,11 @@ import 'package:manaber/shared/styles/colors.dart';
 import 'package:manaber/shared/styles/images.dart';
 
 class ActivityAndActivityLimitationView extends StatelessWidget {
-  const ActivityAndActivityLimitationView({super.key,required this.controlActivityAndActivityLimitation});
+  const ActivityAndActivityLimitationView(
+      {super.key, required this.controlActivityAndActivityLimitation});
 
-  final StepperControlActivityAndActivityLimitation controlActivityAndActivityLimitation;
+  final StepperControlActivityAndActivityLimitation
+      controlActivityAndActivityLimitation;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,6 @@ class ActivityAndActivityLimitationView extends StatelessWidget {
               )),
         ),
         body: Padding(
-          
           padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
           child: SingleChildScrollView(
             child: Column(
@@ -55,13 +56,13 @@ class ActivityAndActivityLimitationView extends StatelessWidget {
                 ),
                 const SizedBox(height: 16.0),
                 InfoRowItem(
-                    //columnWidth: columnWidth,
                     title: 'Activity and Activity Limitation',
-                    value: controlActivityAndActivityLimitation.activityAndActivityLimitation.text),
+                    value: controlActivityAndActivityLimitation
+                        .activityAndActivityLimitation.text),
                 InfoRowItem(
-                    //columnWidth: columnWidth,
                     title: 'Participation And Participation Restriction',
-                    value: controlActivityAndActivityLimitation.participationAndParticipationRestriction.text),
+                    value: controlActivityAndActivityLimitation
+                        .participationAndParticipationRestriction.text),
               ],
             ),
           ),

@@ -1,25 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/occupation_therapy/info_occupation_view/view.dart';
+
 import 'package:manaber/features/doctor/occupation_therapy/stepper/controler.dart';
 import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/components/navigator.dart';
+
 import 'package:manaber/shared/styles/colors.dart';
 
 class NoteOccupation extends StatelessWidget {
-  const NoteOccupation(
-      {super.key,
-      required this.controlerOccupationPreformance,
-      required this.controleBodyFunctionStrucer,
-      required this.controlePersonalHistory,
-      required this.controlerAssociatedDisorders,
-      required this.controlerBehaviorADLS,
-      required this.controlerBodyFunctionStrucer});
+  const NoteOccupation({
+    super.key,
+    required this.controlerOccupationPreformance,
+  });
   final StepperOccupationPreformance controlerOccupationPreformance;
-  final StepperAssociatedDisorders controlerAssociatedDisorders;
-  final StepperBehaviorADLS controlerBehaviorADLS;
-  final StepperBodyFunctionStrucer controlerBodyFunctionStrucer;
-  final StepperBodyFunctionStrucer controleBodyFunctionStrucer;
-  final StepperPersonalHistory controlePersonalHistory;
 
   @override
   Widget build(BuildContext context) {
@@ -44,18 +35,7 @@ class NoteOccupation extends StatelessWidget {
                 ButtonText(
                     text: "Save",
                     onPressed: () {
-                      navigateTo(
-                          context,
-                          InfoOccupationScreen(
-                              controleAssociatedDisorders:
-                                  controlerAssociatedDisorders,
-                              controleBehaviorADLS: controlerBehaviorADLS,
-                              controleBodyFunctionStrucer:
-                                  controleBodyFunctionStrucer,
-                              controleOccupationPreformance:
-                                  controlerOccupationPreformance,
-                              controlePersonalHistory:
-                                  controlePersonalHistory));
+                      Navigator.pop(context, 'refresh');
                     })
               ],
             ),

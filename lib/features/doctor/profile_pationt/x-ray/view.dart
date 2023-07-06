@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/profile_pationt/tretment_plan/controle.dart';
-
-import 'package:manaber/features/doctor/profile_pationt/tretment_plan/widget/data_view.dart';
-import 'package:manaber/features/doctor/profile_pationt/tretment_plan/widget/tretment_plan_entry_data.dart';
-
+import 'package:manaber/features/doctor/profile_pationt/x-ray/controle.dart';
+import 'package:manaber/features/doctor/profile_pationt/x-ray/widget/data_view_entry.dart';
+import 'package:manaber/features/doctor/profile_pationt/x-ray/widget/selcte_photo.dart';
+import 'package:manaber/shared/styles/colors.dart';
 import 'package:manaber/shared/components/constants.dart';
 import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/colors.dart';
 import 'package:manaber/shared/styles/styles.dart';
 
-class TretmentPlanView extends StatefulWidget {
-  const TretmentPlanView({super.key});
+class XrayView extends StatefulWidget {
+  XrayView({
+    super.key,
+  });
+  final ControleXray controle = ControleXray();
 
   @override
-  _TretmentPlanViewState createState() => _TretmentPlanViewState();
+  State<XrayView> createState() => _XrayViewState();
 }
 
-class _TretmentPlanViewState extends State<TretmentPlanView> {
-  TretmentPlanControle planControle = TretmentPlanControle();
+class _XrayViewState extends State<XrayView> {
   bool isRefresh = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tretment Plans'),
+        title: const Text('X-ray'),
         backgroundColor: Colors.white,
       ),
       body: isRefresh
@@ -36,14 +36,13 @@ class _TretmentPlanViewState extends State<TretmentPlanView> {
                     childAspectRatio: 1.0,
                     crossAxisSpacing: 20,
                   ),
-                  itemCount: planControle.listofModel.length,
+                  itemCount: widget.controle.itemes.length,
                   itemBuilder: (context, index) => GestureDetector(
                         onTap: () {
                           navigateTo(
                               context,
-                              DataView(
-                                controle: planControle.listofModel[index],
-                                index: index + 1,
+                              XrayDataView(
+                                modelXray: widget.controle.itemes[index],
                               ));
                         },
                         child: Padding(
@@ -61,15 +60,13 @@ class _TretmentPlanViewState extends State<TretmentPlanView> {
                               width:
                                   MediaQueryHelper.sizeFromWidth(context, 1.2),
                               child: Column(
-                                // mainAxisAlignment:
-                                //     MainAxisAlignment.spaceBetween,
                                 children: [
                                   const SizedBox(
                                     height: 25,
                                   ),
                                   Expanded(
                                     child: Text(
-                                      "Plan${index + 1}",
+                                      "X_ray${index + 1}",
                                       style: AppTextStyles.lrTitles.copyWith(
                                           color: AppColors.primarycolor),
                                     ),
@@ -78,7 +75,7 @@ class _TretmentPlanViewState extends State<TretmentPlanView> {
                                     flex: 2,
                                     child: IconButton(
                                         onPressed: () {
-                                          planControle.listofModel
+                                          widget.controle.itemes
                                               .removeAt(index);
                                           setState(() {});
                                         },
@@ -98,7 +95,7 @@ class _TretmentPlanViewState extends State<TretmentPlanView> {
               height: double.infinity,
               width: double.infinity,
               child: Center(
-                child: Text("No Plans",
+                child: Text("No X-ray",
                     style:
                         TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
               ),
@@ -107,13 +104,9 @@ class _TretmentPlanViewState extends State<TretmentPlanView> {
         backgroundColor: AppColors.primarycolor,
         child: const Icon(Icons.add, color: Colors.white),
         onPressed: () async {
-          final refresh = await Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => TrentmentPlanDataEntry(
-                      planControle: planControle,
-                    )),
-          );
+          final refresh = await navigateTo(
+              context, SlectePhotoView(controle: widget.controle));
+
           if (refresh == 'refresh') {
             setState(() {
               isRefresh = true;

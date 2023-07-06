@@ -55,11 +55,6 @@ class StepperOccupation extends StatelessWidget {
                     controlerOccupationPreformance:
                         controlerOccupationPreformance),
                 NoteOccupation(
-                    controleBodyFunctionStrucer: controlerBodyFunctionStrucer,
-                    controlePersonalHistory: controlerPersonal,
-                    controlerAssociatedDisorders: controlerAssociatedDisorders,
-                    controlerBehaviorADLS: controlerBehaviorADLS,
-                    controlerBodyFunctionStrucer: controlerBodyFunctionStrucer,
                     controlerOccupationPreformance:
                         controlerOccupationPreformance),
               ],
@@ -81,7 +76,6 @@ class StepperOccupation extends StatelessWidget {
               const SizedBox(
                 width: 20,
               ),
-              
               TextButton(
                 style: TextButton.styleFrom(
                   backgroundColor: AppColors.primarycolor,

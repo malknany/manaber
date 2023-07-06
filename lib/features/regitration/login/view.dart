@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:manaber/features/admin/accepte_home_page/view.dart';
-import 'package:manaber/features/receptionist/our_section/view.dart';
+import 'package:manaber/features/receptionist/our_section_reception/view.dart';
 import 'package:manaber/features/regitration/sign_up/view.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/components/navigator.dart';
@@ -71,32 +71,17 @@ class _LogInScreenState extends State<LogInScreen> {
                   ),
                 ),
               ),
-              ElevatedButton(
+              ButtonText(
+                text: 'تسجيل',
                 onPressed: () {
                   if (number.text == '5050' && password.text == '123') {
                     navigateTo(context, Oursectiosn());
                   } else if (number.text == '1010' && password.text == '123') {
                     navigateTo(context, OurSectiosnReceptionist());
                   } else if (number.text == '2020' && password.text == '123') {
-                    navigateTo(context, const AdminHomePage());
+                    navigateTo(context,  AdminHomePage());
                   }
                 },
-                style: ElevatedButton.styleFrom(
-                  fixedSize: Size(MediaQuery.of(context).size.width, 50),
-                  elevation: 0,
-                  backgroundColor: AppColors.primarycolor,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
-                ),
-                child: const Text(
-                  ' تسجيل',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.white,
-                    fontFamily: 'Schyler',
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
               ),
               const Text(
                 'او',

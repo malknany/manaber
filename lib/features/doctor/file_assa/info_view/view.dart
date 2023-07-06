@@ -11,8 +11,8 @@ import 'package:manaber/shared/components/navigator.dart';
 import 'package:manaber/shared/styles/colors.dart';
 import 'package:manaber/shared/styles/images.dart';
 
-class FileAssassemntScreen extends StatelessWidget {
-  const FileAssassemntScreen(
+class FileAssassemntView extends StatefulWidget {
+  const FileAssassemntView(
       {super.key,
       required this.control,
       required this.controlBodyFunction,
@@ -26,19 +26,27 @@ class FileAssassemntScreen extends StatelessWidget {
       controlActivityAndActivityLimitation;
 
   @override
+  State<FileAssassemntView> createState() => _FileAssassemntViewState();
+}
+
+class _FileAssassemntViewState extends State<FileAssassemntView> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            navigateTo(
+          onPressed: () async {
+            final result = await navigateTo(
               context,
               FileStteper(
-                  controle: control,
-                  controlBodyFunction: controlBodyFunction,
+                  controle: widget.control,
+                  controlBodyFunction: widget.controlBodyFunction,
                   controlActivityAndActivityLimitation:
-                      controlActivityAndActivityLimitation,
-                  controlGoalsAndNote: controlGoalsAndNote),
+                      widget.controlActivityAndActivityLimitation,
+                  controlGoalsAndNote: widget.controlGoalsAndNote),
             );
+            if (result == 'refresh') {
+              setState(() {});
+            }
           },
           backgroundColor: AppColors.primarycolor,
           elevation: 0,
@@ -77,7 +85,7 @@ class FileAssassemntScreen extends StatelessWidget {
                     navigateTo(
                         context,
                         PatientInfoView(
-                          stepperControl: control,
+                          stepperControl: widget.control,
                         ));
                   },
                   borderRadius: 7),
@@ -87,7 +95,7 @@ class FileAssassemntScreen extends StatelessWidget {
                     navigateTo(
                         context,
                         ICFBodyView(
-                          controlBodyFunction: controlBodyFunction,
+                          controlBodyFunction: widget.controlBodyFunction,
                         ));
                   },
                   borderRadius: 7),
@@ -98,7 +106,7 @@ class FileAssassemntScreen extends StatelessWidget {
                         context,
                         ActivityAndActivityLimitationView(
                           controlActivityAndActivityLimitation:
-                              controlActivityAndActivityLimitation,
+                              widget.controlActivityAndActivityLimitation,
                         ));
                   },
                   borderRadius: 7),
@@ -108,7 +116,7 @@ class FileAssassemntScreen extends StatelessWidget {
                     navigateTo(
                         context,
                         GoalsView(
-                          controlGoalsAndNote: controlGoalsAndNote,
+                          controlGoalsAndNote: widget.controlGoalsAndNote,
                         ));
                   },
                   borderRadius: 7),
@@ -118,7 +126,7 @@ class FileAssassemntScreen extends StatelessWidget {
                     navigateTo(
                         context,
                         NoteView(
-                          controlGoalsAndNote: controlGoalsAndNote,
+                          controlGoalsAndNote: widget.controlGoalsAndNote,
                         ));
                   },
                   borderRadius: 7),

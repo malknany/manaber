@@ -85,6 +85,7 @@ class Oursectiosn extends StatelessWidget {
                           //   control: control,
                           // )
                       ),
+
                       child: const SectionItem(
                         sectionname: 'العلاج الطبيعي',
                         image: AppImages.occupationalTherapy,

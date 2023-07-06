@@ -11,7 +11,7 @@ import 'package:manaber/shared/components/navigator.dart';
 import 'package:manaber/shared/styles/colors.dart';
 import 'package:manaber/shared/styles/images.dart';
 
-class InfoConversationScreen extends StatelessWidget {
+class InfoConversationScreen extends StatefulWidget {
   const InfoConversationScreen({
     super.key,
     required this.controlePersonalHistory,
@@ -29,6 +29,11 @@ class InfoConversationScreen extends StatelessWidget {
   final StepperNoteConversation controleNoteConversation;
 
   @override
+  State<InfoConversationScreen> createState() => _InfoConversationScreenState();
+}
+
+class _InfoConversationScreenState extends State<InfoConversationScreen> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -37,20 +42,23 @@ class InfoConversationScreen extends StatelessWidget {
         elevation: 0,
       ),
       floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            navigateTo(
+          onPressed: () async {
+            final result = await navigateTo(
               context,
               StepperConversational(
                 controleChildDevelopmentalHistory:
-                    controlechildDevelopmentalHistory,
-                controleNoteConversation: controleNoteConversation,
+                    widget.controlechildDevelopmentalHistory,
+                controleNoteConversation: widget.controleNoteConversation,
                 controlerChildMedicalAndMedicalHistory:
-                    controleChildMedicalAndMedicalHistory,
+                    widget.controleChildMedicalAndMedicalHistory,
                 controlerMedicalAndGeneticHistoryOfTheFamily:
-                    controlerMedicalAndGeneticHistoryOfTheFamily,
-                personalHistoryConversational: controlePersonalHistory,
+                    widget.controlerMedicalAndGeneticHistoryOfTheFamily,
+                personalHistoryConversational: widget.controlePersonalHistory,
               ),
             );
+            if (result == 'refresh') {
+              setState(() {});
+            }
           },
           backgroundColor: AppColors.primarycolor,
           elevation: 0,
@@ -81,7 +89,7 @@ class InfoConversationScreen extends StatelessWidget {
                     navigateTo(
                       context,
                       PersonalHistoryConversationalView(
-                        controlePersonalHistory: controlePersonalHistory,
+                        controlePersonalHistory: widget.controlePersonalHistory,
                       ),
                     );
                   },
@@ -92,8 +100,8 @@ class InfoConversationScreen extends StatelessWidget {
                     navigateTo(
                         context,
                         MedicalAndGeneticHistoryOfTheFamilyView(
-                            controlerMedicalAndGeneticHistoryOfTheFamily:
-                                controlerMedicalAndGeneticHistoryOfTheFamily));
+                            controlerMedicalAndGeneticHistoryOfTheFamily: widget
+                                .controlerMedicalAndGeneticHistoryOfTheFamily));
                   },
                   borderRadius: 7),
               ButtonText(
@@ -103,7 +111,7 @@ class InfoConversationScreen extends StatelessWidget {
                         context,
                         ChildMedicalAndMedicalHistoryView(
                             controleChildMedicalAndMedicalHistory:
-                                controleChildMedicalAndMedicalHistory));
+                                widget.controleChildMedicalAndMedicalHistory));
                   },
                   borderRadius: 7),
               ButtonText(
@@ -113,7 +121,7 @@ class InfoConversationScreen extends StatelessWidget {
                         context,
                         ChildDevelopmentalHistoryView(
                             controlechildDevelopmentalHistory:
-                                controlechildDevelopmentalHistory));
+                                widget.controlechildDevelopmentalHistory));
                   },
                   borderRadius: 7),
               ButtonText(
@@ -122,7 +130,8 @@ class InfoConversationScreen extends StatelessWidget {
                     navigateTo(
                       context,
                       NoteConversationalView(
-                        controleNoteConversation: controleNoteConversation,
+                        controleNoteConversation:
+                            widget.controleNoteConversation,
                       ),
                     );
                   },
