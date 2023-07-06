@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:manaber/shared/components/constants.dart';
 import 'package:manaber/shared/styles/colors.dart';
+import 'package:manaber/shared/styles/images.dart';
 import 'package:manaber/shared/styles/styles.dart';
 
 class SlectedItemProfile extends StatelessWidget {
@@ -25,8 +26,8 @@ class SlectedItemProfile extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Image.asset('assets/images/ux.png',
-                  height: 100, color: AppColors.primarycolor),
+              Image.asset(AppImages.xRey,
+                  height: 100,),
               Text(
                 sectionname,
                 style: AppTextStyles.lrTitles

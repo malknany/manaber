@@ -9,13 +9,13 @@ class Model{
 List<Model> main_list = [
   Model("kinani",
       "software engineer",
-      ('assets/images/ux.png')),
+      ('assets/images/user.png')),
   Model("ebrahim", "software engineer",
-      ('assets/images/ux.png')),
+      ('assets/images/user.png')),
   Model("hossam", "php developer",
-      ('assets/images/ux.png')),
+      ('assets/images/user.png')),
   Model("yousef", "security",
-      ('assets/images/ux.png')),
+      ('assets/images/user.png')),
   Model(
-      "da7om", "clinical", ('assets/images/ux.png'))
+      "da7om", "clinical", ('assets/images/user.png'))
 ];

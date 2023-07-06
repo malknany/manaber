@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:manaber/shared/components/navigator.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
+import '../doctor/profile_pationt/profile_view/view.dart';
 import 'model.dart';
 
 
@@ -88,7 +89,7 @@ class _MembersState extends State<Members> {
                               color: const Color(0xffF8F5FF)),
                           child: ListTile(
                             onTap: () {
-                            //  navigateTo(context, screen)
+                              navigateTo(context, ProfilePationtScreen()) ;
                             },
                             selected: true,
                             selectedColor: Colors.grey,

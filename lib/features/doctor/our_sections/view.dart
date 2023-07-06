@@ -7,6 +7,7 @@ import 'package:manaber/features/doctor/occupation_therapy/info_occupation_view/
 import 'package:manaber/features/doctor/occupation_therapy/stepper/controler.dart';
 import 'package:manaber/features/doctor/our_sections/widgets/section_item.dart';
 import 'package:manaber/features/doctor/profile_doctor/view.dart';
+import 'package:manaber/features/members/view.dart';
 import 'package:manaber/shared/components/navigator.dart';
 import 'package:manaber/shared/styles/images.dart';
 import 'package:manaber/shared/styles/styles.dart';
@@ -74,13 +75,16 @@ class Oursectiosn extends StatelessWidget {
                   GestureDetector(
                       onTap: () => navigateTo(
                           context,
-                          FileAssassemntScreen(
-                            controlActivityAndActivityLimitation:
-                                controlActivityAndActivityLimitation,
-                            controlGoalsAndNote: controlGoalsAndNote,
-                            controlBodyFunction: controlBodyFunction,
-                            control: control,
-                          )),
+                          Members()
+
+                          // FileAssassemntScreen(
+                          //   controlActivityAndActivityLimitation:
+                          //       controlActivityAndActivityLimitation,
+                          //   controlGoalsAndNote: controlGoalsAndNote,
+                          //   controlBodyFunction: controlBodyFunction,
+                          //   control: control,
+                          // )
+                      ),
                       child: const SectionItem(
                         sectionname: 'العلاج الطبيعي',
                         image: AppImages.occupationalTherapy,
