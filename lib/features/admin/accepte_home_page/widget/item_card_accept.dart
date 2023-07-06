@@ -4,10 +4,17 @@ import 'package:manaber/shared/styles/styles.dart';
 
 class ItemAccepteAdmin extends StatelessWidget {
   const ItemAccepteAdmin(
-      {super.key, required this.name, required this.job, required this.number});
+      {super.key,
+      required this.name,
+      required this.job,
+      required this.number,
+      required this.onPressedOk,
+      required this.onPressedNo});
   final String name;
   final String job;
   final String number;
+  final onPressedOk;
+  final onPressedNo;
 
   @override
   Widget build(BuildContext context) {
@@ -58,38 +65,14 @@ class ItemAccepteAdmin extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     IconButton(
-                        onPressed: () {
-                          final snackBar = SnackBar(
-                            duration: const Duration(seconds: 2),
-                            content: Text(
-                              textDirection: TextDirection.rtl,
-                              'تم مقبول',
-                              style: AppTextStyles.lrTitles
-                                  .copyWith(color: Colors.white),
-                            ),
-                            backgroundColor: AppColors.primarycolor,
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        },
-                        icon: Icon(
+                        onPressed: onPressedOk,
+                        icon: const Icon(
                           Icons.check_circle_outline_outlined,
                           color: AppColors.primarycolor,
                         )),
                     IconButton(
-                        onPressed: () {
-                          final snackBar = SnackBar(
-                            duration: const Duration(seconds: 2),
-                            content: Text(
-                              textDirection: TextDirection.rtl,
-                              'تم الرفض',
-                              style: AppTextStyles.lrTitles
-                                  .copyWith(color: Colors.white),
-                            ),
-                            backgroundColor: Colors.red,
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        },
-                        icon: Icon(
+                        onPressed: onPressedNo,
+                        icon: const Icon(
                           Icons.cancel_outlined,
                           color: Colors.red,
                         )),
