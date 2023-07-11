@@ -11,12 +11,12 @@ class ICFBodyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: AppColors.primarycolor,
-        elevation: 0,
-        child: const Icon(Icons.edit_outlined),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {},
+      //   backgroundColor: AppColors.primarycolor,
+      //   elevation: 0,
+      //   child: const Icon(Icons.edit_outlined),
+      // ),
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const Text('Body function',

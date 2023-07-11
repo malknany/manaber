@@ -14,6 +14,7 @@ import 'package:manaber/shared/styles/images.dart';
 class InfoConversationScreen extends StatefulWidget {
   const InfoConversationScreen({
     super.key,
+    required this.controleConversational,
     required this.controlePersonalHistory,
     required this.controlerMedicalAndGeneticHistoryOfTheFamily,
     required this.controleChildMedicalAndMedicalHistory,
@@ -27,6 +28,7 @@ class InfoConversationScreen extends StatefulWidget {
       controleChildMedicalAndMedicalHistory;
   final StepperChildDevelopmentalHistory controlechildDevelopmentalHistory;
   final StepperNoteConversation controleNoteConversation;
+  final ControleConversational controleConversational;
 
   @override
   State<InfoConversationScreen> createState() => _InfoConversationScreenState();
@@ -46,6 +48,7 @@ class _InfoConversationScreenState extends State<InfoConversationScreen> {
             final result = await navigateTo(
               context,
               StepperConversational(
+                controleConversational: widget.controleConversational,
                 controleChildDevelopmentalHistory:
                     widget.controlechildDevelopmentalHistory,
                 controleNoteConversation: widget.controleNoteConversation,
@@ -89,7 +92,7 @@ class _InfoConversationScreenState extends State<InfoConversationScreen> {
                     navigateTo(
                       context,
                       PersonalHistoryConversationalView(
-                        controlePersonalHistory: widget.controlePersonalHistory,
+                        controlePersonalHistory: widget.controleConversational,
                       ),
                     );
                   },
@@ -100,8 +103,8 @@ class _InfoConversationScreenState extends State<InfoConversationScreen> {
                     navigateTo(
                         context,
                         MedicalAndGeneticHistoryOfTheFamilyView(
-                            controlerMedicalAndGeneticHistoryOfTheFamily: widget
-                                .controlerMedicalAndGeneticHistoryOfTheFamily));
+                            controleConversational:
+                                widget.controleConversational));
                   },
                   borderRadius: 7),
               ButtonText(

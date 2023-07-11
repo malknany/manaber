@@ -6,6 +6,7 @@ import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/components/navigator.dart';
 import 'package:manaber/shared/styles/colors.dart';
 import 'package:manaber/shared/styles/images.dart';
+import 'package:manaber/shared/styles/styles.dart';
 
 import '../../doctor/our_sections/view.dart';
 
@@ -69,6 +70,13 @@ class _LogInScreenState extends State<LogInScreen> {
                   ),
                 ),
               ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: Text(
+                  'نسيت كلمة السر ؟',
+                  style: AppTextStyles.smTitles,
+                ),
+              ),
               ButtonText(
                 text: 'تسجيل',
                 onPressed: () {
@@ -77,7 +85,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   } else if (number.text == '1010' && password.text == '123') {
                     navigateTo(context, OurSectiosnReceptionist());
                   } else if (number.text == '2020' && password.text == '123') {
-                    navigateTo(context,  AdminHomePage());
+                    navigateTo(context, AdminHomePage());
                   }
                 },
               ),

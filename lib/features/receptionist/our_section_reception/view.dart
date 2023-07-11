@@ -46,7 +46,7 @@ class OurSectiosnReceptionist extends StatelessWidget {
                       controleReceptionist: controleReceptionist),
                   SectionItemReceptionist(
                     image: AppImages.occupational,
-                    sectionname: 'التخاطب',
+                    sectionname: 'تعديل سلوك واضطراب الطفولة',
                     controleReceptionist: controleReceptionist,
                   )
                 ],

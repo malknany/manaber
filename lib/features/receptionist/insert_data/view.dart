@@ -36,7 +36,7 @@ class ReceptionistDataEntry extends StatelessWidget {
                       textEditingController:
                           controleReceptionist.lisOfModel[index].controller,
                       labelname: controleReceptionist.lisOfModel[index].lable),
-                  index == 7
+                  index == 8
                       ? DropdownButtonItem(
                           textDirection: TextDirection.rtl,
                           lableName:
@@ -47,7 +47,7 @@ class ReceptionistDataEntry extends StatelessWidget {
                               .lisOfDropdown.first.controller,
                         )
                       : const SizedBox.shrink(),
-                  index == 9
+                  index == 10
                       ? ButtonText(
                           text: 'حفظ',
                           onPressed: () {

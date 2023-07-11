@@ -4,9 +4,14 @@ import 'package:manaber/shared/styles/colors.dart';
 import 'package:manaber/shared/styles/styles.dart';
 
 class ItemCardDoctor extends StatelessWidget {
-  const ItemCardDoctor({super.key, required this.name, required this.phone});
+  const ItemCardDoctor(
+      {super.key,
+      required this.onPressed,
+      required this.name,
+      required this.phone});
   final String name;
   final String phone;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +37,20 @@ class ItemCardDoctor extends StatelessWidget {
               children: [
                 Text(
                   'الاسم:$name',
+                  textDirection: TextDirection.rtl,
                   style: AppTextStyles.lrTitles
                       .copyWith(color: AppColors.primarycolor),
                 ),
                 Text(
                   'رقم الهاتف :$phone',
+                  textDirection: TextDirection.rtl,
                   style: AppTextStyles.lrTitles
                       .copyWith(color: AppColors.primarycolor),
                 ),
                 Align(
                   alignment: Alignment.bottomLeft,
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: onPressed,
                     icon: const Icon(
                       Icons.edit,
                       color: AppColors.grey,

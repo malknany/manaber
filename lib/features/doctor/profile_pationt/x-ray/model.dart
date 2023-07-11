@@ -2,10 +2,8 @@
 import 'dart:io';
 
 class ModelXray {
-  final String title;
   final List<File> images;
   ModelXray({
-    required this.title,
     required this.images,
   });
 }

@@ -29,6 +29,10 @@ class StepperReceptionist {
         controller: controle1,
       ),
       ModelReception(
+        lable: 'رقم الهاتف',
+        controller: controle1,
+      ),
+      ModelReception(
         lable: 'صلة القرابة بين الاب والام',
         controller: controle2,
       ),

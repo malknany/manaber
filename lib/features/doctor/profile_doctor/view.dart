@@ -1,11 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/doctor/profile_doctor/widget/edite_profile.dart';
 import 'package:manaber/features/doctor/profile_doctor/widget/item_card_doctor.dart';
 import 'package:manaber/shared/components/constants.dart';
+import 'package:manaber/shared/components/navigator.dart';
 import 'package:manaber/shared/styles/images.dart';
 import 'package:manaber/shared/styles/styles.dart';
 
-class ProfileDoctor extends StatelessWidget {
-  const ProfileDoctor({super.key});
+class ProfileDoctor extends StatefulWidget {
+  ProfileDoctor({super.key});
+
+  @override
+  State<ProfileDoctor> createState() => _ProfileDoctorState();
+}
+
+class _ProfileDoctorState extends State<ProfileDoctor> {
+  final TextEditingController controllerName = TextEditingController();
+
+  final TextEditingController controllerPhone = TextEditingController();
+
+  final TextEditingController controllerPassword = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +46,27 @@ class ProfileDoctor extends StatelessWidget {
             'الطبيب',
             style: AppTextStyles.boldtitles.copyWith(fontSize: 32),
           ),
-          ItemCardDoctor(name: 'محمد الكناني', phone: '01021986038'),
+          ItemCardDoctor(
+            name: controllerName.text.isEmpty
+                ? ' محمد الكناني'
+                : controllerName.text,
+            phone: controllerPhone.text.isEmpty
+                ? '01021986038'
+                : controllerPhone.text,
+            onPressed: () async {
+              print('red' * 10);
+              final result = await navigateTo(
+                  context,
+                  EditeProfile(
+                    controllerName: controllerName,
+                    controllerPhone: controllerPhone,
+                    controllerPassword: controllerPassword,
+                  ));
+              if (result == "refresh") {
+                setState(() {});
+              }
+            },
+          ),
         ],
       ),
     );

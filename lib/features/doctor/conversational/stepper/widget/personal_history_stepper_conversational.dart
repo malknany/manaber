@@ -1,13 +1,13 @@
-
 import 'package:manaber/features/doctor/conversational/stepper/controler.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 
 class PersonalHistoryConversational extends StatelessWidget {
-  const PersonalHistoryConversational(
-      {super.key, required this.personalHistoryConversational});
+  PersonalHistoryConversational(
+      {super.key, required this.personalHistoryConversational,required this.controleConversational});
   final StepperPersonalHistoryConversational personalHistoryConversational;
+  final ControleConversational controleConversational;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +21,23 @@ class PersonalHistoryConversational extends StatelessWidget {
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                TextFormFiledStepper(
+          child: ListView.builder(
+            itemCount: controleConversational.listOfPersonal.length,
+            itemBuilder: (context, index) {
+              return TextFormFiledStepper(
+                  textDirection: TextDirection.rtl,
+                  textEditingController:
+                      controleConversational.listOfPersonal[index].controle,
+                  labelname:
+                      controleConversational.listOfPersonal[index].lable);
+            },
+          )),
+    );
+  }
+}
+
+/*
+TextFormFiledStepper(
                     textDirection: TextDirection.rtl,
                     labelname: 'اسم الطفل/ة',
                     textEditingController:
@@ -106,16 +117,11 @@ class PersonalHistoryConversational extends StatelessWidget {
                   textEditingController:
                       personalHistoryConversational.childAdaptedToTheFamily,
                 ),
-                DividerItem(text: 'التاریخ الصحي للأسرة'),
+                const DividerItem(text: 'التاریخ الصحي للأسرة'),
                 TextFormFiledStepper(
                   textDirection: TextDirection.rtl,
                   labelname: ' ھل توجد أمراض وراثیة في الأسرة ',
                   textEditingController:
                       personalHistoryConversational.hereditaryDiseases,
                 ),
-              ],
-            ),
-          )),
-    );
-  }
-}
+*/ 
