@@ -14,7 +14,7 @@ class StepperConversational extends StatelessWidget {
       required this.controleNoteConversation,
       required this.controlerChildMedicalAndMedicalHistory,
       required this.controlerMedicalAndGeneticHistoryOfTheFamily,
-      required this.personalHistoryConversational});
+      required this.personalHistoryConversational,required this.controleConversational});
 
   final StepperPersonalHistoryConversational personalHistoryConversational;
   final StepperMedicalAndGeneticHistoryOfTheFamily
@@ -24,6 +24,7 @@ class StepperConversational extends StatelessWidget {
   final StepperChildDevelopmentalHistory controleChildDevelopmentalHistory;
   final StepperNoteConversation controleNoteConversation;
   final PageController _pageController = PageController();
+  final ControleConversational controleConversational;
 
   void _navigateToNextPage() {
     _pageController.nextPage(
@@ -49,11 +50,12 @@ class StepperConversational extends StatelessWidget {
               controller: _pageController,
               children: [
                 PersonalHistoryConversational(
+                  controleConversational: controleConversational,
                     personalHistoryConversational:
-                        personalHistoryConversational),
+                        personalHistoryConversational,),
                 MedicalAndGeneticHistoryOfTheFamily(
-                    controlerMedicalAndGeneticHistoryOfTheFamily:
-                        controlerMedicalAndGeneticHistoryOfTheFamily),
+                    controleConversational:
+                        controleConversational),
                 ChildMedicalAndMedicalHistory(
                     controlerChildMedicalAndMedicalHistory:
                         controlerChildMedicalAndMedicalHistory),

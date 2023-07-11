@@ -17,7 +17,7 @@ class SlectePhotoView extends StatefulWidget {
 
 class _SlectePhotoViewState extends State<SlectePhotoView> {
   List<File> _images = [];
-  final TextEditingController editingController = TextEditingController();
+  // final TextEditingController editingController = TextEditingController();
 
   Future pickImages() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
@@ -40,8 +40,7 @@ class _SlectePhotoViewState extends State<SlectePhotoView> {
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.save),
           onPressed: () {
-            final model =
-                ModelXray(title: editingController.text, images: _images);
+            final model = ModelXray(images: _images);
             widget.controle.itemes.add(model);
             Navigator.pop(context, 'refresh');
           },
@@ -54,8 +53,6 @@ class _SlectePhotoViewState extends State<SlectePhotoView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TextFormFiledStepper(
-                textEditingController: editingController, labelname: 'report'),
             _images.isNotEmpty
                 ? SizedBox.shrink()
                 : ButtonText(
@@ -73,26 +70,14 @@ class _SlectePhotoViewState extends State<SlectePhotoView> {
                       ),
                       itemCount: _images.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return Stack(
-                          children: [
-                            Image.file(
-                              _images[index],
-                              fit: BoxFit.fill,
-                            ),
-                            Align(
-                              alignment: Alignment.bottomCenter,
-                              child: IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      _images.removeAt(index);
-                                    });
-                                  },
-                                  icon: Icon(
-                                    Icons.delete,
-                                    color: Colors.red,
-                                  )),
-                            )
-                          ],
+                        return InkWell(
+                          onLongPress: (){
+                            showMenu(context: context, position: RelativeRect.fromLTRB(0, 0, 0, 0), items: []);
+                          },
+                          child: Image.file(
+                            _images[index],
+                            fit: BoxFit.fill,
+                          ),
                         );
                       },
                     ),

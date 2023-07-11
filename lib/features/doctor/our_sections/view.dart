@@ -16,7 +16,7 @@ class Oursectiosn extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                navigateTo(context, const ProfileDoctor());
+                navigateTo(context, ProfileDoctor());
               },
               icon: const Icon(Icons.person))
         ],
@@ -65,7 +65,7 @@ class Oursectiosn extends StatelessWidget {
                       );
                     },
                     child: const SectionItem(
-                      sectionname: 'التخاطب',
+                      sectionname: 'تعديل سلوك واضطراب الطفولة',
                       image: AppImages.conversational,
                     ),
                   )

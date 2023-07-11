@@ -53,6 +53,9 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
   final StepperChildDevelopmentalHistory controleChildDevelopmentalHistory =
       StepperChildDevelopmentalHistory();
 
+  final ControleConversational controleConversational =
+      ControleConversational();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,6 +104,7 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                         navigateTo(
                             context,
                             InfoConversationScreen(
+                                controleConversational: controleConversational,
                                 controlePersonalHistory:
                                     personalHistoryConversational,
                                 controlerMedicalAndGeneticHistoryOfTheFamily:
