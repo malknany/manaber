@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/profile_pationt/x-ray/controle.dart';
-import 'package:manaber/features/doctor/profile_pationt/x-ray/model.dart';
-import 'package:manaber/features/doctor/profile_pationt/x-ray/widget/data_view_entry.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/components/constants.dart';
-import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import 'controle.dart';
+import 'model.dart';
+import 'widget/data_view_entry.dart';
+import '../../../../shared/styles/colors.dart';
+import '../../../../shared/components/constants.dart';
+import '../../../../shared/components/navigator.dart';
+import '../../../../shared/styles/styles.dart';
 
 class XrayView extends StatefulWidget {
   XrayView({
@@ -22,7 +22,6 @@ class XrayView extends StatefulWidget {
 
 class _XrayViewState extends State<XrayView> {
   List<File> _images = [];
-  // final TextEditingController editingController = TextEditingController();
   bool isRefresh = false;
   bool isDelete = false;
   Future pickImages() async {
@@ -143,19 +142,8 @@ class _XrayViewState extends State<XrayView> {
             ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.primarycolor,
-        child: const Icon(Icons.add, color: Colors.white),
         onPressed: pickImages,
-        // () async {
-
-        // final refresh = await navigateTo(
-        //     context, SlectePhotoView(controle: widget.controle));
-
-        // if (refresh == 'refresh') {
-        //   setState(() {
-        //     isRefresh = true;
-        //   });
-        // }
-        // },
+        child: const Icon(Icons.add, color: Colors.white),
       ),
     );
   }

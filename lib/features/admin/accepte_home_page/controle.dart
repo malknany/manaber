@@ -1,4 +1,4 @@
-import 'package:manaber/features/admin/accepte_home_page/model.dart';
+import 'model.dart';
 
 class ControleUserAccepte {
   List<ModelUserAccepte> userAcceptore = [

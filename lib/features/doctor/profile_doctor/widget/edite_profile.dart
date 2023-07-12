@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/shared/components/components.dart';
+import '../../../../shared/components/components.dart';
 
 class EditeProfile extends StatelessWidget {
   final TextEditingController controllerName;
@@ -16,7 +16,7 @@ class EditeProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('تعديل بيانات الطبيب'),
+        title: const Text('تعديل بيانات الطبيب'),
       ),
       body: SizedBox(
         height: double.infinity,

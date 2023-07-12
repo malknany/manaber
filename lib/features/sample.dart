@@ -84,6 +84,8 @@
 //     );
 //   }
 
+// ignore_for_file: library_private_types_in_public_api
+
 //   @override
 //   void dispose() {
 //     _controllers.forEach((controller) => controller.dispose());
@@ -96,7 +98,7 @@ import 'package:manaber/shared/components/components.dart';
 class HomeScreen extends StatefulWidget {
   final List<String> data;
 
-  HomeScreen({required this.data});
+  const HomeScreen({super.key, required this.data});
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -107,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Screen'),
+        title: const Text('Home Screen'),
       ),
       body: ListView.builder(
         itemCount: widget.data.length,
@@ -126,11 +128,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => MyScreen()),
+            MaterialPageRoute(builder: (context) => const MyScreen()),
           );
         },
       ),
@@ -142,13 +144,13 @@ class DataScreen extends StatelessWidget {
   final List<String> data;
   final int selectedIndex;
 
-  DataScreen({required this.data, required this.selectedIndex});
+  const DataScreen({super.key, required this.data, required this.selectedIndex});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Data Screen'),
+        title: const Text('Data Screen'),
       ),
       body: ListView.builder(
         itemCount: data.length,
@@ -170,12 +172,14 @@ class DataScreen extends StatelessWidget {
 }
 
 class MyScreen extends StatefulWidget {
+  const MyScreen({super.key});
+
   @override
   _MyScreenState createState() => _MyScreenState();
 }
 
 class _MyScreenState extends State<MyScreen> {
-  List<TextEditingController> _controllers = [];
+  final List<TextEditingController> _controllers = [];
   int counter = 1;
 
   @override
@@ -202,7 +206,7 @@ class _MyScreenState extends State<MyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Screen'),
+        title: const Text('My Screen'),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -216,11 +220,11 @@ class _MyScreenState extends State<MyScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                  icon: Icon(Icons.add),
+                  icon: const Icon(Icons.add),
                   onPressed: _addTextField,
                 ),
                 IconButton(
-                  icon: Icon(Icons.remove),
+                  icon: const Icon(Icons.remove),
                   onPressed: _removeTextField,
                 ),
               ],
@@ -233,16 +237,17 @@ class _MyScreenState extends State<MyScreen> {
 
   @override
   void dispose() {
-    _controllers.forEach((controller) => controller.dispose());
+    for (var controller in _controllers) {
+      controller.dispose();
+    }
     super.dispose();
   }
 }
 
 class FormScreen extends StatefulWidget {
+  const FormScreen({super.key, required this.data, this.selectedIndex});
   final List<String> data;
   final int? selectedIndex;
-
-  FormScreen({required this.data, this.selectedIndex});
 
   @override
   _FormScreenState createState() => _FormScreenState();
@@ -264,10 +269,10 @@ class _FormScreenState extends State<FormScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Form Screen'),
+        title: const Text('Form Screen'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -275,9 +280,9 @@ class _FormScreenState extends State<FormScreen> {
               controller: _controller,
               onChanged: (value) => _currentValue = value,
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
-              child: Text('Save'),
+              child: const Text('Save'),
               onPressed: () {
                 if (widget.selectedIndex != null) {
                   widget.data[widget.selectedIndex!] = _currentValue;

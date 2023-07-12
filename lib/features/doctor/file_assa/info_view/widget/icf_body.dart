@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/file_assa/stpper/controller.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/images.dart';
+import '../../stpper/controller.dart';
+import '../../../../../shared/components/components.dart';
+import '../../../../../shared/styles/colors.dart';
+import '../../../../../shared/styles/images.dart';
 
 class ICFBodyView extends StatelessWidget {
   const ICFBodyView({super.key, required this.controlBodyFunction});
@@ -11,12 +11,6 @@ class ICFBodyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {},
-      //   backgroundColor: AppColors.primarycolor,
-      //   elevation: 0,
-      //   child: const Icon(Icons.edit_outlined),
-      // ),
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const Text('Body function',

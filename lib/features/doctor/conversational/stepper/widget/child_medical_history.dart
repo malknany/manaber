@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/conversational/stepper/controler.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import '../controler.dart';
+import '../../../../../shared/components/components.dart';
+import '../../../../../shared/styles/colors.dart';
 
 class ChildMedicalAndMedicalHistory extends StatelessWidget {
   const ChildMedicalAndMedicalHistory(
-      {super.key, required this.controlerChildMedicalAndMedicalHistory});
-  final StepperChildMedicalAndMedicalHistory
-      controlerChildMedicalAndMedicalHistory;
+      {super.key, required this.controleConversational});
+  final ControleConversational controleConversational;
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +20,25 @@ class ChildMedicalAndMedicalHistory extends StatelessWidget {
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                TextFormFiledStepper(
+          child: ListView.builder(
+            itemCount: controleConversational
+                .listOfChildMedicalAndMedicalHistory.length,
+            itemBuilder: (context, index) {
+              return TextFormFiledStepper(
+                textDirection: TextDirection.rtl,
+                textEditingController: controleConversational
+                    .listOfChildMedicalAndMedicalHistory[index].controle,
+                labelname: controleConversational
+                    .listOfChildMedicalAndMedicalHistory[index].lable,
+              );
+            },
+          )),
+    );
+  }
+}
+
+/*
+TextFormFiledStepper(
                     textDirection: TextDirection.rtl,
                     labelname: 'متى اكتشفت الأسرة الاضطراب',
                     textEditingController:
@@ -84,9 +96,4 @@ class ChildMedicalAndMedicalHistory extends StatelessWidget {
                     labelname: 'ھل مازال الطفل یستخدم الحفاظ ',
                     textEditingController:
                         controlerChildMedicalAndMedicalHistory.controle11),
-              ],
-            ),
-          )),
-    );
-  }
-}
+*/

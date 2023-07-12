@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/members/view.dart';
-import 'package:manaber/features/doctor/our_sections/widgets/section_item.dart';
-import 'package:manaber/features/doctor/profile_doctor/view.dart';
-import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/images.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../members/view.dart';
+import 'widgets/section_item.dart';
+import '../profile_doctor/view.dart';
+import '../../../shared/components/navigator.dart';
+import '../../../shared/styles/images.dart';
+import '../../../shared/styles/styles.dart';
 
 class Oursectiosn extends StatelessWidget {
-  Oursectiosn({Key? key}) : super(key: key);
+ const  Oursectiosn({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class Oursectiosn extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                navigateTo(context, ProfileDoctor());
+                navigateTo(context, const ProfileDoctor());
               },
               icon: const Icon(Icons.person))
         ],
@@ -37,7 +37,7 @@ class Oursectiosn extends StatelessWidget {
                   GestureDetector(
                       onTap: () => navigateTo(
                             context,
-                            Members(counter: 0),
+                            const Members(counter: 0),
                           ),
                       child: const SectionItem(
                         sectionname: 'العلاج الطبيعي',
@@ -47,7 +47,7 @@ class Oursectiosn extends StatelessWidget {
                       onTap: () {
                         navigateTo(
                             context,
-                            Members(
+                            const Members(
                               counter: 1,
                             ));
                       },
@@ -59,7 +59,7 @@ class Oursectiosn extends StatelessWidget {
                     onTap: () {
                       navigateTo(
                         context,
-                        Members(
+                        const Members(
                           counter: 2,
                         ),
                       );

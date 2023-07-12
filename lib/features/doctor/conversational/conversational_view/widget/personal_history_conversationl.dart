@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/conversational/stepper/controler.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/images.dart';
+import '../../stepper/controler.dart';
+import '../../../../../shared/components/components.dart';
+import '../../../../../shared/styles/colors.dart';
+import '../../../../../shared/styles/images.dart';
 
 class PersonalHistoryConversationalView extends StatelessWidget {
   const PersonalHistoryConversationalView(
@@ -30,17 +30,15 @@ class PersonalHistoryConversationalView extends StatelessWidget {
                 height: MediaQuery.of(context).size.height / 3.5,
                 child: Image.asset(AppImages.conversational)),
             const SizedBox(height: 16.0),
-            Expanded(
-              child: Column(
-                children: List.generate(
-                    controlePersonalHistory.listOfPersonal.length,
-                    (index) => InfoRowItem(
-                        textDirection: TextDirection.rtl,
-                        title: controlePersonalHistory
-                            .listOfPersonal[index].lable,
-                        value: controlePersonalHistory
-                            .listOfPersonal[index].controle.text)),
-              ),
+            Column(
+              children: List.generate(
+                  controlePersonalHistory.listOfPersonal.length,
+                  (index) => InfoRowItem(
+                      textDirection: TextDirection.rtl,
+                      title:
+                          controlePersonalHistory.listOfPersonal[index].lable,
+                      value: controlePersonalHistory
+                          .listOfPersonal[index].controle.text)),
             ),
           ],
         ),

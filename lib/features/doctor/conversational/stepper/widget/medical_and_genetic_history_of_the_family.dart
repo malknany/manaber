@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/conversational/stepper/controler.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import '../controler.dart';
+import '../../../../../shared/components/components.dart';
+import '../../../../../shared/styles/colors.dart';
 
 class MedicalAndGeneticHistoryOfTheFamily extends StatelessWidget {
   const MedicalAndGeneticHistoryOfTheFamily(
@@ -25,9 +25,9 @@ class MedicalAndGeneticHistoryOfTheFamily extends StatelessWidget {
                 return TextFormFiledStepper(
                     textDirection: TextDirection.rtl,
                     labelname: controleConversational
-                        .ListOfMedicalAndGeneticHistoryOfTheFamily[index].lable,
+                        .listOfMedicalAndGeneticHistoryOfTheFamily[index].lable,
                     textEditingController: controleConversational
-                        .ListOfMedicalAndGeneticHistoryOfTheFamily[index]
+                        .listOfMedicalAndGeneticHistoryOfTheFamily[index]
                         .controle);
               },
               separatorBuilder: (context, index) {
@@ -38,7 +38,7 @@ class MedicalAndGeneticHistoryOfTheFamily extends StatelessWidget {
                 }
               },
               itemCount: controleConversational
-                  .ListOfMedicalAndGeneticHistoryOfTheFamily.length)),
+                  .listOfMedicalAndGeneticHistoryOfTheFamily.length)),
     );
   }
 }

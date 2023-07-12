@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/receptionist/receptionist_profile/widget/edite_profile_receptio.dart';
-import 'package:manaber/features/receptionist/receptionist_profile/widget/item_card_profile.dart';
-import 'package:manaber/shared/components/constants.dart';
-import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/images.dart';
-import 'package:manaber/shared/styles/styles.dart';
+
+import '../../../shared/components/constants.dart';
+import '../../../shared/components/navigator.dart';
+import '../../../shared/styles/images.dart';
+import '../../../shared/styles/styles.dart';
+import 'widget/edite_profile_receptio.dart';
+import 'widget/item_card_profile.dart';
 
 class ReceptionistProfile extends StatefulWidget {
   const ReceptionistProfile({super.key});

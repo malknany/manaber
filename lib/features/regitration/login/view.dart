@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/admin/accepte_home_page/view.dart';
-import 'package:manaber/features/receptionist/our_section_reception/view.dart';
-import 'package:manaber/features/regitration/sign_up/view.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/images.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../admin/accepte_home_page/view.dart';
+import '../../receptionist/our_section_reception/view.dart';
+import '../sign_up/view.dart';
+import '../../../shared/components/components.dart';
+import '../../../shared/components/navigator.dart';
+import '../../../shared/styles/colors.dart';
+import '../../../shared/styles/images.dart';
+import '../../../shared/styles/styles.dart';
 
 import '../../doctor/our_sections/view.dart';
 
@@ -81,11 +81,11 @@ class _LogInScreenState extends State<LogInScreen> {
                 text: 'تسجيل',
                 onPressed: () {
                   if (number.text == '5050' && password.text == '123') {
-                    navigateTo(context, Oursectiosn());
+                    navigateTo(context, const Oursectiosn());
                   } else if (number.text == '1010' && password.text == '123') {
                     navigateTo(context, OurSectiosnReceptionist());
                   } else if (number.text == '2020' && password.text == '123') {
-                    navigateTo(context, AdminHomePage());
+                    navigateTo(context, const AdminHomePage());
                   }
                 },
               ),

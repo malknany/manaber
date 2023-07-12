@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/admin/accepte_home_page/controle.dart';
-import 'package:manaber/features/admin/accepte_home_page/widget/item_card_accept.dart';
-import 'package:manaber/shared/components/constants.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/images.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import 'controle.dart';
+import 'widget/item_card_accept.dart';
+import '../../../shared/components/constants.dart';
+import '../../../shared/styles/colors.dart';
+import '../../../shared/styles/images.dart';
+import '../../../shared/styles/styles.dart';
 
 class AdminHomePage extends StatefulWidget {
-  AdminHomePage({super.key});
+  const AdminHomePage({super.key});
 
   @override
   State<AdminHomePage> createState() => _AdminHomePageState();
@@ -47,7 +47,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                   height: 16,
                 ),
                 controleUserAccepte.userAcceptore.isEmpty
-                    ? Center(child: Text('لا يوجد طلبات '))
+                    ? const Center(child: Text('لا يوجد طلبات '))
                     : Column(
                         children: List.generate(
                           controleUserAccepte.userAcceptore.length,

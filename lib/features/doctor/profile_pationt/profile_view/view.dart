@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/conversational/conversational_view/view.dart';
-import 'package:manaber/features/doctor/conversational/stepper/controler.dart';
-import 'package:manaber/features/doctor/file_assa/info_view/view.dart';
-import 'package:manaber/features/doctor/file_assa/stpper/controller.dart';
-import 'package:manaber/features/doctor/occupation_therapy/info_occupation_view/view.dart';
-import 'package:manaber/features/doctor/occupation_therapy/stepper/controler.dart';
-import 'package:manaber/features/doctor/profile_pationt/profile_view/widget/slection_item_profile.dart';
-import 'package:manaber/features/doctor/profile_pationt/tretment_plan/view.dart';
-import 'package:manaber/features/doctor/profile_pationt/video/view.dart';
-import 'package:manaber/features/doctor/profile_pationt/x-ray/view.dart';
-import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/images.dart';
+import '../../conversational/conversational_view/view.dart';
+import '../../conversational/stepper/controler.dart';
+import '../../file_assa/info_view/view.dart';
+import '../../file_assa/stpper/controller.dart';
+import '../../occupation_therapy/info_occupation_view/view.dart';
+import '../../occupation_therapy/stepper/controler.dart';
+import 'widget/slection_item_profile.dart';
+import '../tretment_plan/view.dart';
+import '../video/view.dart';
+import '../x-ray/view.dart';
+import '../../../../shared/components/navigator.dart';
+import '../../../../shared/styles/images.dart';
 
 class ProfilePationtScreen extends StatefulWidget {
   const ProfilePationtScreen({super.key, required this.index});
@@ -39,19 +39,6 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
   final StepperBehaviorADLS controlerBehaviorADLS = StepperBehaviorADLS();
   final StepperOccupationPreformance controlerOccupationPreformance =
       StepperOccupationPreformance();
-  // ? control of conversation
-  final StepperPersonalHistoryConversational personalHistoryConversational =
-      StepperPersonalHistoryConversational();
-  final StepperMedicalAndGeneticHistoryOfTheFamily
-      controlerMedicalAndGeneticHistoryOfTheFamily =
-      StepperMedicalAndGeneticHistoryOfTheFamily();
-  final StepperChildMedicalAndMedicalHistory
-      controlerChildMedicalAndMedicalHistory =
-      StepperChildMedicalAndMedicalHistory();
-  final StepperNoteConversation controleNoteConversation =
-      StepperNoteConversation();
-  final StepperChildDevelopmentalHistory controleChildDevelopmentalHistory =
-      StepperChildDevelopmentalHistory();
 
   final ControleConversational controleConversational =
       ControleConversational();
@@ -104,17 +91,8 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                         navigateTo(
                             context,
                             InfoConversationScreen(
-                                controleConversational: controleConversational,
-                                controlePersonalHistory:
-                                    personalHistoryConversational,
-                                controlerMedicalAndGeneticHistoryOfTheFamily:
-                                    controlerMedicalAndGeneticHistoryOfTheFamily,
-                                controleChildMedicalAndMedicalHistory:
-                                    controlerChildMedicalAndMedicalHistory,
-                                controlechildDevelopmentalHistory:
-                                    controleChildDevelopmentalHistory,
-                                controleNoteConversation:
-                                    controleNoteConversation));
+                              controleConversational: controleConversational,
+                            ));
                       }
                     },
                     sectionname: widget.index == 0
@@ -135,7 +113,7 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                     image: AppImages.tretmentPlan),
                 SlectedItemProfile(
                     onTap: () {
-                      navigateTo(context, VideoScreen());
+                      navigateTo(context, const VideoScreen());
                     },
                     sectionname: 'Videos',
                     image: AppImages.video),

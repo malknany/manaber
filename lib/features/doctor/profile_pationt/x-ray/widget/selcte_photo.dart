@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/profile_pationt/x-ray/controle.dart';
-import 'package:manaber/features/doctor/profile_pationt/x-ray/model.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import '../controle.dart';
+import '../model.dart';
+import '../../../../../shared/components/components.dart';
+import '../../../../../shared/styles/colors.dart';
 
 class SlectePhotoView extends StatefulWidget {
   const SlectePhotoView({super.key, required this.controle});
@@ -38,15 +38,15 @@ class _SlectePhotoViewState extends State<SlectePhotoView> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.save),
           onPressed: () {
             final model = ModelXray(images: _images);
             widget.controle.itemes.add(model);
             Navigator.pop(context, 'refresh');
           },
-          backgroundColor: AppColors.primarycolor),
+          backgroundColor: AppColors.primarycolor,
+          child: const Icon(Icons.save)),
       appBar: AppBar(
-        title: Text('Gallery Screen'),
+        title: const Text('Gallery Screen'),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10),
@@ -54,7 +54,7 @@ class _SlectePhotoViewState extends State<SlectePhotoView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             _images.isNotEmpty
-                ? SizedBox.shrink()
+                ? const SizedBox.shrink()
                 : ButtonText(
                     text: 'Selcte photo',
                     onPressed: pickImages,
@@ -72,7 +72,7 @@ class _SlectePhotoViewState extends State<SlectePhotoView> {
                       itemBuilder: (BuildContext context, int index) {
                         return InkWell(
                           onLongPress: (){
-                            showMenu(context: context, position: RelativeRect.fromLTRB(0, 0, 0, 0), items: []);
+                            showMenu(context: context, position: const RelativeRect.fromLTRB(0, 0, 0, 0), items: []);
                           },
                           child: Image.file(
                             _images[index],

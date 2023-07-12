@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../../../shared/styles/colors.dart';
+import '../../../../shared/styles/styles.dart';
 
 class ItemAccepteAdmin extends StatelessWidget {
   const ItemAccepteAdmin(
@@ -13,8 +13,8 @@ class ItemAccepteAdmin extends StatelessWidget {
   final String name;
   final String job;
   final String number;
-  final onPressedOk;
-  final onPressedNo;
+  final void Function()? onPressedOk;
+  final void Function()? onPressedNo;
 
   @override
   Widget build(BuildContext context) {

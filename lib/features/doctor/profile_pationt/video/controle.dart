@@ -1,4 +1,4 @@
-import 'package:manaber/features/doctor/profile_pationt/video/model.dart';
+import 'model.dart';
 
 class ControleViedoes {
   List<ModelVideoes> listOfViedoes = [];

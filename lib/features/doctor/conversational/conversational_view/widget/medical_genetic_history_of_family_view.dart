@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/conversational/stepper/controler.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/images.dart';
+import '../../stepper/controler.dart';
+import '../../../../../shared/components/components.dart';
+import '../../../../../shared/styles/colors.dart';
+import '../../../../../shared/styles/images.dart';
 
 class MedicalAndGeneticHistoryOfTheFamilyView extends StatelessWidget {
   const MedicalAndGeneticHistoryOfTheFamilyView(
@@ -31,31 +31,22 @@ class MedicalAndGeneticHistoryOfTheFamilyView extends StatelessWidget {
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height / 3.5,
                   child: Image.asset(AppImages.conversational)),
-              const Text(
-                "دراسه الحالة",
-                style: TextStyle(
-                    fontSize: 22,
-                    color: Colors.black,
-                    fontFamily: 'Schyler',
-                    fontWeight: FontWeight.bold),
-              ),
               const SizedBox(height: 16.0),
               Column(
                 children: List.generate(
                   controleConversational
-                      .ListOfMedicalAndGeneticHistoryOfTheFamily.length,
+                      .listOfMedicalAndGeneticHistoryOfTheFamily.length,
                   (index) => InfoRowItem(
                       textDirection: TextDirection.rtl,
                       title: controleConversational
-                          .ListOfMedicalAndGeneticHistoryOfTheFamily[index]
+                          .listOfMedicalAndGeneticHistoryOfTheFamily[index]
                           .lable,
                       value: controleConversational
-                          .ListOfMedicalAndGeneticHistoryOfTheFamily[index]
+                          .listOfMedicalAndGeneticHistoryOfTheFamily[index]
                           .controle
                           .text),
                 ),
               ),
-              
             ],
           )),
     );

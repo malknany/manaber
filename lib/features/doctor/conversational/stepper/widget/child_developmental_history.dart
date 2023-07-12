@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:manaber/features/doctor/conversational/stepper/controler.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import '../controler.dart';
+import '../../../../../shared/components/components.dart';
+import '../../../../../shared/styles/colors.dart';
 
 class ChildDevelopmentalHistory extends StatelessWidget {
   const ChildDevelopmentalHistory(
-      {super.key, required this.controleChildDevelopmentalHistory});
-  final StepperChildDevelopmentalHistory controleChildDevelopmentalHistory;
+      {super.key, required this.controleConversational});
+  final ControleConversational controleConversational;
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +21,35 @@ class ChildDevelopmentalHistory extends StatelessWidget {
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              textDirection: TextDirection.rtl,
-              children: [
-                TextFormFiledStepper(
+          child: ListView.separated(
+              itemBuilder: (context, index) {
+                return TextFormFiledStepper(
+                  textDirection: TextDirection.rtl,
+                    textEditingController: controleConversational
+                        .listOfChildDevelopmentalHistory[index].controle,
+                    labelname: controleConversational
+                        .listOfChildDevelopmentalHistory[index].lable);
+              },
+              separatorBuilder: (context, index) {
+                if (index == 3) {
+                  return const Column(
+                    children: [
+                       DividerItem(text: 'المشكلات السلوكیھ للطفل'),
+                       Text('ھل یعاني الطفل من المشكلات السلوكیة التالیة')
+                    ],
+                  );
+                } else {
+                  return const SizedBox.shrink();
+                }
+              },
+              itemCount: controleConversational
+                  .listOfChildDevelopmentalHistory.length)),
+    );
+  }
+}
+
+/*
+TextFormFiledStepper(
                     textEditingController:
                         controleChildDevelopmentalHistory.controle1,
                     labelname: "مستوى النمو اللغوي الحالي",
@@ -74,9 +96,4 @@ class ChildDevelopmentalHistory extends StatelessWidget {
                         controleChildDevelopmentalHistory.controle9,
                     labelname: "سلوكیات أخرى",
                     textDirection: TextDirection.rtl),
-              ],
-            ),
-          )),
-    );
-  }
-}
+*/
