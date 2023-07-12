@@ -1,28 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/conversational/stepper/controler.dart';
-import 'package:manaber/features/doctor/conversational/stepper/widget/child_developmental_history.dart';
-import 'package:manaber/features/doctor/conversational/stepper/widget/child_medical_history.dart';
-import 'package:manaber/features/doctor/conversational/stepper/widget/medical_and_genetic_history_of_the_family.dart';
-import 'package:manaber/features/doctor/conversational/stepper/widget/note_conversation.dart';
-import 'package:manaber/features/doctor/conversational/stepper/widget/personal_history_stepper_conversational.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import 'controler.dart';
+import 'widget/child_developmental_history.dart';
+import 'widget/child_medical_history.dart';
+import 'widget/medical_and_genetic_history_of_the_family.dart';
+import 'widget/note_conversation.dart';
+import 'widget/personal_history_stepper_conversational.dart';
+import '../../../../shared/styles/colors.dart';
 
 class StepperConversational extends StatelessWidget {
-  StepperConversational(
-      {super.key,
-      required this.controleChildDevelopmentalHistory,
-      required this.controleNoteConversation,
-      required this.controlerChildMedicalAndMedicalHistory,
-      required this.controlerMedicalAndGeneticHistoryOfTheFamily,
-      required this.personalHistoryConversational,required this.controleConversational});
-
-  final StepperPersonalHistoryConversational personalHistoryConversational;
-  final StepperMedicalAndGeneticHistoryOfTheFamily
-      controlerMedicalAndGeneticHistoryOfTheFamily;
-  final StepperChildMedicalAndMedicalHistory
-      controlerChildMedicalAndMedicalHistory;
-  final StepperChildDevelopmentalHistory controleChildDevelopmentalHistory;
-  final StepperNoteConversation controleNoteConversation;
+  StepperConversational({super.key, required this.controleConversational});
   final PageController _pageController = PageController();
   final ControleConversational controleConversational;
 
@@ -51,19 +37,14 @@ class StepperConversational extends StatelessWidget {
               children: [
                 PersonalHistoryConversational(
                   controleConversational: controleConversational,
-                    personalHistoryConversational:
-                        personalHistoryConversational,),
+                ),
                 MedicalAndGeneticHistoryOfTheFamily(
-                    controleConversational:
-                        controleConversational),
+                    controleConversational: controleConversational),
                 ChildMedicalAndMedicalHistory(
-                    controlerChildMedicalAndMedicalHistory:
-                        controlerChildMedicalAndMedicalHistory),
+                    controleConversational: controleConversational),
                 ChildDevelopmentalHistory(
-                    controleChildDevelopmentalHistory:
-                        controleChildDevelopmentalHistory),
-                NoteConversation(
-                    controleNoteConversation: controleNoteConversation)
+                    controleConversational: controleConversational),
+                NoteConversation(controleConversational: controleConversational)
               ],
             ),
           ),

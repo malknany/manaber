@@ -1,7 +1,9 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/profile_pationt/tretment_plan/controle.dart';
-import 'package:manaber/features/doctor/profile_pationt/tretment_plan/model.dart';
-import 'package:manaber/shared/components/components.dart';
+import '../controle.dart';
+import '../model.dart';
+import '../../../../../shared/components/components.dart';
 
 class TrentmentPlanDataEntry extends StatefulWidget {
   const TrentmentPlanDataEntry({super.key, required this.planControle});
@@ -57,11 +59,11 @@ class _TrentmentPlanDataEntryState extends State<TrentmentPlanDataEntry> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
-                  icon: Icon(Icons.add),
+                  icon: const Icon(Icons.add),
                   onPressed: _addTextField,
                 ),
                 IconButton(
-                  icon: Icon(Icons.remove),
+                  icon: const Icon(Icons.remove),
                   onPressed: _removeTextField,
                 ),
               ],
@@ -81,7 +83,9 @@ class _TrentmentPlanDataEntryState extends State<TrentmentPlanDataEntry> {
 
   @override
   void dispose() {
-    controllers.forEach((controller) => controller.dispose());
+    for (var controller in controllers) {
+      controller.dispose();
+    }
     super.dispose();
   }
 }

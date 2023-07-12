@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/shared/components/constants.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../../../shared/components/constants.dart';
+import '../../../../shared/styles/colors.dart';
+import '../../../../shared/styles/styles.dart';
 
 class SectionItem extends StatelessWidget {
   const SectionItem({required this.sectionname, Key? key, required this.image})

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/receptionist/insert_data/controler.dart';
-import 'package:manaber/features/receptionist/insert_data/view.dart';
-import 'package:manaber/shared/components/constants.dart';
-import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../insert_data/controler.dart';
+import '../../insert_data/view.dart';
+import '../../../../shared/components/constants.dart';
+import '../../../../shared/components/navigator.dart';
+import '../../../../shared/styles/colors.dart';
+import '../../../../shared/styles/styles.dart';
 
 class SectionItemReceptionist extends StatelessWidget {
   const SectionItemReceptionist(

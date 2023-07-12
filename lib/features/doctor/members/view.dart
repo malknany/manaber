@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/members/model.dart';
-import 'package:manaber/features/doctor/profile_pationt/profile_view/view.dart';
-import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import 'model.dart';
+import '../profile_pationt/profile_view/view.dart';
+import '../../../shared/components/navigator.dart';
+import '../../../shared/styles/colors.dart';
 
 class Members extends StatefulWidget {
   const Members({Key? key, required this.counter}) : super(key: key);
@@ -52,23 +52,23 @@ class _MembersState extends State<Members> {
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
                           borderSide:
-                              BorderSide(color: AppColors.primarycolor)),
+                              const BorderSide(color: AppColors.primarycolor)),
                       border: OutlineInputBorder(
-                        borderSide: BorderSide(color: AppColors.primarycolor),
+                        borderSide: const BorderSide(color: AppColors.primarycolor),
                         borderRadius: BorderRadius.circular(30),
                       ),
                       hintText: "أدخل الاسم..",
                       prefixIcon:
-                          Icon(Icons.search, color: AppColors.primarycolor),
+                         const Icon(Icons.search, color: AppColors.primarycolor),
                     ),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Expanded(
-                child: display_list.length == 0
+                child: display_list.isEmpty
                     ? const Center(
                         child: Text("No Result Founded",
                             style: TextStyle(
@@ -101,19 +101,13 @@ class _MembersState extends State<Members> {
                                     fontWeight: FontWeight.w400,
                                     color: Color(0xff130B32)),
                               ),
-                              // subtitle: Text(
-                              //   display_list[index].subtitle!,
-                              //   style: TextStyle(
-                              //       fontSize: 14,
-                              //       fontWeight: FontWeight.w400,
-                              //       color: Color(0xff3A229B)),
-                              // ),
+                              
                               leading: Image.asset(display_list[index].image!),
                             ),
                           ),
                         ),
                         separatorBuilder: (BuildContext context, int index) {
-                          return SizedBox(
+                          return const SizedBox(
                             height: 20,
                           );
                         },

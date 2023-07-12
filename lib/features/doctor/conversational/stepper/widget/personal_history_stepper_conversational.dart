@@ -1,12 +1,11 @@
-import 'package:manaber/features/doctor/conversational/stepper/controler.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import '../controler.dart';
+import '../../../../../shared/components/components.dart';
+import '../../../../../shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 
 class PersonalHistoryConversational extends StatelessWidget {
-  PersonalHistoryConversational(
-      {super.key, required this.personalHistoryConversational,required this.controleConversational});
-  final StepperPersonalHistoryConversational personalHistoryConversational;
+  const PersonalHistoryConversational(
+      {super.key, required this.controleConversational});
   final ControleConversational controleConversational;
 
   @override

@@ -1,27 +1,21 @@
-import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/profile_pationt/video/controle.dart';
-import 'package:manaber/features/doctor/profile_pationt/video/model.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:video_player/video_player.dart';
+import '../controle.dart';
+import '../model.dart';
+import '../../../../../shared/components/components.dart';
+import '../../../../../shared/styles/colors.dart';
 
 class SlectedVideo extends StatefulWidget {
-  SlectedVideo({super.key, required this.controleViedoes});
+  const SlectedVideo({super.key, required this.controleViedoes});
   final ControleViedoes? controleViedoes;
   @override
   State<SlectedVideo> createState() => _SlectedVideoState();
 }
 
 class _SlectedVideoState extends State<SlectedVideo> {
-  final List<File> _videoFiles = [];
-  final List<VideoPlayerController> _controllers = [];
-  final List<bool> _isPlayingList = [];
   final TextEditingController _controller = TextEditingController();
 
-  final bool isSlected = false;
+  bool isSlected = false;
 
   Future<void> _addVideo() async {
     final result = await FilePicker.platform.pickFiles(
@@ -30,18 +24,11 @@ class _SlectedVideoState extends State<SlectedVideo> {
 
     if (result != null) {
       setState(() {
+        final file = result.files.first;
         final model = ModelVideoes(
           tilte: _controller.text,
-            videoFiles: _videoFiles,
-            controllers: _controllers,
-            isPlayingList: _isPlayingList);
-        _videoFiles.addAll(result.files.map((file) => File(file.path!)));
-        _controllers.addAll(result.files
-            .map((file) => VideoPlayerController.file(File(file.path!))
-              ..initialize().then((_) {
-                setState(() {});
-              })));
-        _isPlayingList.addAll(List.filled(result.files.length, false));
+          videoFiles: file.path!,
+        );
         widget.controleViedoes!.listOfViedoes.add(model);
       });
     } else {
@@ -52,19 +39,43 @@ class _SlectedVideoState extends State<SlectedVideo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: AppColors.primarycolor,
+          child: const Icon(
+            Icons.save_alt_outlined,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context, 'refresh');
+          }),
       body: SizedBox(
         height: double.infinity,
-        child: Column(
-          children: [
-            TextFormFiledStepper(
-                textEditingController: _controller, labelname: 'Title'),
-            isSlected
-                ? const Icon(
-                    Icons.check,
-                    color: AppColors.primarycolor,
-                  )
-                : ButtonText(text: 'Title', onPressed: () {})
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextFormFiledStepper(
+                  textEditingController: _controller, labelname: 'Title'),
+              isSlected
+                  ? const CircleAvatar(
+                      backgroundColor: AppColors.primarycolor,
+                      child: Icon(
+                        Icons.check,
+                        color: Colors.white,
+                      ),
+                    )
+                  : ButtonText(
+                      text: 'اختار فديو',
+                      onPressed: () {
+                        _addVideo().then((value) {
+                          setState(() {
+                            isSlected = true;
+                          });
+                        });
+                      })
+            ],
+          ),
         ),
       ),
     );

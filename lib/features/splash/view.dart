@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:manaber/features/regitration/login/view.dart';
-import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/images.dart';
+import '../regitration/login/view.dart';
+import '../../shared/components/navigator.dart';
+import '../../shared/styles/images.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

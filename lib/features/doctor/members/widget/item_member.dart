@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/members/model.dart';
-import 'package:manaber/features/doctor/members/view.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import '../model.dart';
+import '../view.dart';
+import '../../../../shared/styles/colors.dart';
 
 class MemberItem extends Members {
   MemberItem({required this.index, Key? key}) : super(key: key, counter: index);

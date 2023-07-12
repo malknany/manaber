@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/file_assa/info_view/widget/activity&activity.dart';
-import 'package:manaber/features/doctor/file_assa/info_view/widget/goalsview.dart';
-import 'package:manaber/features/doctor/file_assa/info_view/widget/icf_body.dart';
-import 'package:manaber/features/doctor/file_assa/info_view/widget/noteview.dart';
-import 'package:manaber/features/doctor/file_assa/info_view/widget/pationt_info_screen.dart';
-import 'package:manaber/features/doctor/file_assa/stpper/controller.dart';
-import 'package:manaber/features/doctor/file_assa/stpper/view.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/images.dart';
+import 'widget/activity&activity.dart';
+import 'widget/goalsview.dart';
+import 'widget/icf_body.dart';
+import 'widget/noteview.dart';
+import 'widget/pationt_info_screen.dart';
+import '../stpper/controller.dart';
+import '../stpper/view.dart';
+import '../../../../shared/components/components.dart';
+import '../../../../shared/components/navigator.dart';
+import '../../../../shared/styles/colors.dart';
+import '../../../../shared/styles/images.dart';
 
 class FileAssassemntView extends StatefulWidget {
   const FileAssassemntView(

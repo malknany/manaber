@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/conversational/conversational_view/widget/child_developmental_history_view.dart';
-import 'package:manaber/features/doctor/conversational/conversational_view/widget/child_medical_and_medical_history_view.dart';
-import 'package:manaber/features/doctor/conversational/conversational_view/widget/medical_genetic_history_of_family_view.dart';
-import 'package:manaber/features/doctor/conversational/conversational_view/widget/note_conversationl_view.dart';
-import 'package:manaber/features/doctor/conversational/conversational_view/widget/personal_history_conversationl.dart';
-import 'package:manaber/features/doctor/conversational/stepper/controler.dart';
-import 'package:manaber/features/doctor/conversational/stepper/view.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/images.dart';
+import 'widget/child_developmental_history_view.dart';
+import 'widget/child_medical_and_medical_history_view.dart';
+import 'widget/medical_genetic_history_of_family_view.dart';
+import 'widget/note_conversationl_view.dart';
+import 'widget/personal_history_conversationl.dart';
+import '../stepper/controler.dart';
+import '../stepper/view.dart';
+import '../../../../shared/components/components.dart';
+import '../../../../shared/components/navigator.dart';
+import '../../../../shared/styles/colors.dart';
+import '../../../../shared/styles/images.dart';
 
 class InfoConversationScreen extends StatefulWidget {
   const InfoConversationScreen({
     super.key,
     required this.controleConversational,
-    required this.controlePersonalHistory,
-    required this.controlerMedicalAndGeneticHistoryOfTheFamily,
-    required this.controleChildMedicalAndMedicalHistory,
-    required this.controlechildDevelopmentalHistory,
-    required this.controleNoteConversation,
+    // required this.controlePersonalHistory,
+    // required this.controlerMedicalAndGeneticHistoryOfTheFamily,
+    // required this.controleChildMedicalAndMedicalHistory,
+    // required this.controlechildDevelopmentalHistory,
+    // required this.controleNoteConversation,
   });
-  final StepperPersonalHistoryConversational controlePersonalHistory;
-  final StepperMedicalAndGeneticHistoryOfTheFamily
-      controlerMedicalAndGeneticHistoryOfTheFamily;
-  final StepperChildMedicalAndMedicalHistory
-      controleChildMedicalAndMedicalHistory;
-  final StepperChildDevelopmentalHistory controlechildDevelopmentalHistory;
-  final StepperNoteConversation controleNoteConversation;
+  // final StepperPersonalHistoryConversational controlePersonalHistory;
+  // final StepperMedicalAndGeneticHistoryOfTheFamily
+  //     controlerMedicalAndGeneticHistoryOfTheFamily;
+  // final StepperChildMedicalAndMedicalHistory
+  //     controleChildMedicalAndMedicalHistory;
+  // final StepperChildDevelopmentalHistory controlechildDevelopmentalHistory;
+  // final StepperNoteConversation controleNoteConversation;
   final ControleConversational controleConversational;
 
   @override
@@ -49,14 +49,14 @@ class _InfoConversationScreenState extends State<InfoConversationScreen> {
               context,
               StepperConversational(
                 controleConversational: widget.controleConversational,
-                controleChildDevelopmentalHistory:
-                    widget.controlechildDevelopmentalHistory,
-                controleNoteConversation: widget.controleNoteConversation,
-                controlerChildMedicalAndMedicalHistory:
-                    widget.controleChildMedicalAndMedicalHistory,
-                controlerMedicalAndGeneticHistoryOfTheFamily:
-                    widget.controlerMedicalAndGeneticHistoryOfTheFamily,
-                personalHistoryConversational: widget.controlePersonalHistory,
+                // controleChildDevelopmentalHistory:
+                //     widget.controlechildDevelopmentalHistory,
+                // controleNoteConversation: widget.controleNoteConversation,
+                // controlerChildMedicalAndMedicalHistory:
+                //     widget.controleChildMedicalAndMedicalHistory,
+                // controlerMedicalAndGeneticHistoryOfTheFamily:
+                //     widget.controlerMedicalAndGeneticHistoryOfTheFamily,
+                // personalHistoryConversational: widget.controlePersonalHistory,
               ),
             );
             if (result == 'refresh') {
@@ -113,8 +113,8 @@ class _InfoConversationScreenState extends State<InfoConversationScreen> {
                     navigateTo(
                         context,
                         ChildMedicalAndMedicalHistoryView(
-                            controleChildMedicalAndMedicalHistory:
-                                widget.controleChildMedicalAndMedicalHistory));
+                            controleConversational:
+                                widget.controleConversational));
                   },
                   borderRadius: 7),
               ButtonText(
@@ -123,8 +123,8 @@ class _InfoConversationScreenState extends State<InfoConversationScreen> {
                     navigateTo(
                         context,
                         ChildDevelopmentalHistoryView(
-                            controlechildDevelopmentalHistory:
-                                widget.controlechildDevelopmentalHistory));
+                            controleConversational:
+                                widget.controleConversational));
                   },
                   borderRadius: 7),
               ButtonText(
@@ -133,8 +133,7 @@ class _InfoConversationScreenState extends State<InfoConversationScreen> {
                     navigateTo(
                       context,
                       NoteConversationalView(
-                        controleNoteConversation:
-                            widget.controleNoteConversation,
+                        controleConversational: widget.controleConversational,
                       ),
                     );
                   },

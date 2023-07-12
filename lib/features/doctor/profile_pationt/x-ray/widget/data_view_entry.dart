@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/profile_pationt/x-ray/model.dart';
+import '../model.dart';
 
 class XrayDataView extends StatelessWidget {
   const XrayDataView({super.key, required this.modelXray});

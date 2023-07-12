@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/profile_doctor/widget/edite_profile.dart';
-import 'package:manaber/features/doctor/profile_doctor/widget/item_card_doctor.dart';
-import 'package:manaber/shared/components/constants.dart';
-import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/images.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import 'widget/edite_profile.dart';
+import 'widget/item_card_doctor.dart';
+import '../../../shared/components/constants.dart';
+import '../../../shared/components/navigator.dart';
+import '../../../shared/styles/images.dart';
+import '../../../shared/styles/styles.dart';
 
 class ProfileDoctor extends StatefulWidget {
-  ProfileDoctor({super.key});
+  const ProfileDoctor({super.key});
 
   @override
   State<ProfileDoctor> createState() => _ProfileDoctorState();
@@ -54,7 +54,6 @@ class _ProfileDoctorState extends State<ProfileDoctor> {
                 ? '01021986038'
                 : controllerPhone.text,
             onPressed: () async {
-              print('red' * 10);
               final result = await navigateTo(
                   context,
                   EditeProfile(

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/occupation_therapy/stepper/controler.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/images.dart';
+
+import '../../../../../shared/components/components.dart';
+import '../../../../../shared/styles/colors.dart';
+import '../../../../../shared/styles/images.dart';
+import '../../stepper/controler.dart';
 
 class PersonalHistoryView extends StatelessWidget {
   const PersonalHistoryView({super.key, required this.controlePersonalHistory});

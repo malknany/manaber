@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:manaber/features/receptionist/insert_data/controler.dart';
-import 'package:manaber/features/receptionist/our_section_reception/widgets/section_item.dart';
-import 'package:manaber/features/receptionist/receptionist_profile/view.dart';
-import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/images.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../../shared/components/navigator.dart';
+import '../../../shared/styles/images.dart';
+import '../../../shared/styles/styles.dart';
+import '../insert_data/controler.dart';
+import '../receptionist_profile/view.dart';
+import 'widgets/section_item.dart';
 
 class OurSectiosnReceptionist extends StatelessWidget {
   OurSectiosnReceptionist({Key? key}) : super(key: key);

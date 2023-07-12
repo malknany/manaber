@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/occupation_therapy/stepper/controler.dart';
-import 'package:manaber/features/doctor/occupation_therapy/stepper/widget/Behavior_ADLS.dart';
-import 'package:manaber/features/doctor/occupation_therapy/stepper/widget/associated_disorders.dart';
-import 'package:manaber/features/doctor/occupation_therapy/stepper/widget/body_function_strucer.dart';
-import 'package:manaber/features/doctor/occupation_therapy/stepper/widget/note_occupation.dart';
-import 'package:manaber/features/doctor/occupation_therapy/stepper/widget/occupational_perform.dart';
-import 'package:manaber/features/doctor/occupation_therapy/stepper/widget/personal_history_stepper.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import 'controler.dart';
+import 'widget/Behavior_ADLS.dart';
+import 'widget/associated_disorders.dart';
+import 'widget/body_function_strucer.dart';
+import 'widget/note_occupation.dart';
+import 'widget/occupational_perform.dart';
+import 'widget/personal_history_stepper.dart';
+import '../../../../shared/styles/colors.dart';
 
 class StepperOccupation extends StatelessWidget {
   StepperOccupation(

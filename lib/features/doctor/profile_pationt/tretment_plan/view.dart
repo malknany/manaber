@@ -1,13 +1,15 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/profile_pationt/tretment_plan/controle.dart';
+import 'controle.dart';
 
-import 'package:manaber/features/doctor/profile_pationt/tretment_plan/widget/data_view.dart';
-import 'package:manaber/features/doctor/profile_pationt/tretment_plan/widget/tretment_plan_entry_data.dart';
+import 'widget/data_view.dart';
+import 'widget/tretment_plan_entry_data.dart';
 
-import 'package:manaber/shared/components/constants.dart';
-import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../../../shared/components/constants.dart';
+import '../../../../shared/components/navigator.dart';
+import '../../../../shared/styles/colors.dart';
+import '../../../../shared/styles/styles.dart';
 
 class TretmentPlanView extends StatefulWidget {
   const TretmentPlanView({super.key});
@@ -20,6 +22,11 @@ class _TretmentPlanViewState extends State<TretmentPlanView> {
   TretmentPlanControle planControle = TretmentPlanControle();
   bool isRefresh = false;
   bool isDelete = false;
+  @override
+  void dispose() {
+    isDelete = false;
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
