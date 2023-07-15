@@ -1,73 +1,72 @@
-// import 'package:flutter/material.dart';
-
-// import '../styles/colors.dart';
-// import '../styles/styles.dart';
-// import 'constants.dart';
-
-// class ButtonTemplate extends StatelessWidget {
-//   ButtonTemplate({
-//     Key? key,
-//     required this.color,
-//     required this.text1,
-//     required this.onPressed,
-//     this.text2 = "",
-//     this.text3 = "",
-//     this.icon,
-//     this.minwidth = 318,
-//     this.minheight = 60,
-//     this.fontSize = 18,
-//   }) : super(key: key);
-//   final Color color;
-//   final String text1;
-//   final String text2;
-//   final String text3;
-//   final double minwidth;
-//   final double minheight;
-//   final double fontSize;
-//   final IconData? icon;
-//   void Function()? onPressed;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialButton(
-//       minWidth: minwidth,
-//       height: minheight,
-//       onPressed: onPressed,
-//       color: color,
-//       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-//       child: Center(
-//         child: Row(
-//           crossAxisAlignment: CrossAxisAlignment.end,
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             icon == null
-
-//                 ? SizedBox()
-//                 : Center(
-//               child: Icon(icon, size: 21, color: AppColors.white),
-//             ),
-//             SizedBox(
-//               width: 5,
-//             ),
-
-//             Center(
-//               child: Text(text1,
-//                   textAlign: TextAlign.center,
-//                   style: AppTextStyles.boldtitlesButton.copyWith(
-//                  fontSize: 17,
-//                     color: AppColors.white,
-//                   )),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-// /////////////////////////
 
 import 'package:flutter/material.dart';
 import 'package:manaber/shared/styles/colors.dart';
+
+import '../styles/styles.dart';
+
+class ButtonTemplate extends StatelessWidget {
+  ButtonTemplate({
+    Key? key,
+    required this.color,
+    required this.text1,
+    required this.onPressed,
+    this.text2 = "",
+    this.text3 = "",
+    this.icon,
+    this.minwidth = 318,
+    this.minheight = 60,
+    this.fontSize = 18,
+  }) : super(key: key);
+  final Color color;
+  final String text1;
+  final String text2;
+  final String text3;
+  final double minwidth;
+  final double minheight;
+  final double fontSize;
+  final IconData? icon;
+  void Function()? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      minWidth: minwidth,
+      height: minheight,
+      onPressed: onPressed,
+      color: color,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      child: Center(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            icon == null
+
+                ? SizedBox()
+                : Center(
+              child: Icon(icon, size: 21, color:  Colors.white),
+            ),
+            SizedBox(
+              width: 5,
+            ),
+
+            Center(
+              child: Text(text1,
+                  textAlign: TextAlign.center,
+                  style: AppTextStyles.boldtitlesButton.copyWith(
+                 fontSize: 17,
+                    color: Colors.white,
+                  )),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+// /////////////////////////
+
+
 
 class TextFieldTemplate extends StatefulWidget {
   const TextFieldTemplate(
