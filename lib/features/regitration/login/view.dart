@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../admin/accepte_home_page/view.dart';
 import '../../receptionist/our_section_reception/view.dart';
+import '../forget_pass/forget_pass.dart';
 import '../sign_up/view.dart';
 import '../../../shared/components/components.dart';
 import '../../../shared/components/navigator.dart';
@@ -72,10 +73,11 @@ class _LogInScreenState extends State<LogInScreen> {
                   ),
                   Align(
                     alignment: Alignment.centerRight,
-                    child: Text(
-                      'نسيت كلمة السر ؟',
-                      style: AppTextStyles.smTitles,
-                    ),
+                    child: TextButton(
+                        onPressed: () {
+                          navigateTo(context, ForgetPass());
+                        },
+                        child: Text('هل نسيت كلمة السر ؟',style: TextStyle(color: AppColors.primarycolor))),
                   ),
                   ButtonText(
                     text: 'تسجيل',
