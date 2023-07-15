@@ -7,7 +7,8 @@ import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
 class ICFBodyfunctionAndstructure extends StatelessWidget {
-  const ICFBodyfunctionAndstructure({super.key, required this.controlBodyFunction});
+  const ICFBodyfunctionAndstructure(
+      {super.key, required this.controlBodyFunction});
 
   final StepperControlBodyFunction controlBodyFunction;
 
@@ -50,7 +51,8 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
                   itemList: const [
                     'Normal',
                     'Less than nomal',
-                    'Malnutrition'
+                    'Malnutrition',
+                    'Obese'
                   ]),
               TextFormFiledStepper(
                   labelname: 'Function of Cardiovascular ',
@@ -71,6 +73,9 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
                   textEditingController: controlBodyFunction.tactile),
               const DividerItem(text: 'GaiT Problems '),
               TextFormFiledStepper(
+                  labelname: 'Note',
+                  textEditingController: controlBodyFunction.gaitnote),
+              TextFormFiledStepper(
                   labelname: 'Stance phase',
                   textEditingController: controlBodyFunction.stancePhase),
               TextFormFiledStepper(
@@ -90,44 +95,39 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 10),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          TextFormFiledStepper(
-                              labelname: 'Head control',
-                              textEditingController:
-                                  controlBodyFunction.headControl),
-                          TextFormFiledStepper(
-                              labelname: 'Rolling',
-                              textEditingController:
-                                  controlBodyFunction.rolling),
-                          TextFormFiledStepper(
-                              labelname: 'Creeping',
-                              textEditingController:
-                                  controlBodyFunction.creeping),
-                          TextFormFiledStepper(
-                              labelname: 'Crawling',
-                              textEditingController:
-                                  controlBodyFunction.crawling),
-                          TextFormFiledStepper(
-                              labelname: 'Sitting',
-                              textEditingController:
-                                  controlBodyFunction.sitting),
-                          TextFormFiledStepper(
-                              labelname: 'Standing',
-                              textEditingController:
-                                  controlBodyFunction.standing),
-                          TextFormFiledStepper(
-                              labelname: 'Walking',
-                              textEditingController:
-                                  controlBodyFunction.walking),
-                          ButtonText(
-                              text: 'Save',
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              })
-                        ],
-                      ),
+                    child: ListView(
+                      children: [
+                        TextFormFiledStepper(
+                            labelname: 'Head control',
+                            textEditingController:
+                                controlBodyFunction.headControl),
+                        TextFormFiledStepper(
+                            labelname: 'Rolling',
+                            textEditingController: controlBodyFunction.rolling),
+                        TextFormFiledStepper(
+                            labelname: 'Creeping',
+                            textEditingController:
+                                controlBodyFunction.creeping),
+                        TextFormFiledStepper(
+                            labelname: 'Crawling',
+                            textEditingController:
+                                controlBodyFunction.crawling),
+                        TextFormFiledStepper(
+                            labelname: 'Sitting',
+                            textEditingController: controlBodyFunction.sitting),
+                        TextFormFiledStepper(
+                            labelname: 'Standing',
+                            textEditingController:
+                                controlBodyFunction.standing),
+                        TextFormFiledStepper(
+                            labelname: 'Walking',
+                            textEditingController: controlBodyFunction.walking),
+                        ButtonText(
+                            text: 'Save',
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            }),
+                      ],
                     ),
                   ),
                 ),

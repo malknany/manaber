@@ -77,10 +77,10 @@ class FileStteper extends StatelessWidget {
                   backgroundColor: AppColors.primarycolor,
                 ),
                 onPressed: () {
-                  _navigateToNextPage();
+                  _navigateToPreviousPage();
                 },
                 child:
-                    const Text('Next', style: TextStyle(color: Colors.white)),
+                    const Text('Back', style: TextStyle(color: Colors.white)),
               ),
               const SizedBox(
                 width: 20,
@@ -90,10 +90,10 @@ class FileStteper extends StatelessWidget {
                   backgroundColor: AppColors.primarycolor,
                 ),
                 onPressed: () {
-                  _navigateToPreviousPage();
+                  _navigateToNextPage();
                 },
                 child:
-                    const Text('back', style: TextStyle(color: Colors.white)),
+                    const Text('Next', style: TextStyle(color: Colors.white)),
               ),
             ],
           )

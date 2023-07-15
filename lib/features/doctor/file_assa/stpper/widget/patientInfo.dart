@@ -26,7 +26,10 @@ class PatientInformation extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
         child: SingleChildScrollView(
           child: GestureDetector(
-            onTap: FocusScope.of(context).unfocus,
+            // ! it is not work
+            onTap: () {
+              FocusScope.of(context).requestFocus(FocusNode());
+            },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceAround,

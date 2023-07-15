@@ -18,8 +18,7 @@ class EditeProfile extends StatelessWidget {
       appBar: AppBar(
         title: const Text('تعديل بيانات الطبيب'),
       ),
-      body: SizedBox(
-        height: double.infinity,
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           child: Column(
@@ -40,7 +39,7 @@ class EditeProfile extends StatelessWidget {
               ButtonText(
                   text: 'حفظ',
                   onPressed: () {
-                    Navigator.pop(context,'refresh');
+                    Navigator.pop(context, 'refresh');
                   })
             ],
           ),

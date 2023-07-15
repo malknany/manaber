@@ -30,13 +30,13 @@ class OccupationalPerformance extends StatelessWidget {
                     textEditingController:
                         controlerOccupationPreformance.problemList),
                 TextFormFiledStepper(
-                    labelname: 'Long term goals',
-                    textEditingController:
-                        controlerOccupationPreformance.longTermGoal),
-                TextFormFiledStepper(
                     labelname: 'short term goals',
                     textEditingController:
                         controlerOccupationPreformance.shortTermGoal),
+                TextFormFiledStepper(
+                    labelname: 'Long term goals',
+                    textEditingController:
+                        controlerOccupationPreformance.longTermGoal),
               ],
             ),
           )),

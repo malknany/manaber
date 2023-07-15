@@ -25,33 +25,35 @@ class OurSectiosnReceptionist extends StatelessWidget {
       ),
       body: SizedBox(
         width: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text('أقسامنا',
-                  style: AppTextStyles.lrTitles.copyWith(fontSize: 32)),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SectionItemReceptionist(
-                      image: AppImages.occupationalTherapy,
-                      sectionname: 'العلاج الطبيعي',
-                      controleReceptionist: controleReceptionist),
-                  SectionItemReceptionist(
-                      image: AppImages.naturalTherapy,
-                      sectionname: 'العلاج الوظيفي',
-                      controleReceptionist: controleReceptionist),
-                  SectionItemReceptionist(
-                    image: AppImages.occupational,
-                    sectionname: 'تعديل سلوك واضطراب الطفولة',
-                    controleReceptionist: controleReceptionist,
-                  )
-                ],
-              )
-            ],
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text('أقسامنا',
+                    style: AppTextStyles.lrTitles.copyWith(fontSize: 32)),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    SectionItemReceptionist(
+                        image: AppImages.occupationalTherapy,
+                        sectionname: 'العلاج الطبيعي',
+                        controleReceptionist: controleReceptionist),
+                    SectionItemReceptionist(
+                        image: AppImages.naturalTherapy,
+                        sectionname: 'العلاج الوظيفي',
+                        controleReceptionist: controleReceptionist),
+                    SectionItemReceptionist(
+                      image: AppImages.occupational,
+                      sectionname: 'تعديل سلوك واضطراب الطفولة',
+                      controleReceptionist: controleReceptionist,
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

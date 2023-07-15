@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../../shared/components/constants.dart';
 import '../../../../shared/styles/colors.dart';
 import '../../../../shared/styles/styles.dart';
 
@@ -26,8 +25,6 @@ class ItemProfileCardReception extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
           ),
-          height: MediaQueryHelper.sizeFromHeight(context, 4.5),
-          width: MediaQueryHelper.sizeFromWidth(context, 1.0),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(

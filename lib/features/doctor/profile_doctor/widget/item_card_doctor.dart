@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../shared/components/constants.dart';
+// import '../../../../shared/components/constants.dart';
 import '../../../../shared/styles/colors.dart';
 import '../../../../shared/styles/styles.dart';
 
@@ -27,26 +27,27 @@ class ItemCardDoctor extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
           ),
-          height: MediaQueryHelper.sizeFromHeight(context, 4.5),
-          width: MediaQueryHelper.sizeFromWidth(context, 1.0),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
               textDirection: TextDirection.rtl,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'الاسم:$name',
                   textDirection: TextDirection.rtl,
-                  style: AppTextStyles.lrTitles
-                      .copyWith(color: AppColors.primarycolor),
+                  style: AppTextStyles.lrTitles.copyWith(
+                    fontSize: 18,
+                    color: AppColors.primarycolor,
+                  ),
                 ),
                 Text(
                   'رقم الهاتف :$phone',
                   textDirection: TextDirection.rtl,
-                  style: AppTextStyles.lrTitles
-                      .copyWith(color: AppColors.primarycolor),
+                  style: AppTextStyles.lrTitles.copyWith(
+                    color: AppColors.primarycolor,
+                    fontSize: 18,
+                  ),
                 ),
                 Align(
                   alignment: Alignment.bottomLeft,

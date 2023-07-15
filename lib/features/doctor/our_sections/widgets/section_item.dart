@@ -19,12 +19,11 @@ class SectionItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         child: Container(
           decoration: BoxDecoration(
-            // color: AppColors.grey,
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
           ),
           height: MediaQueryHelper.sizeFromHeight(context, 4.5),
-          width: MediaQueryHelper.sizeFromWidth(context, 1.2),
+          // width: MediaQueryHelper.sizeFromWidth(context, 1.2),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

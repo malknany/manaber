@@ -4,10 +4,9 @@ import '../../../../../shared/components/components.dart';
 import '../../../../../shared/styles/colors.dart';
 
 class Goals extends StatelessWidget {
-  const Goals({super.key,required this.controlGoalsAndNote});
+  const Goals({super.key, required this.controlGoalsAndNote});
 
-  final StepperControlGoalsAndNote
-      controlGoalsAndNote;
+  final StepperControlGoalsAndNote controlGoalsAndNote;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +27,11 @@ class Goals extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               TextFormFiledStepper(
-                  labelname: 'Long Goal', textEditingController: controlGoalsAndNote.longGoals),
+                  labelname: 'Short Goal',
+                  textEditingController: controlGoalsAndNote.shortGoals),
               TextFormFiledStepper(
-                  labelname: 'Short Goal', textEditingController: controlGoalsAndNote.shortGoals),
+                  labelname: 'Long Goal',
+                  textEditingController: controlGoalsAndNote.longGoals),
             ],
           ),
         ),

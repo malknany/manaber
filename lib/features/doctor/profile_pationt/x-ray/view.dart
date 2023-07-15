@@ -1,9 +1,6 @@
-import 'dart:io';
-
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:manaber/features/doctor/profile_pationt/x-ray/widget/selcte_photo.dart';
 import 'controle.dart';
-import 'model.dart';
 import 'widget/data_view_entry.dart';
 import '../../../../shared/styles/colors.dart';
 import '../../../../shared/components/constants.dart';
@@ -21,26 +18,8 @@ class XrayView extends StatefulWidget {
 }
 
 class _XrayViewState extends State<XrayView> {
-  List<File> _images = [];
   bool isRefresh = false;
   bool isDelete = false;
-  Future pickImages() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      allowMultiple: true,
-    );
-
-    if (result != null) {
-      setState(() {
-        _images = result.paths.map((path) => File(path!)).toList();
-        final model = ModelXray(images: _images);
-        widget.controle.itemes.add(model);
-        isRefresh = true;
-      });
-    } else {
-      // User canceled the picker
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +121,15 @@ class _XrayViewState extends State<XrayView> {
             ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.primarycolor,
-        onPressed: pickImages,
+        onPressed: () async {
+          final result = await navigateTo(
+              context, SlectePhotoView(controle: widget.controle));
+          if (result == 'refresh') {
+            setState(() {
+              isRefresh = true;
+            });
+          }
+        },
         child: const Icon(Icons.add, color: Colors.white),
       ),
     );
