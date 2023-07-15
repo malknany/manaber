@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/shared/components/constants.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../../../shared/components/constants.dart';
+import '../../../../shared/styles/colors.dart';
+import '../../../../shared/styles/styles.dart';
 
 class SectionItem extends StatelessWidget {
   const SectionItem({required this.sectionname, Key? key, required this.image})
@@ -19,12 +19,11 @@ class SectionItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         child: Container(
           decoration: BoxDecoration(
-            // color: AppColors.grey,
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
           ),
           height: MediaQueryHelper.sizeFromHeight(context, 4.5),
-          width: MediaQueryHelper.sizeFromWidth(context, 1.2),
+          // width: MediaQueryHelper.sizeFromWidth(context, 1.2),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

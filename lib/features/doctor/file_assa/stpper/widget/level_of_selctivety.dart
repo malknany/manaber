@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/file_assa/stpper/controller.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import '../controller.dart';
+import '../../../../../shared/components/components.dart';
+import '../../../../../shared/styles/colors.dart';
 
 class LevelofSelectivity extends StatelessWidget {
   const LevelofSelectivity({super.key, required this.controlBodyFunction});
@@ -30,12 +30,14 @@ class LevelofSelectivity extends StatelessWidget {
                 controller: controlBodyFunction.lowerLimb,
                 lableName: 'Lower limb ',
                 itemList: const ['No', 'Poor', 'Moderate', 'Normal']),
+            // !
             ShowBottomSheetItems(
               name: ' Muscle ',
               contecnt: SizedBox(
                 height: MediaQuery.of(context).size.height / 1.2,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
@@ -52,6 +54,12 @@ class LevelofSelectivity extends StatelessWidget {
                                 controlBodyFunction.abductorsMuscleRight,
                             controllerLeft:
                                 controlBodyFunction.abductorsMuscleLeft),
+                        RightLeftTextFiled(
+                            title: 'Addoctors',
+                            controllerRight:
+                                controlBodyFunction.adductorsMuscleRight,
+                            controllerLeft:
+                                controlBodyFunction.adductorsMuscleLeft),
                         RightLeftTextFiled(
                             title: 'Hip flexors',
                             controllerRight:

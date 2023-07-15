@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/occupation_therapy/stepper/controler.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/images.dart';
+import '../../stepper/controler.dart';
+import '../../../../../shared/components/components.dart';
+import '../../../../../shared/styles/colors.dart';
+import '../../../../../shared/styles/images.dart';
 
 class NoteOccupationalView extends StatelessWidget {
   const NoteOccupationalView(
@@ -12,12 +12,6 @@ class NoteOccupationalView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: AppColors.primarycolor,
-        elevation: 0,
-        child: const Icon(Icons.edit_outlined),
-      ),
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const Text(
@@ -37,7 +31,7 @@ class NoteOccupationalView extends StatelessWidget {
                 SizedBox(
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height / 3.5,
-                    child: Image.asset(AppImages.occupational)),
+                    child: Image.asset(AppImages.occupationalTherapy)),
                 const Text(
                   "occupational",
                   style: TextStyle(

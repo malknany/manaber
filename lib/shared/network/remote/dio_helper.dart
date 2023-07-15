@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
-import './end_points.dart';
+import 'end_points.dart';
 // import 'package:flutter/material.dart';
 
 class DioHelper {
@@ -18,7 +19,7 @@ class DioHelper {
             headers: {"Accept": "application/json"}),
       );
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 

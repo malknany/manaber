@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/receptionist/insert_data/controler.dart';
+import 'controler.dart';
 
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../../shared/components/components.dart';
+import '../../../shared/styles/colors.dart';
+import '../../../shared/styles/styles.dart';
 
 class ReceptionistDataEntry extends StatelessWidget {
   const ReceptionistDataEntry({
@@ -36,7 +36,7 @@ class ReceptionistDataEntry extends StatelessWidget {
                       textEditingController:
                           controleReceptionist.lisOfModel[index].controller,
                       labelname: controleReceptionist.lisOfModel[index].lable),
-                  index == 7
+                  index == 8
                       ? DropdownButtonItem(
                           textDirection: TextDirection.rtl,
                           lableName:
@@ -47,7 +47,7 @@ class ReceptionistDataEntry extends StatelessWidget {
                               .lisOfDropdown.first.controller,
                         )
                       : const SizedBox.shrink(),
-                  index == 9
+                  index == 10
                       ? ButtonText(
                           text: 'حفظ',
                           onPressed: () {

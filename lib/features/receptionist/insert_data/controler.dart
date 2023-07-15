@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/receptionist/insert_data/model.dart';
+import 'model.dart';
 
 class StepperReceptionist {
   TextEditingController controle1 = TextEditingController();
@@ -26,6 +26,10 @@ class StepperReceptionist {
     lisOfModel = [
       ModelReception(
         lable: 'الاسم',
+        controller: controle1,
+      ),
+      ModelReception(
+        lable: 'رقم الهاتف',
         controller: controle1,
       ),
       ModelReception(

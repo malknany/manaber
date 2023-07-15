@@ -21,7 +21,7 @@ class StepperAssociatedDisorders {
   final creeping = TextEditingController();
   final crayoning = TextEditingController();
   final standing = TextEditingController();
-  final working = TextEditingController();
+  final walking = TextEditingController();
   final tactile = TextEditingController();
   final visual = TextEditingController();
   final auditory = TextEditingController();
@@ -29,12 +29,13 @@ class StepperAssociatedDisorders {
 }
 
 class StepperBodyFunctionStrucer {
-  final spasticUpperLimb = TextEditingController();
-  final spasticLowerLimb = TextEditingController();
-  final flaccidUpperLimb = TextEditingController();
-  final flaccidLowerLimb = TextEditingController();
-  final normalUpperLimb = TextEditingController();
-  final normalLowerLimb = TextEditingController();
+  final neuromuscularStatusUpperLimb = TextEditingController();
+  final neuromuscularStatusLowerLimb = TextEditingController();
+  final neuromuscularStatusNote = TextEditingController();
+  // final flaccidUpperLimb = TextEditingController();
+  // final flaccidLowerLimb = TextEditingController();
+  // final normalUpperLimb = TextEditingController();
+  // final normalLowerLimb = TextEditingController();
   final sittingBalanceStatic = TextEditingController();
   final sittingBalanceDynamic = TextEditingController();
 //

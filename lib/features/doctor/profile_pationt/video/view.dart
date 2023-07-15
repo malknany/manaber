@@ -1,138 +1,86 @@
-// import 'dart:io';
+// ignore_for_file: library_private_types_in_public_api
 
-// import 'package:file_picker/file_picker.dart';
-// import 'package:flutter/material.dart';
-// import 'package:video_player/video_player.dart';
+import 'package:flutter/material.dart';
+import 'controle.dart';
+import 'widget/item_card_video.dart';
+import 'widget/slected_video.dart';
+import '../../../../shared/components/navigator.dart';
+import '../../../../shared/styles/colors.dart';
+import 'package:open_file/open_file.dart';
 
-// class VideoScreen extends StatefulWidget {
-//   const VideoScreen({super.key});
+class VideoScreen extends StatefulWidget {
+  const VideoScreen({Key? key}) : super(key: key);
 
-//   @override
-//   State<VideoScreen> createState() => _VideoScreenState();
-// }
+  @override
+  _VideoScreenState createState() => _VideoScreenState();
+}
 
-// class _VideoScreenState extends State<VideoScreen> {
-//   VideoPlayerController? _controller;
-//   @override
-//   void dispose() {
-//     _controller?.dispose();
-//     super.dispose();
-//   }
-
-//   Future<void> _pickVideo() async {
-//   FilePickerResult? result = await FilePicker.platform.pickFiles(
-//     type: FileType.video,
-//     allowMultiple: false,
-//   );
-//   if (result != null) {
-//     File file = File(result.files.single.path!);
-//     _controller = VideoPlayerController.file(file)..initialize().then((_) {
-//       setState(() {});
-//       _controller!.play();
-//     });
-//   }
-// }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: GestureDetector(
-//   onTap: _pickVideo,
-//   child: _controller != null && _controller!.value.isInitialized
-//       ? AspectRatio(
-//           aspectRatio: _controller!.value.aspectRatio,
-//           child: VideoPlayer(_controller!),
-//         )
-//       : Container(),
-// ),
-//     );
-//   }
-// }
-// import 'dart:io';
-
-// import 'package:chewie/chewie.dart';
-// import 'package:file_picker/file_picker.dart';
-// import 'package:flutter/material.dart';
-// import 'package:manaber/shared/styles/colors.dart';
-// import 'package:video_player/video_player.dart';
-
-// class MyHomePage extends StatefulWidget {
-//   MyHomePage({Key? key, required this.title}) : super(key: key);
-
-//   final String title;
-
-//   @override
-//   _MyHomePageState createState() => _MyHomePageState();
-// }
-
-// class _MyHomePageState extends State<MyHomePage> {
-//   List<PlatformFile> _videos = [];
-//   List<ChewieController> _videoPlayers = [];
-
-//   Future<void> _pickVideos() async {
-//     List<PlatformFile> resultList = [];
-//     try {
-//       resultList = (await FilePicker.platform.pickFiles(
-//         type: FileType.video,
-//         allowMultiple: true,
-//       )) as List<PlatformFile>;
-//     } on Exception catch (e) {
-//       // Handle exception
-//     }
-//     if (!mounted) return;
-//     setState(() {
-//       _videos = resultList;
-//       _videoPlayers.clear();
-//       for (int i = 0; i < _videos.length; i++) {
-//         PlatformFile video = _videos[i];
-//         VideoPlayerController videoPlayerController =
-//             VideoPlayerController.file(File(video.path!));
-//         ChewieController chewieController = ChewieController(
-//           videoPlayerController: videoPlayerController,
-//           autoPlay: false,
-//           looping: false,
-//         );
-//         _videoPlayers.add(chewieController);
-//       }
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text(widget.title),
-//       ),
-//       body: ListView.builder(
-//         itemCount: _videos.length,
-//         itemBuilder: (BuildContext context, int index) {
-//           return Column(
-//             children: [
-//               Text(
-//                 'Video ${index + 1}',
-//                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-//               ),
-//               Chewie(
-//                 controller: _videoPlayers[index],
-//               ),
-//             ],
-//           );
-//         },
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         backgroundColor: AppColors.primarycolor,
-//         onPressed: _pickVideos,
-//         tooltip: 'Pick Videos',
-//         child: Icon(Icons.video_library),
-//       ),
-//     );
-//   }
-
-//   @override
-//   void dispose() {
-//     for (int i = 0; i < _videoPlayers.length; i++) {
-//       _videoPlayers[i].dispose();
-//     }
-//     super.dispose();
-//   }
-// }
+class _VideoScreenState extends State<VideoScreen> {
+  final ControleViedoes controleViedoes = ControleViedoes();
+  bool isDelete = false;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Video Screen'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  isDelete = !isDelete;
+                });
+              },
+              icon: const Icon(
+                Icons.delete,
+                color: AppColors.primarycolor,
+              ))
+        ],
+      ),
+      body: controleViedoes.listOfViedoes.isEmpty
+          ? const Center(
+        child: Text('No Video'),
+      )
+          : Padding(
+        padding:
+        const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 1.0,
+            crossAxisSpacing: 20,
+          ),
+          itemCount: controleViedoes.listOfViedoes.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ItemCardVideo(
+              name: controleViedoes.listOfViedoes[index].tilte.isEmpty
+                  ? 'Viedo ${index + 1}'
+                  : controleViedoes.listOfViedoes[index].tilte,
+              onPressed: () {
+                setState(() {
+                  controleViedoes.listOfViedoes.removeAt(index);
+                });
+              },
+              onTap: () {
+                OpenFile.open(
+                    controleViedoes.listOfViedoes[index].videoFiles);
+              },
+              isDelete: isDelete,
+            );
+          },
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.primarycolor,
+        onPressed: () async {
+          final resulte = await navigateTo(
+              context, SlectedVideo(controleViedoes: controleViedoes));
+          if (resulte == 'refresh') {
+            setState(() {});
+          }
+        },
+        tooltip: 'Add Video',
+        child: const Icon(Icons.add),
+      ),
+    );
+  }
+}

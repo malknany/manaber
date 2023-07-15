@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/profile_pationt/x-ray/model.dart';
-import 'package:manaber/shared/components/components.dart';
+import '../model.dart';
 
 class XrayDataView extends StatelessWidget {
   const XrayDataView({super.key, required this.modelXray});
@@ -15,7 +14,6 @@ class XrayDataView extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          InfoRowItem(title: 'Report', value: modelXray.title),
           Expanded(
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/file_assa/stpper/controller.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/images.dart';
+import '../../stpper/controller.dart';
+import '../../../../../shared/components/components.dart';
+import '../../../../../shared/styles/colors.dart';
+import '../../../../../shared/styles/images.dart';
 
 class PatientInfoView extends StatelessWidget {
   const PatientInfoView({
@@ -15,12 +15,6 @@ class PatientInfoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: AppColors.primarycolor,
-        elevation: 0,
-        child: const Icon(Icons.edit_outlined),
-      ),
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const Text('Patient Data',
@@ -60,17 +54,13 @@ class PatientInfoView extends StatelessWidget {
                   title: "Created By", value: stepperControl.createdBy.text),
               InfoRowItem(
                   title: "Name",
-                  value: stepperControl.name.text.isEmpty
-                      ? 'Null'
-                      : stepperControl.name.text),
+                  value:  stepperControl.name.text),
               InfoRowItem(
                   title: "Phone Number", value: stepperControl.phone.text),
               InfoRowItem(title: "DOB", value: stepperControl.dob.text),
               InfoRowItem(
                   title: "Gender",
-                  value: stepperControl.gender.text.isEmpty
-                      ? 'Null'
-                      : stepperControl.gender.text),
+                  value:stepperControl.gender.text),
               InfoRowItem(
                   title: "Consanguinity",
                   value: stepperControl.consanguinity.text),

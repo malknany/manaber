@@ -1,4 +1,6 @@
 // ignore: file_names
+// ignore_for_file: file_names, duplicate_ignore
+
 import 'package:flutter/material.dart';
 import 'package:manaber/features/doctor/file_assa/stpper/controller.dart';
 import 'package:manaber/shared/components/components.dart';
@@ -24,7 +26,10 @@ class PatientInformation extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
         child: SingleChildScrollView(
           child: GestureDetector(
-            onTap: FocusScope.of(context).unfocus,
+            // ! it is not work
+            onTap: () {
+              FocusScope.of(context).requestFocus(FocusNode());
+            },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceAround,

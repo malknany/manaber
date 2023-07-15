@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/occupation_therapy/stepper/controler.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import '../controler.dart';
+import '../../../../../shared/components/components.dart';
+import '../../../../../shared/styles/colors.dart';
 
 class OccupationalPerformance extends StatelessWidget {
   const OccupationalPerformance(
@@ -30,13 +30,13 @@ class OccupationalPerformance extends StatelessWidget {
                     textEditingController:
                         controlerOccupationPreformance.problemList),
                 TextFormFiledStepper(
-                    labelname: 'Long term goals',
-                    textEditingController:
-                        controlerOccupationPreformance.longTermGoal),
-                TextFormFiledStepper(
                     labelname: 'short term goals',
                     textEditingController:
                         controlerOccupationPreformance.shortTermGoal),
+                TextFormFiledStepper(
+                    labelname: 'Long term goals',
+                    textEditingController:
+                        controlerOccupationPreformance.longTermGoal),
               ],
             ),
           )),

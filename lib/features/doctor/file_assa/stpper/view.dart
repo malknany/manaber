@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/file_assa/stpper/controller.dart';
-import 'package:manaber/features/doctor/file_assa/stpper/widget/ICF_body_function_structure.dart';
-import 'package:manaber/features/doctor/file_assa/stpper/widget/Muscloskeletal_Examination.dart';
-import 'package:manaber/features/doctor/file_assa/stpper/widget/Participation_And_Participation_Restriction.dart';
-import 'package:manaber/features/doctor/file_assa/stpper/widget/goal.dart';
-import 'package:manaber/features/doctor/file_assa/stpper/widget/level_of_selctivety.dart';
-import 'package:manaber/features/doctor/file_assa/stpper/widget/motor_system.dart';
-import 'package:manaber/features/doctor/file_assa/stpper/widget/neurological_examination.dart';
-import 'package:manaber/features/doctor/file_assa/stpper/widget/note.dart';
-import 'package:manaber/features/doctor/file_assa/stpper/widget/patientInfo.dart';
-import 'package:manaber/features/doctor/file_assa/stpper/widget/rom.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import 'controller.dart';
+import 'widget/ICF_body_function_structure.dart';
+import 'widget/Muscloskeletal_Examination.dart';
+import 'widget/Participation_And_Participation_Restriction.dart';
+import 'widget/goal.dart';
+import 'widget/level_of_selctivety.dart';
+import 'widget/motor_system.dart';
+import 'widget/neurological_examination.dart';
+import 'widget/note.dart';
+import 'widget/patientInfo.dart';
+import 'widget/rom.dart';
+import '../../../../shared/styles/colors.dart';
 
 class FileStteper extends StatelessWidget {
   FileStteper(
@@ -77,10 +77,10 @@ class FileStteper extends StatelessWidget {
                   backgroundColor: AppColors.primarycolor,
                 ),
                 onPressed: () {
-                  _navigateToNextPage();
+                  _navigateToPreviousPage();
                 },
                 child:
-                    const Text('Next', style: TextStyle(color: Colors.white)),
+                    const Text('Back', style: TextStyle(color: Colors.white)),
               ),
               const SizedBox(
                 width: 20,
@@ -90,10 +90,10 @@ class FileStteper extends StatelessWidget {
                   backgroundColor: AppColors.primarycolor,
                 ),
                 onPressed: () {
-                  _navigateToPreviousPage();
+                  _navigateToNextPage();
                 },
                 child:
-                    const Text('back', style: TextStyle(color: Colors.white)),
+                    const Text('Next', style: TextStyle(color: Colors.white)),
               ),
             ],
           )

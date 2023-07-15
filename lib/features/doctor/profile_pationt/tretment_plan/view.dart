@@ -1,13 +1,15 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/profile_pationt/tretment_plan/controle.dart';
+import 'controle.dart';
 
-import 'package:manaber/features/doctor/profile_pationt/tretment_plan/widget/data_view.dart';
-import 'package:manaber/features/doctor/profile_pationt/tretment_plan/widget/tretment_plan_entry_data.dart';
+import 'widget/data_view.dart';
+import 'widget/tretment_plan_entry_data.dart';
 
-import 'package:manaber/shared/components/constants.dart';
-import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../../../shared/components/constants.dart';
+import '../../../../shared/components/navigator.dart';
+import '../../../../shared/styles/colors.dart';
+import '../../../../shared/styles/styles.dart';
 
 class TretmentPlanView extends StatefulWidget {
   const TretmentPlanView({super.key});
@@ -19,6 +21,12 @@ class TretmentPlanView extends StatefulWidget {
 class _TretmentPlanViewState extends State<TretmentPlanView> {
   TretmentPlanControle planControle = TretmentPlanControle();
   bool isRefresh = false;
+  bool isDelete = false;
+  @override
+  void dispose() {
+    isDelete = false;
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +34,18 @@ class _TretmentPlanViewState extends State<TretmentPlanView> {
       appBar: AppBar(
         title: const Text('Tretment Plans'),
         backgroundColor: Colors.white,
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {
+                  isDelete = !isDelete;
+                });
+              },
+              icon: const Icon(
+                Icons.delete,
+                color: AppColors.primarycolor,
+              ))
+        ],
       ),
       body: isRefresh
           ? Padding(
@@ -37,61 +57,72 @@ class _TretmentPlanViewState extends State<TretmentPlanView> {
                     crossAxisSpacing: 20,
                   ),
                   itemCount: planControle.listofModel.length,
-                  itemBuilder: (context, index) => GestureDetector(
-                        onTap: () {
-                          navigateTo(
-                              context,
-                              DataView(
-                                controle: planControle.listofModel[index],
-                                index: index + 1,
-                              ));
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: Material(
-                            shadowColor: AppColors.primarycolor,
-                            elevation: 10,
-                            borderRadius: BorderRadius.circular(20),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
+                  itemBuilder: (context, index) => Stack(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              navigateTo(
+                                  context,
+                                  DataView(
+                                    controle: planControle.listofModel[index],
+                                    index: index + 1,
+                                  ));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: Material(
+                                shadowColor: AppColors.primarycolor,
+                                elevation: 10,
                                 borderRadius: BorderRadius.circular(20),
-                              ),
-                              height: MediaQuery.sizeOf(context).height / 4,
-                              width:
-                                  MediaQueryHelper.sizeFromWidth(context, 1.2),
-                              child: Column(
-                                // mainAxisAlignment:
-                                //     MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const SizedBox(
-                                    height: 25,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
-                                  Expanded(
-                                    child: Text(
-                                      "Plan${index + 1}",
-                                      style: AppTextStyles.lrTitles.copyWith(
-                                          color: AppColors.primarycolor),
-                                    ),
+                                  height: MediaQuery.sizeOf(context).height / 4,
+                                  width: MediaQueryHelper.sizeFromWidth(
+                                      context, 1.2),
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                        child: Center(
+                                          child: Text(
+                                            "Plan${index + 1}",
+                                            style: AppTextStyles.lrTitles
+                                                .copyWith(
+                                                    color:
+                                                        AppColors.primarycolor),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: IconButton(
-                                        onPressed: () {
-                                          planControle.listofModel
-                                              .removeAt(index);
-                                          setState(() {});
-                                        },
-                                        icon: const Icon(
-                                          Icons.delete,
-                                          color: Colors.red,
-                                        )),
-                                  )
-                                ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
+                          isDelete
+                              ? Align(
+                                  alignment: Alignment.topRight,
+                                  child: CircleAvatar(
+                                    radius: 20,
+                                    backgroundColor: Colors.white,
+                                    child: IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          planControle.listofModel
+                                              .removeAt(index);
+                                        });
+                                      },
+                                      icon: const Icon(
+                                        Icons.delete,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox.shrink(),
+                        ],
                       )),
             )
           : const SizedBox(

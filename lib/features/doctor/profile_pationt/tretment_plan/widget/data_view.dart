@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/profile_pationt/tretment_plan/model.dart';
-import 'package:manaber/shared/components/components.dart';
+import '../model.dart';
+import '../../../../../shared/components/components.dart';
 
 class DataView extends StatelessWidget {
   const DataView({super.key, required this.controle, required this.index});

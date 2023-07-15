@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/admin/accepte_home_page/controle.dart';
-import 'package:manaber/features/admin/accepte_home_page/widget/item_card_accept.dart';
-import 'package:manaber/shared/components/constants.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/images.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import 'controle.dart';
+import 'widget/item_card_accept.dart';
+import '../../../shared/components/constants.dart';
+import '../../../shared/styles/colors.dart';
+import '../../../shared/styles/images.dart';
+import '../../../shared/styles/styles.dart';
 
 class AdminHomePage extends StatefulWidget {
-  AdminHomePage({super.key});
+  const AdminHomePage({super.key});
 
   @override
   State<AdminHomePage> createState() => _AdminHomePageState();
@@ -46,48 +46,55 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 const SizedBox(
                   height: 16,
                 ),
-                Column(
-                  children: List.generate(
-                    controleUserAccepte.userAcceptore.length,
-                    (index) => ItemAccepteAdmin(
-                        onPressedNo: () {
-                          setState(() {
-                            controleUserAccepte.userAcceptore.removeAt(index);
-                          });
-                          final snackBar = SnackBar(
-                            duration: const Duration(seconds: 2),
-                            content: Text(
-                              textDirection: TextDirection.rtl,
-                              'تم الرفض',
-                              style: AppTextStyles.lrTitles
-                                  .copyWith(color: Colors.white),
-                            ),
-                            backgroundColor: Colors.red,
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        },
-                        onPressedOk: () {
-                          setState(() {
-                            controleUserAccepte.userAcceptore.removeAt(index);
-                          });
-                          final snackBar = SnackBar(
-                            duration: const Duration(seconds: 2),
-                            content: Text(
-                              textDirection: TextDirection.rtl,
-                              'تم مقبول',
-                              style: AppTextStyles.lrTitles
-                                  .copyWith(color: Colors.white),
-                            ),
-                            backgroundColor: AppColors.primarycolor,
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        },
-                        name: controleUserAccepte.userAcceptore[index].name,
-                        job: controleUserAccepte.userAcceptore[index].job,
-                        number:
-                            controleUserAccepte.userAcceptore[index].number),
-                  ),
-                ),
+                controleUserAccepte.userAcceptore.isEmpty
+                    ? const Center(child: Text('لا يوجد طلبات '))
+                    : Column(
+                        children: List.generate(
+                          controleUserAccepte.userAcceptore.length,
+                          (index) => ItemAccepteAdmin(
+                              onPressedNo: () {
+                                setState(() {
+                                  controleUserAccepte.userAcceptore
+                                      .removeAt(index);
+                                });
+                                final snackBar = SnackBar(
+                                  duration: const Duration(seconds: 2),
+                                  content: Text(
+                                    textDirection: TextDirection.rtl,
+                                    'تم الرفض',
+                                    style: AppTextStyles.lrTitles
+                                        .copyWith(color: Colors.white),
+                                  ),
+                                  backgroundColor: Colors.red,
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              },
+                              onPressedOk: () {
+                                setState(() {
+                                  controleUserAccepte.userAcceptore
+                                      .removeAt(index);
+                                });
+                                final snackBar = SnackBar(
+                                  duration: const Duration(seconds: 2),
+                                  content: Text(
+                                    textDirection: TextDirection.rtl,
+                                    'تم مقبول',
+                                    style: AppTextStyles.lrTitles
+                                        .copyWith(color: Colors.white),
+                                  ),
+                                  backgroundColor: AppColors.primarycolor,
+                                );
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              },
+                              name:
+                                  controleUserAccepte.userAcceptore[index].name,
+                              job: controleUserAccepte.userAcceptore[index].job,
+                              number: controleUserAccepte
+                                  .userAcceptore[index].number),
+                        ),
+                      ),
               ],
             ),
           ),

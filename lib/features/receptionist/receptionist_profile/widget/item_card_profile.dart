@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/shared/components/constants.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../../../shared/styles/colors.dart';
+import '../../../../shared/styles/styles.dart';
 
-class ItemProfileCard extends StatelessWidget {
-  const ItemProfileCard({super.key, required this.name, required this.number});
+class ItemProfileCardReception extends StatelessWidget {
+  const ItemProfileCardReception(
+      {super.key,
+      required this.name,
+      required this.number,
+      required this.onPressed});
   final String name;
   final String number;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +25,6 @@ class ItemProfileCard extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
           ),
-          height: MediaQueryHelper.sizeFromHeight(context, 4.5),
-          width: MediaQueryHelper.sizeFromWidth(context, 1.0),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
@@ -32,10 +34,12 @@ class ItemProfileCard extends StatelessWidget {
               children: [
                 Text(
                   'الاسم:$name',
+                  textDirection: TextDirection.rtl,
                   style: AppTextStyles.lrTitles
                       .copyWith(color: AppColors.primarycolor),
                 ),
                 Text(
+                  textDirection: TextDirection.rtl,
                   'رقم الهاتف :$number',
                   style: AppTextStyles.lrTitles
                       .copyWith(color: AppColors.primarycolor),
@@ -43,7 +47,7 @@ class ItemProfileCard extends StatelessWidget {
                 Align(
                   alignment: Alignment.bottomLeft,
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: onPressed,
                     icon: const Icon(
                       Icons.edit,
                       color: AppColors.grey,

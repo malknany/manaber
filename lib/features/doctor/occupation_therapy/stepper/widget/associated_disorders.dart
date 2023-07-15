@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/occupation_therapy/stepper/controler.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import '../controler.dart';
+import '../../../../../shared/components/components.dart';
+import '../../../../../shared/styles/colors.dart';
 
 class AssociatedDisorders extends StatelessWidget {
   const AssociatedDisorders(
@@ -62,7 +62,15 @@ class AssociatedDisorders extends StatelessWidget {
                     ]),
                 DropdownButtonItem(
                     controller: controlerAssociatedDisorders.creeping,
-                    lableName: 'Creeping Crayoning',
+                    lableName: 'Creeping ',
+                    itemList: const [
+                      "can't do",
+                      "can do",
+                      "can do it with assistance"
+                    ]),
+                DropdownButtonItem(
+                    controller: controlerAssociatedDisorders.crayoning,
+                    lableName: 'Crayoning',
                     itemList: const [
                       "can't do",
                       "can do",
@@ -77,8 +85,8 @@ class AssociatedDisorders extends StatelessWidget {
                       "can do it with assistance"
                     ]),
                 DropdownButtonItem(
-                    controller: controlerAssociatedDisorders.working,
-                    lableName: 'Working ',
+                    controller: controlerAssociatedDisorders.walking,
+                    lableName: 'Walking ',
                     itemList: const [
                       "can't do",
                       "can do",

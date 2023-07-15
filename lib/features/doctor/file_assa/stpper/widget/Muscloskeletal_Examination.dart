@@ -24,36 +24,38 @@ class MuscloskeletalExamination extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              TextFormFiledStepper(
-                  labelname: 'Deformities',
-                  textEditingController: controlBodyFunction.deformities),
-              const DividerItem(text: 'Posture And Alignment'),
-              TextFormFiledStepper(
-                  labelname: 'From Sitting',
-                  textEditingController: controlBodyFunction.fromSitting),
-              TextFormFiledStepper(
-                  labelname: 'From Standing',
-                  textEditingController: controlBodyFunction.fromStanding),
-              TextFormFiledStepper(
-                  labelname: 'Spine',
-                  textEditingController: controlBodyFunction.spine),
-              TextFormFiledStepper(
-                  labelname: 'Pelvic',
-                  textEditingController: controlBodyFunction.pelvic),
-              const DividerItem(text: 'Hip'),
-              DropdownButtonItem(
-                  controller: controlBodyFunction.rt,
-                  lableName: 'Right',
-                  itemList: const ['Normal', 'In risk', 'Sublaxed', 'dislocated']),
-              DropdownButtonItem(
-                  controller: controlBodyFunction.lf,
-                  lableName: 'Left',
-                  itemList: const ['Normal', 'In risk', 'Sublaxed', 'dislocated'])
-            ],
-          ),
+        child: ListView(
+          children: [
+            TextFormFiledStepper(
+                labelname: 'Deformities',
+                textEditingController: controlBodyFunction.deformities),
+            const DividerItem(text: 'Posture And Alignment'),
+            TextFormFiledStepper(
+                labelname: 'From Sitting',
+                textEditingController: controlBodyFunction.fromSitting),
+            TextFormFiledStepper(
+                labelname: 'From Standing',
+                textEditingController: controlBodyFunction.fromStanding),
+            TextFormFiledStepper(
+                labelname: 'Spine',
+                textEditingController: controlBodyFunction.spine),
+            TextFormFiledStepper(
+                labelname: 'Pelvic',
+                textEditingController: controlBodyFunction.pelvic),
+                TextFormFiledStepper(
+                  labelname: 'Leg Length Discrepancy ',
+                  textEditingController:
+                      controlBodyFunction.legLengthDiscrepancy),
+            const DividerItem(text: 'Hip'),
+            DropdownButtonItem(
+                controller: controlBodyFunction.rt,
+                lableName: 'Right',
+                itemList: const ['Normal', 'In risk', 'Sublaxed', 'dislocated']),
+            DropdownButtonItem(
+                controller: controlBodyFunction.lf,
+                lableName: 'Left',
+                itemList: const ['Normal', 'In risk', 'Sublaxed', 'dislocated'])
+          ],
         ),
       ),
     );
