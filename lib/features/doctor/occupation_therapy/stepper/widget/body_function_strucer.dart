@@ -26,62 +26,37 @@ class BodyFunctionStrucer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 const DividerItem(text: 'Neuromuscular Status'),
-                const DividerItem(text: 'Spastic '),
                 DropdownButtonItem(
-                    controller: controlerBodyFunctionStrucer.spasticUpperLimb,
+                    controller: controlerBodyFunctionStrucer
+                        .neuromuscularStatusUpperLimb,
                     lableName: 'Upper limb',
                     itemList: const [
-                      "Right",
-                      "Left",
+                      "Spastic",
+                      "Flaccid",
+                      "Normal",
                     ]),
                 DropdownButtonItem(
-                    controller: controlerBodyFunctionStrucer.spasticLowerLimb,
+                    controller: controlerBodyFunctionStrucer
+                        .neuromuscularStatusLowerLimb,
                     lableName: 'Lower limb',
                     itemList: const [
-                      "Right",
-                      "Left",
+                      "Spastic",
+                      "Flaccid",
+                      "Normal",
                     ]),
-                const DividerItem(text: 'Flaccid  '),
-                DropdownButtonItem(
-                    controller: controlerBodyFunctionStrucer.flaccidUpperLimb,
-                    lableName: 'Upper limb',
-                    itemList: const [
-                      "Right",
-                      "Left",
-                    ]),
-                DropdownButtonItem(
-                    controller: controlerBodyFunctionStrucer.flaccidLowerLimb,
-                    lableName: 'Lower limb',
-                    itemList: const [
-                      "Right",
-                      "Left",
-                    ]),
-                const DividerItem(text: 'Normal '),
-                DropdownButtonItem(
-                    controller: controlerBodyFunctionStrucer.normalUpperLimb,
-                    lableName: 'Upper limb',
-                    itemList: const [
-                      "Right",
-                      "Left",
-                    ]),
-                DropdownButtonItem(
-                    controller: controlerBodyFunctionStrucer.normalLowerLimb,
-                    lableName: 'Lower limb',
-                    itemList: const [
-                      "Right",
-                      "Left",
-                    ]),
+                TextFormFiledStepper(
+                    labelname: 'Note',
+                    textEditingController:
+                        controlerBodyFunctionStrucer.neuromuscularStatusNote),
                 const DividerItem(text: 'balance '),
-                DropdownButtonItem(
-                    controller:
-                        controlerBodyFunctionStrucer.sittingBalanceStatic,
-                    lableName: 'Sitting Balance Static',
-                    itemList: const ["Normal", "Good", "Fair", "Poor"]),
-                DropdownButtonItem(
-                    controller:
-                        controlerBodyFunctionStrucer.sittingBalanceDynamic,
-                    lableName: 'Sitting balance  dynamic',
-                    itemList: const ["Normal", "Good", "Fair", "Poor"]),
+                TextFormFiledStepper(
+                    labelname: 'Sitting Balance Static',
+                    textEditingController:
+                        controlerBodyFunctionStrucer.sittingBalanceStatic),
+                TextFormFiledStepper(
+                    labelname: 'Sitting balance dynamic',
+                    textEditingController:
+                        controlerBodyFunctionStrucer.sittingBalanceDynamic),
                 TextFormFiledStepper(
                     labelname: 'Posture',
                     textEditingController:

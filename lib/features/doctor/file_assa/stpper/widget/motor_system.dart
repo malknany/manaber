@@ -12,7 +12,7 @@ class MotorSystem extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('MotorSystem'),
+        title: const Text('Motor System'),
         backgroundColor: Colors.white,
         foregroundColor: AppColors.primarycolor,
         elevation: 0,
@@ -27,114 +27,106 @@ class MotorSystem extends StatelessWidget {
               contecnt: SizedBox(
                 height: MediaQuery.sizeOf(context).height / 1.2,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        const DividerItem(text: 'Muscle strength'),
-                        RightLeftTextFiled(
-                            title: 'Gluteal',
-                            controllerRight: controlBodyFunction.glutealRight,
-                            controllerLeft: controlBodyFunction.glutealLeft),
-                        RightLeftTextFiled(
-                            title: 'Abductors',
-                            controllerRight: controlBodyFunction.abductorsRight,
-                            controllerLeft: controlBodyFunction.abductorsLeft),
-                        RightLeftTextFiled(
-                            title: 'Hip flexors',
-                            controllerRight:
-                                controlBodyFunction.hipFlexorsRight,
-                            controllerLeft: controlBodyFunction.hipFlexorsLeft),
-                        RightLeftTextFiled(
-                            title: 'Hip IR',
-                            controllerRight: controlBodyFunction.hipIRRight,
-                            controllerLeft: controlBodyFunction.hipIRLeft),
-                        RightLeftTextFiled(
-                            title: 'Hip ER',
-                            controllerRight: controlBodyFunction.hipERRight,
-                            controllerLeft: controlBodyFunction.hipERLeft),
-                        RightLeftTextFiled(
-                            title: 'Quadriceps',
-                            controllerRight:
-                                controlBodyFunction.quadricepsRight,
-                            controllerLeft: controlBodyFunction.quadricepsLeft),
-                        RightLeftTextFiled(
-                            title: 'Hamstring',
-                            controllerRight: controlBodyFunction.hamstringRight,
-                            controllerLeft: controlBodyFunction.hamstringLeft),
-                        RightLeftTextFiled(
-                            title: 'Plantar flexors',
-                            controllerRight:
-                                controlBodyFunction.plantarFlexorsRight,
-                            controllerLeft:
-                                controlBodyFunction.plantarFlexorsLeft),
-                        RightLeftTextFiled(
-                            title: 'Dorsiflexors',
-                            controllerRight:
-                                controlBodyFunction.dorsiflexorsRight,
-                            controllerLeft:
-                                controlBodyFunction.dorsiflexorsLeft),
-                        RightLeftTextFiled(
-                            title: 'Shoulder flexors',
-                            controllerRight:
-                                controlBodyFunction.shoulderFlexorsRight,
-                            controllerLeft:
-                                controlBodyFunction.shoulderFlexorsLeft),
-                        RightLeftTextFiled(
-                            title: 'Shoulder Extensors',
-                            controllerRight:
-                                controlBodyFunction.shoulderExtensorsRight,
-                            controllerLeft:
-                                controlBodyFunction.shoulderExtensorsLeft),
-                        RightLeftTextFiled(
-                            title: 'Shoulder',
-                            controllerRight: controlBodyFunction.shoulderRight,
-                            controllerLeft: controlBodyFunction.shoulderLeft),
-                        RightLeftTextFiled(
-                            title: 'Adductors',
-                            controllerRight: controlBodyFunction.adductorsRight,
-                            controllerLeft: controlBodyFunction.adductorsLeft),
-                        RightLeftTextFiled(
-                            title: 'Shoulder IR',
-                            controllerRight:
-                                controlBodyFunction.shoulderIRRight,
-                            controllerLeft: controlBodyFunction.shoulderIRLeft),
-                        RightLeftTextFiled(
-                            title: 'Shoulder ER',
-                            controllerRight:
-                                controlBodyFunction.shoulderERRight,
-                            controllerLeft: controlBodyFunction.shoulderERLeft),
-                        RightLeftTextFiled(
-                            title: 'Elbow Flexors',
-                            controllerRight:
-                                controlBodyFunction.elbowFlexorsRight,
-                            controllerLeft:
-                                controlBodyFunction.elbowFlexorsLeft),
-                        RightLeftTextFiled(
-                            title: 'Elbow Extensors',
-                            controllerRight:
-                                controlBodyFunction.elbowExtensorsRight,
-                            controllerLeft:
-                                controlBodyFunction.elbowExtensorsLeft),
-                        RightLeftTextFiled(
-                            title: 'Wrist Flexors',
-                            controllerRight:
-                                controlBodyFunction.wristFlexorsRight,
-                            controllerLeft:
-                                controlBodyFunction.wristFlexorsLeft),
-                        RightLeftTextFiled(
-                            title: 'Wrist Extensors',
-                            controllerRight:
-                                controlBodyFunction.wristExtensorsRight,
-                            controllerLeft:
-                                controlBodyFunction.wristExtensorsLeft),
-                        ButtonText(
-                            text: 'Save',
-                            onPressed: () {
-                              Navigator.pop(context);
-                            })
-                      ],
-                    ),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: ListView(
+                    children: [
+                      const DividerItem(text: 'Muscle strength'),
+                      RightLeftTextFiled(
+                          title: 'Gluteal',
+                          controllerRight: controlBodyFunction.glutealRight,
+                          controllerLeft: controlBodyFunction.glutealLeft),
+                      RightLeftTextFiled(
+                          title: 'Abductors',
+                          controllerRight: controlBodyFunction.abductorsRight,
+                          controllerLeft: controlBodyFunction.abductorsLeft),
+                      RightLeftTextFiled(
+                          title: 'Adductor',
+                          controllerRight: controlBodyFunction.adductorsRight,
+                          controllerLeft: controlBodyFunction.adductorsLeft),
+                      RightLeftTextFiled(
+                          title: 'Hip flexors',
+                          controllerRight: controlBodyFunction.hipFlexorsRight,
+                          controllerLeft: controlBodyFunction.hipFlexorsLeft),
+                      RightLeftTextFiled(
+                          title: 'Hip IR',
+                          controllerRight: controlBodyFunction.hipIRRight,
+                          controllerLeft: controlBodyFunction.hipIRLeft),
+                      RightLeftTextFiled(
+                          title: 'Hip ER',
+                          controllerRight: controlBodyFunction.hipERRight,
+                          controllerLeft: controlBodyFunction.hipERLeft),
+                      RightLeftTextFiled(
+                          title: 'Quadriceps',
+                          controllerRight: controlBodyFunction.quadricepsRight,
+                          controllerLeft: controlBodyFunction.quadricepsLeft),
+                      RightLeftTextFiled(
+                          title: 'Hamstring',
+                          controllerRight: controlBodyFunction.hamstringRight,
+                          controllerLeft: controlBodyFunction.hamstringLeft),
+                      RightLeftTextFiled(
+                          title: 'Plantar flexors',
+                          controllerRight:
+                              controlBodyFunction.plantarFlexorsRight,
+                          controllerLeft:
+                              controlBodyFunction.plantarFlexorsLeft),
+                      RightLeftTextFiled(
+                          title: 'Dorsiflexors',
+                          controllerRight:
+                              controlBodyFunction.dorsiflexorsRight,
+                          controllerLeft: controlBodyFunction.dorsiflexorsLeft),
+                      RightLeftTextFiled(
+                          title: 'Shoulder flexors',
+                          controllerRight:
+                              controlBodyFunction.shoulderFlexorsRight,
+                          controllerLeft:
+                              controlBodyFunction.shoulderFlexorsLeft),
+                      RightLeftTextFiled(
+                          title: 'Shoulder Extensors',
+                          controllerRight:
+                              controlBodyFunction.shoulderExtensorsRight,
+                          controllerLeft:
+                              controlBodyFunction.shoulderExtensorsLeft),
+                      RightLeftTextFiled(
+                          title: 'Shoulder',
+                          controllerRight: controlBodyFunction.shoulderRight,
+                          controllerLeft: controlBodyFunction.shoulderLeft),
+                      RightLeftTextFiled(
+                          title: 'Shoulder IR',
+                          controllerRight: controlBodyFunction.shoulderIRRight,
+                          controllerLeft: controlBodyFunction.shoulderIRLeft),
+                      RightLeftTextFiled(
+                          title: 'Shoulder ER',
+                          controllerRight: controlBodyFunction.shoulderERRight,
+                          controllerLeft: controlBodyFunction.shoulderERLeft),
+                      RightLeftTextFiled(
+                          title: 'Elbow Flexors',
+                          controllerRight:
+                              controlBodyFunction.elbowFlexorsRight,
+                          controllerLeft: controlBodyFunction.elbowFlexorsLeft),
+                      RightLeftTextFiled(
+                          title: 'Elbow Extensors',
+                          controllerRight:
+                              controlBodyFunction.elbowExtensorsRight,
+                          controllerLeft:
+                              controlBodyFunction.elbowExtensorsLeft),
+                      RightLeftTextFiled(
+                          title: 'Wrist Flexors',
+                          controllerRight:
+                              controlBodyFunction.wristFlexorsRight,
+                          controllerLeft: controlBodyFunction.wristFlexorsLeft),
+                      RightLeftTextFiled(
+                          title: 'Wrist Extensors',
+                          controllerRight:
+                              controlBodyFunction.wristExtensorsRight,
+                          controllerLeft:
+                              controlBodyFunction.wristExtensorsLeft),
+                      ButtonText(
+                          text: 'Save',
+                          onPressed: () {
+                            Navigator.pop(context);
+                          })
+                    ],
                   ),
                 ),
               ),
@@ -147,7 +139,8 @@ class MotorSystem extends StatelessWidget {
               contecnt: SizedBox(
                 height: MediaQuery.sizeOf(context).height / 1.2,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: SingleChildScrollView(
                     child: Column(
                       children: [

@@ -32,7 +32,7 @@ class _LogInScreenState extends State<LogInScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             textDirection: TextDirection.rtl,
             children: [
-              Image.asset(AppImages.login),
+              Image.asset(AppImages.login1),
               const Text(
                 'تسجيل الدخول ',
                 style: TextStyle(

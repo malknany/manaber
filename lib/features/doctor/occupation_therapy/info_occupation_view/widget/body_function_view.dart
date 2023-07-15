@@ -5,18 +5,13 @@ import '../../../../../shared/styles/colors.dart';
 import '../../../../../shared/styles/images.dart';
 
 class BodyFunctionAndStrucerView extends StatelessWidget {
-  const BodyFunctionAndStrucerView({super.key,required this.controleBodyFunctionStrucer});
+  const BodyFunctionAndStrucerView(
+      {super.key, required this.controleBodyFunctionStrucer});
   final StepperBodyFunctionStrucer controleBodyFunctionStrucer;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {},
-      //   backgroundColor: AppColors.primarycolor,
-      //   elevation: 0,
-      //   child: const Icon(Icons.edit_outlined),
-      // ),
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: const Text(
@@ -36,7 +31,7 @@ class BodyFunctionAndStrucerView extends StatelessWidget {
                 SizedBox(
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height / 3.5,
-                    child: Image.asset(AppImages.occupational)),
+                    child: Image.asset(AppImages.occupationalTherapy)),
                 const Text(
                   "occupational",
                   style: TextStyle(
@@ -54,25 +49,14 @@ class BodyFunctionAndStrucerView extends StatelessWidget {
                       fontWeight: FontWeight.normal),
                 ),
                 const SizedBox(height: 16.0),
-                const DividerItem(text: 'Neuromuscular status'),
                 RowItemRightLeft(
-                    right: controleBodyFunctionStrucer.spasticUpperLimb.text,
-                    left: controleBodyFunctionStrucer.spasticLowerLimb.text,
-                    title: 'Spastic',
-                    tilteRight: 'UpperLimb',
-                    titleLeft: 'LowerLinb'),
-                RowItemRightLeft(
-                    right: controleBodyFunctionStrucer.flaccidUpperLimb.text,
-                    left: controleBodyFunctionStrucer.flaccidLowerLimb.text,
-                    title: 'Flaccid ',
-                    tilteRight: 'UpperLimb',
-                    titleLeft: 'LowerLinb'),
-                RowItemRightLeft(
-                    right: controleBodyFunctionStrucer.normalUpperLimb.text,
-                    left: controleBodyFunctionStrucer.normalLowerLimb.text,
-                    title: 'Normal ',
-                    tilteRight: 'UpperLimb',
-                    titleLeft: 'LowerLinb'),
+                    right: controleBodyFunctionStrucer
+                        .neuromuscularStatusUpperLimb.text,
+                    left: controleBodyFunctionStrucer
+                        .neuromuscularStatusLowerLimb.text,
+                    title: 'Neuromuscular status',
+                    tilteRight: 'UpperL',
+                    titleLeft: 'LowerL'),
                 const DividerItem(text: 'Balance'),
                 InfoRowItem(
                     title: "Sitting balance static",

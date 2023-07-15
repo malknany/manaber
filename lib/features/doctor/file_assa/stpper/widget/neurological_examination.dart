@@ -35,72 +35,70 @@ class NeurologicalExamination extends StatelessWidget {
                 textEditingController: controlBodyFunction.involantaryMovment,
               ),
               ShowBottomSheetItems(
-                name: 'Reflexes',
+                name: 'Primitive Reflexes',
                 contecnt: SizedBox(
                   height: MediaQuery.sizeOf(context).height / 1.3,
                   child: Padding(
                       padding:
                           const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            const DividerItem(text: 'Reflex'),
-                            DropdownButtonItem(
-                                controller: controlBodyFunction.palmarReflex,
-                                lableName: 'Palmar reflex',
-                                itemList: const ['integrated', 'Not integrated']),
-                            DropdownButtonItem(
-                                controller: controlBodyFunction.planterReflex,
-                                lableName: 'Planter reflex',
-                                itemList: const ['integrated', 'Not integrated']),
-                            DropdownButtonItem(
-                                controller: controlBodyFunction.rootingReflex,
-                                lableName: 'Rooting reflex',
-                                itemList: const ['integrated', 'Not integrated']),
-                            DropdownButtonItem(
-                                controller: controlBodyFunction.suckingReflex,
-                                lableName: 'Sucking reflex',
-                                itemList: const ['integrated', 'Not integrated']),
-                            DropdownButtonItem(
-                                controller:
-                                    controlBodyFunction.supineLabyrinthine,
-                                lableName: 'Supine labyrinthine',
-                                itemList: const ['integrated', 'Not integrated']),
-                            DropdownButtonItem(
-                                controller:
-                                    controlBodyFunction.proneLabyrinthine,
-                                lableName: 'Prone labyrinthine',
-                                itemList: const ['integrated', 'Not integrated']),
-                            DropdownButtonItem(
-                                controller: controlBodyFunction
-                                    .symmetricalTonicNeckReflex,
-                                lableName: 'Symmetrical tonic neck reflex',
-                                itemList: const ['integrated', 'Not integrated']),
-                            DropdownButtonItem(
-                                controller: controlBodyFunction
-                                    .asymmetricalTonicNeckReflex,
-                                lableName: 'Asymmetrical tonic neck reflex',
-                                itemList: const ['integrated', 'Not integrated']),
-                            DropdownButtonItem(
-                                controller:
-                                    controlBodyFunction.footHandReplacement,
-                                lableName: 'Foot-hand replacement',
-                                itemList: const ['integrated', 'Not integrated']),
-                            DropdownButtonItem(
-                                controller: controlBodyFunction.moroReflex,
-                                lableName: 'Moro reflex',
-                                itemList: const ['integrated', 'Not integrated']),
-                            DropdownButtonItem(
-                                controller: controlBodyFunction.landauReflex,
-                                lableName: 'Landau reflex',
-                                itemList: const ['integrated', 'Not integrated']),
-                            ButtonText(
-                                text: 'Save',
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                })
-                          ],
-                        ),
+                      child: ListView(
+                        children: [
+                          const DividerItem(text: 'Reflex'),
+                          DropdownButtonItem(
+                              controller: controlBodyFunction.palmarReflex,
+                              lableName: 'Palmar reflex',
+                              itemList: const ['integrated', 'Not integrated','Not Tested']),
+                          DropdownButtonItem(
+                              controller: controlBodyFunction.planterReflex,
+                              lableName: 'Planter reflex',
+                              itemList: const ['integrated', 'Not integrated','Not Tested']),
+                          DropdownButtonItem(
+                              controller: controlBodyFunction.rootingReflex,
+                              lableName: 'Rooting reflex',
+                              itemList: const ['integrated', 'Not integrated','Not Tested']),
+                          DropdownButtonItem(
+                              controller: controlBodyFunction.suckingReflex,
+                              lableName: 'Sucking reflex',
+                              itemList: const ['integrated', 'Not integrated','Not Tested']),
+                          DropdownButtonItem(
+                              controller:
+                                  controlBodyFunction.supineLabyrinthine,
+                              lableName: 'Supine labyrinthine',
+                              itemList: const ['integrated', 'Not integrated','Not Tested']),
+                          DropdownButtonItem(
+                              controller:
+                                  controlBodyFunction.proneLabyrinthine,
+                              lableName: 'Prone labyrinthine',
+                              itemList: const ['integrated', 'Not integrated','Not Tested']),
+                          DropdownButtonItem(
+                              controller: controlBodyFunction
+                                  .symmetricalTonicNeckReflex,
+                              lableName: 'Symmetrical tonic neck reflex',
+                              itemList: const ['integrated', 'Not integrated','Not Tested']),
+                          DropdownButtonItem(
+                              controller: controlBodyFunction
+                                  .asymmetricalTonicNeckReflex,
+                              lableName: 'Asymmetrical tonic neck reflex',
+                              itemList: const ['integrated', 'Not integrated','Not Tested']),
+                          DropdownButtonItem(
+                              controller:
+                                  controlBodyFunction.footHandReplacement,
+                              lableName: 'Foot-hand replacement',
+                              itemList: const ['integrated', 'Not integrated','Not Tested']),
+                          DropdownButtonItem(
+                              controller: controlBodyFunction.moroReflex,
+                              lableName: 'Moro reflex',
+                              itemList: const ['integrated', 'Not integrated','Not Tested']),
+                          DropdownButtonItem(
+                              controller: controlBodyFunction.landauReflex,
+                              lableName: 'Landau reflex',
+                              itemList: const ['integrated', 'Not integrated','Not Tested']),
+                          ButtonText(
+                              text: 'Save',
+                              onPressed: () {
+                                Navigator.pop(context);
+                              })
+                        ],
                       )),
                 ),
               ),

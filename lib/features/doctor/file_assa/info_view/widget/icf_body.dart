@@ -58,7 +58,6 @@ class ICFBodyView extends StatelessWidget {
                       title: "Function of metabolic and endocrine",
                       value: controlBodyFunction
                           .functionOfMetabolicAndEndocrine.text),
-                  const InfoRowItem(title: "Gender", value: 'Male'),
                   InfoRowItem(
                       title: "Function of Cardiovascular",
                       value: controlBodyFunction
@@ -81,6 +80,8 @@ class ICFBodyView extends StatelessWidget {
                   const Text('GaiT Problems ',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  InfoRowItem(
+                      title: "Note", value: controlBodyFunction.gaitnote.text),
                   InfoRowItem(
                       title: "Stance phase",
                       value: controlBodyFunction.stancePhase.text),
@@ -129,7 +130,7 @@ class ICFBodyView extends StatelessWidget {
                   InfoRowItem(
                       title: "involantary movment",
                       value: controlBodyFunction.involantaryMovment.text),
-                  const Text('Reflexese ',
+                  const Text('Primitive Reflexese ',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                   InfoRowItem(
@@ -214,8 +215,12 @@ class ICFBodyView extends StatelessWidget {
                       title: 'Hamstring'),
                   RowItemRightLeft(
                       right: controlBodyFunction.plantarFlexorsRight.text,
-                      left: controlBodyFunction.plantarFlexorsRight.text,
+                      left: controlBodyFunction.plantarFlexorsLeft.text,
                       title: 'Plantar flexors'),
+                  RowItemRightLeft(
+                      right: controlBodyFunction.dorsiflexorsRight.text,
+                      left: controlBodyFunction.dorsiflexorsLeft.text,
+                      title: 'Dorsiflexors'),
                   RowItemRightLeft(
                       right: controlBodyFunction.shoulderFlexorsRight.text,
                       left: controlBodyFunction.shoulderFlexorsLeft.text,
@@ -228,10 +233,10 @@ class ICFBodyView extends StatelessWidget {
                       right: controlBodyFunction.shoulderRight.text,
                       left: controlBodyFunction.shoulderLeft.text,
                       title: 'Shoulder'),
-                  RowItemRightLeft(
-                      right: controlBodyFunction.abductorsRight.text,
-                      left: controlBodyFunction.abductorsLeft.text,
-                      title: 'Abductors'),
+                  // RowItemRightLeft(
+                  //     right: controlBodyFunction.abductorsRight.text,
+                  //     left: controlBodyFunction.abductorsLeft.text,
+                  //     title: 'Abductors'),
                   RowItemRightLeft(
                       right: controlBodyFunction.shoulderIRRight.text,
                       left: controlBodyFunction.shoulderIRLeft.text,
@@ -306,6 +311,38 @@ class ICFBodyView extends StatelessWidget {
                       right: controlBodyFunction.tibialisAntTonRight.text,
                       left: controlBodyFunction.tibialisAntTonLeft.text,
                       title: 'Tibialis Ant'),
+                  RowItemRightLeft(
+                      right: controlBodyFunction.tibialisPostTonRight.text,
+                      left: controlBodyFunction.tibialisPostTonLeft.text,
+                      title: 'Tibialis Post'),
+                  RowItemRightLeft(
+                      right: controlBodyFunction.shoulderTonRight.text,
+                      left: controlBodyFunction.shoulderTonLeft.text,
+                      title: 'Shoulder'),
+                  RowItemRightLeft(
+                      right: controlBodyFunction.adductorsTonRight.text,
+                      left: controlBodyFunction.adductorsTonLeft.text,
+                      title: 'Adductors'),
+                  RowItemRightLeft(
+                      right: controlBodyFunction.shoulderIRTonRight.text,
+                      left: controlBodyFunction.shoulderIRTonLeft.text,
+                      title: 'Shoulder IR'),
+                  RowItemRightLeft(
+                      right: controlBodyFunction.shoulderERTonRight.text,
+                      left: controlBodyFunction.shoulderERTonLeft.text,
+                      title: 'Shoulder ER'),
+                  RowItemRightLeft(
+                      right: controlBodyFunction.elbowFlexorsTonRight.text,
+                      left: controlBodyFunction.elbowFlexorsTonLeft.text,
+                      title: 'Elbow Flexors'),
+                  RowItemRightLeft(
+                      right: controlBodyFunction.wristFlexorsTonRight.text,
+                      left: controlBodyFunction.wristFlexorsTonLeft.text,
+                      title: 'Wrist Flexors'),
+                  RowItemRightLeft(
+                      right: controlBodyFunction.fingerFlexorsTonRight.text,
+                      left: controlBodyFunction.fingerFlexorsTonLeft.text,
+                      title: 'Finger Flexors'),
                   InfoRowItem(
                       title: "Muscle Bulk",
                       value: controlBodyFunction.muscleBulk.text),
@@ -335,7 +372,7 @@ class ICFBodyView extends StatelessWidget {
                       title: 'Adductors'),
                   RowItemRightLeft(
                       right: controlBodyFunction.hipFlexorsMuscleRight.text,
-                      left: controlBodyFunction.hipFlexorsMuscleRight.text,
+                      left: controlBodyFunction.hipFlexorsMuscleLeft.text,
                       title: 'Hip flexors'),
                   RowItemRightLeft(
                       right: controlBodyFunction.quadricepsMuscleRight.text,
@@ -424,6 +461,9 @@ class ICFBodyView extends StatelessWidget {
                       title: 'Spine', value: controlBodyFunction.spine.text),
                   InfoRowItem(
                       title: 'Pelvic', value: controlBodyFunction.pelvic.text),
+                  InfoRowItem(
+                      title: 'Leg Length Discrepancy',
+                      value: controlBodyFunction.legLengthDiscrepancy.text),
                   const Text('Hip',
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),

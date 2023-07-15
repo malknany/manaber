@@ -49,14 +49,6 @@ class _InfoConversationScreenState extends State<InfoConversationScreen> {
               context,
               StepperConversational(
                 controleConversational: widget.controleConversational,
-                // controleChildDevelopmentalHistory:
-                //     widget.controlechildDevelopmentalHistory,
-                // controleNoteConversation: widget.controleNoteConversation,
-                // controlerChildMedicalAndMedicalHistory:
-                //     widget.controleChildMedicalAndMedicalHistory,
-                // controlerMedicalAndGeneticHistoryOfTheFamily:
-                //     widget.controlerMedicalAndGeneticHistoryOfTheFamily,
-                // personalHistoryConversational: widget.controlePersonalHistory,
               ),
             );
             if (result == 'refresh') {
@@ -77,7 +69,7 @@ class _InfoConversationScreenState extends State<InfoConversationScreen> {
               SizedBox(
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height / 3.5,
-                  child: Image.asset(AppImages.naturalTherapy)),
+                  child: Image.asset(AppImages.conversational1)),
               const Text(
                 " إستمارة دراسة حالة",
                 style: TextStyle(

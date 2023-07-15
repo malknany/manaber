@@ -43,6 +43,7 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
   final ControleConversational controleConversational =
       ControleConversational();
 
+  final ControleFileAssesment controleFileAssesment = ControleFileAssesment();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

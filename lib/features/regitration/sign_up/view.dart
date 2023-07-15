@@ -26,7 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             textDirection: TextDirection.rtl,
             children: [
-              Image.asset(AppImages.signup),
+              Image.asset(AppImages.signup1),
               const Text(
                 'انشاء حساب جديد',
                 style: TextStyle(

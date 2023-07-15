@@ -1,71 +1,3 @@
-// import 'package:flutter/material.dart';
-
-// import '../styles/colors.dart';
-// import '../styles/styles.dart';
-// import 'constants.dart';
-
-// class ButtonTemplate extends StatelessWidget {
-//   ButtonTemplate({
-//     Key? key,
-//     required this.color,
-//     required this.text1,
-//     required this.onPressed,
-//     this.text2 = "",
-//     this.text3 = "",
-//     this.icon,
-//     this.minwidth = 318,
-//     this.minheight = 60,
-//     this.fontSize = 18,
-//   }) : super(key: key);
-//   final Color color;
-//   final String text1;
-//   final String text2;
-//   final String text3;
-//   final double minwidth;
-//   final double minheight;
-//   final double fontSize;
-//   final IconData? icon;
-//   void Function()? onPressed;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialButton(
-//       minWidth: minwidth,
-//       height: minheight,
-//       onPressed: onPressed,
-//       color: color,
-//       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-//       child: Center(
-//         child: Row(
-//           crossAxisAlignment: CrossAxisAlignment.end,
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             icon == null
-
-//                 ? SizedBox()
-//                 : Center(
-//               child: Icon(icon, size: 21, color: AppColors.white),
-//             ),
-//             SizedBox(
-//               width: 5,
-//             ),
-
-//             Center(
-//               child: Text(text1,
-//                   textAlign: TextAlign.center,
-//                   style: AppTextStyles.boldtitlesButton.copyWith(
-//                  fontSize: 17,
-//                     color: AppColors.white,
-//                   )),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-// /////////////////////////
-
 import 'package:flutter/material.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
@@ -132,7 +64,6 @@ class _TextFieldTemplateState extends State<TextFieldTemplate> {
 class InfoRowItem extends StatelessWidget {
   const InfoRowItem({
     super.key,
-    // required this.columnWidth,
     required this.title,
     required this.value,
     this.textDirection = TextDirection.ltr,
@@ -155,7 +86,7 @@ class InfoRowItem extends StatelessWidget {
                 '$title:',
                 textDirection: textDirection,
                 style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
               ),
             ),
             const SizedBox(width: 16.0),
@@ -165,7 +96,7 @@ class InfoRowItem extends StatelessWidget {
                 softWrap: true,
                 textDirection: textDirection,
                 style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 15,
                 ),
               ),
             ),
@@ -210,7 +141,7 @@ class RowItemRightLeft extends StatelessWidget {
               child: Text(
                 '$title:',
                 style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
               ),
             ),
             const SizedBox(width: 16.0),
@@ -220,14 +151,14 @@ class RowItemRightLeft extends StatelessWidget {
                   tilteRight,
                   softWrap: true,
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 15,
                   ),
                 ),
                 Text(
                   right,
                   softWrap: true,
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 15,
                   ),
                 ),
               ]),
@@ -238,14 +169,14 @@ class RowItemRightLeft extends StatelessWidget {
                   titleLeft,
                   softWrap: true,
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 15,
                   ),
                 ),
                 Text(
                   left,
                   softWrap: true,
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 15,
                   ),
                 ),
               ]),
@@ -297,6 +228,7 @@ class RightLeftTextFiled extends StatelessWidget {
                 height: 40,
                 width: 40,
                 child: TextFormField(
+                  cursorColor: AppColors.primarycolor,
                   keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.go,
                   onSaved: (newValue) {
@@ -338,6 +270,8 @@ class RightLeftTextFiled extends StatelessWidget {
                 height: 40,
                 width: 40,
                 child: TextFormField(
+                  autofocus: true,
+                  cursorColor: AppColors.primarycolor,
                   keyboardType: TextInputType.number,
                   textInputAction: TextInputAction.go,
                   onSaved: (newValue) {
@@ -443,7 +377,6 @@ class TextFormFiledStepper extends StatelessWidget {
       child: Directionality(
         textDirection: textDirection,
         child: TextFormField(
-          // expands: true,
           maxLines: 4,
           minLines: 1,
           controller: textEditingController,
@@ -516,130 +449,6 @@ class DividerItem extends StatelessWidget {
     );
   }
 }
-
-// class CustomDropdown extends StatefulWidget {
-//   final String hint;
-//   final List<String> items;
-//   final ValueChanged<String?> onChanged;
-
-//   const CustomDropdown({
-//     Key? key,
-//     required this.hint,
-//     required this.items,
-//     required this.onChanged,
-//   }) : super(key: key);
-
-//   @override
-//   _CustomDropdownState createState() => _CustomDropdownState();
-// }
-
-// class _CustomDropdownState extends State<CustomDropdown> {
-//   late String? _selectedItem;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     // Read the value from the PageStorage for this widget's key
-//     _selectedItem = PageStorage.of(context).readState(context) as String?;
-//   }
-
-//   @override
-//   void dispose() {
-//     // Save the value to the PageStorage before disposing of the widget
-//     PageStorage.of(context).writeState(context, _selectedItem);
-//     super.dispose();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return DropdownButtonFormField<String>(
-//       value: _selectedItem,
-//       decoration: InputDecoration(
-//         hintText: widget.hint,
-//         border: const OutlineInputBorder(),
-//       ),
-//       items: widget.items.map((item) {
-//         return DropdownMenuItem<String>(
-//           value: item,
-//           child: Text(item),
-//         );
-//       }).toList(),
-//       onChanged: (value) {
-//         setState(() {
-//           _selectedItem = value;
-//         });
-//         widget.onChanged(value);
-//       },
-//     );
-//   }
-// }
-
-// class DropdownButtonItem extends StatefulWidget {
-//   final String lableName;
-//   final List<String> itemList;
-
-//   final TextEditingController controller;
-
-//   const DropdownButtonItem(
-//       {Key? key,
-//       required this.controller,
-//       required this.lableName,
-//       required this.itemList,
-//       })
-//       : super(key: key);
-
-//   @override
-//   _DropdownButtonItemState createState() => _DropdownButtonItemState();
-// }
-
-// class _DropdownButtonItemState extends State<DropdownButtonItem> {
-//   String? _selectedItem;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return DropdownButtonFormField<String>(
-//       onChanged: (value) {
-//         setState(() {
-//           _selectedItem = value!;
-//         });
-//         widget.controller.text = _selectedItem!;
-//       },
-//       padding: const EdgeInsets.symmetric(vertical: 5),
-//       isExpanded: true,
-//       iconEnabledColor: AppColors.primarycolor,
-//       value: _selectedItem,
-//       decoration: InputDecoration(
-//         focusedBorder: OutlineInputBorder(
-//           borderRadius: BorderRadius.circular(5),
-//           borderSide: const BorderSide(
-//             color: AppColors.primarycolor,
-//             width: 2,
-//           ),
-//         ),
-//         enabledBorder: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(5),
-//             borderSide: const BorderSide(
-//               color: AppColors.primarycolor,
-//               width: 2,
-//             )),
-//         labelText: widget.lableName,
-//         border: OutlineInputBorder(
-//           borderRadius: BorderRadius.circular(5),
-//           borderSide: const BorderSide(
-//             color: AppColors.primarycolor,
-//             width: 2,
-//           ),
-//         ),
-//       ),
-//       items: widget.itemList.map((item) {
-//         return DropdownMenuItem<String>(
-//           value: item,
-//           child: Text(item),
-//         );
-//       }).toList(),
-//     );
-//   }
-// }
 
 class DropdownButtonItem extends StatefulWidget {
   const DropdownButtonItem(
@@ -722,209 +531,54 @@ class _DropdownButtonItemState extends State<DropdownButtonItem> {
   }
 }
 
-class ShowBottomSheetItems extends StatefulWidget {
-  const ShowBottomSheetItems(
-      {super.key, required this.name, required this.contecnt});
-  final String name;
-  final Widget contecnt;
 
-  @override
-  State<ShowBottomSheetItems> createState() => _ShowBottomSheetItemsState();
+Future showBottomSheetItem(context, Widget content) {
+  return showModalBottomSheet(
+    isScrollControlled: true,
+    shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10), topRight: Radius.circular(10))),
+    context: context,
+    builder: (context) {
+      return DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: 0.8,
+        builder: (context, scrollController) =>
+            SingleChildScrollView(controller: scrollController, child: content),
+      );
+    },
+  );
 }
 
-class _ShowBottomSheetItemsState extends State<ShowBottomSheetItems> {
+class ShowBottomSheetItems extends StatelessWidget {
+  const ShowBottomSheetItems(
+      {super.key, required this.contecnt, required this.name});
+  final Widget contecnt;
+  final String name;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
-      child: TextFormField(
-        readOnly: false,
-        enabled: true,
-        decoration: InputDecoration(
-          label: Text(widget.name),
-          suffixIcon: IconButton(
-              onPressed: () => showBottomSheetItem(context, widget.contecnt),
-              icon: const Icon(
-                Icons.add,
-                color: AppColors.primarycolor,
-              )),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5),
-            borderSide: const BorderSide(
-              color: AppColors.primarycolor,
-              width: 2,
-            ),
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: ListTile(
+        shape: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
+          borderSide: const BorderSide(
+            width: 2,
+            color: AppColors.primarycolor,
           ),
-          // labelText: 'Developmental Milestones ',
-          labelStyle:
-              TextStyle(color: Colors.black.withOpacity(0.26), fontSize: 20),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5),
-            borderSide: const BorderSide(
-              color: AppColors.primarycolor,
-              width: 2,
-            ),
+        ),
+        title: Text(
+          name,
+          style: TextStyle(color: Colors.black.withOpacity(0.26), fontSize: 20),
+        ),
+        trailing: IconButton(
+          onPressed: () => showBottomSheetItem(context, contecnt),
+          icon: const Icon(
+            Icons.add,
+            color: AppColors.primarycolor,
           ),
         ),
       ),
     );
   }
 }
-
-Future showBottomSheetItem(context, Widget content) {
-  return showModalBottomSheet(
-    isScrollControlled: true,
-    context: context,
-    builder: (context) {
-      return content;
-    },
-  );
-}
-// class BottomText extends StatelessWidget {
-//   const BottomText({
-//     Key? key,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Align(
-//       child: RichText(
-//           textAlign: TextAlign.center,
-//           text: TextSpan(
-//               text: "",
-//               style: TextStyle(
-//                 color: Colors.black,
-//                 fontSize: 18,
-//               ),
-//               children: [
-//                 TextSpan(
-//                     text: "FCIS - ",
-//                     style: TextStyle(fontWeight: FontWeight.bold)),
-//                 TextSpan(text: "Facult of comuters \n and informatoin science"),
-//               ])),
-//     );
-//   }
-// }
-
-// void showMyDialog(String _message, BuildContext context) async {
-//   return await showDialog(
-//       context: context,
-//       builder: (BuildContext context) {
-//         return AlertDialog(
-//           //  backgroundColor: Colors.white,
-//           shape: RoundedRectangleBorder(
-//             borderRadius: BorderRadius.circular(20),
-//           ),
-//           contentPadding: EdgeInsets.zero,
-//           title: Text("Error"),
-//           content: Padding(
-//             padding: const EdgeInsets.all(16.0),
-//             child: Text(_message),
-//           ),
-//           actions: [
-//             Center(
-//               child: TextButton(
-//                   style: ButtonStyle(
-//                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-//                           RoundedRectangleBorder(
-//                             borderRadius: BorderRadius.circular(25.0),
-//                           ))),
-//                   onPressed: () {
-//                     Navigator.pop(context, "ok");
-//                   },
-//                   child: const Text(
-//                     "ok",
-//                     style:
-//                     TextStyle(color: AppColors.primarycolor, fontSize: 22),
-//                   )),
-//             )
-//           ],
-//         );
-//       });
-// }
-
-// ///
-// class NavigateToOption extends StatelessWidget {
-//   NavigateToOption({Key? key, required this.name, required this.onPressed})
-//       : super(key: key);
-//   String name;
-//   void Function()? onPressed;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: EdgeInsets.symmetric(vertical: 8.0),
-//       child: SizedBox(
-//         height: 70,
-//         width: 320,
-//         child: Material(
-//           color: AppColors.materialGrey,
-//           borderRadius: BorderRadius.circular(20),
-//           child: Padding(
-//             padding: EdgeInsets.symmetric(
-//               horizontal: 20,
-//             ),
-//             child: Row(
-//               children: [
-//                 Text(name,
-//                     style:
-//                     TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-//                 Spacer(),
-//                 SizedBox(
-//                   width: 40,
-//                   height: 40,
-//                   child: MaterialButton(
-//                       padding: EdgeInsets.zero,
-//                       color: AppColors.primarycolor,
-//                       shape: RoundedRectangleBorder(
-//                           borderRadius: BorderRadius.circular(10)),
-//                       child: Icon(
-//                         Icons.arrow_forward,
-//                         color: Colors.white,
-//                       ),
-//                       onPressed: onPressed),
-//                 )
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// class TeamsName extends StatelessWidget {
-//   TeamsName({Key? key, required this.name, required this.onPressed})
-//       : super(key: key);
-//   String name;
-
-//   void Function()? onPressed;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: EdgeInsets.symmetric(vertical: 10.0),
-//       child: Container(
-//         height: 100,
-//         width: 1,
-//         child: MaterialButton(
-//             padding: EdgeInsets.all(10),
-//             color: AppColors.materialGrey,
-//             shape:
-//             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-//             child: RichText(
-//               text: TextSpan(
-//                 text: 'Team ',
-//                 style: AppTextStyles.w300.apply(
-//                   color: Colors.black,
-//                 ),
-//                 children: <TextSpan>[
-//                   TextSpan(text: name, style: AppTextStyles.lrTitles),
-//                 ],
-//               ),
-//             ),
-//             onPressed: onPressed),
-//       ),
-//     );
-//   }
-// }

@@ -7,7 +7,7 @@ import '../../../shared/styles/images.dart';
 import '../../../shared/styles/styles.dart';
 
 class Oursectiosn extends StatelessWidget {
- const  Oursectiosn({Key? key}) : super(key: key);
+  const Oursectiosn({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,55 +23,58 @@ class Oursectiosn extends StatelessWidget {
       ),
       body: SizedBox(
         width: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text('أقسامنا',
-                  style: AppTextStyles.lrTitles.copyWith(fontSize: 32)),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  GestureDetector(
-                      onTap: () => navigateTo(
-                            context,
-                            const Members(counter: 0),
-                          ),
-                      child: const SectionItem(
-                        sectionname: 'العلاج الطبيعي',
-                        image: AppImages.occupationalTherapy,
-                      )),
-                  InkWell(
+        height: double.infinity,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text('أقسامنا',
+                    style: AppTextStyles.lrTitles.copyWith(fontSize: 32)),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                        onTap: () => navigateTo(
+                              context,
+                              const Members(counter: 0),
+                            ),
+                        child: const SectionItem(
+                          sectionname: 'العلاج الطبيعي',
+                          image: AppImages.login1,
+                        )),
+                    InkWell(
+                        onTap: () {
+                          navigateTo(
+                              context,
+                              const Members(
+                                counter: 1,
+                              ));
+                        },
+                        child: const SectionItem(
+                          sectionname: 'العلاج الوظيفي',
+                          image: AppImages.signup1,
+                        )),
+                    InkWell(
                       onTap: () {
                         navigateTo(
-                            context,
-                            const Members(
-                              counter: 1,
-                            ));
+                          context,
+                          const Members(
+                            counter: 2,
+                          ),
+                        );
                       },
                       child: const SectionItem(
-                        sectionname: 'العلاج الوظيفي',
-                        image: AppImages.occupational,
-                      )),
-                  InkWell(
-                    onTap: () {
-                      navigateTo(
-                        context,
-                        const Members(
-                          counter: 2,
-                        ),
-                      );
-                    },
-                    child: const SectionItem(
-                      sectionname: 'تعديل سلوك واضطراب الطفولة',
-                      image: AppImages.conversational,
-                    ),
-                  )
-                ],
-              )
-            ],
+                        sectionname: 'تعديل سلوك واضطراب الطفولة',
+                        image: AppImages.conversational1,
+                      ),
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

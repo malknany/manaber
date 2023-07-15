@@ -62,7 +62,15 @@ class AssociatedDisorders extends StatelessWidget {
                     ]),
                 DropdownButtonItem(
                     controller: controlerAssociatedDisorders.creeping,
-                    lableName: 'Creeping Crayoning',
+                    lableName: 'Creeping ',
+                    itemList: const [
+                      "can't do",
+                      "can do",
+                      "can do it with assistance"
+                    ]),
+                DropdownButtonItem(
+                    controller: controlerAssociatedDisorders.crayoning,
+                    lableName: 'Crayoning',
                     itemList: const [
                       "can't do",
                       "can do",
@@ -77,8 +85,8 @@ class AssociatedDisorders extends StatelessWidget {
                       "can do it with assistance"
                     ]),
                 DropdownButtonItem(
-                    controller: controlerAssociatedDisorders.working,
-                    lableName: 'Working ',
+                    controller: controlerAssociatedDisorders.walking,
+                    lableName: 'Walking ',
                     itemList: const [
                       "can't do",
                       "can do",

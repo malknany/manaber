@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/shared/styles/images.dart';
 import '../model.dart';
 import '../view.dart';
 import '../../../../shared/styles/colors.dart';
@@ -36,7 +37,7 @@ class MemberItem extends Members {
           //       fontWeight: FontWeight.w400,
           //       color: Color(0xff3A229B)),
           // ),
-          leading: Image.asset(display_list[index].image!),
+          leading: Image.asset(AppImages.user),
         ),
       ),
     );

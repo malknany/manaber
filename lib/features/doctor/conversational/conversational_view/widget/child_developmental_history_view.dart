@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/shared/styles/styles.dart';
 import '../../stepper/controler.dart';
 import '../../../../../shared/components/components.dart';
 import '../../../../../shared/styles/colors.dart';
@@ -7,7 +8,6 @@ import '../../../../../shared/styles/images.dart';
 class ChildDevelopmentalHistoryView extends StatelessWidget {
   const ChildDevelopmentalHistoryView(
       {super.key, required this.controleConversational});
-  // final StepperChildDevelopmentalHistory controlechildDevelopmentalHistory;
   final ControleConversational controleConversational;
 
   @override
@@ -29,7 +29,16 @@ class ChildDevelopmentalHistoryView extends StatelessWidget {
               SizedBox(
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height / 3.5,
-                  child: Image.asset(AppImages.conversational)),
+                  child: Image.asset(AppImages.conversational1)),
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  'معلومات عن المريض ',
+                  style: AppTextStyles.smTitles.copyWith(
+                    fontSize: 15,
+                  ),
+                ),
+              ),
               const SizedBox(height: 16.0),
               Column(
                 children: List.generate(

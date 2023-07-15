@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/doctor/file_assa/stpper/model.dart';
 // import 'package:manaber/features/file_assa/stpper/widget/ICF_body_function_structure.dart';
 
 class StepperControlPatientInfo {
@@ -98,6 +99,7 @@ class StepperControlBodyFunction {
   final wristExtensorsRight = TextEditingController();
   final wristExtensorsLeft = TextEditingController();
   final muscleTon = TextEditingController();
+  final gaitnote = TextEditingController();
   //muscl ton
   final adductorsKneeFlexionTonRight = TextEditingController();
   final adductorsKneeFlexionTonLeft = TextEditingController();
@@ -180,6 +182,7 @@ class StepperControlBodyFunction {
   final fromStanding = TextEditingController();
   final spine = TextEditingController();
   final pelvic = TextEditingController();
+  final legLengthDiscrepancy = TextEditingController();
   final rt = TextEditingController();
   final lf = TextEditingController();
   //
@@ -190,14 +193,111 @@ class StepperControlBodyFunction {
   final elbow = TextEditingController();
   final note = TextEditingController();
 }
-class StepperControlActivityAndActivityLimitation{
+
+class StepperControlActivityAndActivityLimitation {
   final activityAndActivityLimitation = TextEditingController();
   final participationAndParticipationRestriction = TextEditingController();
 }
-class StepperControlGoalsAndNote{
+
+class StepperControlGoalsAndNote {
   final shortGoals = TextEditingController();
   final longGoals = TextEditingController();
   final note = TextEditingController();
+}
+
+class ControleFileAssesment {
+  final StepperControlPatientInfo controlPatientInfo =
+      StepperControlPatientInfo();
+   List listPatientInfo = [];
+  ControleFileAssesment(){
+    listPatientInfo=[
+      TextFormFiledStepperModel(
+      labelName: 'Created by',
+      textEditingController: controlPatientInfo.createdBy,
+    ),
+    TextFormFiledStepperModel(
+      labelName: 'Patient name',
+      textEditingController: controlPatientInfo.name,
+    ),
+    TextFormFiledStepperModel(
+      labelName: 'Phone Number',
+      textInputType: TextInputType.phone,
+      textEditingController: controlPatientInfo.phone,
+    ),
+    TextFormFiledStepperModel(
+      labelName: 'Date of birthday',
+      textInputType: TextInputType.datetime,
+      textEditingController: controlPatientInfo.dob,
+    ),
+    DropdownButtonItemModel(
+      labelName: 'Gender',
+      controller: controlPatientInfo.gender,
+      itemList: const ['Male', 'Female'],
+    ),
+    DropdownButtonItemModel(
+      labelName: 'Consanguinity',
+      controller: controlPatientInfo.consanguinity,
+      itemList: const ['Yes', 'No'],
+    ),
+    TextFormFiledStepperModel(
+      labelName: 'Pregnancy Problem',
+      textEditingController: controlPatientInfo.pregnancyProblem,
+    ),
+    TextFormFiledStepperModel(
+      labelName: 'Birth Weight',
+      textEditingController: controlPatientInfo.birthWeight,
+    ),
+    TextFormFiledStepperModel(
+      labelName: 'Incubation',
+      textEditingController: controlPatientInfo.incubation,
+    ),
+    DropdownButtonItemModel(
+      labelName: 'Vaccination',
+      controller: controlPatientInfo.vaccination,
+      itemList: const ['Yes', 'No'],
+    ),
+    TextFormFiledStepperModel(
+      labelName: 'Current Medications',
+      textEditingController: controlPatientInfo.currentMedications,
+    ),
+    TextFormFiledStepperModel(
+      labelName: 'Previous Medications',
+      textEditingController: controlPatientInfo.previousMedications,
+    ),
+    DropdownButtonItemModel(
+      labelName: 'Convulsions',
+      controller: controlPatientInfo.convulsions,
+      itemList: const [
+        'No',
+        'With history',
+        'Controlled',
+        'Uncontrolled',
+      ],
+    ),
+    TextFormFiledStepperModel(
+      labelName: 'Assistive Devices',
+      textEditingController: controlPatientInfo.assistiveDevices,
+    ),
+    TextFormFiledStepperModel(
+      labelName: 'Other Associated Problems',
+      textEditingController:
+          controlPatientInfo.otherAssociatedProblems,
+    ),
+    TextFormFiledStepperModel(
+      labelName: 'Similar cases in the family',
+      textEditingController:
+          controlPatientInfo.similarCasesInTheFamily,
+    ),
+    TextFormFiledStepperModel(
+      labelName: 'Investigations',
+      textEditingController: controlPatientInfo.investigations,
+    ),
+    TextFormFiledStepperModel(
+      labelName: 'Diagnosis',
+      textEditingController: controlPatientInfo.diagnosis,
+    ),
+    ];
+  }
 }
 
 //  List<Step> getSteps() {
