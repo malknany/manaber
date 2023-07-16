@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/doctor/occupation_therapy/stepper/model.dart';
 import '../../stepper/controler.dart';
 import '../../../../../shared/components/components.dart';
 import '../../../../../shared/styles/colors.dart';
 import '../../../../../shared/styles/images.dart';
 
 class AssociatedDisordersView extends StatelessWidget {
-  const AssociatedDisordersView(
-      {super.key, required this.controleAssociatedDisorders});
-  final StepperAssociatedDisorders controleAssociatedDisorders;
+  const AssociatedDisordersView({super.key, required this.controleOccupation});
+  final ControleOccupation controleOccupation;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +21,9 @@ class AssociatedDisordersView extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
-          child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -49,54 +49,38 @@ class AssociatedDisordersView extends StatelessWidget {
                       fontWeight: FontWeight.normal),
                 ),
                 const SizedBox(height: 16.0),
-                const DividerItem(text: 'Associated disorders'),
-                InfoRowItem(
-                    title: "Vision",
-                    value: controleAssociatedDisorders.vision.text),
-                InfoRowItem(
-                    title: "Hearing",
-                    value: controleAssociatedDisorders.hearing.text),
-                InfoRowItem(
-                    title: "Speech",
-                    value: controleAssociatedDisorders.speech.text),
-                const DividerItem(text: 'Developmental milestone'),
-                InfoRowItem(
-                    title: "Head control ",
-                    value: controleAssociatedDisorders.headControl.text),
-                InfoRowItem(
-                    title: "Rolling",
-                    value: controleAssociatedDisorders.rolling.text),
-                InfoRowItem(
-                    title: "Sitting",
-                    value: controleAssociatedDisorders.sitting.text),
-                InfoRowItem(
-                    title: "Creeping",
-                    value: controleAssociatedDisorders.creeping.text),
-                InfoRowItem(
-                    title: "Crayoning",
-                    value: controleAssociatedDisorders.crayoning.text),
-                InfoRowItem(
-                    title: "Standing",
-                    value: controleAssociatedDisorders.standing.text),
-                InfoRowItem(
-                    title: "Walking",
-                    value: controleAssociatedDisorders.walking.text),
-                const DividerItem(text: 'Sensory skills'),
-                InfoRowItem(
-                    title: "Tactile",
-                    value: controleAssociatedDisorders.tactile.text),
-                InfoRowItem(
-                    title: "Visual",
-                    value: controleAssociatedDisorders.visual.text),
-                InfoRowItem(
-                    title: "Auditory",
-                    value: controleAssociatedDisorders.auditory.text),
-                InfoRowItem(
-                    title: "Vestibular",
-                    value: controleAssociatedDisorders.vestibular.text),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount:
+                      controleOccupation.listOfAssociatedDisorders.length,
+                  itemBuilder: (context, index) {
+                    var model =
+                        controleOccupation.listOfAssociatedDisorders[index];
+                    if (model is ModelDropDownOccupation) {
+                      return InfoRowItem(
+                        value: model.textEditingController.text,
+                        title: model.lableName,
+                      );
+                    }
+                    if (model is ModelTextFiledOccupation) {
+                      return InfoRowItem(
+                        value: model.textEditingController.text,
+                        title: model.labelname,
+                      );
+                    }
+                    if (model is ModelDividerOccupation) {
+                      return DividerItem(
+                        text: model.text,
+                      );
+                    }
+
+                    return const SizedBox.shrink();
+                  },
+                ),
               ],
-            ),
-          )),
+            )),
+      ),
     );
   }
 }

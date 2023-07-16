@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/doctor/occupation_therapy/stepper/model.dart';
 import '../../stepper/controler.dart';
 import '../../../../../shared/components/components.dart';
 import '../../../../../shared/styles/colors.dart';
 import '../../../../../shared/styles/images.dart';
 
 class NoteOccupationalView extends StatelessWidget {
-  const NoteOccupationalView(
-      {super.key, required this.controleOccupationPreformance});
-  final StepperOccupationPreformance controleOccupationPreformance;
+  const NoteOccupationalView({super.key, required this.controleOccupation});
+  final ControleOccupation controleOccupation;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +21,9 @@ class NoteOccupationalView extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
-          child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -49,12 +49,37 @@ class NoteOccupationalView extends StatelessWidget {
                       fontWeight: FontWeight.normal),
                 ),
                 const SizedBox(height: 16.0),
-                InfoRowItem(
-                    title: "Note",
-                    value: controleOccupationPreformance.note.text),
+                ListView.builder(
+                  shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 1,
+                  itemBuilder: (context, index) {
+                    var model =
+                        controleOccupation.listOfOccupationPreformance.last;
+                    if (model is ModelDropDownOccupation) {
+                      return InfoRowItem(
+                        value: model.textEditingController.text,
+                        title: model.lableName,
+                      );
+                    }
+                    if (model is ModelTextFiledOccupation) {
+                      return InfoRowItem(
+                        value: model.textEditingController.text,
+                        title: model.labelname,
+                      );
+                    }
+                    if (model is ModelDividerOccupation) {
+                      return DividerItem(
+                        text: model.text,
+                      );
+                    }
+      
+                    return const SizedBox.shrink();
+                  },
+                ),
               ],
-            ),
-          )),
+            )),
+      ),
     );
   }
 }

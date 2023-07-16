@@ -44,6 +44,7 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
       ControleConversational();
 
   final ControleFileAssesment controleFileAssesment = ControleFileAssesment();
+  final ControleOccupation controleOccupation = ControleOccupation();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,14 +81,8 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                         navigateTo(
                             context,
                             InfoOccupationScreen(
-                                controleAssociatedDisorders:
-                                    controlerAssociatedDisorders,
-                                controleBehaviorADLS: controlerBehaviorADLS,
-                                controleBodyFunctionStrucer:
-                                    controlerBodyFunctionStrucer,
-                                controleOccupationPreformance:
-                                    controlerOccupationPreformance,
-                                controlePersonalHistory: controlerPersonal));
+                              controleOccupation: controleOccupation,
+                            ));
                       } else {
                         navigateTo(
                             context,

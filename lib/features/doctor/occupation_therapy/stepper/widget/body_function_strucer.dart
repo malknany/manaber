@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/doctor/occupation_therapy/stepper/model.dart';
 import '../controler.dart';
 import '../../../../../shared/components/components.dart';
 import '../../../../../shared/styles/colors.dart';
 
 class BodyFunctionStrucer extends StatelessWidget {
-  const BodyFunctionStrucer(
-      {super.key, required this.controlerBodyFunctionStrucer});
-  final StepperBodyFunctionStrucer controlerBodyFunctionStrucer;
+  const BodyFunctionStrucer({super.key, required this.controleOccupation});
+  final ControleOccupation controleOccupation;
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +20,35 @@ class BodyFunctionStrucer extends StatelessWidget {
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                const DividerItem(text: 'Neuromuscular Status'),
+          child: ListView.builder(
+            itemCount: controleOccupation.listOfBodyFunctionStrucer.length,
+            itemBuilder: (context, index) {
+              var model = controleOccupation.listOfBodyFunctionStrucer[index];
+              if (model is ModelDropDownOccupation) {
+                return DropdownButtonItem(
+                  controller: model.textEditingController,
+                  lableName: model.lableName,
+                  itemList: model.itemList,
+                );
+              }
+              if (model is ModelTextFiledOccupation) {
+                return TextFormFiledStepper(
+                    textInputType: model.textInputType,
+                    labelname: model.labelname,
+                    textEditingController: model.textEditingController);
+              }
+              if (model is ModelDividerOccupation) {
+                return DividerItem(text: model.text);
+              }
+
+              return SizedBox.shrink();
+            },
+          )),
+    );
+  }
+}
+/*
+const DividerItem(text: 'Neuromuscular Status'),
                 DropdownButtonItem(
                     controller: controlerBodyFunctionStrucer
                         .neuromuscularStatusUpperLimb,
@@ -89,9 +112,4 @@ class BodyFunctionStrucer extends StatelessWidget {
                     labelname: 'Assistive Devices',
                     textEditingController:
                         controlerBodyFunctionStrucer.assistiveDevices),
-              ],
-            ),
-          )),
-    );
-  }
-}
+*/ 

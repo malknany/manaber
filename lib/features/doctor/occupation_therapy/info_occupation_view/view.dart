@@ -13,18 +13,11 @@ import '../../../../shared/styles/colors.dart';
 import '../../../../shared/styles/images.dart';
 
 class InfoOccupationScreen extends StatefulWidget {
-  const InfoOccupationScreen(
-      {super.key,
-      required this.controleAssociatedDisorders,
-      required this.controleBehaviorADLS,
-      required this.controleBodyFunctionStrucer,
-      required this.controleOccupationPreformance,
-      required this.controlePersonalHistory});
-  final StepperPersonalHistory controlePersonalHistory;
-  final StepperAssociatedDisorders controleAssociatedDisorders;
-  final StepperBodyFunctionStrucer controleBodyFunctionStrucer;
-  final StepperBehaviorADLS controleBehaviorADLS;
-  final StepperOccupationPreformance controleOccupationPreformance;
+  const InfoOccupationScreen({
+    super.key,
+    required this.controleOccupation,
+  });
+  final ControleOccupation controleOccupation;
 
   @override
   State<InfoOccupationScreen> createState() => _InfoOccupationScreenState();
@@ -44,14 +37,8 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
             final resulte = await navigateTo(
                 context,
                 StepperOccupation(
-                    controlerAssociatedDisorders:
-                        widget.controleAssociatedDisorders,
-                    controlerBehaviorADLS: widget.controleBehaviorADLS,
-                    controlerBodyFunctionStrucer:
-                        widget.controleBodyFunctionStrucer,
-                    controlerOccupationPreformance:
-                        widget.controleOccupationPreformance,
-                    controlerPersonal: widget.controlePersonalHistory));
+                  controleOccupation: widget.controleOccupation,
+                ));
             if (resulte == 'refresh') {
               setState(() {});
             }
@@ -94,8 +81,7 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
                       navigateTo(
                         context,
                         PersonalHistoryView(
-                          controlePersonalHistory:
-                              widget.controlePersonalHistory,
+                          controleOccupation: widget.controleOccupation,
                         ),
                       );
                     },
@@ -106,8 +92,7 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
                       navigateTo(
                         context,
                         AssociatedDisordersView(
-                          controleAssociatedDisorders:
-                              widget.controleAssociatedDisorders,
+                          controleOccupation: widget.controleOccupation,
                         ),
                       );
                     },
@@ -118,8 +103,7 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
                       navigateTo(
                         context,
                         BodyFunctionAndStrucerView(
-                          controleBodyFunctionStrucer:
-                              widget.controleBodyFunctionStrucer,
+                          controleOccupation: widget.controleOccupation,
                         ),
                       );
                     },
@@ -130,7 +114,7 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
                       navigateTo(
                         context,
                         BehaviorADLSView(
-                          controleBehaviorADLS: widget.controleBehaviorADLS,
+                          controleOccupation: widget.controleOccupation,
                         ),
                       );
                     },
@@ -141,8 +125,7 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
                       navigateTo(
                         context,
                         OccupationalPerformanceView(
-                          controleOccupationPreformance:
-                              widget.controleOccupationPreformance,
+                          controleOccupation: widget.controleOccupation,
                         ),
                       );
                     },
@@ -153,8 +136,7 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
                       navigateTo(
                           context,
                           NoteOccupationalView(
-                            controleOccupationPreformance:
-                                widget.controleOccupationPreformance,
+                            controleOccupation: widget.controleOccupation,
                           ));
                     },
                     borderRadius: 7),

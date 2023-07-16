@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/doctor/occupation_therapy/stepper/model.dart';
 
 import '../../../../../shared/components/components.dart';
 import '../../../../../shared/styles/colors.dart';
@@ -6,8 +7,8 @@ import '../../../../../shared/styles/images.dart';
 import '../../stepper/controler.dart';
 
 class PersonalHistoryView extends StatelessWidget {
-  const PersonalHistoryView({super.key, required this.controlePersonalHistory});
-  final StepperPersonalHistory controlePersonalHistory;
+  const PersonalHistoryView({super.key, required this.controleOccupation});
+  final ControleOccupation controleOccupation;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +22,9 @@ class PersonalHistoryView extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
-          child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -49,29 +50,36 @@ class PersonalHistoryView extends StatelessWidget {
                       fontWeight: FontWeight.normal),
                 ),
                 const SizedBox(height: 16.0),
-                InfoRowItem(
-                    title: "Patient name",
-                    value: controlePersonalHistory.patientName.text),
-                InfoRowItem(
-                    title: "Diagnosis",
-                    value: controlePersonalHistory.diagnosis.text),
-                InfoRowItem(
-                    title: "Frequency of treatment ",
-                    value: controlePersonalHistory.frequencyOfTreatment.text),
-                InfoRowItem(
-                    title: "Age", value: controlePersonalHistory.age.text),
-                InfoRowItem(
-                    title: "Sex", value: controlePersonalHistory.sex.text),
-                const DividerItem(text: 'medical history '),
-                InfoRowItem(
-                    title: 'Diseases',
-                    value: controlePersonalHistory.diseases.text),
-                InfoRowItem(
-                    title: 'Surgery',
-                    value: controlePersonalHistory.surgery.text),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: controleOccupation.listOfPationHistory.length,
+                  itemBuilder: (context, index) {
+                    var model = controleOccupation.listOfPationHistory[index];
+                    if (model is ModelDropDownOccupation) {
+                      return InfoRowItem(
+                        value: model.textEditingController.text,
+                        title: model.lableName,
+                      );
+                    }
+                    if (model is ModelTextFiledOccupation) {
+                      return InfoRowItem(
+                        value: model.textEditingController.text,
+                        title: model.labelname,
+                      );
+                    }
+                    if (model is ModelDividerOccupation) {
+                      return DividerItem(
+                        text: model.text,
+                      );
+                    }
+
+                    return SizedBox.shrink();
+                  },
+                ),
               ],
-            ),
-          )),
+            )),
+      ),
     );
   }
 }
