@@ -1,4 +1,6 @@
 class AppImages {
+
+
   static const String logo = "assets/image/logo_test.jpg";
   static const String admin = "assets/image/admin.png";
   static const String doctor = "assets/image/doctor.png";
