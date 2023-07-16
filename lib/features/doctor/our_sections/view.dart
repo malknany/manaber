@@ -38,9 +38,9 @@ class Oursectiosn extends StatelessWidget {
                   children: [
                     GestureDetector(
                         onTap: () => navigateTo(
-                              context,
-                              const Members(counter: 0),
-                            ),
+                          context,
+                          const Members(counter: 0),
+                        ),
                         child: const SectionItem(
                           sectionname: 'العلاج الطبيعي',
                           image: AppImages.login1,

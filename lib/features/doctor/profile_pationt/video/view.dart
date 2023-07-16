@@ -38,37 +38,37 @@ class _VideoScreenState extends State<VideoScreen> {
       ),
       body: controleViedoes.listOfViedoes.isEmpty
           ? const Center(
-              child: Text('No Video'),
-            )
+        child: Text('No Video'),
+      )
           : Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1.0,
-                  crossAxisSpacing: 20,
-                ),
-                itemCount: controleViedoes.listOfViedoes.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ItemCardVideo(
-                    name: controleViedoes.listOfViedoes[index].tilte.isEmpty
-                        ? 'Viedo ${index + 1}'
-                        : controleViedoes.listOfViedoes[index].tilte,
-                    onPressed: () {
-                      setState(() {
-                        controleViedoes.listOfViedoes.removeAt(index);
-                      });
-                    },
-                    onTap: () {
-                      OpenFile.open(
-                          controleViedoes.listOfViedoes[index].videoFiles);
-                    },
-                    isDelete: isDelete,
-                  );
-                },
-              ),
-            ),
+        padding:
+        const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15),
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 1.0,
+            crossAxisSpacing: 20,
+          ),
+          itemCount: controleViedoes.listOfViedoes.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ItemCardVideo(
+              name: controleViedoes.listOfViedoes[index].tilte.isEmpty
+                  ? 'Viedo ${index + 1}'
+                  : controleViedoes.listOfViedoes[index].tilte,
+              onPressed: () {
+                setState(() {
+                  controleViedoes.listOfViedoes.removeAt(index);
+                });
+              },
+              onTap: () {
+                OpenFile.open(
+                    controleViedoes.listOfViedoes[index].videoFiles);
+              },
+              isDelete: isDelete,
+            );
+          },
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.primarycolor,
         onPressed: () async {
