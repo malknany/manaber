@@ -39,7 +39,7 @@ ThemeData lightTheme = ThemeData(
         iconTheme: IconThemeData(color: AppColors.primarycolor, size: 30),
         titleTextStyle: TextStyle(
           color: AppColors.primarycolor,
-          fontSize: 32,
+          fontSize: 20,
           fontWeight: FontWeight.w500,
 
         ),)

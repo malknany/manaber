@@ -12,7 +12,7 @@ class DioHelper {
       dio = Dio(
         BaseOptions(
             receiveDataWhenStatusError: true,
-            baseUrl: BASEURL,
+            baseUrl: baseUrl,
             // receiveTimeout: 5000,
             // sendTimeout: 5000,
             // connectTimeout: 5000,
@@ -37,14 +37,16 @@ class DioHelper {
       Map<String, dynamic>? posteddata,
       Map<String, dynamic>? query,
       headers}) async {
-    return await dio.post(url, queryParameters: query,
-        data: posteddata, options: Options(headers: headers));
+    return await dio.post(url,
+        queryParameters: query,
+        data: posteddata,
+        options: Options(headers: headers));
   }
 
   static Future<Response> putdata(
       {required String url,
       Map<String, dynamic>? query,
-      required  posteddata,
+      required posteddata,
       headers}) async {
     return await dio.put(url,
         queryParameters: query,

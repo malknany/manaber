@@ -30,15 +30,6 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
       StepperControlActivityAndActivityLimitation();
   final StepperControlGoalsAndNote controlGoalsAndNote =
       StepperControlGoalsAndNote();
-  //? controle of occupation file
-  final StepperPersonalHistory controlerPersonal = StepperPersonalHistory();
-  final StepperBodyFunctionStrucer controlerBodyFunctionStrucer =
-      StepperBodyFunctionStrucer();
-  final StepperAssociatedDisorders controlerAssociatedDisorders =
-      StepperAssociatedDisorders();
-  final StepperBehaviorADLS controlerBehaviorADLS = StepperBehaviorADLS();
-  final StepperOccupationPreformance controlerOccupationPreformance =
-      StepperOccupationPreformance();
 
   final ControleConversational controleConversational =
       ControleConversational();
