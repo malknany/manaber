@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/regitration/login/model.dart';
 
 import '../../../shared/components/constants.dart';
 import '../../../shared/components/navigator.dart';
@@ -8,7 +9,8 @@ import 'widget/edite_profile_receptio.dart';
 import 'widget/item_card_profile.dart';
 
 class ReceptionistProfile extends StatefulWidget {
-  const ReceptionistProfile({super.key});
+  const ReceptionistProfile({super.key, required this.usersModel});
+  final UsersModel usersModel;
 
   @override
   State<ReceptionistProfile> createState() => _ReceptionistProfileState();
@@ -25,7 +27,9 @@ class _ReceptionistProfileState extends State<ReceptionistProfile> {
         backgroundColor: Colors.white,
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                signout(context);
+              },
               icon: const Icon(
                 Icons.logout,
                 color: Colors.red,
@@ -46,10 +50,10 @@ class _ReceptionistProfileState extends State<ReceptionistProfile> {
           ),
           ItemProfileCardReception(
             name: controllerName.text.isEmpty
-                ? 'محمد احمد الكناني'
+                ? widget.usersModel.name
                 : controllerName.text,
             number: controllerPhone.text.isEmpty
-                ? '0102166884'
+                ? widget.usersModel.phoneNumber
                 : controllerPhone.text,
             onPressed: () async {
               final result = await navigateTo(

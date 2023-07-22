@@ -4,7 +4,10 @@
 
 var baseUrl = 'http://manaberdev.duckdns.org/';
 const register = 'users/register';
-// const LOGIN = 'customer/login';
+const logIn = 'users/login';
+const pendingUsers = 'users/pending';
+const approve = 'users/approve';
+const disapprove = 'users/disapprove';
 // const GETPROFIL = 'customer/get';
 // const EDITPROFIL = 'customer/profile';
 // const LOGOUT = 'logout';

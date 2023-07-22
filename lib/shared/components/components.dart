@@ -645,3 +645,15 @@ class ShowBottomSheetItems extends StatelessWidget {
   }
 }
 
+ItemSnackBar(context, String title, Color color) {
+  final snackBar = SnackBar(
+    duration: const Duration(seconds: 2),
+    content: Text(
+      textDirection: TextDirection.rtl,
+      title,
+      style: AppTextStyles.lrTitles.copyWith(color: Colors.white, fontSize: 15),
+    ),
+    backgroundColor: color,
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}

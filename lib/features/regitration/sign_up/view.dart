@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manaber/features/regitration/sign_up/cubit/sign_up_cubit.dart';
 import 'package:manaber/features/regitration/sign_up/widget/item_radio_button.dart';
-import 'package:manaber/shared/network/remote/dio_helper.dart';
 import 'package:manaber/shared/styles/styles.dart';
 import '../../../shared/components/components.dart';
 import '../../../shared/styles/colors.dart';
@@ -26,11 +25,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool isPassword = true;
   JobType _jobType = JobType.DOCTOR;
 
-  @override
-  void initState() {
-    DioHelper.init();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -246,22 +240,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    phone.dispose();
+    name.dispose();
+    password.dispose();
+    super.dispose();
+  }
 }
 
-snackBar(String text, context) {
-  final snackBar = SnackBar(
-    duration: const Duration(seconds: 2),
-    content: Text(
-      text,
-      style: AppTextStyles.lrTitles.copyWith(color: Colors.white),
-    ),
-    backgroundColor: AppColors.primarycolor,
-  );
-  ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  Future.delayed(
-    Duration(seconds: 6),
-    () {
-      Navigator.of(context).pop();
-    },
-  );
-}
+// snackBar(String text, context) {
+//   final snackBar = SnackBar(
+//     duration: const Duration(seconds: 2),
+//     content: Text(
+//       text,
+//       style: AppTextStyles.lrTitles.copyWith(color: Colors.white),
+//     ),
+//     backgroundColor: AppColors.primarycolor,
+//   );
+//   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+//   Future.delayed(
+//     const Duration(seconds: 6),
+//     () {
+//       Navigator.of(context).pop();
+//     },
+//   );
+// }

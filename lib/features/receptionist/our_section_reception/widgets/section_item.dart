@@ -7,12 +7,12 @@ import '../../../../shared/styles/colors.dart';
 import '../../../../shared/styles/styles.dart';
 
 class SectionItemReceptionist extends StatelessWidget {
-  const SectionItemReceptionist(
-      {required this.sectionname,
-      required this.image,
-      Key? key,
-      required this.controleReceptionist})
-      : super(key: key);
+  const SectionItemReceptionist({
+    required this.sectionname,
+    required this.image,
+    Key? key,
+    required this.controleReceptionist,
+  }) : super(key: key);
   final String sectionname;
   final StepperReceptionist controleReceptionist;
   final String image;

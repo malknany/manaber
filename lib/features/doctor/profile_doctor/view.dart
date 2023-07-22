@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/regitration/login/model.dart';
 import 'widget/edite_profile.dart';
 import 'widget/item_card_doctor.dart';
 import '../../../shared/components/constants.dart';
@@ -7,8 +8,8 @@ import '../../../shared/styles/images.dart';
 import '../../../shared/styles/styles.dart';
 
 class ProfileDoctor extends StatefulWidget {
-  const ProfileDoctor({super.key});
-
+  const ProfileDoctor({super.key, required this.usersModel});
+  final UsersModel usersModel;
   @override
   State<ProfileDoctor> createState() => _ProfileDoctorState();
 }
@@ -27,7 +28,9 @@ class _ProfileDoctorState extends State<ProfileDoctor> {
         backgroundColor: Colors.white,
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                signout(context);
+              },
               icon: const Icon(
                 Icons.logout,
                 color: Colors.red,
@@ -48,10 +51,10 @@ class _ProfileDoctorState extends State<ProfileDoctor> {
           ),
           ItemCardDoctor(
             name: controllerName.text.isEmpty
-                ? ' محمد الكناني'
+                ? widget.usersModel.name
                 : controllerName.text,
             phone: controllerPhone.text.isEmpty
-                ? '01021986038'
+                ? widget.usersModel.phoneNumber
                 : controllerPhone.text,
             onPressed: () async {
               final result = await navigateTo(

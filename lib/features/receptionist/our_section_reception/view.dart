@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/regitration/login/model.dart';
 
 import '../../../shared/components/navigator.dart';
 import '../../../shared/styles/images.dart';
@@ -8,8 +9,10 @@ import '../receptionist_profile/view.dart';
 import 'widgets/section_item.dart';
 
 class OurSectiosnReceptionist extends StatelessWidget {
-  OurSectiosnReceptionist({Key? key}) : super(key: key);
+  OurSectiosnReceptionist({Key? key, required this.usersModel})
+      : super(key: key);
   final StepperReceptionist controleReceptionist = StepperReceptionist();
+  final UsersModel usersModel;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +21,11 @@ class OurSectiosnReceptionist extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                navigateTo(context, const ReceptionistProfile());
+                navigateTo(
+                    context,
+                    ReceptionistProfile(
+                      usersModel: usersModel,
+                    ));
               },
               icon: const Icon(Icons.person))
         ],
@@ -47,7 +54,7 @@ class OurSectiosnReceptionist extends StatelessWidget {
                         controleReceptionist: controleReceptionist),
                     SectionItemReceptionist(
                       image: AppImages.occupational,
-                      sectionname: 'تعديل سلوك واضطراب الطفولة',
+                      sectionname: 'تعديل سلوك',
                       controleReceptionist: controleReceptionist,
                     )
                   ],
