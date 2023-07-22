@@ -1,11 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
 import '../styles/styles.dart';
 
 class ButtonTemplate extends StatelessWidget {
-  ButtonTemplate({
+  const ButtonTemplate({
     Key? key,
     required this.color,
     required this.text1,
@@ -25,7 +24,7 @@ class ButtonTemplate extends StatelessWidget {
   final double minheight;
   final double fontSize;
   final IconData? icon;
-  void Function()? onPressed;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -41,20 +40,18 @@ class ButtonTemplate extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             icon == null
-
-                ? SizedBox()
+                ? const SizedBox()
                 : Center(
-              child: Icon(icon, size: 21, color:  Colors.white),
-            ),
-            SizedBox(
+                    child: Icon(icon, size: 21, color: Colors.white),
+                  ),
+            const SizedBox(
               width: 5,
             ),
-
             Center(
               child: Text(text1,
                   textAlign: TextAlign.center,
                   style: AppTextStyles.boldtitlesButton.copyWith(
-                 fontSize: 17,
+                    fontSize: 17,
                     color: Colors.white,
                   )),
             ),
@@ -65,8 +62,6 @@ class ButtonTemplate extends StatelessWidget {
   }
 }
 // /////////////////////////
-
-
 
 class TextFieldTemplate extends StatefulWidget {
   const TextFieldTemplate(
@@ -82,7 +77,7 @@ class TextFieldTemplate extends StatefulWidget {
 
   final String hintText;
   final TextEditingController? controller;
-  final Function? validator;
+  final String? Function(String?)? validator;
   final Widget? suffixIcon;
   final bool isPassword;
   final Widget? prefixIcon;
@@ -100,6 +95,7 @@ class _TextFieldTemplateState extends State<TextFieldTemplate> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
       child: TextFormField(
+        validator: widget.validator,
         controller: widget.controller,
         obscureText: widget.isPassword,
         textAlign: TextAlign.right,
@@ -598,7 +594,6 @@ class _DropdownButtonItemState extends State<DropdownButtonItem> {
   }
 }
 
-
 Future showBottomSheetItem(context, Widget content) {
   return showModalBottomSheet(
     isScrollControlled: true,
@@ -648,4 +643,17 @@ class ShowBottomSheetItems extends StatelessWidget {
       ),
     );
   }
+}
+
+ItemSnackBar(context, String title, Color color) {
+  final snackBar = SnackBar(
+    duration: const Duration(seconds: 2),
+    content: Text(
+      textDirection: TextDirection.rtl,
+      title,
+      style: AppTextStyles.lrTitles.copyWith(color: Colors.white, fontSize: 15),
+    ),
+    backgroundColor: color,
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }

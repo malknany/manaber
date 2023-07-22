@@ -8,9 +8,10 @@ import '../../../../../shared/styles/colors.dart';
 class NoteOccupation extends StatelessWidget {
   const NoteOccupation({
     super.key,
-    required this.controlerOccupationPreformance,
+    required this.controleOccupation,
   });
-  final StepperOccupationPreformance controlerOccupationPreformance;
+  // final StepperOccupationPreformance controlerOccupationPreformance;
+  final ControleOccupation controleOccupation;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,8 @@ class NoteOccupation extends StatelessWidget {
               children: [
                 TextFormFiledStepper(
                     labelname: 'Note ',
-                    textEditingController: controlerOccupationPreformance.note),
+                    textEditingController:
+                        controleOccupation.controleOccupationPreformance.note),
                 ButtonText(
                     text: "Save",
                     onPressed: () {

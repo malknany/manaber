@@ -1,14 +1,15 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:manaber/features/doctor/occupation_therapy/stepper/model.dart';
 import '../../stepper/controler.dart';
 import '../../../../../shared/components/components.dart';
 import '../../../../../shared/styles/colors.dart';
 import '../../../../../shared/styles/images.dart';
 
 class BehaviorADLSView extends StatelessWidget {
-  const BehaviorADLSView({super.key, required this.controleBehaviorADLS});
-  final StepperBehaviorADLS controleBehaviorADLS;
+  const BehaviorADLSView({super.key, required this.controleOccupation});
+  final ControleOccupation controleOccupation;
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +23,9 @@ class BehaviorADLSView extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
-          child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -50,34 +51,36 @@ class BehaviorADLSView extends StatelessWidget {
                       fontWeight: FontWeight.normal),
                 ),
                 const SizedBox(height: 16.0),
-                const DividerItem(text: 'Behavior '),
-                InfoRowItem(
-                    title: "Aggression",
-                    value: controleBehaviorADLS.aggression.text),
-                InfoRowItem(
-                    title: "Hyper activity",
-                    value: controleBehaviorADLS.hyperActivity.text),
-                InfoRowItem(
-                    title: "Follow instructions",
-                    value: controleBehaviorADLS.hyperActivity.text),
-                InfoRowItem(
-                    title: "Instruction with other children",
-                    value:
-                        controleBehaviorADLS.instructionWithOtherChildren.text),
-                const DividerItem(text: 'A.D.L.S '),
-                InfoRowItem(
-                    title: "Feeding", value: controleBehaviorADLS.feeding.text),
-                InfoRowItem(
-                    title: "Brushing teeth",
-                    value: controleBehaviorADLS.brushingTeeth.text),
-                InfoRowItem(
-                    title: "Dressing",
-                    value: controleBehaviorADLS.dressing.text),
-                InfoRowItem(
-                    title: "Toilet", value: controleBehaviorADLS.toilet.text),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: controleOccupation.listOfBehaviorADLS.length,
+                  itemBuilder: (context, index) {
+                    var model = controleOccupation.listOfBehaviorADLS[index];
+                    if (model is ModelDropDownOccupation) {
+                      return InfoRowItem(
+                        value: model.textEditingController.text,
+                        title: model.lableName,
+                      );
+                    }
+                    if (model is ModelTextFiledOccupation) {
+                      return InfoRowItem(
+                        value: model.textEditingController.text,
+                        title: model.labelname,
+                      );
+                    }
+                    if (model is ModelDividerOccupation) {
+                      return DividerItem(
+                        text: model.text,
+                      );
+                    }
+
+                    return const SizedBox.shrink();
+                  },
+                ),
               ],
-            ),
-          )),
+            )),
+      ),
     );
   }
 }

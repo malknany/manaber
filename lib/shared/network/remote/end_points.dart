@@ -2,9 +2,12 @@
 
 // ignore_for_file: non_constant_identifier_names
 
-var BASEURL = 'https://acnoria-backend.spider-te8.com/api/';
-// const REGISTER = 'customer/register';
-// const LOGIN = 'customer/login';
+var baseUrl = 'http://manaberdev.duckdns.org/';
+const register = 'users/register';
+const logIn = 'users/login';
+const pendingUsers = 'users/pending';
+const approve = 'users/approve';
+const disapprove = 'users/disapprove';
 // const GETPROFIL = 'customer/get';
 // const EDITPROFIL = 'customer/profile';
 // const LOGOUT = 'logout';

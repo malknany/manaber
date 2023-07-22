@@ -2,12 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:manaber/features/doctor/occupation_therapy/stepper/controler.dart';
+import 'package:manaber/features/doctor/occupation_therapy/stepper/model.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
 class BehaviorADLS extends StatelessWidget {
-  const BehaviorADLS({super.key, required this.controlerBehaviorADLS});
-  final StepperBehaviorADLS controlerBehaviorADLS;
+  const BehaviorADLS({super.key, required this.controleOccupation});
+  // final StepperBehaviorADLS controlerBehaviorADLS;
+  final ControleOccupation controleOccupation;
 
   @override
   Widget build(BuildContext context) {
@@ -21,52 +23,31 @@ class BehaviorADLS extends StatelessWidget {
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                const DividerItem(text: 'Behavior '),
-                DropdownButtonItem(
-                    controller: controlerBehaviorADLS.aggression,
-                    lableName: 'Aggression',
-                    itemList: const ['Yes', 'No']),
-                DropdownButtonItem(
-                    controller: controlerBehaviorADLS.hyperActivity,
-                    lableName: 'Hyper activity',
-                    itemList: const ['Yes', 'No']),
-                DropdownButtonItem(
-                    controller: controlerBehaviorADLS.followInstructions,
-                    lableName: 'Follow instructions',
-                    itemList: const ['Yes', 'No']),
-                DropdownButtonItem(
-                    controller: controlerBehaviorADLS.instructionWithOtherChildren,
-                    lableName: 'Instruction with other children',
-                    itemList: const ['Yes', 'No']),
-                DropdownButtonItem(
-                    controller: controlerBehaviorADLS.discipline,
-                    lableName: 'discipline',
-                    itemList: const ['Yes', 'No']),
-                const DividerItem(text: 'A.D.L.S'),
-                DropdownButtonItem(
-                    controller: controlerBehaviorADLS.feeding,
-                    lableName: 'Feeding',
-                    itemList: const [' Can do', "Can't do", "With assistance "]),
-                DropdownButtonItem(
-                    controller: controlerBehaviorADLS.brushingTeeth,
-                    lableName: 'Brushing teeth',
-                    itemList: const [' Can do', "Can't do", "With assistance "]),
-                DropdownButtonItem(
-                    controller: controlerBehaviorADLS.dressing,
-                    lableName: 'Dressing',
-                    itemList: const [' Can do', "Can't do", "With assistance "]),
-                DropdownButtonItem(
-                    controller: controlerBehaviorADLS.toilet,
-                    lableName: 'Toilet',
-                    itemList: const [' Can do', "Can't do", "With assistance "]),
-              ],
-            ),
+          child: ListView.builder(
+            itemCount: controleOccupation.listOfBehaviorADLS.length,
+            itemBuilder: (context, index) {
+              var model = controleOccupation.listOfBehaviorADLS[index];
+              if (model is ModelDropDownOccupation) {
+                return DropdownButtonItem(
+                  controller: model.textEditingController,
+                  lableName: model.lableName,
+                  itemList: model.itemList,
+                );
+              }
+              if (model is ModelTextFiledOccupation) {
+                return TextFormFiledStepper(
+                    textInputType: model.textInputType,
+                    labelname: model.labelname,
+                    textEditingController: model.textEditingController);
+              }
+              if (model is ModelDividerOccupation) {
+                return DividerItem(text: model.text);
+              }
+
+              return SizedBox.shrink();
+            },
           )),
     );
   }
 }
+

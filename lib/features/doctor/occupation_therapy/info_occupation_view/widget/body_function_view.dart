@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/doctor/occupation_therapy/stepper/model.dart';
 import '../../stepper/controler.dart';
 import '../../../../../shared/components/components.dart';
 import '../../../../../shared/styles/colors.dart';
@@ -6,8 +7,8 @@ import '../../../../../shared/styles/images.dart';
 
 class BodyFunctionAndStrucerView extends StatelessWidget {
   const BodyFunctionAndStrucerView(
-      {super.key, required this.controleBodyFunctionStrucer});
-  final StepperBodyFunctionStrucer controleBodyFunctionStrucer;
+      {super.key, required this.controleOccupation});
+  final ControleOccupation controleOccupation;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +22,9 @@ class BodyFunctionAndStrucerView extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
-          child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -49,48 +50,43 @@ class BodyFunctionAndStrucerView extends StatelessWidget {
                       fontWeight: FontWeight.normal),
                 ),
                 const SizedBox(height: 16.0),
-                RowItemRightLeft(
-                    right: controleBodyFunctionStrucer
-                        .neuromuscularStatusUpperLimb.text,
-                    left: controleBodyFunctionStrucer
-                        .neuromuscularStatusLowerLimb.text,
-                    title: 'Neuromuscular status',
-                    tilteRight: 'UpperL',
-                    titleLeft: 'LowerL'),
-                const DividerItem(text: 'Balance'),
-                InfoRowItem(
-                    title: "Sitting balance static",
-                    value:
-                        controleBodyFunctionStrucer.sittingBalanceStatic.text),
-                InfoRowItem(
-                    title: "Sitting balance dynamic",
-                    value:
-                        controleBodyFunctionStrucer.sittingBalanceDynamic.text),
-                InfoRowItem(
-                    title: "Posture",
-                    value: controleBodyFunctionStrucer.posture.text),
-                InfoRowItem(
-                    title: "Gait",
-                    value: controleBodyFunctionStrucer.gait.text),
-                InfoRowItem(
-                    title: "Deformities",
-                    value: controleBodyFunctionStrucer.deformities.text),
-                InfoRowItem(
-                    title: "Muscle bulk",
-                    value: controleBodyFunctionStrucer.musclebulk.text),
-                InfoRowItem(
-                    title: "Leg length discrepancy",
-                    value:
-                        controleBodyFunctionStrucer.legLengthDiscrepancy.text),
-                InfoRowItem(
-                    title: "Skin condition",
-                    value: controleBodyFunctionStrucer.skinCondition.text),
-                InfoRowItem(
-                    title: "Assistive devices",
-                    value: controleBodyFunctionStrucer.assistiveDevices.text),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount:
+                      controleOccupation.listOfBodyFunctionStrucer.length,
+                  itemBuilder: (context, index) {
+                    var model =
+                        controleOccupation.listOfBodyFunctionStrucer[index];
+                    // !
+                    if (model is ModelDropDownOccupation) {
+                      return RowItemRightLeft(
+                          right: controleOccupation.controleBodyFunctionStrucer
+                              .neuromuscularStatusUpperLimb.text,
+                          left: controleOccupation.controleBodyFunctionStrucer
+                              .neuromuscularStatusLowerLimb.text,
+                          title: model.lableName,
+                          tilteRight: 'UpperL',
+                          titleLeft: 'LowerL');
+                    }
+                    if (model is ModelTextFiledOccupation) {
+                      return InfoRowItem(
+                        value: model.textEditingController.text,
+                        title: model.labelname,
+                      );
+                    }
+                    if (model is ModelDividerOccupation) {
+                      return DividerItem(
+                        text: model.text,
+                      );
+                    }
+
+                    return const SizedBox.shrink();
+                  },
+                ),
               ],
-            ),
-          )),
+            )),
+      ),
     );
   }
 }

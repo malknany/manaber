@@ -30,20 +30,12 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
       StepperControlActivityAndActivityLimitation();
   final StepperControlGoalsAndNote controlGoalsAndNote =
       StepperControlGoalsAndNote();
-  //? controle of occupation file
-  final StepperPersonalHistory controlerPersonal = StepperPersonalHistory();
-  final StepperBodyFunctionStrucer controlerBodyFunctionStrucer =
-      StepperBodyFunctionStrucer();
-  final StepperAssociatedDisorders controlerAssociatedDisorders =
-      StepperAssociatedDisorders();
-  final StepperBehaviorADLS controlerBehaviorADLS = StepperBehaviorADLS();
-  final StepperOccupationPreformance controlerOccupationPreformance =
-      StepperOccupationPreformance();
 
   final ControleConversational controleConversational =
       ControleConversational();
 
   final ControleFileAssesment controleFileAssesment = ControleFileAssesment();
+  final ControleOccupation controleOccupation = ControleOccupation();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,14 +72,8 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                         navigateTo(
                             context,
                             InfoOccupationScreen(
-                                controleAssociatedDisorders:
-                                    controlerAssociatedDisorders,
-                                controleBehaviorADLS: controlerBehaviorADLS,
-                                controleBodyFunctionStrucer:
-                                    controlerBodyFunctionStrucer,
-                                controleOccupationPreformance:
-                                    controlerOccupationPreformance,
-                                controlePersonalHistory: controlerPersonal));
+                              controleOccupation: controleOccupation,
+                            ));
                       } else {
                         navigateTo(
                             context,

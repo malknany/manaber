@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/regitration/login/model.dart';
 import '../members/view.dart';
 import 'widgets/section_item.dart';
 import '../profile_doctor/view.dart';
@@ -7,7 +8,8 @@ import '../../../shared/styles/images.dart';
 import '../../../shared/styles/styles.dart';
 
 class Oursectiosn extends StatelessWidget {
-  const Oursectiosn({Key? key}) : super(key: key);
+  const Oursectiosn({Key? key, required this.usersModel}) : super(key: key);
+  final UsersModel usersModel;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,11 @@ class Oursectiosn extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                navigateTo(context, const ProfileDoctor());
+                navigateTo(
+                    context,
+                    ProfileDoctor(
+                      usersModel: usersModel,
+                    ));
               },
               icon: const Icon(Icons.person))
         ],
@@ -38,9 +44,9 @@ class Oursectiosn extends StatelessWidget {
                   children: [
                     GestureDetector(
                         onTap: () => navigateTo(
-                          context,
-                          const Members(counter: 0),
-                        ),
+                              context,
+                              const Members(counter: 0),
+                            ),
                         child: const SectionItem(
                           sectionname: 'العلاج الطبيعي',
                           image: AppImages.login1,
