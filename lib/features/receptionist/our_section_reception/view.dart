@@ -45,14 +45,17 @@ class OurSectiosnReceptionist extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SectionItemReceptionist(
+                        department: 'PHYSICAL_THERAPY',
                         image: AppImages.occupationalTherapy,
                         sectionname: 'العلاج الطبيعي',
                         controleReceptionist: controleReceptionist),
                     SectionItemReceptionist(
+                        department: 'OCCUPATIONAL_THERAPY',
                         image: AppImages.naturalTherapy,
                         sectionname: 'العلاج الوظيفي',
                         controleReceptionist: controleReceptionist),
                     SectionItemReceptionist(
+                      department: 'SPEECH_THERAPY',
                       image: AppImages.occupational,
                       sectionname: 'تعديل سلوك',
                       controleReceptionist: controleReceptionist,

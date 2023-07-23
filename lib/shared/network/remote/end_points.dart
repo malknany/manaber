@@ -8,6 +8,7 @@ const logIn = 'users/login';
 const pendingUsers = 'users/pending';
 const approve = 'users/approve';
 const disapprove = 'users/disapprove';
+const createReception = 'patients/create';
 // const GETPROFIL = 'customer/get';
 // const EDITPROFIL = 'customer/profile';
 // const LOGOUT = 'logout';

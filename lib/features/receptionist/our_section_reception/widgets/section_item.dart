@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manaber/features/receptionist/insert_data/cubit/reception_cubit.dart';
 import '../../insert_data/controler.dart';
 import '../../insert_data/view.dart';
 import '../../../../shared/components/constants.dart';
@@ -7,22 +9,31 @@ import '../../../../shared/styles/colors.dart';
 import '../../../../shared/styles/styles.dart';
 
 class SectionItemReceptionist extends StatelessWidget {
-  const SectionItemReceptionist({
-    required this.sectionname,
-    required this.image,
-    Key? key,
-    required this.controleReceptionist,
-  }) : super(key: key);
+  const SectionItemReceptionist(
+      {required this.sectionname,
+      required this.image,
+      Key? key,
+      required this.controleReceptionist,
+      required this.department})
+      : super(key: key);
   final String sectionname;
   final StepperReceptionist controleReceptionist;
   final String image;
+  final String department;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        navigateTo(context,
-            ReceptionistDataEntry(controleReceptionist: controleReceptionist));
+        navigateTo(
+            context,
+            BlocProvider(
+              create: (context) => ReceptionCubit(),
+              child: ReceptionistDataEntry(
+                controleReceptionist: controleReceptionist,
+                department: department,
+              ),
+            ));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),

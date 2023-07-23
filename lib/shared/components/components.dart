@@ -585,6 +585,7 @@ class _DropdownButtonItemState extends State<DropdownButtonItem> {
           return DropdownMenuItem<String>(
             value: value,
             child: Text(
+              textDirection: widget.textDirection,
               value,
             ),
           );
