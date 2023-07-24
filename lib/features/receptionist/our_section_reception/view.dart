@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:manaber/features/regitration/login/model.dart';
+import 'package:manaber/shared/network/local/const_key.dart';
 
 import '../../../shared/components/navigator.dart';
 import '../../../shared/styles/images.dart';
@@ -45,17 +46,17 @@ class OurSectiosnReceptionist extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SectionItemReceptionist(
-                        department: 'PHYSICAL_THERAPY',
+                        department: AppConstKey.physicalTherapy,
                         image: AppImages.occupationalTherapy,
                         sectionname: 'العلاج الطبيعي',
                         controleReceptionist: controleReceptionist),
                     SectionItemReceptionist(
-                        department: 'OCCUPATIONAL_THERAPY',
+                        department: AppConstKey.occupationalTherapy,
                         image: AppImages.naturalTherapy,
                         sectionname: 'العلاج الوظيفي',
                         controleReceptionist: controleReceptionist),
                     SectionItemReceptionist(
-                      department: 'SPEECH_THERAPY',
+                      department: AppConstKey.speechTherapy,
                       image: AppImages.occupational,
                       sectionname: 'تعديل سلوك',
                       controleReceptionist: controleReceptionist,

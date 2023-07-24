@@ -108,16 +108,16 @@ class _ReceptionistDataEntryState extends State<ReceptionistDataEntry> {
                     );
                   }
                   if (state is ReceptionSuccess) {
-                    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                      ItemSnackBar(
-                          context, 'تم رفع المعلومات', AppColors.primarycolor);
-                      Future.delayed(
-                        const Duration(seconds: 3),
-                        () {
-                          Navigator.pop(context);
-                        },
-                      );
-                    });
+                    Future.delayed(
+                      const Duration(seconds: 2),
+                      () {
+                        ItemSnackBar(context, 'تم رفع المعلومات',
+                            AppColors.primarycolor);
+                        Navigator.pop(context);
+                      },
+                    );
+                    // WidgetsBinding.instance
+                    //     .addPostFrameCallback((timeStamp) {});
                     return Center(
                       child: Text(
                         'تم رفع المعلومات ',

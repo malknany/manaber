@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:manaber/features/regitration/login/model.dart';
-import '../members/view.dart';
+import 'package:manaber/shared/network/local/const_key.dart';
 import 'widgets/section_item.dart';
 import '../profile_doctor/view.dart';
 import '../../../shared/components/navigator.dart';
@@ -43,36 +43,42 @@ class Oursectiosn extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     GestureDetector(
-                        onTap: () => navigateTo(
-                              context,
-                              const Members(counter: 0),
-                            ),
+                        // onTap: () => navigateTo(
+                        //       context,
+                        //       // const Members(counter: 0,department: ),
+                        //     ),
                         child: const SectionItem(
-                          sectionname: 'العلاج الطبيعي',
-                          image: AppImages.login1,
-                        )),
+                      counter: 0,
+                      department: AppConstKey.physicalTherapy,
+                      sectionname: 'العلاج الطبيعي',
+                      image: AppImages.login1,
+                    )),
                     InkWell(
                         onTap: () {
-                          navigateTo(
-                              context,
-                              const Members(
-                                counter: 1,
-                              ));
+                          // navigateTo(
+                          //     context,
+                          //     const Members(
+                          //       counter: 1,
+                          //     ));
                         },
                         child: const SectionItem(
+                          counter: 1,
+                          department: AppConstKey.occupationalTherapy,
                           sectionname: 'العلاج الوظيفي',
                           image: AppImages.signup1,
                         )),
                     InkWell(
                       onTap: () {
-                        navigateTo(
-                          context,
-                          const Members(
-                            counter: 2,
-                          ),
-                        );
+                        // navigateTo(
+                        //   context,
+                        //   const Members(
+                        //     counter: 2,
+                        //   ),
+                        // );
                       },
                       child: const SectionItem(
+                        counter: 2,
+                        department: AppConstKey.speechTherapy,
                         sectionname: 'تعديل سلوك واضطراب الطفولة',
                         image: AppImages.conversational1,
                       ),

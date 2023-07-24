@@ -6,9 +6,7 @@ abstract class ModelReception {}
 class TextFormFiledReception extends ModelReception {
   final String lable;
   final TextEditingController controller;
-  // List<String>? listOfItem = [];
   TextFormFiledReception({
-    // this.listOfItem,
     required this.lable,
     required this.controller,
   });
