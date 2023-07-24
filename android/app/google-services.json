@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "193370104077",
+    "project_id": "manaber-190f7",
+    "storage_bucket": "manaber-190f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193370104077:android:a21d433aea8479774ad044",
+        "android_client_info": {
+          "package_name": "com.example.manaber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "193370104077-lvvkq6phn4c0ei0u8h9j9e8vot2igiec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOhzoM6Dohpe0f7fgvlZQ48mHb6aj__SA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "193370104077-lvvkq6phn4c0ei0u8h9j9e8vot2igiec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
