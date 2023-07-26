@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/regitration/login/model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manaber/features/receptionist/receptionist_profile/profile/cubit/receptionist_profile_cubit.dart';
+import 'package:manaber/features/receptionist/receptionist_profile/profile/view.dart';
 import 'package:manaber/shared/network/local/const_key.dart';
 
 import '../../../shared/components/navigator.dart';
 import '../../../shared/styles/images.dart';
 import '../../../shared/styles/styles.dart';
 import '../insert_data/controler.dart';
-import '../receptionist_profile/view.dart';
 import 'widgets/section_item.dart';
 
 class OurSectiosnReceptionist extends StatelessWidget {
-  OurSectiosnReceptionist({Key? key, required this.usersModel})
-      : super(key: key);
+  OurSectiosnReceptionist({
+    Key? key,
+  }) : super(key: key);
   final StepperReceptionist controleReceptionist = StepperReceptionist();
-  final UsersModel usersModel;
+  // final UsersModel usersModel;
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +26,9 @@ class OurSectiosnReceptionist extends StatelessWidget {
               onPressed: () {
                 navigateTo(
                     context,
-                    ReceptionistProfile(
-                      usersModel: usersModel,
+                    BlocProvider(
+                      create: (context) => ReceptionistProfileCubit(),
+                      child: const ReceptionistProfileScreen(),
                     ));
               },
               icon: const Icon(Icons.person))

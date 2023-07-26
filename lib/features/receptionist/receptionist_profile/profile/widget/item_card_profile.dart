@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
+import '../../../../../shared/styles/colors.dart';
+import '../../../../../shared/styles/styles.dart';
 
-// import '../../../../shared/components/constants.dart';
-import '../../../../shared/styles/colors.dart';
-import '../../../../shared/styles/styles.dart';
-
-class ItemCardDoctor extends StatelessWidget {
-  const ItemCardDoctor(
+class ItemProfileCardReception extends StatelessWidget {
+  const ItemProfileCardReception(
       {super.key,
-      required this.onPressed,
       required this.name,
-      required this.phone});
+      required this.number,
+      required this.onPressed});
   final String name;
-  final String phone;
+  final String number;
   final void Function()? onPressed;
 
   @override
@@ -31,23 +29,20 @@ class ItemCardDoctor extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Column(
               textDirection: TextDirection.rtl,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'الاسم:$name',
                   textDirection: TextDirection.rtl,
-                  style: AppTextStyles.lrTitles.copyWith(
-                    fontSize: 18,
-                    color: AppColors.primarycolor,
-                  ),
+                  style: AppTextStyles.lrTitles
+                      .copyWith(color: AppColors.primarycolor, fontSize: 18),
                 ),
                 Text(
-                  'رقم الهاتف :$phone',
                   textDirection: TextDirection.rtl,
-                  style: AppTextStyles.lrTitles.copyWith(
-                    color: AppColors.primarycolor,
-                    fontSize: 18,
-                  ),
+                  'رقم الهاتف :$number',
+                  style: AppTextStyles.lrTitles
+                      .copyWith(color: AppColors.primarycolor, fontSize: 18),
                 ),
                 Align(
                   alignment: Alignment.bottomLeft,

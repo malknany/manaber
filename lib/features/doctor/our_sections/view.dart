@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manaber/features/doctor/profile_doctor/profile/cubit/profile_doctor_cubit.dart';
 import 'package:manaber/features/regitration/login/model.dart';
 import 'package:manaber/shared/network/local/const_key.dart';
 import 'widgets/section_item.dart';
-import '../profile_doctor/view.dart';
+import '../profile_doctor/profile/view.dart';
 import '../../../shared/components/navigator.dart';
 import '../../../shared/styles/images.dart';
 import '../../../shared/styles/styles.dart';
@@ -20,8 +22,9 @@ class Oursectiosn extends StatelessWidget {
               onPressed: () {
                 navigateTo(
                     context,
-                    ProfileDoctor(
-                      usersModel: usersModel,
+                    BlocProvider(
+                      create: (context) => DoctorProfileCubit(),
+                      child: const ProfileDoctorScreen(),
                     ));
               },
               icon: const Icon(Icons.person))
@@ -39,49 +42,23 @@ class Oursectiosn extends StatelessWidget {
               children: [
                 Text('أقسامنا',
                     style: AppTextStyles.lrTitles.copyWith(fontSize: 32)),
-                Column(
+                const Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    GestureDetector(
-                        // onTap: () => navigateTo(
-                        //       context,
-                        //       // const Members(counter: 0,department: ),
-                        //     ),
-                        child: const SectionItem(
-                      counter: 0,
+                    SectionItem(
                       department: AppConstKey.physicalTherapy,
                       sectionname: 'العلاج الطبيعي',
                       image: AppImages.login1,
-                    )),
-                    InkWell(
-                        onTap: () {
-                          // navigateTo(
-                          //     context,
-                          //     const Members(
-                          //       counter: 1,
-                          //     ));
-                        },
-                        child: const SectionItem(
-                          counter: 1,
-                          department: AppConstKey.occupationalTherapy,
-                          sectionname: 'العلاج الوظيفي',
-                          image: AppImages.signup1,
-                        )),
-                    InkWell(
-                      onTap: () {
-                        // navigateTo(
-                        //   context,
-                        //   const Members(
-                        //     counter: 2,
-                        //   ),
-                        // );
-                      },
-                      child: const SectionItem(
-                        counter: 2,
-                        department: AppConstKey.speechTherapy,
-                        sectionname: 'تعديل سلوك واضطراب الطفولة',
-                        image: AppImages.conversational1,
-                      ),
+                    ),
+                    SectionItem(
+                      department: AppConstKey.occupationalTherapy,
+                      sectionname: 'العلاج الوظيفي',
+                      image: AppImages.signup1,
+                    ),
+                    SectionItem(
+                      department: AppConstKey.speechTherapy,
+                      sectionname: 'تعديل سلوك واضطراب الطفولة',
+                      image: AppImages.conversational1,
                     )
                   ],
                 )
