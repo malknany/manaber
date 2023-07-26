@@ -1,21 +1,14 @@
-// import 'package:flutter/material.dart';
-// import 'package:manaber/shared/styles/images.dart';
-// import '../model.dart';
-// import '../view.dart';
-// import '../../../../shared/styles/colors.dart';
-
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/profile_pationt/profile_view/view.dart';
-import 'package:manaber/shared/components/navigator.dart';
 import 'package:manaber/shared/styles/colors.dart';
 import 'package:manaber/shared/styles/images.dart';
 
 class PatientItem extends StatelessWidget {
   const PatientItem(
-      {super.key, required this.counter, required this.patientName});
-  final int counter;
+      {super.key, required this.patientName, required this.onTap});
   final String patientName;
+  final void Function()? onTap;
 
+  @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -31,14 +24,7 @@ class PatientItem extends StatelessWidget {
         ],
       ),
       child: ListTile(
-        onTap: () {
-          navigateTo(
-            context,
-            ProfilePationtScreen(
-              index: counter,
-            ),
-          );
-        },
+        onTap: onTap,
         selected: true,
         selectedColor: Colors.grey,
         contentPadding: const EdgeInsets.all(8),

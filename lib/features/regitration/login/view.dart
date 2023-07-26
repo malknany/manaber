@@ -149,8 +149,8 @@ class _LogInScreenState extends State<LogInScreen> {
                           navigateAndFinished(
                               context,
                               OurSectiosnReceptionist(
-                                usersModel: state.usersModel,
-                              ));
+                                  // usersModel: state.usersModel,
+                                  ));
                         });
                       }
                       if (state.usersModel.role == 'ADMIN') {

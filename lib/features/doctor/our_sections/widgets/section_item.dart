@@ -8,17 +8,15 @@ import '../../../../shared/styles/colors.dart';
 import '../../../../shared/styles/styles.dart';
 
 class SectionItem extends StatelessWidget {
-  const SectionItem(
-      {required this.sectionname,
-      Key? key,
-      required this.image,
-      required this.department,
-      required this.counter})
-      : super(key: key);
+  const SectionItem({
+    required this.sectionname,
+    Key? key,
+    required this.image,
+    required this.department,
+  }) : super(key: key);
   final String sectionname;
   final String image;
   final String department;
-  final int counter;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +27,6 @@ class SectionItem extends StatelessWidget {
             BlocProvider(
               create: (context) => PatientsDepartmentCubit(),
               child: MembersScreen(
-                counter: counter,
                 department: department,
               ),
             ));

@@ -3,13 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manaber/features/doctor/members/cubit/patients_department_cubit.dart';
 import 'package:manaber/features/doctor/members/widget/item_member.dart';
 import 'package:manaber/features/doctor/members/widget/item_sersh.dart';
+import 'package:manaber/features/doctor/profile_pationt/profile_view/view.dart';
+import 'package:manaber/shared/components/navigator.dart';
 import '../../../shared/styles/colors.dart';
 
 class MembersScreen extends StatefulWidget {
-  const MembersScreen(
-      {Key? key, required this.counter, required this.department})
-      : super(key: key);
-  final int counter;
+  const MembersScreen({Key? key, required this.department}) : super(key: key);
   final String department;
 
   @override
@@ -48,7 +47,6 @@ class _MembersScreenState extends State<MembersScreen> {
                       child: Center(
                         child: CircularProgressIndicator(
                           color: AppColors.primarycolor,
-                          // backgroundColor: AppColors.primarycolor,
                         ),
                       ),
                     );
@@ -80,7 +78,15 @@ class _MembersScreenState extends State<MembersScreen> {
                       child: ListView.separated(
                         itemCount: state.listOfPationt.length,
                         itemBuilder: (context, index) => PatientItem(
-                          counter: widget.counter,
+                          onTap: () {
+                            navigateTo(
+                              context,
+                              ProfilePationtScreen(
+                                id: state.listOfPationt[index].id,
+                                department: widget.department,
+                              ),
+                            );
+                          },
                           patientName: state.listOfPationt[index].name,
                         ),
                         separatorBuilder: (BuildContext context, int index) {

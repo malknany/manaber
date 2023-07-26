@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manaber/features/doctor/profile_pationt/tretment_plan/cubit/tretment_plan_cubit.dart';
+import 'package:manaber/shared/network/local/const_key.dart';
 import '../../conversational/conversational_view/view.dart';
 import '../../conversational/stepper/controler.dart';
 import '../../file_assa/info_view/view.dart';
@@ -13,8 +16,10 @@ import '../../../../shared/components/navigator.dart';
 import '../../../../shared/styles/images.dart';
 
 class ProfilePationtScreen extends StatefulWidget {
-  const ProfilePationtScreen({super.key, required this.index});
-  final int index;
+  const ProfilePationtScreen(
+      {super.key, required this.department, required this.id});
+  final String department;
+  final id;
 
   @override
   State<ProfilePationtScreen> createState() => _ProfilePationtScreenState();
@@ -59,42 +64,72 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
               children: [
                 SlectedItemProfile(
                     onTap: () {
-                      if (widget.index == 0) {
-                        navigateTo(
-                            context,
-                            FileAssassemntView(
-                                control: control,
-                                controlBodyFunction: controlBodyFunction,
-                                controlGoalsAndNote: controlGoalsAndNote,
-                                controlActivityAndActivityLimitation:
-                                    controlActivityAndActivityLimitation));
-                      } else if (widget.index == 1) {
-                        navigateTo(
-                            context,
-                            InfoOccupationScreen(
-                              controleOccupation: controleOccupation,
-                            ));
-                      } else {
-                        navigateTo(
-                            context,
-                            InfoConversationScreen(
-                              controleConversational: controleConversational,
-                            ));
-                      }
+                      widget.department == AppConstKey.physicalTherapy
+                          ? navigateTo(
+                              context,
+                              FileAssassemntView(
+                                  control: control,
+                                  controlBodyFunction: controlBodyFunction,
+                                  controlGoalsAndNote: controlGoalsAndNote,
+                                  controlActivityAndActivityLimitation:
+                                      controlActivityAndActivityLimitation))
+                          : widget.department == AppConstKey.occupationalTherapy
+                              ? navigateTo(
+                                  context,
+                                  InfoOccupationScreen(
+                                    controleOccupation: controleOccupation,
+                                  ))
+                              : navigateTo(
+                                  context,
+                                  InfoConversationScreen(
+                                    controleConversational:
+                                        controleConversational,
+                                  ));
+                      // if (widget.index == 0) {
+                      //   navigateTo(
+                      //       context,
+                      //       FileAssassemntView(
+                      //           control: control,
+                      //           controlBodyFunction: controlBodyFunction,
+                      //           controlGoalsAndNote: controlGoalsAndNote,
+                      //           controlActivityAndActivityLimitation:
+                      //               controlActivityAndActivityLimitation));
+                      // } else if (widget.index == 1) {
+                      //   navigateTo(
+                      //       context,
+                      //       InfoOccupationScreen(
+                      //         controleOccupation: controleOccupation,
+                      //       ));
+                      // } else {
+                      //   navigateTo(
+                      //       context,
+                      //       InfoConversationScreen(
+                      //         controleConversational: controleConversational,
+                      //       ));
+                      // }
                     },
-                    sectionname: widget.index == 0
+                    sectionname: widget.department ==
+                            AppConstKey.physicalTherapy
                         ? 'File assessment'
-                        : widget.index == 1
+                        : widget.department == AppConstKey.occupationalTherapy
                             ? "Occupation "
-                            : "تخاطب",
-                    image: widget.index == 0
+                            : "تعديل السلوك",
+                    image: widget.department == AppConstKey.physicalTherapy
                         ? AppImages.fileAssessment
-                        : widget.index == 1
+                        : widget.department == AppConstKey.occupationalTherapy
                             ? AppImages.occupationalTherapy
                             : AppImages.conversational),
                 SlectedItemProfile(
                     onTap: () {
-                      navigateTo(context, const TretmentPlanView());
+                      navigateTo(
+                        context,
+                        BlocProvider(
+                          create: (context) => TretmentPlanCubit(),
+                          child: TretmentPlanView(
+                            id: widget.id,
+                          ),
+                        ),
+                      );
                     },
                     sectionname: 'Treatment plan',
                     image: AppImages.tretmentPlan),
@@ -104,7 +139,7 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                     },
                     sectionname: 'Videos',
                     image: AppImages.video),
-                widget.index == 2
+                widget.department == AppConstKey.speechTherapy
                     ? SizedBox.fromSize()
                     : SlectedItemProfile(
                         onTap: () {

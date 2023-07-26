@@ -3,15 +3,18 @@ import '../model.dart';
 import '../../../../../shared/components/components.dart';
 
 class DataView extends StatelessWidget {
-  const DataView({super.key, required this.controle, required this.index});
-  final TretmentPlanModel controle;
-  final int index;
+  const DataView(
+      {super.key,
+      required this.modelTretmentPlan});
+  // final TretmentPlanModel controle;
+
+  final ModelTretmentPlan modelTretmentPlan;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('plan$index'),
+        title: Text(modelTretmentPlan.name),
         backgroundColor: Colors.white,
       ),
       body: SafeArea(
@@ -20,10 +23,10 @@ class DataView extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: Column(
                 children: List.generate(
-              controle.controles.length,
+              modelTretmentPlan.steps.length,
               (index) => InfoRowItem(
                   title: 'Step${index + 1}',
-                  value: controle.controles[index].text),
+                  value: modelTretmentPlan.steps[index]),
             )),
           ),
         ),
