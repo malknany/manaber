@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manaber/features/doctor/profile_pationt/tretment_plan/cubit/tretment_plan_cubit.dart';
+import 'package:manaber/features/doctor/profile_pationt/video/cubit/video_play_cubit.dart';
 import 'package:manaber/shared/network/local/const_key.dart';
 import '../../conversational/conversational_view/view.dart';
 import '../../conversational/stepper/controler.dart';
@@ -85,28 +86,6 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                                     controleConversational:
                                         controleConversational,
                                   ));
-                      // if (widget.index == 0) {
-                      //   navigateTo(
-                      //       context,
-                      //       FileAssassemntView(
-                      //           control: control,
-                      //           controlBodyFunction: controlBodyFunction,
-                      //           controlGoalsAndNote: controlGoalsAndNote,
-                      //           controlActivityAndActivityLimitation:
-                      //               controlActivityAndActivityLimitation));
-                      // } else if (widget.index == 1) {
-                      //   navigateTo(
-                      //       context,
-                      //       InfoOccupationScreen(
-                      //         controleOccupation: controleOccupation,
-                      //       ));
-                      // } else {
-                      //   navigateTo(
-                      //       context,
-                      //       InfoConversationScreen(
-                      //         controleConversational: controleConversational,
-                      //       ));
-                      // }
                     },
                     sectionname: widget.department ==
                             AppConstKey.physicalTherapy
@@ -135,7 +114,15 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                     image: AppImages.tretmentPlan),
                 SlectedItemProfile(
                     onTap: () {
-                      navigateTo(context, const VideoScreen());
+                      navigateTo(
+                        context,
+                        BlocProvider(
+                          create: (context) => VideoPlayCubit(),
+                          child: VideoScreen(
+                            id: widget.id,
+                          ),
+                        ),
+                      );
                     },
                     sectionname: 'Videos',
                     image: AppImages.video),
@@ -143,7 +130,11 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                     ? SizedBox.fromSize()
                     : SlectedItemProfile(
                         onTap: () {
-                          navigateTo(context, XrayView());
+                          navigateTo(
+                              context,
+                              XrayView(
+                                id: widget.id,
+                              ));
                         },
                         sectionname: 'X-rays',
                         image: AppImages.xRey),

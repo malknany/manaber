@@ -50,17 +50,17 @@ class OurSectiosnReceptionist extends StatelessWidget {
                   children: [
                     SectionItemReceptionist(
                         department: AppConstKey.physicalTherapy,
-                        image: AppImages.occupationalTherapy,
+                        image: AppImages.login1,
                         sectionname: 'العلاج الطبيعي',
                         controleReceptionist: controleReceptionist),
                     SectionItemReceptionist(
                         department: AppConstKey.occupationalTherapy,
-                        image: AppImages.naturalTherapy,
+                        image: AppImages.signup1,
                         sectionname: 'العلاج الوظيفي',
                         controleReceptionist: controleReceptionist),
                     SectionItemReceptionist(
                       department: AppConstKey.speechTherapy,
-                      image: AppImages.occupational,
+                      image: AppImages.conversational1,
                       sectionname: 'تعديل سلوك',
                       controleReceptionist: controleReceptionist,
                     )

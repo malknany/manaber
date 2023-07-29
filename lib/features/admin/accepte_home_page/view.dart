@@ -66,55 +66,63 @@ class _AdminHomePageState extends State<AdminHomePage> {
               ),
             );
           } else if (state is PendingSuccess) {
-            return SizedBox(
-              width: double.infinity,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                          height: MediaQueryHelper.sizeFromHeight(context, 4.5),
-                          width: MediaQueryHelper.sizeFromWidth(context, 1.2),
-                          child: Image.asset(AppImages.admin)),
-                      Text('الادمن',
-                          style: AppTextStyles.lrTitles.copyWith(fontSize: 32)),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      Column(
-                        children: List.generate(
-                          state.listOfUserspending.length,
-                          (index) => ItemAccepteAdmin(
-                              onPressedNo: () {
-                                setState(() {
-                                  context.read<PendingCubit>().postDisApprove(
-                                      state.listOfUserspending[index].id);
-                                  state.listOfUserspending.removeAt(index);
-                                });
-                                ItemSnackBar(context, 'تم الرفض', Colors.red);
-                              },
-                              onPressedOk: () {
-                                setState(() {
-                                  context.read<PendingCubit>().postApprove(
-                                      state.listOfUserspending[index].id);
-                                  state.listOfUserspending.removeAt(index);
-                                });
-                                ItemSnackBar(context, 'تم مقبول',
-                                    AppColors.primarycolor);
-                              },
-                              name: state.listOfUserspending[index].name!,
-                              job: state.listOfUserspending[index].role! ==
-                                      'DOCTOR'
-                                  ? 'طبيب'
-                                  : 'موظف استقبال',
-                              number:
-                                  state.listOfUserspending[index].phoneNumber!),
+            return RefreshIndicator(
+              color: AppColors.primarycolor,
+              onRefresh: () {
+                return context.read<PendingCubit>().getPendingUsers();
+              },
+              child: SizedBox(
+                width: double.infinity,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                            height:
+                                MediaQueryHelper.sizeFromHeight(context, 4.5),
+                            width: MediaQueryHelper.sizeFromWidth(context, 1.2),
+                            child: Image.asset(AppImages.admin)),
+                        Text('الادمن',
+                            style:
+                                AppTextStyles.lrTitles.copyWith(fontSize: 32)),
+                        const SizedBox(
+                          height: 16,
                         ),
-                      ),
-                    ],
+                        Column(
+                          children: List.generate(
+                            state.listOfUserspending.length,
+                            (index) => ItemAccepteAdmin(
+                                onPressedNo: () {
+                                  setState(() {
+                                    context.read<PendingCubit>().postDisApprove(
+                                        state.listOfUserspending[index].id);
+                                    state.listOfUserspending.removeAt(index);
+                                  });
+                                  ItemSnackBar(context, 'تم الرفض', Colors.red);
+                                },
+                                onPressedOk: () {
+                                  setState(() {
+                                    context.read<PendingCubit>().postApprove(
+                                        state.listOfUserspending[index].id);
+                                    state.listOfUserspending.removeAt(index);
+                                  });
+                                  ItemSnackBar(context, 'تم مقبول',
+                                      AppColors.primarycolor);
+                                },
+                                name: state.listOfUserspending[index].name!,
+                                job: state.listOfUserspending[index].role! ==
+                                        'DOCTOR'
+                                    ? 'طبيب'
+                                    : 'موظف استقبال',
+                                number: state
+                                    .listOfUserspending[index].phoneNumber!),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

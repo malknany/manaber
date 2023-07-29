@@ -3,13 +3,15 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import '../controle.dart';
-import '../model.dart';
+
 import '../../../../../shared/components/components.dart';
 import '../../../../../shared/styles/colors.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class SlectePhotoView extends StatefulWidget {
-  const SlectePhotoView({super.key, required this.controle});
+  const SlectePhotoView({super.key, required this.controle, required this.id});
   final ControleXray controle;
+  final id;
 
   @override
   State<SlectePhotoView> createState() => _SlectePhotoViewState();
@@ -34,14 +36,43 @@ class _SlectePhotoViewState extends State<SlectePhotoView> {
     }
   }
 
+  Future<List<String>> _uploadImages() async {
+    final List<firebase_storage.Task> uploadTasks = [];
+    final counter = DateTime.now();
+    // final Future<firebase_storage.ListResult> refs;
+    for (final imageFile in _images) {
+      final fileName = '${DateTime.now()}.jpg';
+      final ref = firebase_storage.FirebaseStorage.instance
+          .ref()
+          .child("media")
+          .child('X-ray')
+          .child('path${widget.id}')
+          .child('images$counter')
+          .child(fileName);
+
+      final uploadTask = ref.putFile(imageFile);
+      uploadTasks.add(uploadTask);
+    }
+    final List<String> downloadUrls = [];
+    for (final uploadTask in uploadTasks) {
+      final snapshot = await uploadTask.whenComplete(() {});
+      final downloadUrl = await snapshot.ref.getDownloadURL();
+
+      downloadUrls.add(downloadUrl);
+    }
+    downloadUrls.forEach((element) {
+      print(element);
+    });
+    print("length==================${downloadUrls.length}");
+    return downloadUrls;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            final model = ModelXray(images: _images);
-            widget.controle.itemes.add(model);
-            Navigator.pop(context, 'refresh');
+            _uploadImages();
           },
           backgroundColor: AppColors.primarycolor,
           child: const Icon(Icons.save_alt)),

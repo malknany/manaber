@@ -10,8 +10,10 @@ import '../../../../shared/styles/styles.dart';
 class XrayView extends StatefulWidget {
   XrayView({
     super.key,
+    required this.id,
   });
   final ControleXray controle = ControleXray();
+  final id;
 
   @override
   State<XrayView> createState() => _XrayViewState();
@@ -123,7 +125,7 @@ class _XrayViewState extends State<XrayView> {
         backgroundColor: AppColors.primarycolor,
         onPressed: () async {
           final result = await navigateTo(
-              context, SlectePhotoView(controle: widget.controle));
+              context, SlectePhotoView(controle: widget.controle,id:widget.id ,));
           if (result == 'refresh') {
             setState(() {
               isRefresh = true;

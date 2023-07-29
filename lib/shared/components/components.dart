@@ -425,11 +425,13 @@ class ButtonText extends StatelessWidget {
 class TextFormFiledStepper extends StatelessWidget {
   const TextFormFiledStepper(
       {super.key,
+      this.validator,
       required this.textEditingController,
       required this.labelname,
       this.textInputType = TextInputType.text,
       this.textDirection = TextDirection.ltr});
   final String labelname;
+  final String? Function(String?)? validator;
   final TextInputType textInputType;
   final TextEditingController textEditingController;
   final TextDirection textDirection;
@@ -440,6 +442,7 @@ class TextFormFiledStepper extends StatelessWidget {
       child: Directionality(
         textDirection: textDirection,
         child: TextFormField(
+          validator: validator,
           maxLines: 4,
           minLines: 1,
           controller: textEditingController,
@@ -520,12 +523,14 @@ class DropdownButtonItem extends StatefulWidget {
       required this.itemList,
       required this.controller,
       this.textDirection = TextDirection.ltr,
+      this.alignment = Alignment.centerLeft,
       this.floatingLabelAlignment = FloatingLabelAlignment.center});
   final String lableName;
   final List<String> itemList;
   final TextEditingController controller;
   final TextDirection textDirection;
   final FloatingLabelAlignment floatingLabelAlignment;
+  final AlignmentGeometry? alignment;
   @override
   State<DropdownButtonItem> createState() => _DropdownButtonItemState();
 }
@@ -584,9 +589,12 @@ class _DropdownButtonItemState extends State<DropdownButtonItem> {
         items: widget.itemList.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(
-              textDirection: widget.textDirection,
-              value,
+            child: Container(
+              alignment: widget.alignment,
+              child: Text(
+                // textDirection: widget.textDirection,
+                value,
+              ),
             ),
           );
         }).toList(),
