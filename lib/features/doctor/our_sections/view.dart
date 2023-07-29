@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manaber/features/doctor/profile_doctor/profile/cubit/profile_doctor_cubit.dart';
-import 'package:manaber/features/regitration/login/model.dart';
 import 'package:manaber/shared/network/local/const_key.dart';
 import 'widgets/section_item.dart';
 import '../profile_doctor/profile/view.dart';
@@ -10,8 +9,7 @@ import '../../../shared/styles/images.dart';
 import '../../../shared/styles/styles.dart';
 
 class Oursectiosn extends StatelessWidget {
-  const Oursectiosn({Key? key, required this.usersModel}) : super(key: key);
-  final UsersModel usersModel;
+  const Oursectiosn({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

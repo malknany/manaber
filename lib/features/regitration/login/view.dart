@@ -139,7 +139,7 @@ class _LogInScreenState extends State<LogInScreen> {
                           navigateAndFinished(
                               context,
                               Oursectiosn(
-                                usersModel: state.usersModel,
+                                // usersModel: state.usersModel,
                               ));
                         });
                       }
