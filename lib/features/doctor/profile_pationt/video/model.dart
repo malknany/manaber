@@ -7,7 +7,7 @@ String modelVideoToJson(ModelVideo data) => json.encode(data.toJson());
 
 class ModelVideo {
   final String id;
-  final String url;
+  final List<String> urls;
   final String name;
   final String type;
   final String category;
@@ -17,7 +17,7 @@ class ModelVideo {
 
   ModelVideo({
     required this.id,
-    required this.url,
+    required this.urls,
     required this.name,
     required this.type,
     required this.category,
@@ -28,7 +28,7 @@ class ModelVideo {
 
   factory ModelVideo.fromJson(Map<String, dynamic> json) => ModelVideo(
         id: json["id"],
-        url: json["url"],
+        urls: List<String>.from(json["urls"].map((x) => x)),
         name: json["name"],
         type: json["type"],
         category: json["category"],
@@ -39,7 +39,7 @@ class ModelVideo {
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "url": url,
+        "urls": List<dynamic>.from(urls.map((x) => x)),
         "name": name,
         "type": type,
         "category": category,

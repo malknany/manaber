@@ -37,7 +37,7 @@ class VideoPlayCubit extends Cubit<VideoPlayState> {
     }
   }
 
-  Future<String> uploadVideoToFireBase(id) async {
+  Future<List<String>> uploadVideoToFireBase(id) async {
     final counter = DateTime.now();
     final fileName = '${DateTime.now()}.jpg';
     ref = FirebaseStorage.instance
@@ -53,11 +53,13 @@ class VideoPlayCubit extends Cubit<VideoPlayState> {
 
     snapshot = await uploadTask!.whenComplete(() {});
     final downloadUrl = await snapshot!.ref.getDownloadURL();
-    print("URL==================${downloadUrl}");
+    List<String> listOfUrl = [];
+    listOfUrl.add(downloadUrl);
+    print("URL==================${listOfUrl}");
 
     // uploadTask = null;
 
-    return downloadUrl;
+    return listOfUrl;
   }
 
   Future<void> deleteFile(String downloadUrl) async {
@@ -96,7 +98,7 @@ class VideoPlayCubit extends Cubit<VideoPlayState> {
       try {
         final response = await DioHelper.putdata(
             url: media + id,
-            posteddata: {"name": name, "category": "VIDEO", "url": url},
+            posteddata: {"name": name, "category": "VIDEO", "urls": url},
             headers: {'Authorization': 'Bearer ${token[0]}'});
         if (response.statusCode == 201) {
           print(response.data);
