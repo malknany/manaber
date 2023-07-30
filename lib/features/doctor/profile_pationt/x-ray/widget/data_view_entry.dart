@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/shared/styles/colors.dart';
 import '../model.dart';
 
 class XrayDataView extends StatelessWidget {
@@ -21,10 +22,22 @@ class XrayDataView extends StatelessWidget {
                 crossAxisSpacing: 4,
                 mainAxisSpacing: 4,
               ),
-              itemCount: modelXray.images.length,
+              itemCount: modelXray.urls.length,
               itemBuilder: (BuildContext context, int index) {
-                return Image.file(
-                  modelXray.images[index],
+                return Image.network(
+                  loadingBuilder: (BuildContext context, Widget child,
+                      ImageChunkEvent? loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.primarycolor,
+                      ),
+                    );
+                  },
+                  errorBuilder: (context, error, stackTrace) {
+                    return Text(error.toString());
+                  },
+                  modelXray.urls[index],
                   fit: BoxFit.cover,
                 );
               },

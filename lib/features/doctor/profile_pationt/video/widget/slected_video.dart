@@ -43,13 +43,7 @@ class _SlectedVideoState extends State<SlectedVideo> {
             isSlected
                 ? context.read<VideoPlayCubit>().sendVideoToApi(
                     id: widget.id,
-                    name: context
-                            .read<VideoPlayCubit>()
-                            .controllertitle
-                            .text
-                            .isEmpty
-                        ? 'Kino'
-                        : context.read<VideoPlayCubit>().controllertitle.text)
+                    name: context.read<VideoPlayCubit>().controllertitle.text)
                 : null;
             isSlected = false;
           }),

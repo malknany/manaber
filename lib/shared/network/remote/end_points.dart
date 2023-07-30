@@ -1,5 +1,3 @@
-
-
 // ignore_for_file: non_constant_identifier_names
 
 var baseUrl = 'http://manaberdev.duckdns.org/';
@@ -15,6 +13,7 @@ const editProfile = 'users/editprofile';
 const treatments = 'treatments/';
 const media = 'media/';
 const videos = 'media/videos/';
+const xray = 'media/xrays/';
 // const GETPROFIL = 'customer/get';
 // const EDITPROFIL = 'customer/profile';
 // const LOGOUT = 'logout';

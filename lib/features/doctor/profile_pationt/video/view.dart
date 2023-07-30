@@ -35,7 +35,7 @@ class _VideoScreenState extends State<VideoScreen> {
         builder: (context, state) {
           if (state is VideoPlayEmpty) {
             return Center(
-              child: Text('No Video', style: AppTextStyles.smTitles),
+              child: Text('No Video Found ', style: AppTextStyles.smTitles),
             );
           }
           if (state is VideoPlayLoading) {
