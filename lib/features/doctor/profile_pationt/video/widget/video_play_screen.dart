@@ -28,6 +28,8 @@ class _VideoPlayScreenState extends State<VideoPlayScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    final double aspectRatio = _controller.value.aspectRatio;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -35,35 +37,40 @@ class _VideoPlayScreenState extends State<VideoPlayScreen> {
       body: SizedBox(
         height: double.infinity,
         width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _controller.value.isInitialized
-                ? InkWell(
-                    onTap: () {
-                      if (_controller.value.isPlaying) {
-                        _controller.pause();
-                      } else {
-                        _controller.play();
-                      }
-                    },
-                    child: SizedBox(
-                        width: double.infinity,
-                        height: MediaQuery.sizeOf(context).height / 1.5,
-                        child: VideoPlayer(_controller)),
-                  )
-                : const Center(
-                    child: CircularProgressIndicator(
-                        color: AppColors.primarycolor)),
-            VideoProgressIndicator(
-              _controller,
-              padding: const EdgeInsets.all(10),
-              allowScrubbing: true,
-              colors: const VideoProgressColors(
-                playedColor: AppColors.primarycolor,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _controller.value.isInitialized
+                  ? InkWell(
+                      onTap: () {
+                        if (_controller.value.isPlaying) {
+                          _controller.pause();
+                        } else {
+                          _controller.play();
+                        }
+                      },
+                      child: AspectRatio(
+                        aspectRatio: aspectRatio,
+                        child: SizedBox(
+                            width: double.infinity,
+                            height: size.height / 1.5,
+                            child: VideoPlayer(_controller)),
+                      ),
+                    )
+                  : const Center(
+                      child: CircularProgressIndicator(
+                          color: AppColors.primarycolor)),
+              VideoProgressIndicator(
+                _controller,
+                padding: const EdgeInsets.all(10),
+                allowScrubbing: true,
+                colors: const VideoProgressColors(
+                  playedColor: AppColors.primarycolor,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

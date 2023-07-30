@@ -1,82 +1,54 @@
-import 'dart:io';
+// import 'dart:io';
 
-import 'package:file_picker/file_picker.dart';
+// import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import '../controle.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manaber/features/doctor/profile_pationt/x-ray/cubit/xray_cubit.dart';
 
 import '../../../../../shared/components/components.dart';
 import '../../../../../shared/styles/colors.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class SlectePhotoView extends StatefulWidget {
-  const SlectePhotoView({super.key, required this.controle, required this.id});
-  final ControleXray controle;
-  final id;
+  const SlectePhotoView({super.key, required this.id});
+  // final ControleXray controle;
+  final String id;
 
   @override
   State<SlectePhotoView> createState() => _SlectePhotoViewState();
 }
 
 class _SlectePhotoViewState extends State<SlectePhotoView> {
-  List<File> _images = [];
+  // List<File> _images = [];
   bool isDeleted = false;
-
-  Future pickImages() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      allowMultiple: true,
-    );
-
-    if (result != null) {
-      setState(() {
-        _images = result.paths.map((path) => File(path!)).toList();
-      });
-    } else {
-      // User canceled the picker
-    }
-  }
-
-  Future<List<String>> _uploadImages() async {
-    final List<firebase_storage.Task> uploadTasks = [];
-    final counter = DateTime.now();
-    // final Future<firebase_storage.ListResult> refs;
-    for (final imageFile in _images) {
-      final fileName = '${DateTime.now()}.jpg';
-      final ref = firebase_storage.FirebaseStorage.instance
-          .ref()
-          .child("media")
-          .child('X-ray')
-          .child('path${widget.id}')
-          .child('images$counter')
-          .child(fileName);
-
-      final uploadTask = ref.putFile(imageFile);
-      uploadTasks.add(uploadTask);
-    }
-    final List<String> downloadUrls = [];
-    for (final uploadTask in uploadTasks) {
-      final snapshot = await uploadTask.whenComplete(() {});
-      final downloadUrl = await snapshot.ref.getDownloadURL();
-
-      downloadUrls.add(downloadUrl);
-    }
-    downloadUrls.forEach((element) {
-      print(element);
-    });
-    print("length==================${downloadUrls.length}");
-    return downloadUrls;
-  }
+  bool isSlected = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            _uploadImages();
-          },
-          backgroundColor: AppColors.primarycolor,
-          child: const Icon(Icons.save_alt)),
+        onPressed: () {
+          isSlected
+              ? context.read<XrayCubit>().sendImagesToApi(
+                    id: widget.id,
+                  )
+              : null;
+
+          isSlected = false;
+        },
+        backgroundColor: AppColors.primarycolor,
+        child: const Icon(
+          Icons.upload,
+        ),
+      ),
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context, 'refrech');
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+          ),
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -96,8 +68,12 @@ class _SlectePhotoViewState extends State<SlectePhotoView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _images.isNotEmpty
-                ? Expanded(
+            BlocBuilder<XrayCubit, XrayState>(
+              builder: (context, state) {
+                if (state is XraySelected) {
+                  isSlected = true;
+                  final model = state.images;
+                  return Expanded(
                     child: GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
@@ -105,12 +81,12 @@ class _SlectePhotoViewState extends State<SlectePhotoView> {
                         crossAxisSpacing: 4,
                         mainAxisSpacing: 4,
                       ),
-                      itemCount: _images.length,
+                      itemCount: model.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Stack(
                           children: [
                             Image.file(
-                              _images[index],
+                              model[index],
                               fit: BoxFit.fill,
                               errorBuilder: (context, error, stackTrace) {
                                 return Container(
@@ -133,8 +109,7 @@ class _SlectePhotoViewState extends State<SlectePhotoView> {
                                     child: IconButton(
                                       onPressed: () {
                                         setState(() {
-                                          _images.removeAt(index);
-                                          isDeleted = !isDeleted;
+                                          model.removeAt(index);
                                         });
                                       },
                                       icon: const Icon(
@@ -148,11 +123,33 @@ class _SlectePhotoViewState extends State<SlectePhotoView> {
                         );
                       },
                     ),
-                  )
-                : ButtonText(
+                  );
+                }
+                if (state is XrayInitial) {
+                  return ButtonText(
                     text: 'Selcte photo',
-                    onPressed: pickImages,
-                  ),
+                    onPressed: () {
+                      context.read<XrayCubit>().pickImages();
+                    },
+                  );
+                }
+                if (state is XrayLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(
+                        color: AppColors.primarycolor),
+                  );
+                }
+                if (state is XraySuccess) {
+                  return const Center(
+                    child: Icon(
+                      Icons.check_circle,
+                      color: AppColors.primarycolor,
+                    ),
+                  );
+                }
+                return const SizedBox.shrink();
+              },
+            ),
             // _images.isNotEmpty
             //     ? Expanded(
             //         child: GridView.builder(

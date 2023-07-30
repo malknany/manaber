@@ -35,7 +35,7 @@ class _VideoScreenState extends State<VideoScreen> {
         builder: (context, state) {
           if (state is VideoPlayEmpty) {
             return Center(
-              child: Text('No Video', style: AppTextStyles.smTitles),
+              child: Text('No Video Found ', style: AppTextStyles.smTitles),
             );
           }
           if (state is VideoPlayLoading) {
@@ -59,7 +59,7 @@ class _VideoScreenState extends State<VideoScreen> {
                       context.read<VideoPlayCubit>().deleteVideoFromApi(
                             id: model[index].patientId,
                             idVideo: model[index].id,
-                            url: model[index].url,
+                            url: model[index].urls.first,
                           );
                     },
                     name: model[index].name.isEmpty
@@ -69,7 +69,7 @@ class _VideoScreenState extends State<VideoScreen> {
                       navigateTo(
                           context,
                           VideoPlayScreen(
-                            urlVideo: model[index].url,
+                            urlVideo: model[index].urls[0],
                             title: model[index].name,
                           ));
                     },
