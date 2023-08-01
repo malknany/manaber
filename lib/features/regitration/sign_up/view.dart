@@ -23,8 +23,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController phone = TextEditingController();
 
   bool isPassword = true;
+  bool passwordConfi = true;
   JobType _jobType = JobType.DOCTOR;
-
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +40,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 textDirection: TextDirection.rtl,
                 children: [
                   Image.asset(AppImages.signup1),
-                  const Text(
+                  Text(
                     'انشاء حساب جديد',
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontFamily: 'Schyler',
-                        fontWeight: FontWeight.bold),
+                    style: AppTextStyles.boldtitles.copyWith(fontSize: 20),
+                    // TextStyle(
+                    //     fontSize: 20,
+                    //     color: Colors.black,
+                    //     fontFamily: 'Schyler',
+                    //     fontWeight: FontWeight.bold),
                   ),
                   TextFieldTemplate(
                     controller: name,
@@ -72,7 +73,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       return null;
                     },
                     textInputType: TextInputType.phone,
-                    hintText: 'رثم الهاتف',
+                    hintText: 'رقم الهاتف',
                     suffixIcon:
                         const Icon(Icons.phone, color: AppColors.primarycolor),
                   ),
@@ -121,7 +122,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       return null;
                     },
                     hintText: 'تأكيد كلمة السر',
-                    isPassword: isPassword,
+                    isPassword: passwordConfi,
                     suffixIcon: const Icon(
                       Icons.lock,
                       color: AppColors.primarycolor,
@@ -129,11 +130,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     prefixIcon: IconButton(
                       onPressed: () {
                         setState(() {
-                          isPassword = !isPassword;
+                          passwordConfi = !passwordConfi;
                         });
                       },
                       icon: Icon(
-                        isPassword ? Icons.visibility : Icons.visibility_off,
+                        passwordConfi ? Icons.visibility : Icons.visibility_off,
                         color: AppColors.grey,
                       ),
                     ),
@@ -210,27 +211,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               .copyWith(color: Colors.red, fontSize: 15),
                         );
                       }
-                      return SizedBox.shrink();
+                      return const SizedBox.shrink();
                     },
                   ),
-                  const Text(
+                  Text(
                     'او',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'Schyler',
-                        fontWeight: FontWeight.bold),
+                    style:
+                        AppTextStyles.boldtitles.copyWith(color: Colors.black),
                   ),
                   TextButton(
+                    style: const ButtonStyle(
+                      enableFeedback: false,
+                      overlayColor:
+                          MaterialStatePropertyAll(Colors.transparent),
+                    ),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: const Text(
-                      'تسجيل دخول',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'Schyler',
-                          fontWeight: FontWeight.bold),
-                    ),
+                    child: Text('تسجيل دخول',
+                        style: AppTextStyles.boldtitles
+                            .copyWith(color: Colors.black)),
                   )
                 ],
               ),
