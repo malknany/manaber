@@ -50,14 +50,9 @@ class _LogInScreenState extends State<LogInScreen> {
               textDirection: TextDirection.rtl,
               children: [
                 Image.asset(AppImages.login1),
-                const Text(
-                  'تسجيل الدخول ',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontFamily: 'Schyler',
-                      fontWeight: FontWeight.bold),
-                ),
+                Text('تسجيل الدخول ',
+                    style: AppTextStyles.boldtitles
+                        .copyWith(color: Colors.black, fontSize: 20)),
                 TextFieldTemplate(
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -70,7 +65,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   },
                   controller: phone,
                   textInputType: TextInputType.number,
-                  hintText: 'رثم الهاتف',
+                  hintText: 'رقم الهاتف',
                   suffixIcon: const Icon(
                     Icons.phone,
                     color: AppColors.primarycolor,
@@ -136,21 +131,14 @@ class _LogInScreenState extends State<LogInScreen> {
                       if (state.usersModel.role == 'DOCTOR') {
                         WidgetsBinding.instance
                             .addPostFrameCallback((timeStamp) {
-                          navigateAndFinished(
-                              context,
-                              Oursectiosn(
-                                // usersModel: state.usersModel,
-                              ));
+                          navigateAndFinished(context, const Oursectiosn());
                         });
                       }
                       if (state.usersModel.role == 'RECEPTIONIST') {
                         WidgetsBinding.instance
                             .addPostFrameCallback((timeStamp) {
                           navigateAndFinished(
-                              context,
-                              OurSectiosnReceptionist(
-                                  // usersModel: state.usersModel,
-                                  ));
+                              context, OurSectiosnReceptionist());
                         });
                       }
                       if (state.usersModel.role == 'ADMIN') {
@@ -163,7 +151,6 @@ class _LogInScreenState extends State<LogInScreen> {
                                   create: (context) => PendingCubit(),
                                   child: const AdminHomePage(),
                                 ));
-                            // if (result == 'refresh') {}
                           },
                         );
                       }
@@ -184,14 +171,19 @@ class _LogInScreenState extends State<LogInScreen> {
                     return const SizedBox.shrink();
                   },
                 ),
-                const Text(
+                Text(
                   'او',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontFamily: 'Schyler',
-                      fontWeight: FontWeight.bold),
+                  style: AppTextStyles.boldtitles.copyWith(color: Colors.black),
+                  //  TextStyle(
+                  //     color: Colors.black,
+                  //     fontFamily: 'Schyler',
+                  //     fontWeight: FontWeight.bold),
                 ),
                 TextButton(
+                  style: const ButtonStyle(
+                    enableFeedback: false,
+                    overlayColor: MaterialStatePropertyAll(Colors.transparent),
+                  ),
                   onPressed: () {
                     navigateTo(
                       context,
@@ -201,13 +193,14 @@ class _LogInScreenState extends State<LogInScreen> {
                       ),
                     );
                   },
-                  child: const Text(
-                    'تسجيل حساب جديد',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'Schyler',
-                        fontWeight: FontWeight.bold),
-                  ),
+                  child: Text('تسجيل حساب جديد',
+                      style:
+                          AppTextStyles.boldtitles.copyWith(color: Colors.black)
+                      // TextStyle(
+                      //     color: Colors.black,
+                      //     fontFamily: 'Schyler',
+                      //     fontWeight: FontWeight.bold),
+                      ),
                 )
               ],
             ),

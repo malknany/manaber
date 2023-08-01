@@ -55,7 +55,7 @@ class Oursectiosn extends StatelessWidget {
                     ),
                     SectionItem(
                       department: AppConstKey.speechTherapy,
-                      sectionname: 'تعديل سلوك واضطراب الطفولة',
+                      sectionname: 'تعديل سلوك ',
                       image: AppImages.conversational1,
                     )
                   ],

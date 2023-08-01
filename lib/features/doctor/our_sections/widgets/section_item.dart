@@ -48,8 +48,8 @@ class SectionItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(
-                  height: MediaQuery.sizeOf(context).height / 8,
-                  width: MediaQuery.sizeOf(context).width / 8,
+                  height: MediaQuery.sizeOf(context).height / 6,
+                  width: MediaQuery.sizeOf(context).width / 6,
                   child: Image.asset(
                     image,
                   ),

@@ -414,7 +414,7 @@ class ButtonText extends StatelessWidget {
             fontSize: 20,
             color: Colors.white,
             fontFamily: 'Schyler',
-            fontWeight: FontWeight.normal,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

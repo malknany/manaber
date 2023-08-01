@@ -1,17 +1,17 @@
-import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manaber/features/regitration/login/model.dart';
 import 'package:manaber/shared/network/local/const_key.dart';
 import 'package:manaber/shared/network/local/shared_preferences.dart';
 import 'package:manaber/shared/network/remote/dio_helper.dart';
 import 'package:manaber/shared/network/remote/end_points.dart';
-import 'package:meta/meta.dart';
 
 part 'log_in_state.dart';
 
 class LogInCubit extends Cubit<LoginStates> {
   LogInCubit() : super(LoginInitialStates());
-  
+
   void logInPostData({phone, password}) async {
     emit(LoginLoadingtState());
     try {
@@ -41,7 +41,26 @@ class LogInCubit extends Cubit<LoginStates> {
         print(e.message);
       }
     } catch (e) {
-      print(e.toString());
+      print("erorrrrrrrrrrrrrrrrrrrrrrrrrrr${e.toString()}");
     }
   }
 }
+
+_handelMsgError(String msg) {
+  if (msg == 'Invalid phone number or password.') {
+    return 'رقم الهاتف او كلمة السر غير صحيحة';
+  } else if (msg == 'Account not approved.') {
+    return 'في انتظار الموافقه على الطلب';
+  }
+  return msg;
+}
+
+// Future<bool> _checkInternetConnectivity() async {
+//   final connectivityResult = await Connectivity().checkConnectivity();
+//   if (connectivityResult == ConnectivityResult.mobile ||
+//       connectivityResult == ConnectivityResult.wifi) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }

@@ -6,7 +6,10 @@ import '../../../../../shared/styles/styles.dart';
 
 class SlectedItemProfile extends StatelessWidget {
   const SlectedItemProfile(
-      {super.key, required this.sectionname, required this.image,required this.onTap});
+      {super.key,
+      required this.sectionname,
+      required this.image,
+      required this.onTap});
   final String sectionname;
   final String image;
   final void Function()? onTap;
@@ -14,9 +17,9 @@ class SlectedItemProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:onTap ,
+      onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: Material(
           shadowColor: AppColors.primarycolor,
           elevation: 10,
@@ -27,15 +30,15 @@ class SlectedItemProfile extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             height: MediaQueryHelper.sizeFromHeight(context, 4.5),
-            width: MediaQueryHelper.sizeFromWidth(context, 1.2),
-            child: Column(
+            // width: MediaQueryHelper.sizeFromWidth(context, 1.2),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(
-                  height: MediaQuery.sizeOf(context).height / 10,
+                  height: MediaQuery.sizeOf(context).height / 6,
+                  width: MediaQuery.sizeOf(context).width / 6,
                   child: Image.asset(
                     image,
-                    height: 100,
                   ),
                 ),
                 Text(

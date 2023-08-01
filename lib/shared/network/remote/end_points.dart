@@ -14,6 +14,7 @@ const treatments = 'treatments/';
 const media = 'media/';
 const videos = 'media/videos/';
 const xray = 'media/xrays/';
+const patients = 'patients/';
 // const GETPROFIL = 'customer/get';
 // const EDITPROFIL = 'customer/profile';
 // const LOGOUT = 'logout';

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manaber/features/doctor/form_medical/conversational/conversational_view/view.dart';
+import 'package:manaber/features/doctor/form_medical/conversational/stepper/controler.dart';
+import 'package:manaber/features/doctor/form_medical/cubit/pateint_info_cubit.dart';
 import 'package:manaber/features/doctor/profile_pationt/tretment_plan/cubit/tretment_plan_cubit.dart';
 import 'package:manaber/features/doctor/profile_pationt/video/cubit/video_play_cubit.dart';
 import 'package:manaber/features/doctor/profile_pationt/x-ray/cubit/xray_cubit.dart';
 import 'package:manaber/shared/network/local/const_key.dart';
-import '../../conversational/conversational_view/view.dart';
-import '../../conversational/stepper/controler.dart';
-import '../../file_assa/info_view/view.dart';
-import '../../file_assa/stpper/controller.dart';
-import '../../occupation_therapy/info_occupation_view/view.dart';
-import '../../occupation_therapy/stepper/controler.dart';
+
+import '../../form_medical/file_assa/info_view/view.dart';
+import '../../form_medical/file_assa/stpper/controller.dart';
+import '../../form_medical/occupation_therapy/info_occupation_view/view.dart';
+import '../../form_medical/occupation_therapy/stepper/controler.dart';
 import 'widget/slection_item_profile.dart';
 import '../tretment_plan/view.dart';
 import '../video/view.dart';
@@ -55,37 +57,49 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(
-            child: GridView(
+            child: ListView(
               shrinkWrap: true,
               padding: const EdgeInsets.symmetric(vertical: 30),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 20,
-              ),
+              // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              //   crossAxisCount: 2,
+              //   mainAxisSpacing: 10,
+              //   crossAxisSpacing: 20,
+              // ),
               children: [
                 SlectedItemProfile(
                     onTap: () {
                       widget.department == AppConstKey.physicalTherapy
                           ? navigateTo(
                               context,
-                              FileAssassemntView(
-                                  control: control,
-                                  controlBodyFunction: controlBodyFunction,
-                                  controlGoalsAndNote: controlGoalsAndNote,
-                                  controlActivityAndActivityLimitation:
-                                      controlActivityAndActivityLimitation))
+                              BlocProvider(
+                                create: (context) => PateintInfoCubit(),
+                                child: FileAssassemntView(
+                                    id: widget.id,
+                                    control: control,
+                                    controlBodyFunction: controlBodyFunction,
+                                    controlGoalsAndNote: controlGoalsAndNote,
+                                    controlActivityAndActivityLimitation:
+                                        controlActivityAndActivityLimitation),
+                              ))
                           : widget.department == AppConstKey.occupationalTherapy
                               ? navigateTo(
                                   context,
-                                  InfoOccupationScreen(
-                                    controleOccupation: controleOccupation,
+                                  BlocProvider(
+                                    create: (context) => PateintInfoCubit(),
+                                    child: InfoOccupationScreen(
+                                      id: widget.id,
+                                      controleOccupation: controleOccupation,
+                                    ),
                                   ))
                               : navigateTo(
                                   context,
-                                  InfoConversationScreen(
-                                    controleConversational:
-                                        controleConversational,
+                                  BlocProvider(
+                                    create: (context) => PateintInfoCubit(),
+                                    child: InfoConversationScreen(
+                                      id: widget.id,
+                                      controleConversational:
+                                          controleConversational,
+                                    ),
                                   ));
                     },
                     sectionname: widget.department ==

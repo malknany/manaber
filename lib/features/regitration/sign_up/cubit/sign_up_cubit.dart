@@ -29,7 +29,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         print(e.response!.data);
         print(e.response!.statusCode);
         print(e.response!.statusMessage);
-        emit(SignUpErorr(msg: e.response!.data['message']));
+        emit(SignUpErorr(msg: _handelMsgError(e.response!.data['message'])));
       } else {
         print(e.message);
       }
@@ -38,4 +38,11 @@ class SignUpCubit extends Cubit<SignUpState> {
     }
     // emit(SignUpInitial());
   }
+}
+
+_handelMsgError(String msg) {
+  if (msg == 'Phone number already used.') {
+    return 'رقم الهاتف مسجل بالفعل';
+  }
+  return msg;
 }
