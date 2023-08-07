@@ -21,13 +21,14 @@ class FileAssassemntView extends StatefulWidget {
       required this.control,
       required this.controlBodyFunction,
       required this.controlGoalsAndNote,
-      required this.controlActivityAndActivityLimitation});
+      required this.controlActivityAndActivityLimitation,required this.controleFileAssesment});
 
   final StepperControlPatientInfo control;
   final StepperControlBodyFunction controlBodyFunction;
   final StepperControlGoalsAndNote controlGoalsAndNote;
   final StepperControlActivityAndActivityLimitation
       controlActivityAndActivityLimitation;
+    final ControleFileAssesment controleFileAssesment;
 
   final String id;
   @override
@@ -49,6 +50,7 @@ class _FileAssassemntViewState extends State<FileAssassemntView> {
             final result = await navigateTo(
               context,
               FileStteper(
+                controleFileAssesment:widget.controleFileAssesment ,
                   controle: widget.control,
                   controlBodyFunction: widget.controlBodyFunction,
                   controlActivityAndActivityLimitation:
@@ -108,7 +110,7 @@ class _FileAssassemntViewState extends State<FileAssassemntView> {
                         ),
                       );
                     }
-                    if (state is ConversationPateintSuccess) {
+                    if (state is PateintSuccess) {
                       state.listOfInfoPatient;
                       return Column(
                         children: [

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manaber/features/doctor/form_medical/cubit/pateint_info_cubit.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import 'package:manaber/shared/styles/styles.dart';
 import 'widget/BehaviorADLS_view.dart';
 import 'widget/Occupational_perform_view.dart';
@@ -48,10 +49,14 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
             final resulte = await navigateTo(
                 context,
                 StepperOccupation(
+                  listOfInfoPatient:
+                      context.read<PateintInfoCubit>().listOfInfoPatient,
+                  id: widget.id,
                   controleOccupation: widget.controleOccupation,
                 ));
             if (resulte == 'refresh') {
-              setState(() {});
+              BlocProvider.of<PateintInfoCubit>(context)
+                  .getPatinetFromApi(widget.id);
             }
           },
           backgroundColor: AppColors.primarycolor,
@@ -103,8 +108,29 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
                         ),
                       );
                     }
-                    if (state is ConversationPateintSuccess) {
-                      state.listOfInfoPatient;
+                    if (state is PateintSuccess) {
+                      final List<ModelPatientInfo> personalHistory = [];
+                      final List<ModelPatientInfo> associatedDisorders = [];
+                      final List<ModelPatientInfo> bodyFunctionAndStrucer = [];
+                      final List<ModelPatientInfo> behaviorAndADLS = [];
+                      final List<ModelPatientInfo> note = [];
+                      for (final person in state.listOfInfoPatient) {
+                        if (person.section == 'Personal History') {
+                          personalHistory.add(person);
+                        }
+                        if (person.section == 'Associated Disorders') {
+                          associatedDisorders.add(person);
+                        }
+                        if (person.section == 'Body Function and Structure') {
+                          bodyFunctionAndStrucer.add(person);
+                        }
+                        if (person.section == 'Behavior and ADLS') {
+                          behaviorAndADLS.add(person);
+                        }
+                        if (person.section == 'Occupation Performance') {
+                          note.add(person);
+                        }
+                      }
                       return Column(
                         children: [
                           ButtonText(
@@ -113,8 +139,7 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
                                 navigateTo(
                                   context,
                                   PersonalHistoryView(
-                                    controleOccupation:
-                                        widget.controleOccupation,
+                                    personalHistory: personalHistory,
                                   ),
                                 );
                               },
@@ -125,8 +150,7 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
                                 navigateTo(
                                   context,
                                   AssociatedDisordersView(
-                                    controleOccupation:
-                                        widget.controleOccupation,
+                                    associatedDisorders: associatedDisorders,
                                   ),
                                 );
                               },
@@ -137,8 +161,8 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
                                 navigateTo(
                                   context,
                                   BodyFunctionAndStrucerView(
-                                    controleOccupation:
-                                        widget.controleOccupation,
+                                    bodyFunctionAndStrucer:
+                                        bodyFunctionAndStrucer,
                                   ),
                                 );
                               },
@@ -149,8 +173,9 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
                                 navigateTo(
                                   context,
                                   BehaviorADLSView(
-                                    controleOccupation:
-                                        widget.controleOccupation,
+                                    behaviorADLS: behaviorAndADLS,
+                                    // controleOccupation:
+                                    //     widget.controleOccupation,
                                   ),
                                 );
                               },
@@ -161,8 +186,7 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
                                 navigateTo(
                                   context,
                                   OccupationalPerformanceView(
-                                    controleOccupation:
-                                        widget.controleOccupation,
+                                    occupationalPerformance: note,
                                   ),
                                 );
                               },
@@ -173,8 +197,7 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
                                 navigateTo(
                                     context,
                                     NoteOccupationalView(
-                                      controleOccupation:
-                                          widget.controleOccupation,
+                                      noteOccupational: note,
                                     ));
                               },
                               borderRadius: 7),

@@ -17,9 +17,9 @@ class PateintErrorMsg extends PateintInfoState {
 
 class PateintEmpty extends PateintInfoState {}
 
-class ConversationPateintSuccess extends PateintInfoState {
-  final List<ModelPatientInfo> listOfInfoPatient;
-  ConversationPateintSuccess({
+class PateintSuccess extends PateintInfoState {
+  final List<ModelPatientInfo> listOfInfoPatient;  
+  PateintSuccess({
     required this.listOfInfoPatient,
   });
 }

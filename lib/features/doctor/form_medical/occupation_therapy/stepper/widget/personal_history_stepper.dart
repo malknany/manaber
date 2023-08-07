@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import 'package:manaber/features/doctor/form_medical/occupation_therapy/stepper/model.dart';
 import '../controler.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 
 class PersonalHistory extends StatelessWidget {
-  const PersonalHistory({super.key, required this.controleOccupation});
-  // final StepperPersonalHistory controlerPersonal;
+  const PersonalHistory({super.key, required this.controleOccupation,required this.personalHistory});
   final ControleOccupation controleOccupation;
+  final List<ModelPatientInfo> personalHistory;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +35,7 @@ class PersonalHistory extends StatelessWidget {
               }
               if (model is ModelTextFiledOccupation) {
                 return TextFormFiledStepper(
+                  hintText: personalHistory[index].answer??'',
                     textInputType: model.textInputType,
                     labelname: model.labelname,
                     textEditingController: model.textEditingController);

@@ -74,6 +74,8 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                               BlocProvider(
                                 create: (context) => PateintInfoCubit(),
                                 child: FileAssassemntView(
+                                    controleFileAssesment:
+                                        controleFileAssesment,
                                     id: widget.id,
                                     control: control,
                                     controlBodyFunction: controlBodyFunction,

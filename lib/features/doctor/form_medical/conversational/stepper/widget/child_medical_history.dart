@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 import '../controler.dart';
 
 class ChildMedicalAndMedicalHistory extends StatelessWidget {
   const ChildMedicalAndMedicalHistory(
-      {super.key, required this.controleConversational});
+      {super.key,
+      required this.controleConversational,
+      required this.childMedicalAndMedicalHistory});
   final ControleConversational controleConversational;
+  final List<ModelPatientInfo> childMedicalAndMedicalHistory;
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +29,14 @@ class ChildMedicalAndMedicalHistory extends StatelessWidget {
                 .listOfChildMedicalAndMedicalHistory.length,
             itemBuilder: (context, index) {
               return TextFormFiledStepper(
+                hintText:
+                    childMedicalAndMedicalHistory[index].answer == 'لايوجد'
+                        ? ''
+                        : childMedicalAndMedicalHistory[index].answer,
                 textDirection: TextDirection.rtl,
                 textEditingController: controleConversational
                     .listOfChildMedicalAndMedicalHistory[index].controle,
-                labelname: controleConversational
-                    .listOfChildMedicalAndMedicalHistory[index].lable,
+                labelname: childMedicalAndMedicalHistory[index].question!,
               );
             },
           )),

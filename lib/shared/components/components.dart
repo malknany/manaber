@@ -425,6 +425,7 @@ class ButtonText extends StatelessWidget {
 class TextFormFiledStepper extends StatelessWidget {
   const TextFormFiledStepper(
       {super.key,
+      this.hintText,
       this.validator,
       required this.textEditingController,
       required this.labelname,
@@ -435,6 +436,7 @@ class TextFormFiledStepper extends StatelessWidget {
   final TextInputType textInputType;
   final TextEditingController textEditingController;
   final TextDirection textDirection;
+  final String? hintText;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -468,6 +470,7 @@ class TextFormFiledStepper extends StatelessWidget {
                 width: 2,
               ),
             ),
+            hintText: hintText,
             labelText: labelname,
             labelStyle: TextStyle(
               color: Colors.black.withOpacity(0.26),

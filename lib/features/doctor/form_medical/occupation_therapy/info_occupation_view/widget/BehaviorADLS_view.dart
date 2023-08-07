@@ -1,15 +1,16 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/occupation_therapy/stepper/model.dart';
-import '../../stepper/controler.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 import '../../../../../../shared/styles/images.dart';
 
 class BehaviorADLSView extends StatelessWidget {
-  const BehaviorADLSView({super.key, required this.controleOccupation});
-  final ControleOccupation controleOccupation;
+  const BehaviorADLSView(
+      {super.key,
+      required this.behaviorADLS});
+  final List<ModelPatientInfo> behaviorADLS;
 
   @override
   Widget build(BuildContext context) {
@@ -51,30 +52,23 @@ class BehaviorADLSView extends StatelessWidget {
                       fontWeight: FontWeight.normal),
                 ),
                 const SizedBox(height: 16.0),
-                ListView.builder(
+                ListView.separated(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: controleOccupation.listOfBehaviorADLS.length,
+                  itemCount: behaviorADLS.length,
                   itemBuilder: (context, index) {
-                    var model = controleOccupation.listOfBehaviorADLS[index];
-                    if (model is ModelDropDownOccupation) {
-                      return InfoRowItem(
-                        value: model.textEditingController.text,
-                        title: model.lableName,
+                    var model = behaviorADLS[index];
+                    return InfoRowItem(
+                      value: model.answer ?? "",
+                      title: model.question!,
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    if (index == 4) {
+                      return const DividerItem(
+                        text: 'A.D.L.S',
                       );
                     }
-                    if (model is ModelTextFiledOccupation) {
-                      return InfoRowItem(
-                        value: model.textEditingController.text,
-                        title: model.labelname,
-                      );
-                    }
-                    if (model is ModelDividerOccupation) {
-                      return DividerItem(
-                        text: model.text,
-                      );
-                    }
-
                     return const SizedBox.shrink();
                   },
                 ),

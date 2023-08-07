@@ -18,13 +18,16 @@ class FileStteper extends StatelessWidget {
       required this.controle,
       required this.controlBodyFunction,
       required this.controlActivityAndActivityLimitation,
-      required this.controlGoalsAndNote})
+      required this.controlGoalsAndNote,
+      required this.controleFileAssesment})
       : super(key: key);
   final StepperControlPatientInfo controle;
   final StepperControlBodyFunction controlBodyFunction;
   final StepperControlGoalsAndNote controlGoalsAndNote;
   final StepperControlActivityAndActivityLimitation
       controlActivityAndActivityLimitation;
+
+  final ControleFileAssesment controleFileAssesment;
 
   final PageController _pageController = PageController();
 
@@ -51,12 +54,21 @@ class FileStteper extends StatelessWidget {
             child: PageView(
               controller: _pageController,
               children: [
-                PatientInformation(stepperControl: controle),
+                PatientInformation(
+                    // stepperControl: controle,
+                    controleFileAssesment: controleFileAssesment),
                 ICFBodyfunctionAndstructure(
-                    controlBodyFunction: controlBodyFunction),
+                  controleFileAssesment: controleFileAssesment,
+                    // controlBodyFunction: controlBodyFunction
+                    ),
                 NeurologicalExamination(
-                    controlBodyFunction: controlBodyFunction),
-                MotorSystem(controlBodyFunction: controlBodyFunction),
+                  controleFileAssesment: controleFileAssesment,
+                    // controlBodyFunction: controlBodyFunction
+                    ),
+                MotorSystem(
+                  controleFileAssesment: controleFileAssesment,
+                  // controlBodyFunction: controlBodyFunction
+                  ),
                 LevelofSelectivity(controlBodyFunction: controlBodyFunction),
                 MuscloskeletalExamination(
                     controlBodyFunction: controlBodyFunction),

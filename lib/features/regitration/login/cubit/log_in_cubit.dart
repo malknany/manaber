@@ -39,6 +39,7 @@ class LogInCubit extends Cubit<LoginStates> {
         emit(LoginErrorState(msg: e.response!.data['message']));
       } else {
         print(e.message);
+        emit(LoginErrorState(msg: e.message!));
       }
     } catch (e) {
       print("erorrrrrrrrrrrrrrrrrrrrrrrrrrr${e.toString()}");

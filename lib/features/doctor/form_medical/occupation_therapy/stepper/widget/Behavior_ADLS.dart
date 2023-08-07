@@ -1,14 +1,15 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import 'package:manaber/features/doctor/form_medical/occupation_therapy/stepper/controler.dart';
 import 'package:manaber/features/doctor/form_medical/occupation_therapy/stepper/model.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
 class BehaviorADLS extends StatelessWidget {
-  const BehaviorADLS({super.key, required this.controleOccupation});
-  // final StepperBehaviorADLS controlerBehaviorADLS;
+  const BehaviorADLS({super.key, required this.controleOccupation,required this.behaviorADLS});
+  final List<ModelPatientInfo> behaviorADLS;
   final ControleOccupation controleOccupation;
 
   @override
@@ -36,6 +37,7 @@ class BehaviorADLS extends StatelessWidget {
               }
               if (model is ModelTextFiledOccupation) {
                 return TextFormFiledStepper(
+                  hintText: behaviorADLS[index].answer??'',
                     textInputType: model.textInputType,
                     labelname: model.labelname,
                     textEditingController: model.textEditingController);
@@ -44,10 +46,9 @@ class BehaviorADLS extends StatelessWidget {
                 return DividerItem(text: model.text);
               }
 
-              return SizedBox.shrink();
+              return const SizedBox.shrink();
             },
           )),
     );
   }
 }
-

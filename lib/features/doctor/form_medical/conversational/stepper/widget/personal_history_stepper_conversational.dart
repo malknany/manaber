@@ -29,12 +29,13 @@ class PersonalHistoryConversational extends StatelessWidget {
             itemCount: controleConversational.listOfPersonal.length,
             itemBuilder: (context, index) {
               return TextFormFiledStepper(
+                  hintText: personalHistory[index].answer == 'لايوجد'
+                      ? ''
+                      : personalHistory[index].answer,
                   textDirection: TextDirection.rtl,
                   textEditingController:
                       controleConversational.listOfPersonal[index].controle,
-                  labelname: personalHistory[index].answer == 'لايوجد'
-                      ? personalHistory[index].question!
-                      : personalHistory[index].answer!);
+                  labelname: personalHistory[index].question!);
             },
           )),
     );

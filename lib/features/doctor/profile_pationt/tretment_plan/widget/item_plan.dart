@@ -30,11 +30,14 @@ class ItemPlan extends StatelessWidget {
           elevation: 10,
           borderRadius: BorderRadius.circular(20),
           child: Dismissible(
-            direction: DismissDirection.startToEnd,
+            direction: DismissDirection.endToStart,
             background: Container(
-              color: Colors.red,
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(20),
+              ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   const Icon(Icons.delete, color: Colors.white),
                   Text(

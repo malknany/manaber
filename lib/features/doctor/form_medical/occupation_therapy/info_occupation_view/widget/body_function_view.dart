@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/occupation_therapy/stepper/model.dart';
-import '../../stepper/controler.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 import '../../../../../../shared/styles/images.dart';
 
 class BodyFunctionAndStrucerView extends StatelessWidget {
   const BodyFunctionAndStrucerView(
-      {super.key, required this.controleOccupation});
-  final ControleOccupation controleOccupation;
+      {super.key,
+
+      required this.bodyFunctionAndStrucer});
+
+  final List<ModelPatientInfo> bodyFunctionAndStrucer;
 
   @override
   Widget build(BuildContext context) {
@@ -50,37 +52,32 @@ class BodyFunctionAndStrucerView extends StatelessWidget {
                       fontWeight: FontWeight.normal),
                 ),
                 const SizedBox(height: 16.0),
-                ListView.builder(
+                ListView.separated(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount:
-                      controleOccupation.listOfBodyFunctionStrucer.length,
+                  itemCount: bodyFunctionAndStrucer.length,
                   itemBuilder: (context, index) {
-                    var model =
-                        controleOccupation.listOfBodyFunctionStrucer[index];
-                    // !
-                    if (model is ModelDropDownOccupation) {
-                      return RowItemRightLeft(
-                          right: controleOccupation.controleBodyFunctionStrucer
-                              .neuromuscularStatusUpperLimb.text,
-                          left: controleOccupation.controleBodyFunctionStrucer
-                              .neuromuscularStatusLowerLimb.text,
-                          title: model.lableName,
-                          tilteRight: 'UpperL',
-                          titleLeft: 'LowerL');
-                    }
-                    if (model is ModelTextFiledOccupation) {
-                      return InfoRowItem(
-                        value: model.textEditingController.text,
-                        title: model.labelname,
+                    var model = bodyFunctionAndStrucer[index];
+                    if (index == 0) {
+                      return Column(
+                        children: [
+                          const DividerItem(text: 'Neuromuscular Status'),
+                          InfoRowItem(
+                            value: model.answer ?? '',
+                            title: model.question!,
+                          ),
+                        ],
                       );
                     }
-                    if (model is ModelDividerOccupation) {
-                      return DividerItem(
-                        text: model.text,
-                      );
+                    return InfoRowItem(
+                      value: model.answer ?? '',
+                      title: model.question!,
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    if (index == 2) {
+                      return const DividerItem(text: 'Balance');
                     }
-
                     return const SizedBox.shrink();
                   },
                 ),

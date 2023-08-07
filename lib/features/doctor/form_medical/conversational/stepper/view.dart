@@ -71,14 +71,18 @@ class StepperConversational extends StatelessWidget {
                   controleConversational: controleConversational,
                 ),
                 MedicalAndGeneticHistoryOfTheFamily(
+                    medicalAndGeneticHistoryOfTheFamily: medicalGenetic,
                     controleConversational: controleConversational),
                 ChildMedicalAndMedicalHistory(
+                    childMedicalAndMedicalHistory: childMedical,
                     controleConversational: controleConversational),
                 ChildDevelopmentalHistory(
+                    childDevelopmentalHistory: childDevelopment,
                     controleConversational: controleConversational),
                 BlocProvider(
                   create: (context) => PateintInfoCubit(),
                   child: NoteConversation(
+                    noteConversation: note,
                     controleConversational: controleConversational,
                     id: id,
                   ),
