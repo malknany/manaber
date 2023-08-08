@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/form_medical/conversational/conversational_view/view.dart';
-import 'package:manaber/features/doctor/form_medical/conversational/stepper/controler.dart';
-import 'package:manaber/features/doctor/form_medical/cubit/pateint_info_cubit.dart';
-import 'package:manaber/features/doctor/profile_pationt/tretment_plan/cubit/tretment_plan_cubit.dart';
-import 'package:manaber/features/doctor/profile_pationt/video/cubit/video_play_cubit.dart';
-import 'package:manaber/features/doctor/profile_pationt/x-ray/cubit/xray_cubit.dart';
-import 'package:manaber/shared/network/local/const_key.dart';
+import '../../form_medical/conversational/conversational_view/view.dart';
+import '../../form_medical/conversational/stepper/controler.dart';
+import '../../form_medical/cubit/pateint_info_cubit.dart';
+import '../tretment_plan/cubit/tretment_plan_cubit.dart';
+import '../video/cubit/video_play_cubit.dart';
+import '../x-ray/cubit/xray_cubit.dart';
+import '../../../../shared/network/local/const_key.dart';
 
 import '../../form_medical/file_assa/info_view/view.dart';
 import '../../form_medical/file_assa/stpper/controller.dart';
@@ -23,7 +23,7 @@ class ProfilePationtScreen extends StatefulWidget {
   const ProfilePationtScreen(
       {super.key, required this.department, required this.id});
   final String department;
-  final id;
+  final String id;
 
   @override
   State<ProfilePationtScreen> createState() => _ProfilePationtScreenState();

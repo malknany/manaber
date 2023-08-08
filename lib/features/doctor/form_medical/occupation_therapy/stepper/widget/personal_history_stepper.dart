@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/model.dart';
-import 'package:manaber/features/doctor/form_medical/occupation_therapy/stepper/model.dart';
+import '../../../model.dart';
+import '../model.dart';
 import '../controler.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';

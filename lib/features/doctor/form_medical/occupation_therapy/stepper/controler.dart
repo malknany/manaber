@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:manaber/features/doctor/form_medical/occupation_therapy/stepper/model.dart';
+import 'model.dart';
 
 // 
 class OccupationPreformanceTEC {

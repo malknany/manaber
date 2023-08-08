@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/profile_doctor/edite_profile/cubit/edite_profile_doctor_cubit.dart';
-import 'package:manaber/models/profile.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import 'cubit/edite_profile_doctor_cubit.dart';
+import '../../../../models/profile.dart';
+import '../../../../shared/styles/colors.dart';
+import '../../../../shared/styles/styles.dart';
 import '../../../../shared/components/components.dart';
 
 class EditeProfileDoctorScreen extends StatelessWidget {
@@ -99,7 +99,7 @@ class EditeProfileDoctorScreen extends StatelessWidget {
                             .copyWith(color: Colors.red, fontSize: 15),
                       );
                     }
-                    return SizedBox.shrink();
+                    return const SizedBox.shrink();
                   },
                 ),
               ],

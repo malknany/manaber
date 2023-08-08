@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/profile_doctor/edite_profile/cubit/edite_profile_doctor_cubit.dart';
-import 'package:manaber/features/doctor/profile_doctor/profile/cubit/profile_doctor_cubit.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import '../edite_profile/cubit/edite_profile_doctor_cubit.dart';
+import 'cubit/profile_doctor_cubit.dart';
+import '../../../../shared/styles/colors.dart';
 import '../edite_profile/view.dart';
 import 'widget/item_card_doctor.dart';
 import '../../../../shared/components/constants.dart';

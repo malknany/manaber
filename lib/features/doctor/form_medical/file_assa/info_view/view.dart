@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/form_medical/cubit/pateint_info_cubit.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../cubit/pateint_info_cubit.dart';
+import '../../model.dart';
+import '../../../../../shared/styles/styles.dart';
 import 'widget/activity&activity.dart';
 import 'widget/goalsview.dart';
 import 'widget/icf_body.dart';
@@ -51,11 +52,12 @@ class _FileAssassemntViewState extends State<FileAssassemntView> {
               context,
               FileStteper(
                 controleFileAssesment:widget.controleFileAssesment ,
-                  controle: widget.control,
-                  controlBodyFunction: widget.controlBodyFunction,
-                  controlActivityAndActivityLimitation:
-                      widget.controlActivityAndActivityLimitation,
-                  controlGoalsAndNote: widget.controlGoalsAndNote),
+                  // controle: widget.control,
+                  // controlBodyFunction: widget.controlBodyFunction,
+                  // controlActivityAndActivityLimitation:
+                  //     widget.controlActivityAndActivityLimitation,
+                  // controlGoalsAndNote: widget.controlGoalsAndNote
+                  ),
             );
             if (result == 'refresh') {
               setState(() {});
@@ -111,7 +113,28 @@ class _FileAssassemntViewState extends State<FileAssassemntView> {
                       );
                     }
                     if (state is PateintSuccess) {
-                      state.listOfInfoPatient;
+                      final List<ModelPatientInfo> personalHistory = [];
+                      final List<ModelPatientInfo> medicalGenetic = [];
+                      final List<ModelPatientInfo> childMedical = [];
+                      final List<ModelPatientInfo> childDevelopment = [];
+                      final List<ModelPatientInfo> note = [];
+                      for (final person in state.listOfInfoPatient) {
+                        if (person.section == 'Patient Information') {
+                          personalHistory.add(person);
+                        }
+                        if (person.section == 'ICF Body Function and Structure') {
+                          medicalGenetic.add(person);
+                        }
+                        if (person.section == 'child_medical') {
+                          childMedical.add(person);
+                        }
+                        if (person.section == 'child_development') {
+                          childDevelopment.add(person);
+                        }
+                        if (person.section == 'note') {
+                          note.add(person);
+                        }
+                      }
                       return Column(
                         children: [
                           ButtonText(
@@ -120,7 +143,8 @@ class _FileAssassemntViewState extends State<FileAssassemntView> {
                                 navigateTo(
                                     context,
                                     PatientInfoView(
-                                      stepperControl: widget.control,
+                                      personalHistory: personalHistory,
+                                      // stepperControl: widget.control,
                                     ));
                               },
                               borderRadius: 7),

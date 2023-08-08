@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import '../../../../../shared/styles/colors.dart';
 import '../model.dart';
 
 class XrayDataView extends StatelessWidget {

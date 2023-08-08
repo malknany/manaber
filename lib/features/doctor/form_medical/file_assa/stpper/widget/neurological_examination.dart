@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/file_assa/stpper/model.dart';
+import '../model.dart';
 import '../controller.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';

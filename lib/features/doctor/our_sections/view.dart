@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/profile_doctor/profile/cubit/profile_doctor_cubit.dart';
-import 'package:manaber/shared/network/local/const_key.dart';
+import '../profile_doctor/profile/cubit/profile_doctor_cubit.dart';
+import '../../../shared/network/local/const_key.dart';
 import 'widgets/section_item.dart';
 import '../profile_doctor/profile/view.dart';
 import '../../../shared/components/navigator.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/file_assa/stpper/model.dart';
+import 'model.dart';
 // import 'package:manaber/features/file_assa/stpper/widget/ICF_body_function_structure.dart';
 
 class StepperControlPatientInfo {
@@ -210,10 +210,20 @@ class ControleFileAssesment {
       StepperControlPatientInfo();
   final StepperControlBodyFunction controlBodyFunction =
       StepperControlBodyFunction();
+  final StepperControlActivityAndActivityLimitation
+      controlActivityAndActivityLimitation =
+      StepperControlActivityAndActivityLimitation();
+  final StepperControlGoalsAndNote controlGoalsAndNote =
+      StepperControlGoalsAndNote();
   List listPatientInfo = [];
   List listicfBody = [];
   List listNeurological = [];
   List listMotor = [];
+  List listlevelOfSelctivity = [];
+  List listMuscloskelton = [];
+  List listRom = [];
+  List listParticipation = [];
+  List listGoal = [];
   ControleFileAssesment() {
     listPatientInfo = [
       TextFormFiledStepperModel(
@@ -603,6 +613,160 @@ class ControleFileAssesment {
           labelName: 'Muscle Bulk',
           controller: controlBodyFunction.muscleBulk,
           itemList: ['Atrophy', 'Less than normal', 'Normal', 'speudo trophy'])
+    ];
+    listlevelOfSelctivity = [
+      DropdownButtonItemModel(
+          controller: controlBodyFunction.upperLimb,
+          labelName: 'Upper limb',
+          itemList: const ['No', 'Poor', 'Moderate', 'Normal']),
+      DropdownButtonItemModel(
+          controller: controlBodyFunction.lowerLimb,
+          labelName: 'Lower limb ',
+          itemList: const ['No', 'Poor', 'Moderate', 'Normal']),
+      BottomSheetFileAssModel(itemList: [
+        TextFormFiledRightLiftModel(
+            labelName: 'Gluteal',
+            controllerRight: controlBodyFunction.glutealMuscleRight,
+            controllerLeft: controlBodyFunction.glutealMuscleLeft),
+        TextFormFiledRightLiftModel(
+            labelName: 'Abductors',
+            controllerRight: controlBodyFunction.abductorsMuscleRight,
+            controllerLeft: controlBodyFunction.abductorsMuscleLeft),
+        TextFormFiledRightLiftModel(
+            labelName: 'Addoctors',
+            controllerRight: controlBodyFunction.adductorsMuscleRight,
+            controllerLeft: controlBodyFunction.adductorsMuscleLeft),
+        TextFormFiledRightLiftModel(
+            labelName: 'Hip flexors',
+            controllerRight: controlBodyFunction.hipFlexorsMuscleRight,
+            controllerLeft: controlBodyFunction.hipFlexorsMuscleLeft),
+        TextFormFiledRightLiftModel(
+            labelName: 'Quadriceps',
+            controllerRight: controlBodyFunction.quadricepsMuscleRight,
+            controllerLeft: controlBodyFunction.quadricepsMuscleLeft),
+        TextFormFiledRightLiftModel(
+            labelName: 'Hamstring',
+            controllerRight: controlBodyFunction.hamstringMuscleRight,
+            controllerLeft: controlBodyFunction.hamstringMuscleLeft),
+        TextFormFiledRightLiftModel(
+            labelName: 'Planter flexors',
+            controllerRight: controlBodyFunction.planterFlexorsMuscleRight,
+            controllerLeft: controlBodyFunction.planterFlexorsMuscleLeft),
+        TextFormFiledRightLiftModel(
+            labelName: 'Dorsiflexors',
+            controllerRight: controlBodyFunction.dorsiflexorsMuscleRight,
+            controllerLeft: controlBodyFunction.dorsiflexorsMuscleLeft),
+        TextFormFiledRightLiftModel(
+            labelName: 'Shoulder flexors',
+            controllerRight: controlBodyFunction.shoulderFlexorsMuscleRight,
+            controllerLeft: controlBodyFunction.shoulderFlexorsMuscleLeft),
+        TextFormFiledRightLiftModel(
+            labelName: 'Shoulder Extensors',
+            controllerRight: controlBodyFunction.shoulderExtensorsMuscleRight,
+            controllerLeft: controlBodyFunction.shoulderExtensorsMuscleLeft),
+        TextFormFiledRightLiftModel(
+            labelName: 'Shoulder Abductors',
+            controllerRight: controlBodyFunction.shoulderAbductorsMuscleRight,
+            controllerLeft: controlBodyFunction.shoulderAbductorsMuscleLeft),
+        TextFormFiledRightLiftModel(
+            labelName: 'Elbow Flexors',
+            controllerRight: controlBodyFunction.elbowFlexorsMuscleRight,
+            controllerLeft: controlBodyFunction.elbowFlexorsMuscleLeft),
+        TextFormFiledRightLiftModel(
+            labelName: 'Elbow Extensors',
+            controllerRight: controlBodyFunction.elbowExtensorsMuscleRight,
+            controllerLeft: controlBodyFunction.elbowExtensorsMuscleLeft),
+        TextFormFiledRightLiftModel(
+            labelName: 'Wrist Flexors',
+            controllerRight: controlBodyFunction.wristFlexorsMuscleRight,
+            controllerLeft: controlBodyFunction.wristFlexorsMuscleLeft),
+        TextFormFiledRightLiftModel(
+            labelName: 'Wrist Extensors',
+            controllerRight: controlBodyFunction.wristExtensorsMuscleRight,
+            controllerLeft: controlBodyFunction.wristExtensorsMuscleLeft),
+        TextFormFiledRightLiftModel(
+            labelName: 'Finger Flexors',
+            controllerRight: controlBodyFunction.fingerFlexorsMuscleRight,
+            controllerLeft: controlBodyFunction.fingerFlexorsMuscleLeft),
+        TextFormFiledRightLiftModel(
+            labelName: 'Finger Extensors',
+            controllerRight: controlBodyFunction.fingerExtensorsMuscleRight,
+            controllerLeft: controlBodyFunction.fingerExtensorsMuscleLeft),
+      ], name: 'Muscle'),
+    ];
+    listMuscloskelton = [
+      TextFormFiledStepperModel(
+          labelName: 'Deformities',
+          textEditingController: controlBodyFunction.deformities),
+      DividerFileAssModel(text: 'Posture And Alignment'),
+      TextFormFiledStepperModel(
+          labelName: 'From Sitting',
+          textEditingController: controlBodyFunction.fromSitting),
+      TextFormFiledStepperModel(
+          labelName: 'From Standing',
+          textEditingController: controlBodyFunction.fromStanding),
+      TextFormFiledStepperModel(
+          labelName: 'Spine', textEditingController: controlBodyFunction.spine),
+      TextFormFiledStepperModel(
+          labelName: 'Pelvic',
+          textEditingController: controlBodyFunction.pelvic),
+      TextFormFiledStepperModel(
+          labelName: 'Leg Length Discrepancy ',
+          textEditingController: controlBodyFunction.legLengthDiscrepancy),
+      DividerFileAssModel(text: 'Hip'),
+      DropdownButtonItemModel(
+          controller: controlBodyFunction.rt,
+          labelName: 'Right',
+          itemList: const ['Normal', 'In risk', 'Sublaxed', 'dislocated']),
+      DropdownButtonItemModel(
+          controller: controlBodyFunction.lf,
+          labelName: 'Left',
+          itemList: const ['Normal', 'In risk', 'Sublaxed', 'dislocated'])
+    ];
+    listRom = [
+      DropdownButtonItemModel(
+        controller: controlBodyFunction.hip,
+        labelName: 'Hip',
+        itemList: const ['restricted', 'Normal', 'hyper', 'flexibility'],
+      ),
+      DropdownButtonItemModel(
+          controller: controlBodyFunction.knee,
+          labelName: 'Knee',
+          itemList: const ['restricted', 'Normal', 'hyper', 'flexibility']),
+      DropdownButtonItemModel(
+          controller: controlBodyFunction.ankle,
+          labelName: 'Ankle',
+          itemList: const ['restricted', 'Normal', 'hyper', 'flexibility']),
+      DropdownButtonItemModel(
+          controller: controlBodyFunction.shoulder,
+          labelName: 'shoulder',
+          itemList: const ['restricted', 'Normal', 'hyper', 'flexibility']),
+      DropdownButtonItemModel(
+          controller: controlBodyFunction.elbow,
+          labelName: 'elbow',
+          itemList: const ['restricted', 'Normal', 'hyper', 'flexibility']),
+      TextFormFiledStepperModel(
+          labelName: 'Note', textEditingController: controlBodyFunction.note),
+    ];
+    listParticipation = [
+      TextFormFiledStepperModel(
+          labelName: 'Activity and Activity Limitation',
+          textEditingController: controlActivityAndActivityLimitation
+              .activityAndActivityLimitation),
+      TextFormFiledStepperModel(
+          labelName: 'Participation And Participation Restriction',
+          textEditingController: controlActivityAndActivityLimitation
+              .participationAndParticipationRestriction),
+    ];
+    listGoal = [
+      TextFormFiledStepperModel(
+          labelName: 'Short Goal',
+          textEditingController: controlGoalsAndNote.shortGoals),
+      TextFormFiledStepperModel(
+          labelName: 'Long Goal',
+          textEditingController: controlGoalsAndNote.longGoals),
+      TextFormFiledStepperModel(
+          labelName: 'Note', textEditingController: controlGoalsAndNote.note),
     ];
   }
 }

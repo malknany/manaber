@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/form_medical/cubit/pateint_info_cubit.dart';
-import 'package:manaber/features/doctor/form_medical/model.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../../cubit/pateint_info_cubit.dart';
+import '../../../model.dart';
+import '../../../../../../shared/components/components.dart';
+import '../../../../../../shared/styles/colors.dart';
+import '../../../../../../shared/styles/styles.dart';
 import '../controler.dart';
 
 class NoteConversation extends StatelessWidget {
@@ -107,7 +107,7 @@ class NoteConversation extends StatelessWidget {
                       ModelPatientInfo(
                         questionId: i,
                         answer: person.controle.text.isEmpty
-                            ? 'لايوجد'
+                            ? ' '
                             : person.controle.text,
                       ).toJson(),
                     );
@@ -116,6 +116,7 @@ class NoteConversation extends StatelessWidget {
                   listOfAnswer.forEach((element) {
                     print(element);
                   });
+                  print(listOfAnswer);
 
                   BlocProvider.of<PateintInfoCubit>(context)
                       .postAnswerToApi(id, listOfAnswer);

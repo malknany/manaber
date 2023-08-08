@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/regitration/login/cubit/log_in_cubit.dart';
-import 'package:manaber/features/regitration/login/view.dart';
-import 'package:manaber/shared/network/local/const_key.dart';
+import '../../features/regitration/login/cubit/log_in_cubit.dart';
+import '../../features/regitration/login/view.dart';
+import '../network/local/const_key.dart';
 
 import '../network/local/shared_preferences.dart';
 

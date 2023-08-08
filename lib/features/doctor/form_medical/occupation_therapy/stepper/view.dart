@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/form_medical/cubit/pateint_info_cubit.dart';
-import 'package:manaber/features/doctor/form_medical/model.dart';
+import '../../cubit/pateint_info_cubit.dart';
+import '../../model.dart';
 import 'controler.dart';
 import 'widget/Behavior_ADLS.dart';
 import 'widget/associated_disorders.dart';

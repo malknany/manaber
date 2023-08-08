@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/admin/accepte_home_page/cubit/pending_cubit.dart';
-import 'package:manaber/features/receptionist/our_section_reception/view.dart';
-import 'package:manaber/features/regitration/login/cubit/log_in_cubit.dart';
-import 'package:manaber/features/regitration/sign_up/cubit/sign_up_cubit.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../admin/accepte_home_page/cubit/pending_cubit.dart';
+import '../../receptionist/our_section_reception/view.dart';
+import 'cubit/log_in_cubit.dart';
+import '../sign_up/cubit/sign_up_cubit.dart';
+import '../../../shared/styles/styles.dart';
 import '../../admin/accepte_home_page/view.dart';
 
 import '../forget_pass/forget_pass.dart';

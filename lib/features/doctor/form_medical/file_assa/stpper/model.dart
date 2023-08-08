@@ -14,6 +14,7 @@ class TextFormFiledStepperModel extends FileAssessmentModel {
     required this.textEditingController,
   });
 }
+
 class TextFormFiledRightLiftModel extends FileAssessmentModel {
   final String labelName;
   final TextInputType? textInputType;
@@ -22,7 +23,7 @@ class TextFormFiledRightLiftModel extends FileAssessmentModel {
 
   TextFormFiledRightLiftModel({
     required this.labelName,
-    this.textInputType=TextInputType.number,
+    this.textInputType = TextInputType.number,
     required this.controllerLeft,
     required this.controllerRight,
   });
@@ -40,7 +41,6 @@ class DropdownButtonItemModel extends FileAssessmentModel {
   });
 }
 
-// abstract class BottomSheetFileAssessment{}
 class BottomSheetFileAssModel {
   final String name;
   final List<FileAssessmentModel> itemList;

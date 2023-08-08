@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../stpper/controller.dart';
+import '../../../model.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 import '../../../../../../shared/styles/images.dart';
@@ -7,10 +7,12 @@ import '../../../../../../shared/styles/images.dart';
 class PatientInfoView extends StatelessWidget {
   const PatientInfoView({
     super.key,
-    required this.stepperControl,
+    // required this.stepperControl,
+    required this.personalHistory,
   });
 
-  final StepperControlPatientInfo stepperControl;
+  // final StepperControlPatientInfo stepperControl;
+  final List<ModelPatientInfo> personalHistory;
 
   @override
   Widget build(BuildContext context) {
@@ -50,52 +52,56 @@ class PatientInfoView extends StatelessWidget {
                     fontWeight: FontWeight.normal),
               ),
               const SizedBox(height: 16.0),
-              InfoRowItem(
-                  title: "Created By", value: stepperControl.createdBy.text),
-              InfoRowItem(
-                  title: "Name",
-                  value:  stepperControl.name.text),
-              InfoRowItem(
-                  title: "Phone Number", value: stepperControl.phone.text),
-              InfoRowItem(title: "DOB", value: stepperControl.dob.text),
-              InfoRowItem(
-                  title: "Gender",
-                  value:stepperControl.gender.text),
-              InfoRowItem(
-                  title: "Consanguinity",
-                  value: stepperControl.consanguinity.text),
-              InfoRowItem(
-                  title: "Pregnancy Problem",
-                  value: stepperControl.pregnancyProblem.text),
-              InfoRowItem(
-                  title: "Birth Weight",
-                  value: stepperControl.birthWeight.text),
-              InfoRowItem(
-                  title: "Incubation", value: stepperControl.incubation.text),
-              InfoRowItem(
-                  title: "Vaccination", value: stepperControl.vaccination.text),
-              InfoRowItem(
-                  title: "Current Medications",
-                  value: stepperControl.currentMedications.text),
-              InfoRowItem(
-                  title: "Previous Medications",
-                  value: stepperControl.previousMedications.text),
-              InfoRowItem(
-                  title: "Convulsions", value: stepperControl.convulsions.text),
-              InfoRowItem(
-                  title: "Assistive Devices",
-                  value: stepperControl.assistiveDevices.text),
-              InfoRowItem(
-                  title: "Other Associated Problems",
-                  value: stepperControl.otherAssociatedProblems.text),
-              InfoRowItem(
-                  title: "Similar cases in the family",
-                  value: stepperControl.similarCasesInTheFamily.text),
-              InfoRowItem(
-                  title: "Investigations",
-                  value: stepperControl.investigations.text),
-              InfoRowItem(
-                  title: "Diagnosis", value: stepperControl.diagnosis.text),
+              Column(
+                children: List.generate(personalHistory.length, (index) {
+                  return InfoRowItem(
+                      textDirection: TextDirection.rtl,
+                      title: personalHistory[index].question!,
+                      value: personalHistory[index].answer ?? '');
+                }),
+              ),
+              // InfoRowItem(
+              //     title: "Created By", value: stepperControl.createdBy.text),
+              // InfoRowItem(title: "Name", value: stepperControl.name.text),
+              // InfoRowItem(
+              //     title: "Phone Number", value: stepperControl.phone.text),
+              // InfoRowItem(title: "DOB", value: stepperControl.dob.text),
+              // InfoRowItem(title: "Gender", value: stepperControl.gender.text),
+              // InfoRowItem(
+              //     title: "Consanguinity",
+              //     value: stepperControl.consanguinity.text),
+              // InfoRowItem(
+              //     title: "Pregnancy Problem",
+              //     value: stepperControl.pregnancyProblem.text),
+              // InfoRowItem(
+              //     title: "Birth Weight",
+              //     value: stepperControl.birthWeight.text),
+              // InfoRowItem(
+              //     title: "Incubation", value: stepperControl.incubation.text),
+              // InfoRowItem(
+              //     title: "Vaccination", value: stepperControl.vaccination.text),
+              // InfoRowItem(
+              //     title: "Current Medications",
+              //     value: stepperControl.currentMedications.text),
+              // InfoRowItem(
+              //     title: "Previous Medications",
+              //     value: stepperControl.previousMedications.text),
+              // InfoRowItem(
+              //     title: "Convulsions", value: stepperControl.convulsions.text),
+              // InfoRowItem(
+              //     title: "Assistive Devices",
+              //     value: stepperControl.assistiveDevices.text),
+              // InfoRowItem(
+              //     title: "Other Associated Problems",
+              //     value: stepperControl.otherAssociatedProblems.text),
+              // InfoRowItem(
+              //     title: "Similar cases in the family",
+              //     value: stepperControl.similarCasesInTheFamily.text),
+              // InfoRowItem(
+              //     title: "Investigations",
+              //     value: stepperControl.investigations.text),
+              // InfoRowItem(
+              //     title: "Diagnosis", value: stepperControl.diagnosis.text),
             ],
           ),
         ),

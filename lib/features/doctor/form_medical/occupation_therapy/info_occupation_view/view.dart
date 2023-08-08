@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/form_medical/cubit/pateint_info_cubit.dart';
-import 'package:manaber/features/doctor/form_medical/model.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../cubit/pateint_info_cubit.dart';
+import '../../model.dart';
+import '../../../../../shared/styles/styles.dart';
 import 'widget/BehaviorADLS_view.dart';
 import 'widget/Occupational_perform_view.dart';
 import 'widget/associated_disorders_view.dart';
@@ -114,6 +114,11 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
                       final List<ModelPatientInfo> bodyFunctionAndStrucer = [];
                       final List<ModelPatientInfo> behaviorAndADLS = [];
                       final List<ModelPatientInfo> note = [];
+                      print(personalHistory);
+                      print(associatedDisorders);
+                      print(bodyFunctionAndStrucer);
+                      print(behaviorAndADLS);
+                      print(note);
                       for (final person in state.listOfInfoPatient) {
                         if (person.section == 'Personal History') {
                           personalHistory.add(person);

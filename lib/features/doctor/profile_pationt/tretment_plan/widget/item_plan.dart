@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/profile_pationt/tretment_plan/model.dart';
-import 'package:manaber/features/doctor/profile_pationt/tretment_plan/widget/data_view.dart';
-import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/styles.dart';
+
+import '../../../../../shared/components/navigator.dart';
+import '../../../../../shared/styles/colors.dart';
+import '../../../../../shared/styles/styles.dart';
+import '../model.dart';
+import 'data_view.dart';
 
 class ItemPlan extends StatelessWidget {
   const ItemPlan({

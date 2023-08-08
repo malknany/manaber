@@ -5,11 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manaber/features/doctor/profile_pationt/tretment_plan/cubit/tretment_plan_cubit.dart';
 import 'package:manaber/shared/styles/colors.dart';
 import 'package:manaber/shared/styles/styles.dart';
+
 import '../../../../../shared/components/components.dart';
 
 class TrentmentPlanDataEntry extends StatefulWidget {
   const TrentmentPlanDataEntry({super.key, required this.id});
-  final id;
+  final String id;
 
   @override
   _TrentmentPlanDataEntryState createState() => _TrentmentPlanDataEntryState();
@@ -102,7 +103,7 @@ class _TrentmentPlanDataEntryState extends State<TrentmentPlanDataEntry> {
                   Future.delayed(
                     const Duration(seconds: 1),
                     () {
-                      ItemSnackBar(context, 'تم اضافه خطه علاجيه جديده',
+                      itemSnackBar(context, 'تم اضافه خطه علاجيه جديده',
                           AppColors.primarycolor);
                       Navigator.pop(context, 'refresh');
                     },

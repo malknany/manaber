@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/file_assa/stpper/model.dart';
-import '../controller.dart';
+
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
+import '../controller.dart';
+import '../model.dart';
 
 class MotorSystem extends StatelessWidget {
   const MotorSystem(
@@ -70,11 +71,11 @@ class MotorSystem extends StatelessWidget {
                                     }
                                     if (item is TextFormFiledRightLiftModel) {
                                       return RightLeftTextFiled(
-                                          title: item.labelName,
-                                          controllerRight: item.controllerRight,
-                                          controllerLeft: item.controllerLeft);
+                                        title: item.labelName,
+                                        controllerRight: item.controllerRight,
+                                        controllerLeft: item.controllerLeft,
+                                      );
                                     }
-
                                     return const SizedBox.shrink();
                                   },
                                 ),

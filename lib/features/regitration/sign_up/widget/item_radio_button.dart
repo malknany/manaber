@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import '../../../../shared/styles/colors.dart';
 
 class ItemRadioButton extends StatelessWidget {
   const ItemRadioButton(

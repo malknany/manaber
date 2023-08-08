@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/profile_pationt/video/model.dart';
+import '../model.dart';
 import '../../../../../shared/components/constants.dart';
 import '../../../../../shared/styles/colors.dart';
 import '../../../../../shared/styles/styles.dart';

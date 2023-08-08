@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/shared/network/local/shared_preferences.dart';
-import 'package:manaber/shared/network/remote/dio_helper.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'features/splash/cubit/splash_cubit.dart';
+import 'shared/network/local/shared_preferences.dart';
+import 'shared/network/remote/dio_helper.dart';
 import 'features/splash/view.dart';
 import 'shared/styles/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -24,7 +26,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: lightTheme,
-      home: const SplashScreen(),
+      home: BlocProvider(
+        create: (context) => SplashCubit(),
+        child: const SplashScreen(),
+      ),
     );
   }
 }

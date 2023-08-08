@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/shared/network/remote/dio_helper.dart';
-import 'package:manaber/shared/network/remote/end_points.dart';
+import '../../../../shared/network/remote/dio_helper.dart';
+import '../../../../shared/network/remote/end_points.dart';
 import 'package:meta/meta.dart';
 
 part 'sign_up_state.dart';

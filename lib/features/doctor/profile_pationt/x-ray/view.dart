@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/profile_pationt/x-ray/cubit/xray_cubit.dart';
-import 'package:manaber/features/doctor/profile_pationt/x-ray/widget/item_car_xray.dart';
-import 'package:manaber/features/doctor/profile_pationt/x-ray/widget/selcte_photo.dart';
+import 'cubit/xray_cubit.dart';
+import 'widget/item_car_xray.dart';
+import 'widget/selcte_photo.dart';
 
 import 'widget/data_view_entry.dart';
 import '../../../../shared/styles/colors.dart';
@@ -11,7 +11,7 @@ import '../../../../shared/components/navigator.dart';
 import '../../../../shared/styles/styles.dart';
 
 class XrayView extends StatefulWidget {
-  XrayView({
+  const XrayView({
     super.key,
     required this.id,
   });

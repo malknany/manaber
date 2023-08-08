@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import '../styles/colors.dart';
 
 import '../styles/styles.dart';
 
@@ -657,7 +657,7 @@ class ShowBottomSheetItems extends StatelessWidget {
   }
 }
 
-ItemSnackBar(context, String title, Color color) {
+itemSnackBar(context, String title, Color color) {
   final snackBar = SnackBar(
     duration: const Duration(seconds: 2),
     content: Text(

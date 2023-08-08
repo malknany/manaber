@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/receptionist/insert_data/cubit/reception_cubit.dart';
-import 'package:manaber/features/receptionist/insert_data/model.dart';
+import 'cubit/reception_cubit.dart';
+import 'model.dart';
 import 'controler.dart';
 
 import '../../../shared/components/components.dart';
@@ -112,7 +112,7 @@ class _ReceptionistDataEntryState extends State<ReceptionistDataEntry> {
                     Future.delayed(
                       const Duration(seconds: 2),
                       () {
-                        ItemSnackBar(context, 'تم رفع المعلومات',
+                        itemSnackBar(context, 'تم رفع المعلومات',
                             AppColors.primarycolor);
                         Navigator.pop(context);
                       },

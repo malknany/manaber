@@ -5,11 +5,11 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/profile_pationt/video/model.dart';
-import 'package:manaber/shared/network/local/const_key.dart';
-import 'package:manaber/shared/network/local/shared_preferences.dart';
-import 'package:manaber/shared/network/remote/dio_helper.dart';
-import 'package:manaber/shared/network/remote/end_points.dart';
+import '../model.dart';
+import '../../../../../shared/network/local/const_key.dart';
+import '../../../../../shared/network/local/shared_preferences.dart';
+import '../../../../../shared/network/remote/dio_helper.dart';
+import '../../../../../shared/network/remote/end_points.dart';
 
 part 'video_play_state.dart';
 

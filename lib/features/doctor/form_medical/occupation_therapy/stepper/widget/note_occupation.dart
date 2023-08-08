@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/form_medical/cubit/pateint_info_cubit.dart';
-import 'package:manaber/features/doctor/form_medical/model.dart';
-import 'package:manaber/features/doctor/form_medical/occupation_therapy/stepper/model.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../../cubit/pateint_info_cubit.dart';
+import '../../../model.dart';
+import '../model.dart';
+import '../../../../../../shared/styles/styles.dart';
 
 import '../controler.dart';
 import '../../../../../../shared/components/components.dart';
@@ -53,10 +53,12 @@ class NoteOccupation extends StatelessWidget {
                         if (person is ModelDropDownOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
+                              question: person.lableName,
                               questionId: i,
                               answer: person.textEditingController.text.isEmpty
-                                  ? 'لايوجد'
-                                  : person.textEditingController.text,
+                                  ? 'null'
+                                  : person.textEditingController.text
+                                      .toString(),
                             ).toJson(),
                           );
                           i++;
@@ -64,10 +66,12 @@ class NoteOccupation extends StatelessWidget {
                         if (person is ModelTextFiledOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
+                              question: person.labelname,
                               questionId: i,
                               answer: person.textEditingController.text.isEmpty
-                                  ? 'لايوجد'
-                                  : person.textEditingController.text,
+                                  ? 'null'
+                                  : person.textEditingController.text
+                                      .toString(),
                             ).toJson(),
                           );
                           i++;
@@ -78,10 +82,12 @@ class NoteOccupation extends StatelessWidget {
                         if (person is ModelDropDownOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
+                              question: person.lableName,
                               questionId: i,
                               answer: person.textEditingController.text.isEmpty
-                                  ? 'لايوجد'
-                                  : person.textEditingController.text,
+                                  ? 'null'
+                                  : person.textEditingController.text
+                                      .toString(),
                             ).toJson(),
                           );
                           i++;
@@ -89,10 +95,12 @@ class NoteOccupation extends StatelessWidget {
                         if (person is ModelTextFiledOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
+                              question: person.labelname,
                               questionId: i,
                               answer: person.textEditingController.text.isEmpty
-                                  ? 'لايوجد'
-                                  : person.textEditingController.text,
+                                  ? 'null'
+                                  : person.textEditingController.text
+                                      .toString(),
                             ).toJson(),
                           );
                           i++;
@@ -103,6 +111,7 @@ class NoteOccupation extends StatelessWidget {
                       //   if (person is ModelDropDownOccupation) {
                       //     listOfAnswer.add(
                       //       ModelPatientInfo(
+                      //         question: person.lableName,
                       //         questionId: i,
                       //         answer: person.textEditingController.text.isEmpty
                       //             ? 'لايوجد'
@@ -114,6 +123,7 @@ class NoteOccupation extends StatelessWidget {
                       //   if (person is ModelTextFiledOccupation) {
                       //     listOfAnswer.add(
                       //       ModelPatientInfo(
+                      //         question: person.labelname,
                       //         questionId: i,
                       //         answer: person.textEditingController.text.isEmpty
                       //             ? 'لايوجد'
@@ -128,6 +138,7 @@ class NoteOccupation extends StatelessWidget {
                       //   if (person is ModelDropDownOccupation) {
                       //     listOfAnswer.add(
                       //       ModelPatientInfo(
+                      //         question: person.lableName,
                       //         questionId: i,
                       //         answer: person.textEditingController.text.isEmpty
                       //             ? 'لايوجد'
@@ -139,6 +150,7 @@ class NoteOccupation extends StatelessWidget {
                       //   if (person is ModelTextFiledOccupation) {
                       //     listOfAnswer.add(
                       //       ModelPatientInfo(
+                      //         question: person.labelname,
                       //         questionId: i,
                       //         answer: person.textEditingController.text.isEmpty
                       //             ? 'لايوجد'
@@ -153,6 +165,7 @@ class NoteOccupation extends StatelessWidget {
                       //   if (person is ModelDropDownOccupation) {
                       //     listOfAnswer.add(
                       //       ModelPatientInfo(
+                      //         question: person.lableName,
                       //         questionId: i,
                       //         answer: person.textEditingController.text.isEmpty
                       //             ? 'لايوجد'
@@ -164,6 +177,7 @@ class NoteOccupation extends StatelessWidget {
                       //   if (person is ModelTextFiledOccupation) {
                       //     listOfAnswer.add(
                       //       ModelPatientInfo(
+                      //         question: person.labelname,
                       //         questionId: i,
                       //         answer: person.textEditingController.text.isEmpty
                       //             ? 'لايوجد'
@@ -176,7 +190,7 @@ class NoteOccupation extends StatelessWidget {
                       listOfAnswer.forEach((element) {
                         print(element);
                       });
-
+                      print(listOfAnswer);
                       BlocProvider.of<PateintInfoCubit>(context)
                           .postAnswerToApi(id, listOfAnswer);
                       // Future.delayed(const Duration(seconds: 3), () {

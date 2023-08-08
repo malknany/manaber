@@ -1,13 +1,9 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/regitration/login/cubit/log_in_cubit.dart';
-import 'package:manaber/shared/network/local/const_key.dart';
-import 'package:manaber/shared/network/local/shared_preferences.dart';
-import '../regitration/login/view.dart';
-import '../../shared/components/navigator.dart';
+
+import '../../shared/styles/colors.dart';
 import '../../shared/styles/images.dart';
+import 'cubit/splash_cubit.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,15 +15,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    print("Token====${CacheHelper.getData(key: AppConstKey.token)}");
-    Timer(const Duration(seconds: 4), () {
-      navigateTo(
-          context,
-          BlocProvider(
-            create: (context) => LogInCubit(),
-            child: const LogInScreen(),
-          ));
-    });
+    BlocProvider.of<SplashCubit>(context).checkToken(context);
     super.initState();
   }
 
@@ -35,12 +23,36 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SizedBox(
-        height: double.infinity,
-        width: double.infinity,
-        child: Center(
-          child: Image.asset(AppImages.logo),
-        ),
+      body: BlocBuilder<SplashCubit, SplashState>(
+        builder: (context, state) {
+          if (state is SplashLoading) {
+            return SizedBox(
+              height: double.infinity,
+              width: double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Image.asset(AppImages.logo),
+                  ),
+                  const CircularProgressIndicator(
+                    color: AppColors.primarycolor,
+                  )
+                ],
+              ),
+            );
+          }
+          if (state is SplashSuccess) {
+            return SizedBox(
+              height: double.infinity,
+              width: double.infinity,
+              child: Center(
+                child: Image.asset(AppImages.logo),
+              ),
+            );
+          }
+          return const SizedBox.shrink();
+        },
       ),
     );
   }
