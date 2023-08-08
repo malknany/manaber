@@ -35,7 +35,7 @@ class BodyFunctionStrucer extends StatelessWidget {
               }
               if (model is ModelTextFiledOccupation) {
                 return TextFormFiledStepper(
-                  hintText: bodyFunctionStrucer[index].answer??'',
+                  // hintText: bodyFunctionStrucer[index].answer??'',
                     textInputType: model.textInputType,
                     labelname: model.labelname,
                     textEditingController: model.textEditingController);

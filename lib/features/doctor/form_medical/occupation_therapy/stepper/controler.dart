@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'model.dart';
 
-// 
+//
 class OccupationPreformanceTEC {
   final problemList = TextEditingController();
   final longTermGoal = TextEditingController();
@@ -106,30 +106,22 @@ class ControleOccupation {
           textEditingController: controlePersonalHistory.surgery),
     ];
     listOfBodyFunctionStrucer = [
-      // ModelDividerOccupation(text: 'Neuromuscular Status'),
+      ModelDividerOccupation(text: 'Neuromuscular Status'),
       ModelDropDownOccupation(
           lableName: 'Upper limb',
-          itemList: [
-            "Spastic",
-            "Flaccid",
-            "Normal",
-          ],
+          itemList: ["Spastic", "Flaccid", "Normal"],
           textEditingController:
               controleBodyFunctionStrucer.neuromuscularStatusUpperLimb),
       ModelDropDownOccupation(
           lableName: 'Lower limb',
-          itemList: [
-            "Spastic",
-            "Flaccid",
-            "Normal",
-          ],
+          itemList: ["Spastic", "Flaccid", "Normal"],
           textEditingController:
               controleBodyFunctionStrucer.neuromuscularStatusLowerLimb),
       ModelTextFiledOccupation(
           labelname: 'Note',
           textEditingController:
               controleBodyFunctionStrucer.neuromuscularStatusNote),
-      // ModelDividerOccupation(text: 'Balance'),
+      ModelDividerOccupation(text: 'Balance'),
       ModelTextFiledOccupation(
           labelname: 'Sitting Balance Static',
           textEditingController:
@@ -149,7 +141,12 @@ class ControleOccupation {
           textEditingController: controleBodyFunctionStrucer.deformities),
       ModelDropDownOccupation(
           lableName: 'Muscle bulk',
-          itemList: ["Normal", "atrophy", "less than normal", "speudo trophy"],
+          itemList: [
+            "Normal",
+            "Atrophy",
+            "Less than normal",
+            "Speudo trophy",
+          ],
           textEditingController: controleBodyFunctionStrucer.musclebulk),
       ModelTextFiledOccupation(
           labelname: 'Leg Length Discrepancy',
@@ -163,10 +160,10 @@ class ControleOccupation {
           textEditingController: controleBodyFunctionStrucer.assistiveDevices),
     ];
     listOfBehaviorADLS = [
-      // ModelDividerOccupation(text: 'Behavior'),
+      ModelDividerOccupation(text: 'Behavior'),
       ModelDropDownOccupation(
           lableName: 'Aggression',
-          itemList: ['Yes', 'No'],
+          itemList: ["Yes", "No"],
           textEditingController: controleBehaviorADLS.aggression),
       ModelDropDownOccupation(
           lableName: 'Hyper activity',
@@ -185,22 +182,22 @@ class ControleOccupation {
           lableName: 'Discipline',
           itemList: ['Yes', 'No'],
           textEditingController: controleBehaviorADLS.discipline),
-      // ModelDividerOccupation(text: 'A.D.L.S'),
+      ModelDividerOccupation(text: 'A.D.L.S'),
       ModelDropDownOccupation(
           lableName: 'Feeding',
-          itemList: [' Can do', "Can't do", "With assistance "],
+          itemList: ["Can't do", "Can do", "With assistance"],
           textEditingController: controleBehaviorADLS.feeding),
       ModelDropDownOccupation(
           lableName: 'Brushing teeth',
-          itemList: [' Can do', "Can't do", "With assistance "],
+          itemList: ["Can't do", "Can do", "With assistance"],
           textEditingController: controleBehaviorADLS.brushingTeeth),
       ModelDropDownOccupation(
           lableName: 'Dressing',
-          itemList: [' Can do', "Can't do", "With assistance "],
+          itemList: ["Can't do", "Can do", "With assistance"],
           textEditingController: controleBehaviorADLS.dressing),
       ModelDropDownOccupation(
           lableName: 'Toilet',
-          itemList: [' Can do', "Can't do", "With assistance "],
+          itemList: ["Can't do", "Can do", "With assistance"],
           textEditingController: controleBehaviorADLS.toilet),
     ];
     listOfAssociatedDisorders = [
@@ -213,66 +210,66 @@ class ControleOccupation {
       ModelTextFiledOccupation(
           labelname: 'Speech',
           textEditingController: controleAssociatedDisorders.speech),
-      // ModelDividerOccupation(text: 'Developmental milestone'),
+      ModelDividerOccupation(text: 'Developmental milestone'),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.headControl,
           lableName: 'Head control ',
-          itemList: const ["can't do", "can do", "can do it with assistance"]),
+          itemList: const ["Can't do", "Can do", "Can do it with assistance"]),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.rolling,
           lableName: 'Rolling  ',
-          itemList: const ["can't do", "can do", "can do it with assistance"]),
+          itemList: const ["Can't do", "Can do", "Can do it with assistance"]),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.sitting,
           lableName: 'Sitting  ',
-          itemList: const ["can't do", "can do", "can do it with assistance"]),
+          itemList: const ["Can't do", "Can do", "Can do it with assistance"]),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.creeping,
           lableName: 'Creeping ',
-          itemList: const ["can't do", "can do", "can do it with assistance"]),
+          itemList: const ["Can't do", "Can do", "Can do it with assistance"]),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.crayoning,
           lableName: 'Crayoning',
-          itemList: const ["can't do", "can do", "can do it with assistance"]),
+          itemList: const ["Can't do", "Can do", "Can do it with assistance"]),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.standing,
           lableName: 'Standing ',
-          itemList: const ["can't do", "can do", "can do it with assistance"]),
+          itemList: const ["Can't do", "Can do", "Can do it with assistance"]),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.walking,
           lableName: 'Walking ',
           itemList: const ["can't do", "can do", "can do it with assistance"]),
-      // ModelDividerOccupation(text: 'sensory skills'),
+      ModelDividerOccupation(text: 'sensory skills'),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.tactile,
           lableName: 'Tactile ',
           itemList: const [
-            "Hypo  response",
-            "Hyper response ",
+            "Hypo response",
+            "Hyper response",
             "Normal response"
           ]),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.visual,
           lableName: 'Visual ',
           itemList: const [
-            "Hypo  response",
-            "Hyper response ",
+            "Hypo response",
+            "Hyper response",
             "Normal response"
           ]),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.auditory,
           lableName: 'Auditory ',
           itemList: const [
-            "Hypo  response",
-            "Hyper response ",
+            "Hypo response",
+            "Hyper response",
             "Normal response"
           ]),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.vestibular,
           lableName: 'Vestibular ',
           itemList: const [
-            "Hypo  response",
-            "Hyper response ",
+            "Hypo response",
+            "Hyper response",
             "Normal response"
           ]),
     ];
