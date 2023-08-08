@@ -282,7 +282,7 @@ class RightLeftTextFiled extends StatelessWidget {
               child: Text(
                 '$title:',
                 style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    const TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
               ),
             ),
             const SizedBox(width: 16.0),
@@ -291,9 +291,10 @@ class RightLeftTextFiled extends StatelessWidget {
                 height: 40,
                 width: 40,
                 child: TextFormField(
+                  autofocus: false,
                   cursorColor: AppColors.primarycolor,
                   keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.go,
+                  // textInputAction: TextInputAction.go,
                   onSaved: (newValue) {
                     controllerRight.text = newValue!;
                   },
@@ -333,10 +334,10 @@ class RightLeftTextFiled extends StatelessWidget {
                 height: 40,
                 width: 40,
                 child: TextFormField(
-                  autofocus: true,
+                  autofocus: false,
                   cursorColor: AppColors.primarycolor,
                   keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.go,
+                  // textInputAction: TextInputAction.go,
                   onSaved: (newValue) {
                     controllerLeft.text = newValue!;
                   },

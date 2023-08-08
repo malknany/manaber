@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../../stpper/controller.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 import '../../../../../../shared/styles/images.dart';
 
 class GoalsView extends StatelessWidget {
-  const GoalsView({super.key, required this.controlGoalsAndNote});
-  final StepperControlGoalsAndNote controlGoalsAndNote;
+  const GoalsView({super.key, required this.goals});
+  final List<ModelPatientInfo> goals;
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +46,15 @@ class GoalsView extends StatelessWidget {
                       fontWeight: FontWeight.normal),
                 ),
                 const SizedBox(height: 16.0),
-                InfoRowItem(
-                    title: 'Short Goals',
-                    value: controlGoalsAndNote.shortGoals.text),
-                InfoRowItem(
-                    title: 'Long Goals',
-                    value: controlGoalsAndNote.longGoals.text),
+                Column(
+                  children: List.generate(
+                    goals.length,
+                    (index) => InfoRowItem(
+                      title: goals[index].question!,
+                      value: goals[index].answer ?? '',
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

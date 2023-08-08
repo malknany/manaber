@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manaber/features/doctor/form_medical/cubit/pateint_info_cubit.dart';
 import 'controller.dart';
 import 'widget/ICF_body_function_structure.dart';
 import 'widget/Muscloskeletal_Examination.dart';
@@ -19,7 +21,8 @@ class FileStteper extends StatelessWidget {
       // required this.controlBodyFunction,
       // required this.controlActivityAndActivityLimitation,
       // required this.controlGoalsAndNote,
-      required this.controleFileAssesment})
+      required this.controleFileAssesment,
+      required this.id})
       : super(key: key);
   // final StepperControlPatientInfo controle;
   // final StepperControlBodyFunction controlBodyFunction;
@@ -28,6 +31,7 @@ class FileStteper extends StatelessWidget {
   //     controlActivityAndActivityLimitation;
 
   final ControleFileAssesment controleFileAssesment;
+  final String id;
 
   final PageController _pageController = PageController();
 
@@ -83,17 +87,21 @@ class FileStteper extends StatelessWidget {
                 ),
                 Activity(
                   controleFileAssesment: controleFileAssesment,
-                    // controlActivityAndActivityLimitation:
-                    //     controlActivityAndActivityLimitation
-                        ),
+                  // controlActivityAndActivityLimitation:
+                  //     controlActivityAndActivityLimitation
+                ),
                 Goals(
                   controleFileAssesment: controleFileAssesment,
                   // controlGoalsAndNote: controlGoalsAndNote,
+                ),
+                BlocProvider(
+                  create: (context) => PateintInfoCubit(),
+                  child: Note(
+                    id: id,
+                    controleFileAssesment: controleFileAssesment,
+                    // controlGoalsAndNote: controlGoalsAndNote
                   ),
-                Note(
-                  controleFileAssesment: controleFileAssesment,
-                  // controlGoalsAndNote: controlGoalsAndNote
-                  ),
+                ),
               ],
             ),
           ),
@@ -130,4 +138,3 @@ class FileStteper extends StatelessWidget {
     );
   }
 }
-

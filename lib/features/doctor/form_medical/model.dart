@@ -9,8 +9,8 @@ class ModelPatientInfo {
   String? department;
   String? showSubSectionAs;
   String? answer;
-  String? left;
-  String? right;
+  int? left;
+  int? right;
 
   ModelPatientInfo(
       {this.questionId,

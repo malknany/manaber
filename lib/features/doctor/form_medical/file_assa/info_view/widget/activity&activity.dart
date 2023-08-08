@@ -1,22 +1,19 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import '../../stpper/controller.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 import '../../../../../../shared/styles/images.dart';
 
 class ActivityAndActivityLimitationView extends StatelessWidget {
-  const ActivityAndActivityLimitationView(
-      {super.key, required this.controlActivityAndActivityLimitation});
+  const ActivityAndActivityLimitationView({super.key, required this.activity});
 
-  final StepperControlActivityAndActivityLimitation
-      controlActivityAndActivityLimitation;
+  final List<ModelPatientInfo> activity;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        
         appBar: AppBar(
           backgroundColor: Colors.white,
           title: const Text('Patient Data',
@@ -52,14 +49,15 @@ class ActivityAndActivityLimitationView extends StatelessWidget {
                       fontWeight: FontWeight.normal),
                 ),
                 const SizedBox(height: 16.0),
-                InfoRowItem(
-                    title: 'Activity and Activity Limitation',
-                    value: controlActivityAndActivityLimitation
-                        .activityAndActivityLimitation.text),
-                InfoRowItem(
-                    title: 'Participation And Participation Restriction',
-                    value: controlActivityAndActivityLimitation
-                        .participationAndParticipationRestriction.text),
+                Column(
+                  children: List.generate(
+                    activity.length,
+                    (index) => InfoRowItem(
+                      title: activity[index].question!,
+                      value: activity[index].answer ?? '',
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

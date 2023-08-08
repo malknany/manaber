@@ -339,10 +339,10 @@ class ControleFileAssesment {
       TextFormFiledStepperModel(
           labelName: 'Tactile',
           textEditingController: controlBodyFunction.tactile),
-      DividerFileAssModel(text: 'GaiT Problems'),
       TextFormFiledStepperModel(
           labelName: 'Note',
           textEditingController: controlBodyFunction.gaitnote),
+      DividerFileAssModel(text: 'GaiT Problems'),
       TextFormFiledStepperModel(
           labelName: 'Stance phase',
           textEditingController: controlBodyFunction.stancePhase),
