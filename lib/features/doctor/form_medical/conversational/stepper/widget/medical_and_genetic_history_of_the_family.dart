@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import '../../../model.dart';
+import '../../../../../../shared/components/components.dart';
+import '../../../../../../shared/styles/colors.dart';
 import '../controler.dart';
-
 
 class MedicalAndGeneticHistoryOfTheFamily extends StatelessWidget {
   const MedicalAndGeneticHistoryOfTheFamily(
-      {super.key, required this.controleConversational});
+      {super.key,
+      required this.controleConversational,
+      required this.medicalAndGeneticHistoryOfTheFamily});
   final ControleConversational controleConversational;
+  final List<ModelPatientInfo> medicalAndGeneticHistoryOfTheFamily;
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +27,14 @@ class MedicalAndGeneticHistoryOfTheFamily extends StatelessWidget {
           child: ListView.separated(
               itemBuilder: (context, index) {
                 return TextFormFiledStepper(
+                    hintText:
+                        medicalAndGeneticHistoryOfTheFamily[index].answer ==
+                                'لايوجد'
+                            ? ''
+                            : medicalAndGeneticHistoryOfTheFamily[index].answer,
                     textDirection: TextDirection.rtl,
-                    labelname: controleConversational
-                        .listOfMedicalAndGeneticHistoryOfTheFamily[index].lable,
+                    labelname:
+                        medicalAndGeneticHistoryOfTheFamily[index].question!,
                     textEditingController: controleConversational
                         .listOfMedicalAndGeneticHistoryOfTheFamily[index]
                         .controle);

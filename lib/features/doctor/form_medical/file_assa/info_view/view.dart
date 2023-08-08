@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/form_medical/cubit/pateint_info_cubit.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../cubit/pateint_info_cubit.dart';
+import '../../model.dart';
+import '../../../../../shared/styles/styles.dart';
 import 'widget/activity&activity.dart';
 import 'widget/goalsview.dart';
 import 'widget/icf_body.dart';
@@ -21,13 +22,14 @@ class FileAssassemntView extends StatefulWidget {
       required this.control,
       required this.controlBodyFunction,
       required this.controlGoalsAndNote,
-      required this.controlActivityAndActivityLimitation});
+      required this.controlActivityAndActivityLimitation,required this.controleFileAssesment});
 
   final StepperControlPatientInfo control;
   final StepperControlBodyFunction controlBodyFunction;
   final StepperControlGoalsAndNote controlGoalsAndNote;
   final StepperControlActivityAndActivityLimitation
       controlActivityAndActivityLimitation;
+    final ControleFileAssesment controleFileAssesment;
 
   final String id;
   @override
@@ -49,11 +51,13 @@ class _FileAssassemntViewState extends State<FileAssassemntView> {
             final result = await navigateTo(
               context,
               FileStteper(
-                  controle: widget.control,
-                  controlBodyFunction: widget.controlBodyFunction,
-                  controlActivityAndActivityLimitation:
-                      widget.controlActivityAndActivityLimitation,
-                  controlGoalsAndNote: widget.controlGoalsAndNote),
+                controleFileAssesment:widget.controleFileAssesment ,
+                  // controle: widget.control,
+                  // controlBodyFunction: widget.controlBodyFunction,
+                  // controlActivityAndActivityLimitation:
+                  //     widget.controlActivityAndActivityLimitation,
+                  // controlGoalsAndNote: widget.controlGoalsAndNote
+                  ),
             );
             if (result == 'refresh') {
               setState(() {});
@@ -108,8 +112,29 @@ class _FileAssassemntViewState extends State<FileAssassemntView> {
                         ),
                       );
                     }
-                    if (state is ConversationPateintSuccess) {
-                      state.listOfInfoPatient;
+                    if (state is PateintSuccess) {
+                      final List<ModelPatientInfo> personalHistory = [];
+                      final List<ModelPatientInfo> medicalGenetic = [];
+                      final List<ModelPatientInfo> childMedical = [];
+                      final List<ModelPatientInfo> childDevelopment = [];
+                      final List<ModelPatientInfo> note = [];
+                      for (final person in state.listOfInfoPatient) {
+                        if (person.section == 'Patient Information') {
+                          personalHistory.add(person);
+                        }
+                        if (person.section == 'ICF Body Function and Structure') {
+                          medicalGenetic.add(person);
+                        }
+                        if (person.section == 'child_medical') {
+                          childMedical.add(person);
+                        }
+                        if (person.section == 'child_development') {
+                          childDevelopment.add(person);
+                        }
+                        if (person.section == 'note') {
+                          note.add(person);
+                        }
+                      }
                       return Column(
                         children: [
                           ButtonText(
@@ -118,7 +143,8 @@ class _FileAssassemntViewState extends State<FileAssassemntView> {
                                 navigateTo(
                                     context,
                                     PatientInfoView(
-                                      stepperControl: widget.control,
+                                      personalHistory: personalHistory,
+                                      // stepperControl: widget.control,
                                     ));
                               },
                               borderRadius: 7),

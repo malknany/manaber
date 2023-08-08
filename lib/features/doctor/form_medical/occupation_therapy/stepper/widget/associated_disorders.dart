@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/occupation_therapy/stepper/model.dart';
+import '../../../model.dart';
+import '../model.dart';
 import '../controler.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 
 class AssociatedDisorders extends StatelessWidget {
-  const AssociatedDisorders({super.key, required this.controleOccupation});
+  const AssociatedDisorders(
+      {super.key,
+      required this.controleOccupation,
+      required this.associatedDisorders});
   final ControleOccupation controleOccupation;
+  final List<ModelPatientInfo> associatedDisorders;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +38,7 @@ class AssociatedDisorders extends StatelessWidget {
               }
               if (model is ModelTextFiledOccupation) {
                 return TextFormFiledStepper(
+                    hintText: associatedDisorders[index].answer ?? '',
                     textInputType: model.textInputType,
                     labelname: model.labelname,
                     textEditingController: model.textEditingController);
@@ -41,7 +47,7 @@ class AssociatedDisorders extends StatelessWidget {
                 return DividerItem(text: model.text);
               }
 
-              return SizedBox.shrink();
+              return const SizedBox.shrink();
             },
           )),
     );

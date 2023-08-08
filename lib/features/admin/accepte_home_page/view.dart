@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/admin/accepte_home_page/cubit/pending_cubit.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/components/navigator.dart';
+import 'cubit/pending_cubit.dart';
+import '../../../shared/components/components.dart';
+import '../../../shared/components/navigator.dart';
 import 'widget/item_card_accept.dart';
 import '../../../shared/components/constants.dart';
 import '../../../shared/styles/colors.dart';
@@ -101,7 +101,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                                         state.listOfUserspending[index].id);
                                     state.listOfUserspending.removeAt(index);
                                   });
-                                  ItemSnackBar(context, 'تم الرفض', Colors.red);
+                                  itemSnackBar(context, 'تم الرفض', Colors.red);
                                 },
                                 onPressedOk: () {
                                   setState(() {
@@ -109,7 +109,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                                         state.listOfUserspending[index].id);
                                     state.listOfUserspending.removeAt(index);
                                   });
-                                  ItemSnackBar(context, 'تم مقبول',
+                                  itemSnackBar(context, 'تم مقبول',
                                       AppColors.primarycolor);
                                 },
                                 name: state.listOfUserspending[index].name!,

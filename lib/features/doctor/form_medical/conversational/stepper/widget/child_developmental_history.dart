@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import '../../../model.dart';
+import '../../../../../../shared/components/components.dart';
+import '../../../../../../shared/styles/colors.dart';
 
 import '../controler.dart';
 
 class ChildDevelopmentalHistory extends StatelessWidget {
   const ChildDevelopmentalHistory(
-      {super.key, required this.controleConversational});
+      {super.key,
+      required this.controleConversational,
+      required this.childDevelopmentalHistory});
   final ControleConversational controleConversational;
+  final List<ModelPatientInfo> childDevelopmentalHistory;
 
   @override
   Widget build(BuildContext context) {
@@ -24,18 +28,21 @@ class ChildDevelopmentalHistory extends StatelessWidget {
           child: ListView.separated(
               itemBuilder: (context, index) {
                 return TextFormFiledStepper(
-                  textDirection: TextDirection.rtl,
+                    hintText:
+                        childDevelopmentalHistory[index].answer == 'لايوجد'
+                            ? ''
+                            : childDevelopmentalHistory[index].answer,
+                    textDirection: TextDirection.rtl,
                     textEditingController: controleConversational
                         .listOfChildDevelopmentalHistory[index].controle,
-                    labelname: controleConversational
-                        .listOfChildDevelopmentalHistory[index].lable);
+                    labelname: childDevelopmentalHistory[index].question!);
               },
               separatorBuilder: (context, index) {
                 if (index == 3) {
                   return const Column(
                     children: [
-                       DividerItem(text: 'المشكلات السلوكیھ للطفل'),
-                       Text('ھل یعاني الطفل من المشكلات السلوكیة التالیة')
+                      DividerItem(text: 'المشكلات السلوكیھ للطفل'),
+                      Text('ھل یعاني الطفل من المشكلات السلوكیة التالیة')
                     ],
                   );
                 } else {

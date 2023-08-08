@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/images.dart';
+import '../../../../shared/styles/colors.dart';
+import '../../../../shared/styles/images.dart';
 
 class PatientItem extends StatelessWidget {
   const PatientItem(

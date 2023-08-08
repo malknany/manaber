@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/profile_pationt/video/cubit/video_play_cubit.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../cubit/video_play_cubit.dart';
+import '../../../../../shared/styles/styles.dart';
 import '../../../../../shared/components/components.dart';
 import '../../../../../shared/styles/colors.dart';
 

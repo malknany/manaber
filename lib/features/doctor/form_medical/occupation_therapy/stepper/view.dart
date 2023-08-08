@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../cubit/pateint_info_cubit.dart';
+import '../../model.dart';
 import 'controler.dart';
 import 'widget/Behavior_ADLS.dart';
 import 'widget/associated_disorders.dart';
@@ -9,10 +12,13 @@ import 'widget/personal_history_stepper.dart';
 import '../../../../../shared/styles/colors.dart';
 
 class StepperOccupation extends StatelessWidget {
-  StepperOccupation({
-    super.key,
-    required this.controleOccupation,
-  });
+  StepperOccupation(
+      {super.key,
+      required this.controleOccupation,
+      required this.id,
+      required this.listOfInfoPatient});
+  final String id;
+  final List<ModelPatientInfo> listOfInfoPatient;
   final ControleOccupation controleOccupation;
   final PageController _pageController = PageController();
   void _navigateToNextPage() {
@@ -31,6 +37,28 @@ class StepperOccupation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<ModelPatientInfo> personalHistory = [];
+    final List<ModelPatientInfo> associatedDisorders = [];
+    final List<ModelPatientInfo> bodyFunctionAndStrucer = [];
+    final List<ModelPatientInfo> behaviorAndADLS = [];
+    final List<ModelPatientInfo> note = [];
+    for (final person in listOfInfoPatient) {
+      if (person.section == 'Personal History') {
+        personalHistory.add(person);
+      }
+      if (person.section == 'Associated Disorders') {
+        associatedDisorders.add(person);
+      }
+      if (person.section == 'Body Function and Structure') {
+        bodyFunctionAndStrucer.add(person);
+      }
+      if (person.section == 'Behavior and ADLS') {
+        behaviorAndADLS.add(person);
+      }
+      if (person.section == 'Occupation Performance') {
+        note.add(person);
+      }
+    }
     return Scaffold(
       body: Column(
         children: [
@@ -38,12 +66,28 @@ class StepperOccupation extends StatelessWidget {
             child: PageView(
               controller: _pageController,
               children: [
-                PersonalHistory(controleOccupation: controleOccupation),
-                AssociatedDisorders(controleOccupation: controleOccupation),
-                BodyFunctionStrucer(controleOccupation: controleOccupation),
-                BehaviorADLS(controleOccupation: controleOccupation),
-                OccupationalPerformance(controleOccupation: controleOccupation),
-                NoteOccupation(controleOccupation: controleOccupation),
+                PersonalHistory(
+                    personalHistory: personalHistory,
+                    controleOccupation: controleOccupation),
+                AssociatedDisorders(
+                    controleOccupation: controleOccupation,
+                    associatedDisorders: associatedDisorders),
+                BodyFunctionStrucer(
+                    controleOccupation: controleOccupation,
+                    bodyFunctionStrucer: bodyFunctionAndStrucer),
+                BehaviorADLS(
+                    controleOccupation: controleOccupation,
+                    behaviorADLS: behaviorAndADLS),
+                OccupationalPerformance(
+                    controleOccupation: controleOccupation,
+                    occupationalPerformance: note),
+                BlocProvider(
+                  create: (context) => PateintInfoCubit(),
+                  child: NoteOccupation(
+                      noteOccupation: note,
+                      controleOccupation: controleOccupation,
+                      id: id),
+                ),
               ],
             ),
           ),

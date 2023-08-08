@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/occupation_therapy/stepper/model.dart';
+import '../../../model.dart';
 
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 import '../../../../../../shared/styles/images.dart';
-import '../../stepper/controler.dart';
+
 
 class PersonalHistoryView extends StatelessWidget {
-  const PersonalHistoryView({super.key, required this.controleOccupation});
-  final ControleOccupation controleOccupation;
+  const PersonalHistoryView(
+      {super.key,
+  
+      required this.personalHistory});
+  
+  final List<ModelPatientInfo> personalHistory;
 
   @override
   Widget build(BuildContext context) {
@@ -53,28 +57,13 @@ class PersonalHistoryView extends StatelessWidget {
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount: controleOccupation.listOfPationHistory.length,
+                  itemCount: personalHistory.length,
                   itemBuilder: (context, index) {
-                    var model = controleOccupation.listOfPationHistory[index];
-                    if (model is ModelDropDownOccupation) {
-                      return InfoRowItem(
-                        value: model.textEditingController.text,
-                        title: model.lableName,
-                      );
-                    }
-                    if (model is ModelTextFiledOccupation) {
-                      return InfoRowItem(
-                        value: model.textEditingController.text,
-                        title: model.labelname,
-                      );
-                    }
-                    if (model is ModelDividerOccupation) {
-                      return DividerItem(
-                        text: model.text,
-                      );
-                    }
-
-                    return SizedBox.shrink();
+                    var model = personalHistory[index];
+                    return InfoRowItem(
+                      value: model.answer ?? '',
+                      title: model.question!,
+                    );
                   },
                 ),
               ],

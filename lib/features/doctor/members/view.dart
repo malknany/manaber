@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/members/cubit/patients_department_cubit.dart';
-import 'package:manaber/features/doctor/members/widget/item_member.dart';
-import 'package:manaber/features/doctor/members/widget/item_sersh.dart';
-import 'package:manaber/features/doctor/profile_pationt/profile_view/view.dart';
-import 'package:manaber/shared/components/navigator.dart';
+import 'cubit/patients_department_cubit.dart';
+import 'widget/item_member.dart';
+import 'widget/item_sersh.dart';
+import '../profile_pationt/profile_view/view.dart';
+import '../../../shared/components/navigator.dart';
 import '../../../shared/styles/colors.dart';
 
 class MembersScreen extends StatefulWidget {

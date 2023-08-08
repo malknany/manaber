@@ -3,6 +3,7 @@
 var baseUrl = 'http://manaberdev.duckdns.org/';
 const register = 'users/register';
 const logIn = 'users/login';
+const refresh = 'users/refresh';
 const pendingUsers = 'users/pending';
 const approve = 'users/approve';
 const disapprove = 'users/disapprove';

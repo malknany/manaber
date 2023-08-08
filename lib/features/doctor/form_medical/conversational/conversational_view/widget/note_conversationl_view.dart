@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/model.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/images.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../../model.dart';
+import '../../../../../../shared/components/components.dart';
+import '../../../../../../shared/styles/colors.dart';
+import '../../../../../../shared/styles/images.dart';
+import '../../../../../../shared/styles/styles.dart';
 
 class NoteConversationalView extends StatelessWidget {
   const NoteConversationalView(

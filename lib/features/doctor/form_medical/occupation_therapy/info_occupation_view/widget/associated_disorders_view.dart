@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/occupation_therapy/stepper/model.dart';
-import '../../stepper/controler.dart';
+import '../../../model.dart';
+
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 import '../../../../../../shared/styles/images.dart';
 
 class AssociatedDisordersView extends StatelessWidget {
-  const AssociatedDisordersView({super.key, required this.controleOccupation});
-  final ControleOccupation controleOccupation;
+  const AssociatedDisordersView(
+      {super.key,
+      required this.associatedDisorders});
+
+  final List<ModelPatientInfo> associatedDisorders;
 
   @override
   Widget build(BuildContext context) {
@@ -49,33 +52,29 @@ class AssociatedDisordersView extends StatelessWidget {
                       fontWeight: FontWeight.normal),
                 ),
                 const SizedBox(height: 16.0),
-                ListView.builder(
+                ListView.separated(
+                  separatorBuilder: (context, index) {
+                    if (index == 3) {
+                      return const DividerItem(
+                        text: 'Developmental milestone',
+                      );
+                    }
+                    if (index == 10) {
+                      return const DividerItem(
+                        text: 'sensory skills',
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  },
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  itemCount:
-                      controleOccupation.listOfAssociatedDisorders.length,
+                  itemCount: associatedDisorders.length,
                   itemBuilder: (context, index) {
-                    var model =
-                        controleOccupation.listOfAssociatedDisorders[index];
-                    if (model is ModelDropDownOccupation) {
-                      return InfoRowItem(
-                        value: model.textEditingController.text,
-                        title: model.lableName,
-                      );
-                    }
-                    if (model is ModelTextFiledOccupation) {
-                      return InfoRowItem(
-                        value: model.textEditingController.text,
-                        title: model.labelname,
-                      );
-                    }
-                    if (model is ModelDividerOccupation) {
-                      return DividerItem(
-                        text: model.text,
-                      );
-                    }
-
-                    return const SizedBox.shrink();
+                    var model = associatedDisorders[index];
+                    return InfoRowItem(
+                      value: model.answer ?? '',
+                      title: model.question!,
+                    );
                   },
                 ),
               ],

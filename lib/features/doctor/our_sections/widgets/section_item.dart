@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/members/cubit/patients_department_cubit.dart';
-import 'package:manaber/features/doctor/members/view.dart';
-import 'package:manaber/shared/components/navigator.dart';
+import '../../members/cubit/patients_department_cubit.dart';
+import '../../members/view.dart';
+import '../../../../shared/components/navigator.dart';
 import '../../../../shared/components/constants.dart';
 import '../../../../shared/styles/colors.dart';
 import '../../../../shared/styles/styles.dart';

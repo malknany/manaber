@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/profile_pationt/tretment_plan/model.dart';
-import 'package:manaber/features/doctor/profile_pationt/tretment_plan/widget/data_view.dart';
-import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/styles.dart';
+
+import '../../../../../shared/components/navigator.dart';
+import '../../../../../shared/styles/colors.dart';
+import '../../../../../shared/styles/styles.dart';
+import '../model.dart';
+import 'data_view.dart';
 
 class ItemPlan extends StatelessWidget {
   const ItemPlan({
@@ -30,11 +31,14 @@ class ItemPlan extends StatelessWidget {
           elevation: 10,
           borderRadius: BorderRadius.circular(20),
           child: Dismissible(
-            direction: DismissDirection.startToEnd,
+            direction: DismissDirection.endToStart,
             background: Container(
-              color: Colors.red,
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(20),
+              ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   const Icon(Icons.delete, color: Colors.white),
                   Text(

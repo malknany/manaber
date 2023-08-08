@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/regitration/forget_pass/widgets.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import 'widgets.dart';
+import '../../../shared/styles/colors.dart';
+import '../../../shared/styles/styles.dart';
 
 import '../../../shared/components/components.dart';
 import '../../../shared/components/navigator.dart';
@@ -15,11 +15,11 @@ class ForgetPass extends StatelessWidget {
       appBar: AppBar(
         title: Text('Reset Password', style: AppTextStyles.lrTitles),
       ),
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Padding(
-          padding: EdgeInsets.only(top: 40),
+          padding: const EdgeInsets.only(top: 40),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -34,7 +34,7 @@ class ForgetPass extends StatelessWidget {
                           style: AppTextStyles.smTitles),
                       TextButton(
                           onPressed: () {
-                            navigateTo(context, ForgetPass());
+                            navigateTo(context, const ForgetPass());
                           },
                           child: const Text(
                             'change email.?',
@@ -58,28 +58,24 @@ class ForgetPass extends StatelessWidget {
                   ),
                 ],
               ),
-
-
-
-           Padding(
-             padding: const EdgeInsets.only(bottom: 40),
-             child: Column(
-               children: [
-                 SizedBox(
-                            height: 50,
-                            width: 200,
-                            child: ButtonTemplate(
-                      color: AppColors.primarycolor,
-                      text1: 'Reset',
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
+              Padding(
+                padding: const EdgeInsets.only(bottom: 40),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      width: 200,
+                      child: ButtonTemplate(
+                        color: AppColors.primarycolor,
+                        text1: 'Reset',
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
                     ),
-                          ),
-               ],
-             ),
-           ),
-
+                  ],
+                ),
+              ),
             ],
           ),
         ),

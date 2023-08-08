@@ -2,14 +2,19 @@
 
 import 'package:flutter/material.dart';
 import 'package:manaber/features/doctor/form_medical/file_assa/stpper/controller.dart';
+import 'package:manaber/features/doctor/form_medical/file_assa/stpper/model.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
 class MuscloskeletalExamination extends StatelessWidget {
-  MuscloskeletalExamination({super.key, required this.controlBodyFunction});
+  const MuscloskeletalExamination(
+      {super.key,
+      // required this.controlBodyFunction,
+      required this.controleFileAssesment});
 
-  final TextEditingController controller1 = TextEditingController();
-  final StepperControlBodyFunction controlBodyFunction;
+  // final TextEditingController controller1 = TextEditingController();
+  // final StepperControlBodyFunction controlBodyFunction;
+  final ControleFileAssesment controleFileAssesment;
 
   @override
   Widget build(BuildContext context) {
@@ -24,37 +29,75 @@ class MuscloskeletalExamination extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-        child: ListView(
+        child: Column(
           children: [
-            TextFormFiledStepper(
-                labelname: 'Deformities',
-                textEditingController: controlBodyFunction.deformities),
-            const DividerItem(text: 'Posture And Alignment'),
-            TextFormFiledStepper(
-                labelname: 'From Sitting',
-                textEditingController: controlBodyFunction.fromSitting),
-            TextFormFiledStepper(
-                labelname: 'From Standing',
-                textEditingController: controlBodyFunction.fromStanding),
-            TextFormFiledStepper(
-                labelname: 'Spine',
-                textEditingController: controlBodyFunction.spine),
-            TextFormFiledStepper(
-                labelname: 'Pelvic',
-                textEditingController: controlBodyFunction.pelvic),
-                TextFormFiledStepper(
-                  labelname: 'Leg Length Discrepancy ',
-                  textEditingController:
-                      controlBodyFunction.legLengthDiscrepancy),
-            const DividerItem(text: 'Hip'),
-            DropdownButtonItem(
-                controller: controlBodyFunction.rt,
-                lableName: 'Right',
-                itemList: const ['Normal', 'In risk', 'Sublaxed', 'dislocated']),
-            DropdownButtonItem(
-                controller: controlBodyFunction.lf,
-                lableName: 'Left',
-                itemList: const ['Normal', 'In risk', 'Sublaxed', 'dislocated'])
+            Expanded(
+              child: ListView.builder(
+                itemCount: controleFileAssesment.listMuscloskelton.length,
+                itemBuilder: (context, index) {
+                  var model = controleFileAssesment.listMuscloskelton[index];
+                  if (model is DividerFileAssModel) {
+                    return DividerItem(text: model.text);
+                  }
+                  if (model is DropdownButtonItemModel) {
+                    return DropdownButtonItem(
+                      controller: model.controller,
+                      lableName: model.labelName,
+                      itemList: model.itemList,
+                    );
+                  }
+                  if (model is TextFormFiledStepperModel) {
+                    return TextFormFiledStepper(
+                        labelname: model.labelName,
+                        textEditingController: model.textEditingController);
+                  }
+                  if (model is BottomSheetFileAssModel) {
+                    return ShowBottomSheetItems(
+                      name: model.name,
+                      contecnt: SizedBox(
+                        height: MediaQuery.sizeOf(context).height / 1.2,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: ListView.builder(
+                                  itemCount: model.itemList.length,
+                                  itemBuilder: (context, idx) {
+                                    final item = model.itemList[idx];
+                                    if (item is TextFormFiledStepperModel) {
+                                      return TextFormFiledStepper(
+                                          labelname: item.labelName,
+                                          textEditingController:
+                                              item.textEditingController);
+                                    }
+                                    if (item is TextFormFiledRightLiftModel) {
+                                      return RightLeftTextFiled(
+                                        title: item.labelName,
+                                        controllerRight: item.controllerRight,
+                                        controllerLeft: item.controllerLeft,
+                                      );
+                                    }
+                                    return const SizedBox.shrink();
+                                  },
+                                ),
+                              ),
+                              ButtonText(
+                                  text: 'Save',
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  }),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                  return const SizedBox.shrink();
+                },
+              ),
+            ),
           ],
         ),
       ),

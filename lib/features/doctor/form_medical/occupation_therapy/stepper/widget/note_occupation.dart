@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../cubit/pateint_info_cubit.dart';
+import '../../../model.dart';
+import '../model.dart';
+import '../../../../../../shared/styles/styles.dart';
 
 import '../controler.dart';
 import '../../../../../../shared/components/components.dart';
@@ -9,9 +14,12 @@ class NoteOccupation extends StatelessWidget {
   const NoteOccupation({
     super.key,
     required this.controleOccupation,
+    required this.id,
+    required this.noteOccupation,
   });
-  // final StepperOccupationPreformance controlerOccupationPreformance;
+  final String id;
   final ControleOccupation controleOccupation;
+  final List<ModelPatientInfo> noteOccupation;
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +39,191 @@ class NoteOccupation extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 TextFormFiledStepper(
+                    hintText: noteOccupation.last.answer ?? '',
                     labelname: 'Note ',
                     textEditingController:
                         controleOccupation.controleOccupationPreformance.note),
                 ButtonText(
                     text: "Save",
                     onPressed: () {
-                      Navigator.pop(context, 'refresh');
-                    })
+                      List<Map> listOfAnswer = [];
+                      int i = 1;
+                      for (final person
+                          in controleOccupation.listOfPationHistory) {
+                        if (person is ModelDropDownOccupation) {
+                          listOfAnswer.add(
+                            ModelPatientInfo(
+                              question: person.lableName,
+                              questionId: i,
+                              answer: person.textEditingController.text.isEmpty
+                                  ? 'null'
+                                  : person.textEditingController.text
+                                      .toString(),
+                            ).toJson(),
+                          );
+                          i++;
+                        }
+                        if (person is ModelTextFiledOccupation) {
+                          listOfAnswer.add(
+                            ModelPatientInfo(
+                              question: person.labelname,
+                              questionId: i,
+                              answer: person.textEditingController.text.isEmpty
+                                  ? 'null'
+                                  : person.textEditingController.text
+                                      .toString(),
+                            ).toJson(),
+                          );
+                          i++;
+                        }
+                      }
+                      for (final person
+                          in controleOccupation.listOfAssociatedDisorders) {
+                        if (person is ModelDropDownOccupation) {
+                          listOfAnswer.add(
+                            ModelPatientInfo(
+                              question: person.lableName,
+                              questionId: i,
+                              answer: person.textEditingController.text.isEmpty
+                                  ? 'null'
+                                  : person.textEditingController.text
+                                      .toString(),
+                            ).toJson(),
+                          );
+                          i++;
+                        }
+                        if (person is ModelTextFiledOccupation) {
+                          listOfAnswer.add(
+                            ModelPatientInfo(
+                              question: person.labelname,
+                              questionId: i,
+                              answer: person.textEditingController.text.isEmpty
+                                  ? 'null'
+                                  : person.textEditingController.text
+                                      .toString(),
+                            ).toJson(),
+                          );
+                          i++;
+                        }
+                      }
+                      // for (final person
+                      //     in controleOccupation.listOfBodyFunctionStrucer) {
+                      //   if (person is ModelDropDownOccupation) {
+                      //     listOfAnswer.add(
+                      //       ModelPatientInfo(
+                      //         question: person.lableName,
+                      //         questionId: i,
+                      //         answer: person.textEditingController.text.isEmpty
+                      //             ? 'لايوجد'
+                      //             : person.textEditingController.text,
+                      //       ).toJson(),
+                      //     );
+                      //     i++;
+                      //   }
+                      //   if (person is ModelTextFiledOccupation) {
+                      //     listOfAnswer.add(
+                      //       ModelPatientInfo(
+                      //         question: person.labelname,
+                      //         questionId: i,
+                      //         answer: person.textEditingController.text.isEmpty
+                      //             ? 'لايوجد'
+                      //             : person.textEditingController.text,
+                      //       ).toJson(),
+                      //     );
+                      //     i++;
+                      //   }
+                      // }
+                      // for (final person
+                      //     in controleOccupation.listOfBehaviorADLS) {
+                      //   if (person is ModelDropDownOccupation) {
+                      //     listOfAnswer.add(
+                      //       ModelPatientInfo(
+                      //         question: person.lableName,
+                      //         questionId: i,
+                      //         answer: person.textEditingController.text.isEmpty
+                      //             ? 'لايوجد'
+                      //             : person.textEditingController.text,
+                      //       ).toJson(),
+                      //     );
+                      //     i++;
+                      //   }
+                      //   if (person is ModelTextFiledOccupation) {
+                      //     listOfAnswer.add(
+                      //       ModelPatientInfo(
+                      //         question: person.labelname,
+                      //         questionId: i,
+                      //         answer: person.textEditingController.text.isEmpty
+                      //             ? 'لايوجد'
+                      //             : person.textEditingController.text,
+                      //       ).toJson(),
+                      //     );
+                      //     i++;
+                      //   }
+                      // }
+                      // for (final person
+                      //     in controleOccupation.listOfOccupationPreformance) {
+                      //   if (person is ModelDropDownOccupation) {
+                      //     listOfAnswer.add(
+                      //       ModelPatientInfo(
+                      //         question: person.lableName,
+                      //         questionId: i,
+                      //         answer: person.textEditingController.text.isEmpty
+                      //             ? 'لايوجد'
+                      //             : person.textEditingController.text,
+                      //       ).toJson(),
+                      //     );
+                      //     i++;
+                      //   }
+                      //   if (person is ModelTextFiledOccupation) {
+                      //     listOfAnswer.add(
+                      //       ModelPatientInfo(
+                      //         question: person.labelname,
+                      //         questionId: i,
+                      //         answer: person.textEditingController.text.isEmpty
+                      //             ? 'لايوجد'
+                      //             : person.textEditingController.text,
+                      //       ).toJson(),
+                      //     );
+                      //     i++;
+                      //   }
+                      // }
+                      listOfAnswer.forEach((element) {
+                        print(element);
+                      });
+                      print(listOfAnswer);
+                      BlocProvider.of<PateintInfoCubit>(context)
+                          .postAnswerToApi(id, listOfAnswer);
+                      // Future.delayed(const Duration(seconds: 3), () {
+                      //   Navigator.pop(context, 'refresh');
+                      // });
+                    }),
+                BlocBuilder<PateintInfoCubit, PateintInfoState>(
+                  builder: (context, state) {
+                    if (state is PateintLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(
+                          color: AppColors.primarycolor,
+                        ),
+                      );
+                    }
+                    if (state is PateintSuccess) {
+                      return const Center(
+                          child: Icon(
+                        Icons.check,
+                        color: AppColors.primarycolor,
+                      ));
+                    }
+                    if (state is PateintErrorMsg) {
+                      return Text(
+                        state.msg,
+                        textDirection: TextDirection.rtl,
+                        style: AppTextStyles.lrTitles
+                            .copyWith(color: Colors.red, fontSize: 15),
+                      );
+                    }
+                    return const SizedBox.shrink();
+                  },
+                ),
               ],
             ),
           )),

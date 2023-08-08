@@ -3,15 +3,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:manaber/features/doctor/form_medical/file_assa/stpper/controller.dart';
+import 'package:manaber/features/doctor/form_medical/file_assa/stpper/model.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
 class PatientInformation extends StatelessWidget {
-  const PatientInformation({
-    super.key,
-    required this.stepperControl,
-  });
-  final StepperControlPatientInfo stepperControl;
+  const PatientInformation(
+      {super.key,
+      // required this.stepperControl,
+      required this.controleFileAssesment});
+  // final StepperControlPatientInfo stepperControl;
+  final ControleFileAssesment controleFileAssesment;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,92 +26,38 @@ class PatientInformation extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-        child: SingleChildScrollView(
-          child: GestureDetector(
-            // ! it is not work
-            onTap: () {
-              FocusScope.of(context).requestFocus(FocusNode());
-            },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                TextFormFiledStepper(
-                    labelname: 'Created by',
-                    textEditingController: stepperControl.createdBy),
-                TextFormFiledStepper(
-                    labelname: 'Patient name ',
-                    textEditingController: stepperControl.name),
-                TextFormFiledStepper(
-                  labelname: 'Phone Number',
-                  textInputType: TextInputType.phone,
-                  textEditingController: stepperControl.phone,
+        child: GestureDetector(
+          // ! it is not work
+          onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: controleFileAssesment.listPatientInfo.length,
+                  itemBuilder: (context, index) {
+                    var model = controleFileAssesment.listPatientInfo[index];
+                    if (model is DropdownButtonItemModel) {
+                      return DropdownButtonItem(
+                        controller: model.controller,
+                        lableName: model.labelName,
+                        itemList: model.itemList,
+                      );
+                    }
+                    if (model is TextFormFiledStepperModel) {
+                      return TextFormFiledStepper(
+                          labelname: model.labelName,
+                          textEditingController: model.textEditingController);
+                    }
+
+                    return const SizedBox.shrink();
+                  },
                 ),
-                TextFormFiledStepper(
-                    labelname: 'Date of birthday',
-                    textInputType: TextInputType.datetime,
-                    textEditingController: stepperControl.dob),
-                DropdownButtonItem(
-                  controller: stepperControl.gender,
-                  lableName: 'Gender',
-                  itemList: const ['Male', 'Famale'],
-                ),
-                DropdownButtonItem(
-                  controller: stepperControl.consanguinity,
-                  lableName: 'Consanguinity',
-                  itemList: const ['Yes', 'No'],
-                ),
-                TextFormFiledStepper(
-                    labelname: 'Pregnancy Problem',
-                    textEditingController: stepperControl.pregnancyProblem),
-                TextFormFiledStepper(
-                    labelname: 'Birth Weight',
-                    textEditingController: stepperControl.birthWeight),
-                TextFormFiledStepper(
-                    labelname: 'Incubation',
-                    textEditingController: stepperControl.incubation),
-                DropdownButtonItem(
-                    controller: stepperControl.vaccination,
-                    lableName: 'Vaccination',
-                    itemList: const ['Yes', 'No']),
-                TextFormFiledStepper(
-                    labelname: 'Current Medications',
-                    textEditingController: stepperControl.currentMedications),
-                TextFormFiledStepper(
-                  labelname: 'Previous Medications',
-                  textEditingController: stepperControl.previousMedications,
-                ),
-                DropdownButtonItem(
-                    controller: stepperControl.convulsions,
-                    lableName: 'Convulsions',
-                    itemList: const [
-                      'No',
-                      'With history',
-                      'Controlled',
-                      'Uncontrolled'
-                    ]),
-                TextFormFiledStepper(
-                  labelname: 'Assistive Devices',
-                  textEditingController: stepperControl.assistiveDevices,
-                ),
-                TextFormFiledStepper(
-                  labelname: 'Other Associated Problems',
-                  textEditingController: stepperControl.otherAssociatedProblems,
-                ),
-                TextFormFiledStepper(
-                  labelname: 'Similar cases in the family',
-                  textEditingController: stepperControl.similarCasesInTheFamily,
-                ),
-                TextFormFiledStepper(
-                  labelname: 'Investigations',
-                  textEditingController: stepperControl.investigations,
-                ),
-                TextFormFiledStepper(
-                  labelname: 'Diagnosis',
-                  textEditingController: stepperControl.diagnosis,
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

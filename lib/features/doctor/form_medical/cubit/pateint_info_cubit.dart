@@ -2,11 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:manaber/features/doctor/form_medical/model.dart';
-import 'package:manaber/shared/network/local/const_key.dart';
-import 'package:manaber/shared/network/local/shared_preferences.dart';
-import 'package:manaber/shared/network/remote/dio_helper.dart';
-import 'package:manaber/shared/network/remote/end_points.dart';
+import '../model.dart';
+import '../../../../shared/network/local/const_key.dart';
+import '../../../../shared/network/local/shared_preferences.dart';
+import '../../../../shared/network/remote/dio_helper.dart';
+import '../../../../shared/network/remote/end_points.dart';
 
 part 'pateint_info_state.dart';
 
@@ -22,7 +22,7 @@ class PateintInfoCubit extends Cubit<PateintInfoState> {
             value.map((e) => ModelPatientInfo.fromJson(e)).toList();
 
         // final listOfInfoPatient = value;
-        emit(ConversationPateintSuccess(listOfInfoPatient: listOfInfoPatient));
+        emit(PateintSuccess(listOfInfoPatient: listOfInfoPatient));
       });
       // ignore: deprecated_member_use
     } on DioError catch (e) {
@@ -64,6 +64,7 @@ class PateintInfoCubit extends Cubit<PateintInfoState> {
       //     url: '$patients$id/answers',
       //     posteddata: listOfAnswer!.map((e) => null),
       //     headers: {'Authorization': 'Bearer ${token[0]}'});
+      emit(PateintSuccess(listOfInfoPatient: listOfInfoPatient));
       if (response.statusCode == 200) {
         print(response.data);
         print(response.statusCode);
@@ -85,22 +86,22 @@ class PateintInfoCubit extends Cubit<PateintInfoState> {
     }
   }
 
-  Future<List> _postModelApi({id, List<Map>? listOfAnswer}) async {
-    final response = await Dio().post(
-        'http://manaberdev.duckdns.org/$patients$id/answers',
-        data: listOfAnswer,
-        options: Options(headers: {'Authorization': 'Bearer ${token[0]}'}));
-    // final response = await DioHelper.postdata(
-    //     url: '$patients$id/answers',
-    //     posteddata: listOfAnswer!.map((e) => null),
-    //     headers: {'Authorization': 'Bearer ${token[0]}'});
-    if (response.statusCode == 200) {
-      print(response.data);
-      print(response.statusCode);
-      print(response.statusMessage);
-      return response.data;
-    } else {
-      return response.data;
-    }
-  }
+  // Future<List> _postModelApi({id, List<Map>? listOfAnswer}) async {
+  //   final response = await Dio().post(
+  //       'http://manaberdev.duckdns.org/$patients$id/answers',
+  //       data: listOfAnswer,
+  //       options: Options(headers: {'Authorization': 'Bearer ${token[0]}'}));
+  //   // final response = await DioHelper.postdata(
+  //   //     url: '$patients$id/answers',
+  //   //     posteddata: listOfAnswer!.map((e) => null),
+  //   //     headers: {'Authorization': 'Bearer ${token[0]}'});
+  //   if (response.statusCode == 200) {
+  //     print(response.data);
+  //     print(response.statusCode);
+  //     print(response.statusMessage);
+  //     return response.data;
+  //   } else {
+  //     return response.data;
+  //   }
+  // }
 }

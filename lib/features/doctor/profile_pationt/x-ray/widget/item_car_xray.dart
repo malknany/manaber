@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/profile_pationt/x-ray/model.dart';
-import 'package:manaber/shared/components/constants.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../model.dart';
+import '../../../../../shared/components/constants.dart';
+import '../../../../../shared/styles/colors.dart';
+import '../../../../../shared/styles/styles.dart';
 
 class ItemCardXray extends StatelessWidget {
   const ItemCardXray({

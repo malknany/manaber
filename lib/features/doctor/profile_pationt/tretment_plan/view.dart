@@ -12,7 +12,7 @@ import '../../../../shared/styles/styles.dart';
 
 class TretmentPlanView extends StatefulWidget {
   const TretmentPlanView({super.key, required this.id});
-  final id;
+  final String id;
 
   @override
   _TretmentPlanViewState createState() => _TretmentPlanViewState();
@@ -109,6 +109,7 @@ class _TretmentPlanViewState extends State<TretmentPlanView> {
               ));
 
           if (refresh == 'refresh') {
+            // ignore: use_build_context_synchronously
             context.read<TretmentPlanCubit>().getTretmentPlan(widget.id);
           }
         },
