@@ -10,7 +10,7 @@ import '../../../../../../shared/components/components.dart';
 
 import '../../../../../../shared/styles/colors.dart';
 
-class NoteOccupation extends StatelessWidget {
+class NoteOccupation extends StatefulWidget {
   const NoteOccupation({
     super.key,
     required this.controleOccupation,
@@ -22,7 +22,14 @@ class NoteOccupation extends StatelessWidget {
   final List<ModelPatientInfo> noteOccupation;
 
   @override
+  State<NoteOccupation> createState() => _NoteOccupationState();
+}
+
+class _NoteOccupationState extends State<NoteOccupation>
+    with AutomaticKeepAliveClientMixin<NoteOccupation> {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -44,17 +51,42 @@ class NoteOccupation extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 TextFormFiledStepper(
-                    hintText: noteOccupation.last.answer ?? '',
+                    hintText: widget.noteOccupation.last.answer ?? '',
                     labelname: 'Note',
-                    textEditingController:
-                        controleOccupation.controleOccupationPreformance.note),
+                    textEditingController: widget
+                        .controleOccupation.controleOccupationPreformance.note),
                 ButtonText(
                     text: "Save",
                     onPressed: () {
                       List<Map> listOfAnswer = [];
                       int i = 1;
                       for (final person
-                          in controleOccupation.listOfPationHistory) {
+                          in widget.controleOccupation.listOfPationHistory) {
+                        if (person is ModelDropDownOccupation) {
+                          listOfAnswer.add(
+                            ModelPatientInfo(
+                              questionId: i,
+                              answer: person.textEditingController.text.isEmpty
+                                  ? null
+                                  : person.textEditingController.text,
+                            ).toJson(),
+                          );
+                          i++;
+                        }
+                        if (person is ModelTextFiledOccupation) {
+                          listOfAnswer.add(
+                            ModelPatientInfo(
+                              questionId: i,
+                              answer: person.textEditingController.text.isEmpty
+                                  ? 'null'
+                                  : person.textEditingController.text,
+                            ).toJson(),
+                          );
+                          i++;
+                        }
+                      }
+                      for (final person in widget
+                          .controleOccupation.listOfBodyFunctionStrucer) {
                         if (person is ModelDropDownOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
@@ -79,7 +111,7 @@ class NoteOccupation extends StatelessWidget {
                         }
                       }
                       for (final person
-                          in controleOccupation.listOfBodyFunctionStrucer) {
+                          in widget.controleOccupation.listOfBehaviorADLS) {
                         if (person is ModelDropDownOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
@@ -103,33 +135,8 @@ class NoteOccupation extends StatelessWidget {
                           i++;
                         }
                       }
-                      for (final person
-                          in controleOccupation.listOfBehaviorADLS) {
-                        if (person is ModelDropDownOccupation) {
-                          listOfAnswer.add(
-                            ModelPatientInfo(
-                              questionId: i,
-                              answer: person.textEditingController.text.isEmpty
-                                  ? null
-                                  : person.textEditingController.text,
-                            ).toJson(),
-                          );
-                          i++;
-                        }
-                        if (person is ModelTextFiledOccupation) {
-                          listOfAnswer.add(
-                            ModelPatientInfo(
-                              questionId: i,
-                              answer: person.textEditingController.text.isEmpty
-                                  ? 'null'
-                                  : person.textEditingController.text,
-                            ).toJson(),
-                          );
-                          i++;
-                        }
-                      }
-                      for (final person
-                          in controleOccupation.listOfAssociatedDisorders) {
+                      for (final person in widget
+                          .controleOccupation.listOfAssociatedDisorders) {
                         if (person is ModelDropDownOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
@@ -155,8 +162,8 @@ class NoteOccupation extends StatelessWidget {
                           i++;
                         }
                       }
-                      for (final person
-                          in controleOccupation.listOfOccupationPreformance) {
+                      for (final person in widget
+                          .controleOccupation.listOfOccupationPreformance) {
                         if (person is ModelDropDownOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
@@ -185,7 +192,7 @@ class NoteOccupation extends StatelessWidget {
                       }
                       print(listOfAnswer);
                       BlocProvider.of<PateintInfoCubit>(context)
-                          .postAnswerToApi(id, listOfAnswer);
+                          .postAnswerToApi(widget.id, listOfAnswer);
                     }),
                 BlocBuilder<PateintInfoCubit, PateintInfoState>(
                   builder: (context, state) {
@@ -219,4 +226,7 @@ class NoteOccupation extends StatelessWidget {
           )),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

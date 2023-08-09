@@ -23,6 +23,9 @@ class Note extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: IconButton(onPressed: (){
+          Navigator.pop(context, 'refresh');
+        }, icon: const Icon(Icons.arrow_back_ios_new)),
         title: const Text('Note'),
         backgroundColor: Colors.white,
         foregroundColor: AppColors.primarycolor,

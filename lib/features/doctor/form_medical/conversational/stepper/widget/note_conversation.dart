@@ -107,16 +107,16 @@ class NoteConversation extends StatelessWidget {
                       ModelPatientInfo(
                         questionId: i,
                         answer: person.controle.text.isEmpty
-                            ? ' '
+                            ? 'لايوجد'
                             : person.controle.text,
                       ).toJson(),
                     );
                     i++;
                   }
-                  listOfAnswer.forEach((element) {
-                    print(element);
-                  });
-                  print(listOfAnswer);
+                  for (var element in listOfAnswer) {
+                    debugPrint(element.toString());
+                  }
+                  debugPrint(listOfAnswer.toString());
 
                   BlocProvider.of<PateintInfoCubit>(context)
                       .postAnswerToApi(id, listOfAnswer);

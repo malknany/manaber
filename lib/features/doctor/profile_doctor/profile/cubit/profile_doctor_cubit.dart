@@ -25,13 +25,14 @@ class DoctorProfileCubit extends Cubit<DoctorProfileState> {
         emit(DoctorProfileSuccess(
             modelDoctorProfile: ModelProfile.fromJson(response.data)));
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         print(e.response!.data);
         print(e.response!.statusCode);
         print(e.response!.statusMessage);
         emit(DoctorProfileError(msg: e.response!.data['message']));
       } else {
+        emit(DoctorProfileError(msg: e.error.toString()));
         print(e.message);
       }
     } catch (e) {

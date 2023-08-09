@@ -51,7 +51,7 @@ class _ReceptionistDataEntryState extends State<ReceptionistDataEntry> {
                     return DropdownButtonItem(
                       alignment: Alignment.bottomRight,
                       textDirection: TextDirection.rtl,
-                      lableName: model.lable,
+                      labelName: model.lable,
                       itemList: model.listOfItem!,
                       controller: model.controller,
                     );

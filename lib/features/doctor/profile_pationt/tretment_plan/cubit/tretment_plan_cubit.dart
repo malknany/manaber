@@ -94,7 +94,7 @@ class TretmentPlanCubit extends Cubit<TretmentPlanState> {
         print(response.statusMessage);
         emit(TretmentPlanSuccessUpLoade());
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         print(e.response!.data);
         print(e.response!.statusCode);
@@ -102,6 +102,7 @@ class TretmentPlanCubit extends Cubit<TretmentPlanState> {
         emit(TretmentPlanError(msg: e.response!.data['message']));
       } else {
         print(e.message);
+        emit(TretmentPlanError(msg: e.error.toString()));
       }
     } catch (e) {
       print(e.toString());

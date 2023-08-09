@@ -5,13 +5,23 @@ import '../controler.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 
-class BodyFunctionStrucer extends StatelessWidget {
-  const BodyFunctionStrucer({super.key, required this.controleOccupation,required this.bodyFunctionStrucer});
+class BodyFunctionStrucer extends StatefulWidget {
+  const BodyFunctionStrucer(
+      {super.key,
+      required this.controleOccupation,
+      required this.bodyFunctionStrucer});
   final ControleOccupation controleOccupation;
   final List<ModelPatientInfo> bodyFunctionStrucer;
 
   @override
+  State<BodyFunctionStrucer> createState() => _BodyFunctionStrucerState();
+}
+
+class _BodyFunctionStrucerState extends State<BodyFunctionStrucer>
+    with AutomaticKeepAliveClientMixin<BodyFunctionStrucer> {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Body Function Strucer'),
@@ -23,19 +33,20 @@ class BodyFunctionStrucer extends StatelessWidget {
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
           child: ListView.builder(
-            itemCount: controleOccupation.listOfBodyFunctionStrucer.length,
+            itemCount: widget.bodyFunctionStrucer.length,
             itemBuilder: (context, index) {
-              var model = controleOccupation.listOfBodyFunctionStrucer[index];
+              var model =
+                  widget.controleOccupation.listOfBodyFunctionStrucer[index];
               if (model is ModelDropDownOccupation) {
                 return DropdownButtonItem(
                   controller: model.textEditingController,
-                  lableName: model.lableName,
+                  labelName: model.lableName,
                   itemList: model.itemList,
                 );
               }
               if (model is ModelTextFiledOccupation) {
                 return TextFormFiledStepper(
-                  // hintText: bodyFunctionStrucer[index].answer??'',
+                    // hintText: bodyFunctionStrucer[index].answer ?? '',
                     textInputType: model.textInputType,
                     labelname: model.labelname,
                     textEditingController: model.textEditingController);
@@ -49,6 +60,9 @@ class BodyFunctionStrucer extends StatelessWidget {
           )),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 /*
 const DividerItem(text: 'Neuromuscular Status'),

@@ -77,13 +77,14 @@ class XrayCubit extends Cubit<XrayState> {
           print(response.statusMessage);
           emit(XraySuccess());
         }
-      } on DioError catch (e) {
+      } on DioException catch (e) {
         if (e.response != null) {
           print(e.response!.data);
           print(e.response!.statusCode);
           print(e.response!.statusMessage);
           emit(XrayError(msg: e.response!.data['message']));
         } else {
+          emit(XrayError(msg: e.error.toString()));
           print(e.message);
         }
       } catch (e) {
@@ -115,7 +116,7 @@ class XrayCubit extends Cubit<XrayState> {
         print(response.statusCode);
         print(response.statusMessage);
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         print(e.response!.data);
         print(e.response!.statusCode);
@@ -139,14 +140,14 @@ class XrayCubit extends Cubit<XrayState> {
           emit(GetXraySuccess(listOfModleXray: listOfXray));
         }
       });
-      // ignore: deprecated_member_use
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         print(e.response!.data);
         print(e.response!.statusCode);
         print(e.response!.statusMessage);
         emit(XrayError(msg: e.response!.data['message']));
       } else {
+        emit(XrayError(msg: e.error.toString()));
         print(e.message);
       }
     } catch (e) {

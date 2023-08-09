@@ -2,8 +2,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../admin/accepte_home_page/cubit/pending_cubit.dart';
-import '../../admin/accepte_home_page/view.dart';
+import 'package:manaber/features/admin/our_section_admin/view.dart';
 import '../../doctor/our_sections/view.dart';
 import '../../regitration/login/cubit/log_in_cubit.dart';
 import '../../regitration/login/model.dart';
@@ -33,12 +32,7 @@ class SplashCubit extends Cubit<SplashState> {
       }
       if (token[1] == 'ADMIN') {
         Timer(const Duration(seconds: 4), () {
-          navigateAndFinished(
-              context,
-              BlocProvider(
-                create: (context) => PendingCubit(),
-                child: const AdminHomePage(),
-              ));
+          navigateAndFinished(context, const AdminHomePage());
         });
       }
     } else {
@@ -69,13 +63,14 @@ class SplashCubit extends Cubit<SplashState> {
             "Token and Role =====${CacheHelper.getData(key: AppConstKey.token)}");
         emit(SplashSuccess());
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         print(e.response!.data);
         print(e.response!.statusCode);
         print(e.response!.statusMessage);
       } else {
-        print(e.message);
+        // print(e.message);
+        emit(SplashError(msg: e.error.toString()));
       }
     } catch (e) {
       print(e.toString());

@@ -37,7 +37,7 @@ class NeurologicalExamination extends StatelessWidget {
                   if (model is DropdownButtonItemModel) {
                     return DropdownButtonItem(
                       controller: model.controller,
-                      lableName: model.labelName,
+                      labelName: model.labelName,
                       itemList: model.itemList,
                     );
                   }
@@ -70,7 +70,7 @@ class NeurologicalExamination extends StatelessWidget {
                                     if (item is DropdownButtonItemModel) {
                                       return DropdownButtonItem(
                                         controller: item.controller,
-                                        lableName: item.labelName,
+                                        labelName: item.labelName,
                                         itemList: item.itemList,
                                       );
                                     }

@@ -7,7 +7,7 @@ import 'package:manaber/features/doctor/form_medical/file_assa/stpper/model.dart
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
-class ICFBodyfunctionAndstructure extends StatelessWidget {
+class ICFBodyfunctionAndstructure extends StatefulWidget {
   const ICFBodyfunctionAndstructure(
       {super.key,
       // required this.controlBodyFunction,
@@ -17,7 +17,16 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
   final ControleFileAssesment controleFileAssesment;
 
   @override
+  State<ICFBodyfunctionAndstructure> createState() =>
+      _ICFBodyfunctionAndstructureState();
+}
+
+class _ICFBodyfunctionAndstructureState
+    extends State<ICFBodyfunctionAndstructure>
+    with AutomaticKeepAliveClientMixin<ICFBodyfunctionAndstructure> {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -38,16 +47,16 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: controleFileAssesment.listicfBody.length,
+                itemCount: widget.controleFileAssesment.listicfBody.length,
                 itemBuilder: (context, index) {
-                  var model = controleFileAssesment.listicfBody[index];
+                  var model = widget.controleFileAssesment.listicfBody[index];
                   if (model is DividerFileAssModel) {
                     return DividerItem(text: model.text);
                   }
                   if (model is DropdownButtonItemModel) {
                     return DropdownButtonItem(
                       controller: model.controller,
-                      lableName: model.labelName,
+                      labelName: model.labelName,
                       itemList: model.itemList,
                     );
                   }
@@ -80,7 +89,7 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
                                     if (item is DropdownButtonItemModel) {
                                       return DropdownButtonItem(
                                         controller: item.controller,
-                                        lableName: item.labelName,
+                                        labelName: item.labelName,
                                         itemList: item.itemList,
                                       );
                                     }
@@ -109,6 +118,9 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 // DropdownButtonItem(

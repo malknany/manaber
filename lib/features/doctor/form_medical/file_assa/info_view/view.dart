@@ -46,7 +46,8 @@ class _FileAssassemntViewState extends State<FileAssassemntView> {
               ),
             );
             if (result == 'refresh') {
-              setState(() {});
+              BlocProvider.of<PateintInfoCubit>(context)
+                  .getPatinetFromApi(widget.id);
             }
           },
           backgroundColor: AppColors.primarycolor,

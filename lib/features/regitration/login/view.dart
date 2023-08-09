@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../admin/accepte_home_page/cubit/pending_cubit.dart';
+import 'package:manaber/features/admin/our_section_admin/view.dart';
 import '../../receptionist/our_section_reception/view.dart';
 import 'cubit/log_in_cubit.dart';
 import '../sign_up/cubit/sign_up_cubit.dart';
 import '../../../shared/styles/styles.dart';
-import '../../admin/accepte_home_page/view.dart';
 
-import '../forget_pass/forget_pass.dart';
 import '../sign_up/view.dart';
 import '../../../shared/components/components.dart';
 import '../../../shared/components/navigator.dart';
@@ -100,15 +98,6 @@ class _LogInScreenState extends State<LogInScreen> {
                     ),
                   ),
                 ),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                      onPressed: () {
-                        navigateTo(context, const ForgetPass());
-                      },
-                      child: const Text('هل نسيت كلمة السر ؟',
-                          style: TextStyle(color: AppColors.primarycolor))),
-                ),
                 ButtonText(
                   text: 'تسجيل',
                   onPressed: () async {
@@ -145,12 +134,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         Future.delayed(
                           const Duration(seconds: 1),
                           () {
-                            navigateAndFinished(
-                                context,
-                                BlocProvider(
-                                  create: (context) => PendingCubit(),
-                                  child: const AdminHomePage(),
-                                ));
+                            navigateAndFinished(context, const AdminHomePage());
                           },
                         );
                       }
@@ -174,10 +158,6 @@ class _LogInScreenState extends State<LogInScreen> {
                 Text(
                   'او',
                   style: AppTextStyles.boldtitles.copyWith(color: Colors.black),
-                  //  TextStyle(
-                  //     color: Colors.black,
-                  //     fontFamily: 'Schyler',
-                  //     fontWeight: FontWeight.bold),
                 ),
                 TextButton(
                   style: const ButtonStyle(
@@ -194,13 +174,8 @@ class _LogInScreenState extends State<LogInScreen> {
                     );
                   },
                   child: Text('تسجيل حساب جديد',
-                      style:
-                          AppTextStyles.boldtitles.copyWith(color: Colors.black)
-                      // TextStyle(
-                      //     color: Colors.black,
-                      //     fontFamily: 'Schyler',
-                      //     fontWeight: FontWeight.bold),
-                      ),
+                      style: AppTextStyles.boldtitles
+                          .copyWith(color: Colors.black)),
                 )
               ],
             ),

@@ -40,8 +40,9 @@ class Rom extends StatelessWidget {
                   }
                   if (model is DropdownButtonItemModel) {
                     return DropdownButtonItem(
+                      
                       controller: model.controller,
-                      lableName: model.labelName,
+                      labelName: model.labelName,
                       itemList: model.itemList,
                     );
                   }

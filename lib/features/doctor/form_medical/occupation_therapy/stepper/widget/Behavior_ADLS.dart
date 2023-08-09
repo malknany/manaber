@@ -7,13 +7,23 @@ import 'package:manaber/features/doctor/form_medical/occupation_therapy/stepper/
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
-class BehaviorADLS extends StatelessWidget {
-  const BehaviorADLS({super.key, required this.controleOccupation,required this.behaviorADLS});
+class BehaviorADLS extends StatefulWidget {
+  const BehaviorADLS(
+      {super.key,
+      required this.controleOccupation,
+      required this.behaviorADLS});
   final List<ModelPatientInfo> behaviorADLS;
   final ControleOccupation controleOccupation;
 
   @override
+  State<BehaviorADLS> createState() => _BehaviorADLSState();
+}
+
+class _BehaviorADLSState extends State<BehaviorADLS>
+    with AutomaticKeepAliveClientMixin<BehaviorADLS> {
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Behavior And ADLS'),
@@ -25,19 +35,19 @@ class BehaviorADLS extends StatelessWidget {
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
           child: ListView.builder(
-            itemCount: controleOccupation.listOfBehaviorADLS.length,
+            itemCount: widget.controleOccupation.listOfBehaviorADLS.length,
             itemBuilder: (context, index) {
-              var model = controleOccupation.listOfBehaviorADLS[index];
+              var model = widget.controleOccupation.listOfBehaviorADLS[index];
               if (model is ModelDropDownOccupation) {
                 return DropdownButtonItem(
                   controller: model.textEditingController,
-                  lableName: model.lableName,
+                  labelName: model.lableName,
                   itemList: model.itemList,
                 );
               }
               if (model is ModelTextFiledOccupation) {
                 return TextFormFiledStepper(
-                  hintText: behaviorADLS[index].answer??'',
+                    hintText: widget.behaviorADLS[index].answer ?? '',
                     textInputType: model.textInputType,
                     labelname: model.labelname,
                     textEditingController: model.textEditingController);
@@ -51,4 +61,7 @@ class BehaviorADLS extends StatelessWidget {
           )),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

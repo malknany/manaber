@@ -7,15 +7,23 @@ import 'package:manaber/features/doctor/form_medical/file_assa/stpper/model.dart
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
-class PatientInformation extends StatelessWidget {
+class PatientInformation extends StatefulWidget {
   const PatientInformation(
       {super.key,
       // required this.stepperControl,
       required this.controleFileAssesment});
   // final StepperControlPatientInfo stepperControl;
   final ControleFileAssesment controleFileAssesment;
+
+  @override
+  State<PatientInformation> createState() => _PatientInformationState();
+}
+
+class _PatientInformationState extends State<PatientInformation>
+    with AutomaticKeepAliveClientMixin<PatientInformation> {
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Patient Information'),
@@ -37,13 +45,15 @@ class PatientInformation extends StatelessWidget {
             children: [
               Expanded(
                 child: ListView.builder(
-                  itemCount: controleFileAssesment.listPatientInfo.length,
+                  itemCount:
+                      widget.controleFileAssesment.listPatientInfo.length,
                   itemBuilder: (context, index) {
-                    var model = controleFileAssesment.listPatientInfo[index];
+                    var model =
+                        widget.controleFileAssesment.listPatientInfo[index];
                     if (model is DropdownButtonItemModel) {
                       return DropdownButtonItem(
                         controller: model.controller,
-                        lableName: model.labelName,
+                        labelName: model.labelName,
                         itemList: model.itemList,
                       );
                     }
@@ -63,4 +73,7 @@ class PatientInformation extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'cubit/sign_up_cubit.dart';
-import 'widget/item_radio_button.dart';
 import '../../../shared/styles/styles.dart';
 import '../../../shared/components/components.dart';
 import '../../../shared/styles/colors.dart';
@@ -24,7 +23,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   bool isPassword = true;
   bool passwordConfi = true;
-  JobType _jobType = JobType.DOCTOR;
+  // final JobType _jobType = JobType.DOCTOR;
 
   @override
   Widget build(BuildContext context) {
@@ -139,33 +138,33 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ),
                   ),
-                  Row(
-                    textDirection: TextDirection.rtl,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      ItemRadioButton(
-                        onChanged: (value) {
-                          setState(() {
-                            _jobType = value!;
-                          });
-                        },
-                        groupValue: _jobType,
-                        value: JobType.DOCTOR,
-                        title: 'طبيب',
-                      ),
-                      ItemRadioButton(
-                        onChanged: (value) {
-                          setState(() {
-                            _jobType = value!;
-                          });
-                        },
-                        groupValue: _jobType,
-                        value: JobType.RECEPTIONIST,
-                        title: 'موظف الاستقبال',
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   textDirection: TextDirection.rtl,
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   crossAxisAlignment: CrossAxisAlignment.center,
+                  //   children: [
+                  //     ItemRadioButton(
+                  //       onChanged: (value) {
+                  //         setState(() {
+                  //           _jobType = value!;
+                  //         });
+                  //       },
+                  //       groupValue: _jobType,
+                  //       value: JobType.DOCTOR,
+                  //       title: 'طبيب',
+                  //     ),
+                  //     ItemRadioButton(
+                  //       onChanged: (value) {
+                  //         setState(() {
+                  //           _jobType = value!;
+                  //         });
+                  //       },
+                  //       groupValue: _jobType,
+                  //       value: JobType.RECEPTIONIST,
+                  //       title: 'موظف الاستقبال',
+                  //     ),
+                  //   ],
+                  // ),
                   ButtonText(
                     text: 'تسجيل',
                     onPressed: () async {
@@ -173,7 +172,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         context.read<SignUpCubit>().signUpPostData(
                             name: name.text,
                             phone: phone.text,
-                            jobType: _jobType.name,
+                            jobType: "DOCTOR",
                             password: password.text);
                       }
                     },

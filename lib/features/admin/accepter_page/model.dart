@@ -1,4 +1,4 @@
-class ModelUserAccepte {
+class ModelUserAccepteAndDelete {
   String? token;
   String? id;
   String? name;
@@ -8,7 +8,7 @@ class ModelUserAccepte {
   String? createdAt;
   String? updatedAt;
 
-  ModelUserAccepte(
+  ModelUserAccepteAndDelete(
       {this.token,
       this.id,
       this.name,
@@ -18,7 +18,7 @@ class ModelUserAccepte {
       this.createdAt,
       this.updatedAt});
 
-  ModelUserAccepte.fromJson(Map<String, dynamic> json) {
+  ModelUserAccepteAndDelete.fromJson(Map<String, dynamic> json) {
     token = json['token'];
     id = json['id'];
     name = json['name'];

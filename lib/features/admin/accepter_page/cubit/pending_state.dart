@@ -18,7 +18,7 @@ class PendingErorr extends PendingState {
 }
 
 class PendingSuccess extends PendingState {
-  final List<ModelUserAccepte> listOfUserspending;
+  final List<ModelUserAccepteAndDelete> listOfUserspending;
   PendingSuccess({
     required this.listOfUserspending,
   });
