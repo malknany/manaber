@@ -7,7 +7,7 @@ import 'package:manaber/features/doctor/form_medical/occupation_therapy/stepper/
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
-class BehaviorADLS extends StatefulWidget {
+class BehaviorADLS extends StatelessWidget {
   const BehaviorADLS(
       {super.key,
       required this.controleOccupation,
@@ -16,14 +16,7 @@ class BehaviorADLS extends StatefulWidget {
   final ControleOccupation controleOccupation;
 
   @override
-  State<BehaviorADLS> createState() => _BehaviorADLSState();
-}
-
-class _BehaviorADLSState extends State<BehaviorADLS>
-    with AutomaticKeepAliveClientMixin<BehaviorADLS> {
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Behavior And ADLS'),
@@ -34,10 +27,10 @@ class _BehaviorADLSState extends State<BehaviorADLS>
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-          child: ListView.builder(
-            itemCount: widget.controleOccupation.listOfBehaviorADLS.length,
-            itemBuilder: (context, index) {
-              var model = widget.controleOccupation.listOfBehaviorADLS[index];
+          child: ListView(
+            children: List.generate(
+                controleOccupation.listOfBehaviorADLS.length, (index) {
+              var model = controleOccupation.listOfBehaviorADLS[index];
               if (model is ModelDropDownOccupation) {
                 return DropdownButtonItem(
                   controller: model.textEditingController,
@@ -47,7 +40,7 @@ class _BehaviorADLSState extends State<BehaviorADLS>
               }
               if (model is ModelTextFiledOccupation) {
                 return TextFormFiledStepper(
-                    hintText: widget.behaviorADLS[index].answer ?? '',
+                    hintText: behaviorADLS[index].answer,
                     textInputType: model.textInputType,
                     labelname: model.labelname,
                     textEditingController: model.textEditingController);
@@ -57,11 +50,8 @@ class _BehaviorADLSState extends State<BehaviorADLS>
               }
 
               return const SizedBox.shrink();
-            },
+            }),
           )),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

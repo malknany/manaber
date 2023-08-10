@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manaber/features/doctor/form_medical/keep_alive.dart';
 import '../../cubit/pateint_info_cubit.dart';
 import '../../model.dart';
 import 'controler.dart';
@@ -11,8 +12,8 @@ import 'widget/occupational_perform.dart';
 import 'widget/personal_history_stepper.dart';
 import '../../../../../shared/styles/colors.dart';
 
-class StepperOccupation extends StatelessWidget {
-  StepperOccupation(
+class StepperOccupation extends StatefulWidget {
+  const StepperOccupation(
       {super.key,
       required this.controleOccupation,
       required this.id,
@@ -20,7 +21,15 @@ class StepperOccupation extends StatelessWidget {
   final String id;
   final List<ModelPatientInfo> listOfInfoPatient;
   final ControleOccupation controleOccupation;
+
+  @override
+  State<StepperOccupation> createState() => _StepperOccupationState();
+}
+
+class _StepperOccupationState extends State<StepperOccupation>
+    with AutomaticKeepAliveClientMixin<StepperOccupation> {
   final PageController _pageController = PageController();
+
   void _navigateToNextPage() {
     _pageController.nextPage(
       duration: const Duration(milliseconds: 500),
@@ -37,12 +46,13 @@ class StepperOccupation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final List<ModelPatientInfo> personalHistory = [];
     final List<ModelPatientInfo> associatedDisorders = [];
     final List<ModelPatientInfo> bodyFunctionAndStrucer = [];
     final List<ModelPatientInfo> behaviorAndADLS = [];
     final List<ModelPatientInfo> note = [];
-    for (final person in listOfInfoPatient) {
+    for (final person in widget.listOfInfoPatient) {
       if (person.section == 'Personal History') {
         personalHistory.add(person);
       }
@@ -66,27 +76,39 @@ class StepperOccupation extends StatelessWidget {
             child: PageView(
               controller: _pageController,
               children: [
-                PersonalHistory(
-                    personalHistory: personalHistory,
-                    controleOccupation: controleOccupation),
-                AssociatedDisorders(
-                    controleOccupation: controleOccupation,
-                    associatedDisorders: associatedDisorders),
-                BodyFunctionStrucer(
-                    controleOccupation: controleOccupation,
-                    bodyFunctionStrucer: bodyFunctionAndStrucer),
-                BehaviorADLS(
-                    controleOccupation: controleOccupation,
-                    behaviorADLS: behaviorAndADLS),
-                OccupationalPerformance(
-                    controleOccupation: controleOccupation,
-                    occupationalPerformance: note),
+                KeepAliveScreen(
+                  page: PersonalHistory(
+                      personalHistory: personalHistory,
+                      controleOccupation: widget.controleOccupation),
+                ),
+                KeepAliveScreen(
+                  page: AssociatedDisorders(
+                      controleOccupation: widget.controleOccupation,
+                      associatedDisorders: associatedDisorders),
+                ),
+                KeepAliveScreen(
+                  page: BodyFunctionStrucer(
+                      controleOccupation: widget.controleOccupation,
+                      bodyFunctionStrucer: bodyFunctionAndStrucer),
+                ),
+                KeepAliveScreen(
+                  page: BehaviorADLS(
+                      controleOccupation: widget.controleOccupation,
+                      behaviorADLS: behaviorAndADLS),
+                ),
+                KeepAliveScreen(
+                  page: OccupationalPerformance(
+                      controleOccupation: widget.controleOccupation,
+                      occupationalPerformance: note),
+                ),
                 BlocProvider(
                   create: (context) => PateintInfoCubit(),
-                  child: NoteOccupation(
-                      noteOccupation: note,
-                      controleOccupation: controleOccupation,
-                      id: id),
+                  child: KeepAliveScreen(
+                    page: NoteOccupation(
+                        noteOccupation: note,
+                        controleOccupation: widget.controleOccupation,
+                        id: widget.id),
+                  ),
                 ),
               ],
             ),
@@ -123,4 +145,7 @@ class StepperOccupation extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

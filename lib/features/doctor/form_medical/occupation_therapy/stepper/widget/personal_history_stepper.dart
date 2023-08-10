@@ -5,19 +5,16 @@ import '../controler.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 
-class PersonalHistory extends StatefulWidget {
-  const PersonalHistory({super.key, required this.controleOccupation,required this.personalHistory});
+class PersonalHistory extends StatelessWidget {
+  const PersonalHistory(
+      {super.key,
+      required this.controleOccupation,
+      required this.personalHistory});
   final ControleOccupation controleOccupation;
   final List<ModelPatientInfo> personalHistory;
 
   @override
-  State<PersonalHistory> createState() => _PersonalHistoryState();
-}
-
-class _PersonalHistoryState extends State<PersonalHistory> with AutomaticKeepAliveClientMixin<PersonalHistory> {
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Personal History'),
@@ -28,10 +25,10 @@ class _PersonalHistoryState extends State<PersonalHistory> with AutomaticKeepAli
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-          child: ListView.builder(
-            itemCount: widget.controleOccupation.listOfPationHistory.length,
-            itemBuilder: (context, index) {
-              var model = widget.controleOccupation.listOfPationHistory[index];
+          child: ListView(
+            children: List.generate(
+                controleOccupation.listOfPationHistory.length, (index) {
+              var model = controleOccupation.listOfPationHistory[index];
               if (model is ModelDropDownOccupation) {
                 return DropdownButtonItem(
                   controller: model.textEditingController,
@@ -41,18 +38,16 @@ class _PersonalHistoryState extends State<PersonalHistory> with AutomaticKeepAli
               }
               if (model is ModelTextFiledOccupation) {
                 return TextFormFiledStepper(
-                  hintText: widget.personalHistory[index].answer??'',
+                    hintText: personalHistory[index].answer,
                     textInputType: model.textInputType,
+                    // textInputType: model.textInputType,
                     labelname: model.labelname,
                     textEditingController: model.textEditingController);
               }
 
               return const SizedBox.shrink();
-            },
+            }),
           )),
     );
   }
-  
-  @override
-  bool get wantKeepAlive => true;
 }

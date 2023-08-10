@@ -10,7 +10,7 @@ import '../../../../../../shared/components/components.dart';
 
 import '../../../../../../shared/styles/colors.dart';
 
-class NoteOccupation extends StatefulWidget {
+class NoteOccupation extends StatelessWidget {
   const NoteOccupation({
     super.key,
     required this.controleOccupation,
@@ -22,14 +22,7 @@ class NoteOccupation extends StatefulWidget {
   final List<ModelPatientInfo> noteOccupation;
 
   @override
-  State<NoteOccupation> createState() => _NoteOccupationState();
-}
-
-class _NoteOccupationState extends State<NoteOccupation>
-    with AutomaticKeepAliveClientMixin<NoteOccupation> {
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -51,42 +44,17 @@ class _NoteOccupationState extends State<NoteOccupation>
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 TextFormFiledStepper(
-                    hintText: widget.noteOccupation.last.answer ?? '',
+                    hintText: noteOccupation.last.answer ?? '',
                     labelname: 'Note',
-                    textEditingController: widget
-                        .controleOccupation.controleOccupationPreformance.note),
+                    textEditingController:
+                        controleOccupation.controleOccupationPreformance.note),
                 ButtonText(
                     text: "Save",
                     onPressed: () {
                       List<Map> listOfAnswer = [];
                       int i = 1;
                       for (final person
-                          in widget.controleOccupation.listOfPationHistory) {
-                        if (person is ModelDropDownOccupation) {
-                          listOfAnswer.add(
-                            ModelPatientInfo(
-                              questionId: i,
-                              answer: person.textEditingController.text.isEmpty
-                                  ? null
-                                  : person.textEditingController.text,
-                            ).toJson(),
-                          );
-                          i++;
-                        }
-                        if (person is ModelTextFiledOccupation) {
-                          listOfAnswer.add(
-                            ModelPatientInfo(
-                              questionId: i,
-                              answer: person.textEditingController.text.isEmpty
-                                  ? 'null'
-                                  : person.textEditingController.text,
-                            ).toJson(),
-                          );
-                          i++;
-                        }
-                      }
-                      for (final person in widget
-                          .controleOccupation.listOfBodyFunctionStrucer) {
+                          in controleOccupation.listOfPationHistory) {
                         if (person is ModelDropDownOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
@@ -111,7 +79,7 @@ class _NoteOccupationState extends State<NoteOccupation>
                         }
                       }
                       for (final person
-                          in widget.controleOccupation.listOfBehaviorADLS) {
+                          in controleOccupation.listOfBodyFunctionStrucer) {
                         if (person is ModelDropDownOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
@@ -135,8 +103,33 @@ class _NoteOccupationState extends State<NoteOccupation>
                           i++;
                         }
                       }
-                      for (final person in widget
-                          .controleOccupation.listOfAssociatedDisorders) {
+                      for (final person
+                          in controleOccupation.listOfBehaviorADLS) {
+                        if (person is ModelDropDownOccupation) {
+                          listOfAnswer.add(
+                            ModelPatientInfo(
+                              questionId: i,
+                              answer: person.textEditingController.text.isEmpty
+                                  ? null
+                                  : person.textEditingController.text,
+                            ).toJson(),
+                          );
+                          i++;
+                        }
+                        if (person is ModelTextFiledOccupation) {
+                          listOfAnswer.add(
+                            ModelPatientInfo(
+                              questionId: i,
+                              answer: person.textEditingController.text.isEmpty
+                                  ? 'null'
+                                  : person.textEditingController.text,
+                            ).toJson(),
+                          );
+                          i++;
+                        }
+                      }
+                      for (final person
+                          in controleOccupation.listOfAssociatedDisorders) {
                         if (person is ModelDropDownOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
@@ -162,8 +155,8 @@ class _NoteOccupationState extends State<NoteOccupation>
                           i++;
                         }
                       }
-                      for (final person in widget
-                          .controleOccupation.listOfOccupationPreformance) {
+                      for (final person
+                          in controleOccupation.listOfOccupationPreformance) {
                         if (person is ModelDropDownOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
@@ -192,7 +185,7 @@ class _NoteOccupationState extends State<NoteOccupation>
                       }
                       print(listOfAnswer);
                       BlocProvider.of<PateintInfoCubit>(context)
-                          .postAnswerToApi(widget.id, listOfAnswer);
+                          .postAnswerToApi(id, listOfAnswer);
                     }),
                 BlocBuilder<PateintInfoCubit, PateintInfoState>(
                   builder: (context, state) {
@@ -226,7 +219,4 @@ class _NoteOccupationState extends State<NoteOccupation>
           )),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

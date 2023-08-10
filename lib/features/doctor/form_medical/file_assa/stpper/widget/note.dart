@@ -11,21 +11,23 @@ import '../../../../../../shared/styles/colors.dart';
 class Note extends StatelessWidget {
   const Note(
       {super.key,
-      // required this.controlGoalsAndNote,
+      required this.note,
       required this.controleFileAssesment,
       required this.id});
   final String id;
-  // final StepperControlGoalsAndNote controlGoalsAndNote;
   final ControleFileAssesment controleFileAssesment;
+  final List<ModelPatientInfo> note;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(onPressed: (){
-          Navigator.pop(context, 'refresh');
-        }, icon: const Icon(Icons.arrow_back_ios_new)),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context, 'refresh');
+            },
+            icon: const Icon(Icons.arrow_back_ios_new)),
         title: const Text('Note'),
         backgroundColor: Colors.white,
         foregroundColor: AppColors.primarycolor,
@@ -47,6 +49,7 @@ class Note extends StatelessWidget {
                     return Column(
                       children: [
                         TextFormFiledStepper(
+                            hintText: note[0].answer,
                             labelname: model.labelName,
                             textEditingController: model.textEditingController),
                         ButtonText(

@@ -5,25 +5,16 @@ import '../controler.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 
-class OccupationalPerformance extends StatefulWidget {
+class OccupationalPerformance extends StatelessWidget {
   const OccupationalPerformance(
       {super.key,
       required this.controleOccupation,
       required this.occupationalPerformance});
-  // final StepperOccupationPreformance controlerOccupationPreformance;
   final ControleOccupation controleOccupation;
   final List<ModelPatientInfo> occupationalPerformance;
 
   @override
-  State<OccupationalPerformance> createState() =>
-      _OccupationalPerformanceState();
-}
-
-class _OccupationalPerformanceState extends State<OccupationalPerformance>
-    with AutomaticKeepAliveClientMixin<OccupationalPerformance> {
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Occupational Performance'),
@@ -34,13 +25,11 @@ class _OccupationalPerformanceState extends State<OccupationalPerformance>
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-          child: ListView.builder(
-            itemCount:
-                widget.controleOccupation.listOfOccupationPreformance.length -
-                    1,
-            itemBuilder: (context, index) {
-              var model =
-                  widget.controleOccupation.listOfOccupationPreformance[index];
+          child: ListView(
+            children: List.generate(
+                controleOccupation.listOfOccupationPreformance.length - 1,
+                (index) {
+              var model = controleOccupation.listOfOccupationPreformance[index];
               if (model is ModelDropDownOccupation) {
                 return DropdownButtonItem(
                   controller: model.textEditingController,
@@ -50,8 +39,7 @@ class _OccupationalPerformanceState extends State<OccupationalPerformance>
               }
               if (model is ModelTextFiledOccupation) {
                 return TextFormFiledStepper(
-                    hintText:
-                        widget.occupationalPerformance[index].answer ?? '',
+                    hintText: occupationalPerformance[index].answer,
                     textInputType: model.textInputType,
                     labelname: model.labelname,
                     textEditingController: model.textEditingController);
@@ -61,11 +49,8 @@ class _OccupationalPerformanceState extends State<OccupationalPerformance>
               }
 
               return const SizedBox.shrink();
-            },
+            }),
           )),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

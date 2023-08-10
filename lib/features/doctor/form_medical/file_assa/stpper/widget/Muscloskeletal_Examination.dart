@@ -3,17 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:manaber/features/doctor/form_medical/file_assa/stpper/controller.dart';
 import 'package:manaber/features/doctor/form_medical/file_assa/stpper/model.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
 class MuscloskeletalExamination extends StatelessWidget {
   const MuscloskeletalExamination(
       {super.key,
-      // required this.controlBodyFunction,
+      required this.muscloskeletalExamination,
       required this.controleFileAssesment});
 
-  // final TextEditingController controller1 = TextEditingController();
-  // final StepperControlBodyFunction controlBodyFunction;
+  final List<ModelPatientInfo> muscloskeletalExamination;
   final ControleFileAssesment controleFileAssesment;
 
   @override
@@ -48,6 +48,7 @@ class MuscloskeletalExamination extends StatelessWidget {
                   }
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
+                        hintText: muscloskeletalExamination[index].answer,
                         labelname: model.labelName,
                         textEditingController: model.textEditingController);
                   }
@@ -68,6 +69,9 @@ class MuscloskeletalExamination extends StatelessWidget {
                                     final item = model.itemList[idx];
                                     if (item is TextFormFiledStepperModel) {
                                       return TextFormFiledStepper(
+                                          hintText:
+                                              muscloskeletalExamination[idx]
+                                                  .answer,
                                           labelname: item.labelName,
                                           textEditingController:
                                               item.textEditingController);
@@ -103,4 +107,6 @@ class MuscloskeletalExamination extends StatelessWidget {
       ),
     );
   }
+
+
 }

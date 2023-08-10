@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import '../model.dart';
 import '../controller.dart';
 import '../../../../../../shared/components/components.dart';
@@ -6,12 +7,10 @@ import '../../../../../../shared/styles/colors.dart';
 
 class Goals extends StatelessWidget {
   const Goals(
-      {super.key,
-      // required this.controlGoalsAndNote,
-      required this.controleFileAssesment});
+      {super.key, required this.goals, required this.controleFileAssesment});
 
-  // final StepperControlGoalsAndNote controlGoalsAndNote;
   final ControleFileAssesment controleFileAssesment;
+  final List<ModelPatientInfo> goals;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +45,7 @@ class Goals extends StatelessWidget {
                   }
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
+                        hintText: goals[index].answer,
                         labelname: model.labelName,
                         textEditingController: model.textEditingController);
                   }

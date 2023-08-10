@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
@@ -7,11 +8,9 @@ import '../model.dart';
 
 class MotorSystem extends StatelessWidget {
   const MotorSystem(
-      {super.key,
-      //  required this.controlBodyFunction,
-      required this.controleFileAssesment});
-  // final StepperControlBodyFunction controlBodyFunction;
+      {super.key, required this.controleFileAssesment, required this.motor});
   final ControleFileAssesment controleFileAssesment;
+  final List<ModelPatientInfo> motor;
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +44,7 @@ class MotorSystem extends StatelessWidget {
                   }
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
+                        hintText: motor[index].answer,
                         labelname: model.labelName,
                         textEditingController: model.textEditingController);
                   }
@@ -65,6 +65,7 @@ class MotorSystem extends StatelessWidget {
                                     final item = model.itemList[idx];
                                     if (item is TextFormFiledStepperModel) {
                                       return TextFormFiledStepper(
+                                          hintText: motor[index].answer,
                                           labelname: item.labelName,
                                           textEditingController:
                                               item.textEditingController);
@@ -101,6 +102,7 @@ class MotorSystem extends StatelessWidget {
       ),
     );
   }
+
 }
 
 // ShowBottomSheetItems(

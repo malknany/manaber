@@ -5,7 +5,7 @@ import '../controler.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 
-class BodyFunctionStrucer extends StatefulWidget {
+class BodyFunctionStrucer extends StatelessWidget {
   const BodyFunctionStrucer(
       {super.key,
       required this.controleOccupation,
@@ -14,14 +14,7 @@ class BodyFunctionStrucer extends StatefulWidget {
   final List<ModelPatientInfo> bodyFunctionStrucer;
 
   @override
-  State<BodyFunctionStrucer> createState() => _BodyFunctionStrucerState();
-}
-
-class _BodyFunctionStrucerState extends State<BodyFunctionStrucer>
-    with AutomaticKeepAliveClientMixin<BodyFunctionStrucer> {
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Body Function Strucer'),
@@ -32,11 +25,10 @@ class _BodyFunctionStrucerState extends State<BodyFunctionStrucer>
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-          child: ListView.builder(
-            itemCount: widget.bodyFunctionStrucer.length,
-            itemBuilder: (context, index) {
+          child: ListView(
+            children: List.generate(bodyFunctionStrucer.length, (index) {
               var model =
-                  widget.controleOccupation.listOfBodyFunctionStrucer[index];
+                  controleOccupation.listOfBodyFunctionStrucer[index];
               if (model is ModelDropDownOccupation) {
                 return DropdownButtonItem(
                   controller: model.textEditingController,
@@ -46,7 +38,7 @@ class _BodyFunctionStrucerState extends State<BodyFunctionStrucer>
               }
               if (model is ModelTextFiledOccupation) {
                 return TextFormFiledStepper(
-                    // hintText: bodyFunctionStrucer[index].answer ?? '',
+                    hintText: bodyFunctionStrucer[index].answer,
                     textInputType: model.textInputType,
                     labelname: model.labelname,
                     textEditingController: model.textEditingController);
@@ -56,14 +48,12 @@ class _BodyFunctionStrucerState extends State<BodyFunctionStrucer>
               }
 
               return const SizedBox.shrink();
-            },
+            }),
           )),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
+
 /*
 const DividerItem(text: 'Neuromuscular Status'),
                 DropdownButtonItem(

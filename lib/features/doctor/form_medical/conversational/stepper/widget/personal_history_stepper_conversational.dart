@@ -5,7 +5,7 @@ import '../../../../../../shared/styles/colors.dart';
 import '../controler.dart';
 import 'package:flutter/material.dart';
 
-class PersonalHistoryConversational extends StatefulWidget {
+class PersonalHistoryConversational extends StatelessWidget {
   const PersonalHistoryConversational(
       {super.key,
       required this.controleConversational,
@@ -14,16 +14,7 @@ class PersonalHistoryConversational extends StatefulWidget {
   final List<ModelPatientInfo> personalHistory;
 
   @override
-  State<PersonalHistoryConversational> createState() =>
-      _PersonalHistoryConversationalState();
-}
-
-class _PersonalHistoryConversationalState
-    extends State<PersonalHistoryConversational>
-    with AutomaticKeepAliveClientMixin<PersonalHistoryConversational> {
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('البیانات الأولیة'),
@@ -34,25 +25,19 @@ class _PersonalHistoryConversationalState
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-          child: ListView.builder(
-            itemCount: widget.controleConversational.listOfPersonal.length,
-            itemBuilder: (context, index) {
+          child: ListView(
+            children: List.generate(
+                controleConversational.listOfPersonal.length, (index) {
               return TextFormFiledStepper(
-                  hintText: widget.personalHistory[index].answer,
-                  // hintText: widget.personalHistory[index].answer == 'لايوجد'
-                  //     ? ''
-                  //     : widget.personalHistory[index].answer,
+                  hintText: personalHistory[index].answer,
                   textDirection: TextDirection.rtl,
-                  textEditingController: widget
-                      .controleConversational.listOfPersonal[index].controle,
-                  labelname: widget.personalHistory[index].question!);
-            },
+                  textEditingController:
+                      controleConversational.listOfPersonal[index].controle,
+                  labelname: personalHistory[index].question!);
+            }),
           )),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
 
 /*

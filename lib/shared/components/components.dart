@@ -439,22 +439,21 @@ class TextFormFiledStepper extends StatefulWidget {
   final TextEditingController textEditingController;
   final TextDirection textDirection;
   final String? hintText;
-  // late String? initialValue;
 
   @override
   State<TextFormFiledStepper> createState() => _TextFormFiledStepperState();
 }
 
 class _TextFormFiledStepperState extends State<TextFormFiledStepper> {
-  @override
-  void initState() {
-    super.initState();
-    widget.textEditingController.text =
-        widget.textEditingController.text.isEmpty ? '' : widget.hintText ?? "";
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   widget.textEditingController.text = widget.hintText ?? "";
+  // }
 
   @override
   Widget build(BuildContext context) {
+    widget.textEditingController.text = widget.hintText ?? "";
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Directionality(
@@ -464,6 +463,9 @@ class _TextFormFiledStepperState extends State<TextFormFiledStepper> {
           maxLines: 4,
           minLines: 1,
           controller: widget.textEditingController,
+          onFieldSubmitted: (value) {
+            widget.textEditingController.text = value;
+          },
           onSaved: (newValue) {
             widget.textEditingController.text = newValue!;
           },
@@ -486,7 +488,6 @@ class _TextFormFiledStepperState extends State<TextFormFiledStepper> {
                 width: 2,
               ),
             ),
-            // hintText: widget.hintText,
             labelText: widget.labelname,
             labelStyle: TextStyle(
               color: Colors.black.withOpacity(0.26),

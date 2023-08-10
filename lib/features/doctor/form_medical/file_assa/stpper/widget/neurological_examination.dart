@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import '../model.dart';
 import '../controller.dart';
 import '../../../../../../shared/components/components.dart';
@@ -7,10 +8,11 @@ import '../../../../../../shared/styles/colors.dart';
 class NeurologicalExamination extends StatelessWidget {
   const NeurologicalExamination(
       {super.key,
-      // required this.controlBodyFunction,
+      required this.neurologicalExamination,
       required this.controleFileAssesment});
-  // final StepperControlBodyFunction controlBodyFunction;
   final ControleFileAssesment controleFileAssesment;
+  final List<ModelPatientInfo> neurologicalExamination;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,12 +45,13 @@ class NeurologicalExamination extends StatelessWidget {
                   }
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
+                        hintText: neurologicalExamination[index].answer,
                         labelname: model.labelName,
                         textEditingController: model.textEditingController);
                   }
                   if (model is BottomSheetFileAssModel) {
                     return ShowBottomSheetItems(
-                      name:model.name,
+                      name: model.name,
                       contecnt: SizedBox(
                         height: MediaQuery.sizeOf(context).height / 1.2,
                         child: Padding(
@@ -63,6 +66,8 @@ class NeurologicalExamination extends StatelessWidget {
                                     final item = model.itemList[idx];
                                     if (item is TextFormFiledStepperModel) {
                                       return TextFormFiledStepper(
+                                          hintText: neurologicalExamination[idx]
+                                              .answer,
                                           labelname: item.labelName,
                                           textEditingController:
                                               item.textEditingController);

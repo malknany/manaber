@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import '../model.dart';
 import '../controller.dart';
 import '../../../../../../shared/components/components.dart';
@@ -6,12 +7,10 @@ import '../../../../../../shared/styles/colors.dart';
 
 class Rom extends StatelessWidget {
   const Rom(
-      {super.key,
-      // required this.controlBodyFunction,
-      required this.controleFileAssesment});
+      {super.key, required this.rom, required this.controleFileAssesment});
 
-  // final StepperControlBodyFunction controlBodyFunction;
   final ControleFileAssesment controleFileAssesment;
+  final List<ModelPatientInfo> rom;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,6 @@ class Rom extends StatelessWidget {
                   }
                   if (model is DropdownButtonItemModel) {
                     return DropdownButtonItem(
-                      
                       controller: model.controller,
                       labelName: model.labelName,
                       itemList: model.itemList,
@@ -48,6 +46,7 @@ class Rom extends StatelessWidget {
                   }
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
+                        hintText: rom[index].answer,
                         labelname: model.labelName,
                         textEditingController: model.textEditingController);
                   }
@@ -103,4 +102,5 @@ class Rom extends StatelessWidget {
       ),
     );
   }
+
 }

@@ -4,26 +4,21 @@
 import 'package:flutter/material.dart';
 import 'package:manaber/features/doctor/form_medical/file_assa/stpper/controller.dart';
 import 'package:manaber/features/doctor/form_medical/file_assa/stpper/model.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
-class PatientInformation extends StatefulWidget {
+class PatientInformation extends StatelessWidget {
   const PatientInformation(
       {super.key,
-      // required this.stepperControl,
+      required this.patientInformation,
       required this.controleFileAssesment});
   // final StepperControlPatientInfo stepperControl;
   final ControleFileAssesment controleFileAssesment;
+  final List<ModelPatientInfo> patientInformation;
 
-  @override
-  State<PatientInformation> createState() => _PatientInformationState();
-}
-
-class _PatientInformationState extends State<PatientInformation>
-    with AutomaticKeepAliveClientMixin<PatientInformation> {
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Patient Information'),
@@ -46,10 +41,10 @@ class _PatientInformationState extends State<PatientInformation>
               Expanded(
                 child: ListView.builder(
                   itemCount:
-                      widget.controleFileAssesment.listPatientInfo.length,
+                      controleFileAssesment.listPatientInfo.length,
                   itemBuilder: (context, index) {
                     var model =
-                        widget.controleFileAssesment.listPatientInfo[index];
+                        controleFileAssesment.listPatientInfo[index];
                     if (model is DropdownButtonItemModel) {
                       return DropdownButtonItem(
                         controller: model.controller,
@@ -59,6 +54,7 @@ class _PatientInformationState extends State<PatientInformation>
                     }
                     if (model is TextFormFiledStepperModel) {
                       return TextFormFiledStepper(
+                          hintText: patientInformation[index].answer,
                           labelname: model.labelName,
                           textEditingController: model.textEditingController);
                     }
@@ -74,6 +70,4 @@ class _PatientInformationState extends State<PatientInformation>
     );
   }
 
-  @override
-  bool get wantKeepAlive => true;
 }

@@ -4,29 +4,21 @@
 import 'package:flutter/material.dart';
 import 'package:manaber/features/doctor/form_medical/file_assa/stpper/controller.dart';
 import 'package:manaber/features/doctor/form_medical/file_assa/stpper/model.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
-class ICFBodyfunctionAndstructure extends StatefulWidget {
+class ICFBodyfunctionAndstructure extends StatelessWidget {
   const ICFBodyfunctionAndstructure(
       {super.key,
-      // required this.controlBodyFunction,
+      required this.iCFBodyfunction,
       required this.controleFileAssesment});
 
-  // final StepperControlBodyFunction controlBodyFunction;
   final ControleFileAssesment controleFileAssesment;
+  final List<ModelPatientInfo> iCFBodyfunction;
 
-  @override
-  State<ICFBodyfunctionAndstructure> createState() =>
-      _ICFBodyfunctionAndstructureState();
-}
-
-class _ICFBodyfunctionAndstructureState
-    extends State<ICFBodyfunctionAndstructure>
-    with AutomaticKeepAliveClientMixin<ICFBodyfunctionAndstructure> {
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -47,9 +39,9 @@ class _ICFBodyfunctionAndstructureState
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: widget.controleFileAssesment.listicfBody.length,
+                itemCount: controleFileAssesment.listicfBody.length,
                 itemBuilder: (context, index) {
-                  var model = widget.controleFileAssesment.listicfBody[index];
+                  var model = controleFileAssesment.listicfBody[index];
                   if (model is DividerFileAssModel) {
                     return DividerItem(text: model.text);
                   }
@@ -62,6 +54,7 @@ class _ICFBodyfunctionAndstructureState
                   }
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
+                        hintText: iCFBodyfunction[index].answer,
                         labelname: model.labelName,
                         textEditingController: model.textEditingController);
                   }
@@ -82,6 +75,7 @@ class _ICFBodyfunctionAndstructureState
                                     final item = model.itemList[idx];
                                     if (item is TextFormFiledStepperModel) {
                                       return TextFormFiledStepper(
+                                          hintText: iCFBodyfunction[idx].answer,
                                           labelname: item.labelName,
                                           textEditingController:
                                               item.textEditingController);
@@ -118,9 +112,6 @@ class _ICFBodyfunctionAndstructureState
       ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
 
 // DropdownButtonItem(

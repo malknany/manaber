@@ -41,6 +41,9 @@ class _FileAssassemntViewState extends State<FileAssassemntView> {
             final result = await navigateTo(
               context,
               FileStteper(
+                listOfInfoFileAssessment:
+                    BlocProvider.of<PateintInfoCubit>(context)
+                        .listOfInfoPatient,
                 id: widget.id,
                 controleFileAssesment: widget.controleFileAssesment,
               ),
