@@ -12,28 +12,29 @@ part 'pending_state.dart';
 class PendingCubit extends Cubit<PendingState> {
   PendingCubit() : super(PendingInitial());
 
-  List<ModelUserAccepte> listOfUsers = [];
+  List<ModelUserAccepteAndDelete> listOfUsers = [];
   final token = CacheHelper.getData(key: AppConstKey.token);
 
   getPendingUsers() async {
     emit(PendingLoading());
     try {
       getPendingFromApi(token[0]).then((value) {
-        listOfUsers = value.map((e) => ModelUserAccepte.fromJson(e)).toList();
+        listOfUsers =
+            value.map((e) => ModelUserAccepteAndDelete.fromJson(e)).toList();
         emit(PendingSuccess(listOfUserspending: listOfUsers));
       });
-      // ignore: deprecated_member_use
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
-        print(e.response!.data);
-        print(e.response!.statusCode);
-        print(e.response!.statusMessage);
+        debugPrint(e.response!.data);
+        debugPrint(e.response!.statusCode.toString());
+        debugPrint(e.response!.statusMessage);
         emit(PendingErorr(msg: e.response!.data['message']));
       } else {
-        print(e.message);
+        debugPrint(e.message);
+        emit(PendingErorr(msg: e.error.toString()));
       }
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 
@@ -44,12 +45,12 @@ class PendingCubit extends Cubit<PendingState> {
         url: approve,
         posteddata: {'userId': id},
         headers: {'Authorization': 'Bearer ${token[0]}'});
-    print(response.data);
-    print(response.statusCode);
+    debugPrint(response.data);
+    debugPrint(response.statusCode.toString());
     if (response.statusCode == 204) {
       return true;
     } else {
-      print(response.data);
+      debugPrint(response.data);
       return response.data['massge'];
     }
   }
@@ -61,12 +62,12 @@ class PendingCubit extends Cubit<PendingState> {
         url: disapprove,
         posteddata: {'userId': id},
         headers: {'Authorization': 'Bearer ${token[0]}'});
-    print(response.data);
-    print(response.statusCode);
+    debugPrint(response.data);
+    debugPrint(response.statusCode.toString());
     if (response.statusCode == 204) {
       return true;
     } else {
-      print(response.data);
+      debugPrint(response.data);
       return response.data['massge'];
     }
   }
@@ -76,9 +77,9 @@ Future<List<dynamic>> getPendingFromApi(token) async {
   final response = await DioHelper.getdata(
       url: pendingUsers, headers: {'Authorization': 'Bearer $token'});
   if (response.statusCode == 200) {
-    print(response.data);
-    print(response.statusCode);
-    print(response.statusMessage);
+    debugPrint(response.data.toString());
+    debugPrint(response.statusCode.toString());
+    debugPrint(response.statusMessage);
     return response.data;
   } else {
     return response.data;

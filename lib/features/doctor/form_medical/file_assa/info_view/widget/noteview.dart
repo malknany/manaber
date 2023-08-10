@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import '../../stpper/controller.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 import '../../../../../../shared/styles/images.dart';
 
 class NoteView extends StatelessWidget {
-  const NoteView({super.key, required this.controlGoalsAndNote});
-  final StepperControlGoalsAndNote controlGoalsAndNote;
+  const NoteView({super.key, required this.note});
+  // final StepperControlGoalsAndNote controlGoalsAndNote;
+  final List<ModelPatientInfo> note;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,7 @@ class NoteView extends StatelessWidget {
                 ),
                 const SizedBox(height: 16.0),
                 InfoRowItem(
-                    title: "Note", value: controlGoalsAndNote.note.text),
+                    title: note[0].question!, value: note[0].answer ?? ''),
               ],
             ),
           ),

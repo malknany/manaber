@@ -28,7 +28,7 @@ class EditeProfileDoctorCubit extends Cubit<EditeProfileDoctorState> {
         print(response.statusMessage);
         emit(EditeProfileDoctorSuccess());
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         print(e.response!.data);
         print(e.response!.statusCode);
@@ -36,6 +36,7 @@ class EditeProfileDoctorCubit extends Cubit<EditeProfileDoctorState> {
         emit(EditeProfileDoctorError(msg: e.response!.data['message']));
       } else {
         print(e.message);
+         emit(EditeProfileDoctorError(msg: e.error.toString()));
       }
     } catch (e) {
       print(e.toString());

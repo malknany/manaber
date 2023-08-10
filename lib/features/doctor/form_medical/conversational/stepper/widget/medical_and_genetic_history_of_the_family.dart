@@ -27,11 +27,7 @@ class MedicalAndGeneticHistoryOfTheFamily extends StatelessWidget {
           child: ListView.separated(
               itemBuilder: (context, index) {
                 return TextFormFiledStepper(
-                    hintText:
-                        medicalAndGeneticHistoryOfTheFamily[index].answer ==
-                                'لايوجد'
-                            ? ''
-                            : medicalAndGeneticHistoryOfTheFamily[index].answer,
+                    hintText: medicalAndGeneticHistoryOfTheFamily[index].answer,
                     textDirection: TextDirection.rtl,
                     labelname:
                         medicalAndGeneticHistoryOfTheFamily[index].question!,

@@ -25,18 +25,16 @@ class PersonalHistoryConversational extends StatelessWidget {
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-          child: ListView.builder(
-            itemCount: controleConversational.listOfPersonal.length,
-            itemBuilder: (context, index) {
+          child: ListView(
+            children: List.generate(
+                controleConversational.listOfPersonal.length, (index) {
               return TextFormFiledStepper(
-                  hintText: personalHistory[index].answer == 'لايوجد'
-                      ? ''
-                      : personalHistory[index].answer,
+                  hintText: personalHistory[index].answer,
                   textDirection: TextDirection.rtl,
                   textEditingController:
                       controleConversational.listOfPersonal[index].controle,
                   labelname: personalHistory[index].question!);
-            },
+            }),
           )),
     );
   }

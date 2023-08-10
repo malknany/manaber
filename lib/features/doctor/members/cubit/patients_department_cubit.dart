@@ -17,18 +17,18 @@ class PatientsDepartmentCubit extends Cubit<PatientsDepartmentState> {
   final token = CacheHelper.getData(key: AppConstKey.token);
 
   filterListOfPatient(String value) {
-    final List<Patient> _filteredPatients;
+    final List<Patient> filteredPatients;
     emit(PatientsDepartmentLoading());
     if (value.isEmpty) {
       // _filteredPatients = List<Patient>.from(listOfUsers);
-      _filteredPatients = listOfUsers;
-      emit(PatientsDepartmentSuccess(listOfPationt: _filteredPatients));
+      filteredPatients = listOfUsers;
+      emit(PatientsDepartmentSuccess(listOfPationt: filteredPatients));
     } else {
-      _filteredPatients = listOfUsers
+      filteredPatients = listOfUsers
           .where((element) =>
               element.name.toLowerCase().contains(value.toLowerCase()))
           .toList();
-      emit(PatientsDepartmentSuccess(listOfPationt: _filteredPatients));
+      emit(PatientsDepartmentSuccess(listOfPationt: filteredPatients));
     }
     // emit(PatientsDepartmentInitial());
   }
@@ -40,14 +40,14 @@ class PatientsDepartmentCubit extends Cubit<PatientsDepartmentState> {
         listOfUsers = value.map((e) => Patient.fromJson(e)).toList();
         emit(PatientsDepartmentSuccess(listOfPationt: listOfUsers));
       });
-      // ignore: deprecated_member_use
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         print(e.response!.data);
         print(e.response!.statusCode);
         print(e.response!.statusMessage);
         emit(PatientsDepartmentErorr(msg: e.response!.data['message']));
       } else {
+        emit(PatientsDepartmentErorr(msg: e.error.toString()));
         print(e.message);
       }
     } catch (e) {

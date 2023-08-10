@@ -55,7 +55,7 @@ class VideoPlayCubit extends Cubit<VideoPlayState> {
     final downloadUrl = await snapshot!.ref.getDownloadURL();
     List<String> listOfUrl = [];
     listOfUrl.add(downloadUrl);
-    print("URL==================${listOfUrl}");
+    debugPrint("URL==================$listOfUrl");
 
     // uploadTask = null;
 
@@ -64,7 +64,7 @@ class VideoPlayCubit extends Cubit<VideoPlayState> {
 
   Future<void> deleteFile(String downloadUrl) async {
     ref = FirebaseStorage.instance.refFromURL(downloadUrl);
-    print(ref.toString());
+    debugPrint(ref.toString());
     await ref!.delete();
   }
 
@@ -75,20 +75,20 @@ class VideoPlayCubit extends Cubit<VideoPlayState> {
           url: "$media$id/$idVideo",
           headers: {'Authorization': 'Bearer ${token[0]}'});
       if (response.statusCode == 204) {
-        print(response.data);
-        print(response.statusCode);
-        print(response.statusMessage);
+        debugPrint(response.data);
+        debugPrint(response.statusCode.toString());
+        debugPrint(response.statusMessage);
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
-        print(e.response!.data);
-        print(e.response!.statusCode);
-        print(e.response!.statusMessage);
+        debugPrint(e.response!.data);
+        debugPrint(e.response!.statusCode.toString());
+        debugPrint(e.response!.statusMessage);
       } else {
-        print(e.message);
+        debugPrint(e.message);
       }
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 
@@ -101,22 +101,23 @@ class VideoPlayCubit extends Cubit<VideoPlayState> {
             posteddata: {"name": name, "category": "VIDEO", "urls": url},
             headers: {'Authorization': 'Bearer ${token[0]}'});
         if (response.statusCode == 201) {
-          print(response.data);
-          print(response.statusCode);
-          print(response.statusMessage);
+          debugPrint(response.data);
+          debugPrint(response.statusCode.toString());
+          debugPrint(response.statusMessage);
           emit(VideoPlaySuccess());
         }
-      } on DioError catch (e) {
+      } on DioException catch (e) {
         if (e.response != null) {
-          print(e.response!.data);
-          print(e.response!.statusCode);
-          print(e.response!.statusMessage);
+          debugPrint(e.response!.data);
+          debugPrint(e.response!.statusCode.toString());
+          debugPrint(e.response!.statusMessage);
           emit(VideoPlayError(msg: e.response!.data['message']));
         } else {
-          print(e.message);
+          emit(VideoPlayError(msg: e.error.toString()));
+          debugPrint(e.message);
         }
       } catch (e) {
-        print(e.toString());
+        debugPrint(e.toString());
       }
     });
   }
@@ -133,18 +134,18 @@ class VideoPlayCubit extends Cubit<VideoPlayState> {
           emit(VideoPlaySuccessUser(listOfModle: listOfUsersVideo));
         }
       });
-      // ignore: deprecated_member_use
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
-        print(e.response!.data);
-        print(e.response!.statusCode);
-        print(e.response!.statusMessage);
+        debugPrint(e.response!.data);
+        debugPrint(e.response!.statusCode.toString());
+        debugPrint(e.response!.statusMessage);
         emit(VideoPlayError(msg: e.response!.data['message']));
       } else {
-        print(e.message);
+        emit(VideoPlayError(msg: e.error.toString()));
+        debugPrint(e.message);
       }
     } catch (e) {
-      print(e.toString());
+      debugPrint(e.toString());
     }
   }
 
@@ -152,9 +153,9 @@ class VideoPlayCubit extends Cubit<VideoPlayState> {
     final response = await DioHelper.getdata(
         url: videos + id, headers: {'Authorization': 'Bearer ${token[0]}'});
     if (response.statusCode == 200) {
-      print(response.data);
-      print(response.statusCode);
-      print(response.statusMessage);
+      print(response.data.toString());
+      debugPrint(response.statusCode.toString());
+      debugPrint(response.statusMessage);
       return response.data;
     } else {
       return response.data;

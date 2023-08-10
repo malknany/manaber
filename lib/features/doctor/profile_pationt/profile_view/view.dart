@@ -30,16 +30,6 @@ class ProfilePationtScreen extends StatefulWidget {
 }
 
 class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
-  // ? controles of file assessment
-  final StepperControlPatientInfo control = StepperControlPatientInfo();
-  final StepperControlBodyFunction controlBodyFunction =
-      StepperControlBodyFunction();
-  final StepperControlActivityAndActivityLimitation
-      controlActivityAndActivityLimitation =
-      StepperControlActivityAndActivityLimitation();
-  final StepperControlGoalsAndNote controlGoalsAndNote =
-      StepperControlGoalsAndNote();
-
   final ControleConversational controleConversational =
       ControleConversational();
 
@@ -60,11 +50,6 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
             child: ListView(
               shrinkWrap: true,
               padding: const EdgeInsets.symmetric(vertical: 30),
-              // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              //   crossAxisCount: 2,
-              //   mainAxisSpacing: 10,
-              //   crossAxisSpacing: 20,
-              // ),
               children: [
                 SlectedItemProfile(
                     onTap: () {
@@ -74,14 +59,9 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                               BlocProvider(
                                 create: (context) => PateintInfoCubit(),
                                 child: FileAssassemntView(
-                                    controleFileAssesment:
-                                        controleFileAssesment,
-                                    id: widget.id,
-                                    control: control,
-                                    controlBodyFunction: controlBodyFunction,
-                                    controlGoalsAndNote: controlGoalsAndNote,
-                                    controlActivityAndActivityLimitation:
-                                        controlActivityAndActivityLimitation),
+                                  controleFileAssesment: controleFileAssesment,
+                                  id: widget.id,
+                                ),
                               ))
                           : widget.department == AppConstKey.occupationalTherapy
                               ? navigateTo(
@@ -166,10 +146,3 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
     );
   }
 }
-
-// List<String> profile = [
-//   'File assessment',
-//   'Treatment plan',
-//   'x-rays',
-//   'videos'
-// ];

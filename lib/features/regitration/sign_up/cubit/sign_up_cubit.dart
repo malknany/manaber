@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../shared/network/remote/dio_helper.dart';
 import '../../../../shared/network/remote/end_points.dart';
-import 'package:meta/meta.dart';
 
 part 'sign_up_state.dart';
 
@@ -24,19 +24,18 @@ class SignUpCubit extends Cubit<SignUpState> {
         print(response.statusMessage);
         emit(SignUpSuccess());
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         print(e.response!.data);
         print(e.response!.statusCode);
         print(e.response!.statusMessage);
         emit(SignUpErorr(msg: _handelMsgError(e.response!.data['message'])));
       } else {
-        print(e.message);
+        emit(SignUpErorr(msg: e.error.toString()));
       }
     } catch (e) {
       print(e.toString());
     }
-    // emit(SignUpInitial());
   }
 }
 

@@ -8,7 +8,10 @@ import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
 class BehaviorADLS extends StatelessWidget {
-  const BehaviorADLS({super.key, required this.controleOccupation,required this.behaviorADLS});
+  const BehaviorADLS(
+      {super.key,
+      required this.controleOccupation,
+      required this.behaviorADLS});
   final List<ModelPatientInfo> behaviorADLS;
   final ControleOccupation controleOccupation;
 
@@ -24,20 +27,20 @@ class BehaviorADLS extends StatelessWidget {
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-          child: ListView.builder(
-            itemCount: controleOccupation.listOfBehaviorADLS.length,
-            itemBuilder: (context, index) {
+          child: ListView(
+            children: List.generate(
+                controleOccupation.listOfBehaviorADLS.length, (index) {
               var model = controleOccupation.listOfBehaviorADLS[index];
               if (model is ModelDropDownOccupation) {
                 return DropdownButtonItem(
                   controller: model.textEditingController,
-                  lableName: model.lableName,
+                  labelName: model.lableName,
                   itemList: model.itemList,
                 );
               }
               if (model is ModelTextFiledOccupation) {
                 return TextFormFiledStepper(
-                  hintText: behaviorADLS[index].answer??'',
+                    hintText: behaviorADLS[index].answer,
                     textInputType: model.textInputType,
                     labelname: model.labelname,
                     textEditingController: model.textEditingController);
@@ -47,7 +50,7 @@ class BehaviorADLS extends StatelessWidget {
               }
 
               return const SizedBox.shrink();
-            },
+            }),
           )),
     );
   }

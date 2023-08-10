@@ -4,16 +4,19 @@
 import 'package:flutter/material.dart';
 import 'package:manaber/features/doctor/form_medical/file_assa/stpper/controller.dart';
 import 'package:manaber/features/doctor/form_medical/file_assa/stpper/model.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
 class PatientInformation extends StatelessWidget {
   const PatientInformation(
       {super.key,
-      // required this.stepperControl,
+      required this.patientInformation,
       required this.controleFileAssesment});
   // final StepperControlPatientInfo stepperControl;
   final ControleFileAssesment controleFileAssesment;
+  final List<ModelPatientInfo> patientInformation;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,18 +40,21 @@ class PatientInformation extends StatelessWidget {
             children: [
               Expanded(
                 child: ListView.builder(
-                  itemCount: controleFileAssesment.listPatientInfo.length,
+                  itemCount:
+                      controleFileAssesment.listPatientInfo.length,
                   itemBuilder: (context, index) {
-                    var model = controleFileAssesment.listPatientInfo[index];
+                    var model =
+                        controleFileAssesment.listPatientInfo[index];
                     if (model is DropdownButtonItemModel) {
                       return DropdownButtonItem(
                         controller: model.controller,
-                        lableName: model.labelName,
+                        labelName: model.labelName,
                         itemList: model.itemList,
                       );
                     }
                     if (model is TextFormFiledStepperModel) {
                       return TextFormFiledStepper(
+                          hintText: patientInformation[index].answer,
                           labelname: model.labelName,
                           textEditingController: model.textEditingController);
                     }
@@ -63,4 +69,5 @@ class PatientInformation extends StatelessWidget {
       ),
     );
   }
+
 }

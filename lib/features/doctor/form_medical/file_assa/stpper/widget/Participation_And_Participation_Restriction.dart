@@ -2,24 +2,22 @@
 
 import 'package:flutter/material.dart';
 import 'package:manaber/features/doctor/form_medical/file_assa/stpper/model.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 import '../controller.dart';
 
-//ctivity&Activity Limitation&(Participation AndParticipation Restriction
 class Activity extends StatelessWidget {
   const Activity(
-      {super.key,
-      // required this.controlActivityAndActivityLimitation,
-      required this.controleFileAssesment});
+      {super.key, required this.activity, required this.controleFileAssesment});
 
-  // final StepperControlActivityAndActivityLimitation
-  //     controlActivityAndActivityLimitation;
   final ControleFileAssesment controleFileAssesment;
+  final List<ModelPatientInfo> activity;
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -46,12 +44,13 @@ class Activity extends StatelessWidget {
                   if (model is DropdownButtonItemModel) {
                     return DropdownButtonItem(
                       controller: model.controller,
-                      lableName: model.labelName,
+                      labelName: model.labelName,
                       itemList: model.itemList,
                     );
                   }
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
+                        hintText: activity[index].answer,
                         labelname: model.labelName,
                         textEditingController: model.textEditingController);
                   }
@@ -107,4 +106,5 @@ class Activity extends StatelessWidget {
       ),
     );
   }
+
 }

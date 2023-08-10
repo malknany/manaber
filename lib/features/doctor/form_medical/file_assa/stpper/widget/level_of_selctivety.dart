@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import '../model.dart';
 import '../controller.dart';
 import '../../../../../../shared/components/components.dart';
@@ -7,9 +8,9 @@ import '../../../../../../shared/styles/colors.dart';
 class LevelofSelectivity extends StatelessWidget {
   const LevelofSelectivity(
       {super.key,
-      //  required this.controlBodyFunction,
+      required this.levelofSelectivity,
       required this.controleFileAssesment});
-  // final StepperControlBodyFunction controlBodyFunction;
+  final List<ModelPatientInfo> levelofSelectivity;
   final ControleFileAssesment controleFileAssesment;
 
   @override
@@ -39,12 +40,13 @@ class LevelofSelectivity extends StatelessWidget {
                   if (model is DropdownButtonItemModel) {
                     return DropdownButtonItem(
                       controller: model.controller,
-                      lableName: model.labelName,
+                      labelName: model.labelName,
                       itemList: model.itemList,
                     );
                   }
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
+                        hintText: levelofSelectivity[index].answer,
                         labelname: model.labelName,
                         textEditingController: model.textEditingController);
                   }
@@ -65,6 +67,8 @@ class LevelofSelectivity extends StatelessWidget {
                                     final item = model.itemList[idx];
                                     if (item is TextFormFiledStepperModel) {
                                       return TextFormFiledStepper(
+                                          hintText:
+                                              levelofSelectivity[idx].answer,
                                           labelname: item.labelName,
                                           textEditingController:
                                               item.textEditingController);
@@ -100,6 +104,7 @@ class LevelofSelectivity extends StatelessWidget {
       ),
     );
   }
+
 }
 
 /*DropdownButtonItem(

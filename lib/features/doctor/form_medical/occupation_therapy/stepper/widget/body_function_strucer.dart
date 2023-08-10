@@ -6,7 +6,10 @@ import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 
 class BodyFunctionStrucer extends StatelessWidget {
-  const BodyFunctionStrucer({super.key, required this.controleOccupation,required this.bodyFunctionStrucer});
+  const BodyFunctionStrucer(
+      {super.key,
+      required this.controleOccupation,
+      required this.bodyFunctionStrucer});
   final ControleOccupation controleOccupation;
   final List<ModelPatientInfo> bodyFunctionStrucer;
 
@@ -22,20 +25,20 @@ class BodyFunctionStrucer extends StatelessWidget {
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-          child: ListView.builder(
-            itemCount: controleOccupation.listOfBodyFunctionStrucer.length,
-            itemBuilder: (context, index) {
-              var model = controleOccupation.listOfBodyFunctionStrucer[index];
+          child: ListView(
+            children: List.generate(bodyFunctionStrucer.length, (index) {
+              var model =
+                  controleOccupation.listOfBodyFunctionStrucer[index];
               if (model is ModelDropDownOccupation) {
                 return DropdownButtonItem(
                   controller: model.textEditingController,
-                  lableName: model.lableName,
+                  labelName: model.lableName,
                   itemList: model.itemList,
                 );
               }
               if (model is ModelTextFiledOccupation) {
                 return TextFormFiledStepper(
-                  hintText: bodyFunctionStrucer[index].answer??'',
+                    hintText: bodyFunctionStrucer[index].answer,
                     textInputType: model.textInputType,
                     labelname: model.labelname,
                     textEditingController: model.textEditingController);
@@ -45,11 +48,12 @@ class BodyFunctionStrucer extends StatelessWidget {
               }
 
               return const SizedBox.shrink();
-            },
+            }),
           )),
     );
   }
 }
+
 /*
 const DividerItem(text: 'Neuromuscular Status'),
                 DropdownButtonItem(

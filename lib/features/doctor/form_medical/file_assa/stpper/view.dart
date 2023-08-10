@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manaber/features/doctor/form_medical/cubit/pateint_info_cubit.dart';
+import 'package:manaber/features/doctor/form_medical/keep_alive.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import 'controller.dart';
 import 'widget/ICF_body_function_structure.dart';
 import 'widget/Muscloskeletal_Examination.dart';
@@ -15,19 +19,14 @@ import '../../../../../shared/styles/colors.dart';
 class FileStteper extends StatelessWidget {
   FileStteper(
       {Key? key,
-      // required this.controle,
-      // required this.controlBodyFunction,
-      // required this.controlActivityAndActivityLimitation,
-      // required this.controlGoalsAndNote,
-      required this.controleFileAssesment})
+      required this.listOfInfoFileAssessment,
+      required this.controleFileAssesment,
+      required this.id})
       : super(key: key);
-  // final StepperControlPatientInfo controle;
-  // final StepperControlBodyFunction controlBodyFunction;
-  // final StepperControlGoalsAndNote controlGoalsAndNote;
-  // final StepperControlActivityAndActivityLimitation
-  //     controlActivityAndActivityLimitation;
 
   final ControleFileAssesment controleFileAssesment;
+  final String id;
+  final List<ModelPatientInfo> listOfInfoFileAssessment;
 
   final PageController _pageController = PageController();
 
@@ -47,6 +46,53 @@ class FileStteper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<ModelPatientInfo> personalHistory = [];
+    final List<ModelPatientInfo> iCFBodyFunction = [];
+    final List<ModelPatientInfo> neurologicalExamination = [];
+    final List<ModelPatientInfo> motor = [];
+    final List<ModelPatientInfo> rom = [];
+    final List<ModelPatientInfo> levelofSelectivity = [];
+    final List<ModelPatientInfo> muscloskeletalExamination = [];
+    final List<ModelPatientInfo> activity = [];
+    final List<ModelPatientInfo> goals = [];
+    final List<ModelPatientInfo> note = [];
+    /*
+          person.section == 'Level of Selectivity' ||
+          person.section == 'Muscloskeletal Examination'
+    */
+    for (final person in listOfInfoFileAssessment) {
+      if (person.section == 'Patient Information') {
+        personalHistory.add(person);
+      }
+      if (person.section == 'ICF Body Function and Structure') {
+        iCFBodyFunction.add(person);
+      }
+      if (person.section == 'Neurological Examination') {
+        neurologicalExamination.add(person);
+      }
+      if (person.section == 'Motor System') {
+        motor.add(person);
+      }
+      if (person.section == 'Rom') {
+        rom.add(person);
+      }
+      if (person.section == 'Level of Selectivity') {
+        levelofSelectivity.add(person);
+      }
+      if (person.section == 'Muscloskeletal Examination') {
+        muscloskeletalExamination.add(person);
+      }
+      if (person.section == 'Activity') {
+        activity.add(person);
+      }
+      if (person.section == 'Goals') {
+        goals.add(person);
+      }
+
+      if (person.section == 'Note') {
+        note.add(person);
+      }
+    }
     return Scaffold(
       body: Column(
         children: [
@@ -54,46 +100,69 @@ class FileStteper extends StatelessWidget {
             child: PageView(
               controller: _pageController,
               children: [
-                PatientInformation(
-                    // stepperControl: controle,
-                    controleFileAssesment: controleFileAssesment),
-                ICFBodyfunctionAndstructure(
-                  controleFileAssesment: controleFileAssesment,
-                  // controlBodyFunction: controlBodyFunction
+                KeepAliveScreen(
+                  page: PatientInformation(
+                      patientInformation: personalHistory,
+                      controleFileAssesment: controleFileAssesment),
                 ),
-                NeurologicalExamination(
-                  controleFileAssesment: controleFileAssesment,
-                  // controlBodyFunction: controlBodyFunction
-                ),
-                MotorSystem(
-                  controleFileAssesment: controleFileAssesment,
-                  // controlBodyFunction: controlBodyFunction
-                ),
-                LevelofSelectivity(
-                  controleFileAssesment: controleFileAssesment,
-                  // controlBodyFunction: controlBodyFunction
-                ),
-                MuscloskeletalExamination(
-                  controleFileAssesment: controleFileAssesment,
-                  // controlBodyFunction: controlBodyFunction,
-                ),
-                Rom(
-                  controleFileAssesment: controleFileAssesment,
-                  // controlBodyFunction: controlBodyFunction,
-                ),
-                Activity(
-                  controleFileAssesment: controleFileAssesment,
-                    // controlActivityAndActivityLimitation:
-                    //     controlActivityAndActivityLimitation
-                        ),
-                Goals(
-                  controleFileAssesment: controleFileAssesment,
-                  // controlGoalsAndNote: controlGoalsAndNote,
+                KeepAliveScreen(
+                  page: ICFBodyfunctionAndstructure(
+                    iCFBodyfunction: iCFBodyFunction,
+                    controleFileAssesment: controleFileAssesment,
                   ),
-                Note(
-                  controleFileAssesment: controleFileAssesment,
-                  // controlGoalsAndNote: controlGoalsAndNote
+                ),
+                KeepAliveScreen(
+                  page: NeurologicalExamination(
+                    neurologicalExamination: neurologicalExamination,
+                    controleFileAssesment: controleFileAssesment,
                   ),
+                ),
+                KeepAliveScreen(
+                  page: MotorSystem(
+                    motor: motor,
+                    controleFileAssesment: controleFileAssesment,
+                  ),
+                ),
+                KeepAliveScreen(
+                  page: LevelofSelectivity(
+                    levelofSelectivity: levelofSelectivity,
+                    controleFileAssesment: controleFileAssesment,
+                  ),
+                ),
+                KeepAliveScreen(
+                  page: MuscloskeletalExamination(
+                    muscloskeletalExamination: muscloskeletalExamination,
+                    controleFileAssesment: controleFileAssesment,
+                  ),
+                ),
+                KeepAliveScreen(
+                  page: Rom(
+                    rom: rom,
+                    controleFileAssesment: controleFileAssesment,
+                  ),
+                ),
+                KeepAliveScreen(
+                  page: Activity(
+                    activity: activity,
+                    controleFileAssesment: controleFileAssesment,
+                  ),
+                ),
+                KeepAliveScreen(
+                  page: Goals(
+                    goals: goals,
+                    controleFileAssesment: controleFileAssesment,
+                  ),
+                ),
+                BlocProvider(
+                  create: (context) => PateintInfoCubit(),
+                  child: KeepAliveScreen(
+                    page: Note(
+                      note: note,
+                      id: id,
+                      controleFileAssesment: controleFileAssesment,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -130,4 +199,3 @@ class FileStteper extends StatelessWidget {
     );
   }
 }
-

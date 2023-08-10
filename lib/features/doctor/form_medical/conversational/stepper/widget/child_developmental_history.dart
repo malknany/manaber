@@ -28,10 +28,7 @@ class ChildDevelopmentalHistory extends StatelessWidget {
           child: ListView.separated(
               itemBuilder: (context, index) {
                 return TextFormFiledStepper(
-                    hintText:
-                        childDevelopmentalHistory[index].answer == 'لايوجد'
-                            ? ''
-                            : childDevelopmentalHistory[index].answer,
+                    hintText: childDevelopmentalHistory[index].answer,
                     textDirection: TextDirection.rtl,
                     textEditingController: controleConversational
                         .listOfChildDevelopmentalHistory[index].controle,

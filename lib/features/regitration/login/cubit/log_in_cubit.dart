@@ -31,15 +31,16 @@ class LogInCubit extends Cubit<LoginStates> {
             "Token and Role =====${CacheHelper.getData(key: AppConstKey.token)}");
         emit(LoginSuccessState(usersModel: usersModel));
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         print(e.response!.data);
         print(e.response!.statusCode);
         print(e.response!.statusMessage);
-        emit(LoginErrorState(msg: e.response!.data['message']));
+        emit(
+            LoginErrorState(msg: _handelMsgError(e.response!.data['message'])));
       } else {
-        print(e.message);
-        emit(LoginErrorState(msg: e.message!));
+        print(e.error.toString());
+        emit(LoginErrorState(msg: e.error.toString()));
       }
     } catch (e) {
       print("erorrrrrrrrrrrrrrrrrrrrrrrrrrr${e.toString()}");

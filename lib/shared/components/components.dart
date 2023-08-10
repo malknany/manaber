@@ -282,7 +282,7 @@ class RightLeftTextFiled extends StatelessWidget {
               child: Text(
                 '$title:',
                 style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    const TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
               ),
             ),
             const SizedBox(width: 16.0),
@@ -291,9 +291,10 @@ class RightLeftTextFiled extends StatelessWidget {
                 height: 40,
                 width: 40,
                 child: TextFormField(
+                  autofocus: false,
                   cursorColor: AppColors.primarycolor,
                   keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.go,
+                  // textInputAction: TextInputAction.go,
                   onSaved: (newValue) {
                     controllerRight.text = newValue!;
                   },
@@ -333,10 +334,10 @@ class RightLeftTextFiled extends StatelessWidget {
                 height: 40,
                 width: 40,
                 child: TextFormField(
-                  autofocus: true,
+                  autofocus: false,
                   cursorColor: AppColors.primarycolor,
                   keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.go,
+                  // textInputAction: TextInputAction.go,
                   onSaved: (newValue) {
                     controllerLeft.text = newValue!;
                   },
@@ -422,11 +423,12 @@ class ButtonText extends StatelessWidget {
   }
 }
 
-class TextFormFiledStepper extends StatelessWidget {
+class TextFormFiledStepper extends StatefulWidget {
   const TextFormFiledStepper(
       {super.key,
       this.hintText,
       this.validator,
+      // this.initialValue = '',
       required this.textEditingController,
       required this.labelname,
       this.textInputType = TextInputType.text,
@@ -437,22 +439,38 @@ class TextFormFiledStepper extends StatelessWidget {
   final TextEditingController textEditingController;
   final TextDirection textDirection;
   final String? hintText;
+
+  @override
+  State<TextFormFiledStepper> createState() => _TextFormFiledStepperState();
+}
+
+class _TextFormFiledStepperState extends State<TextFormFiledStepper> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   widget.textEditingController.text = widget.hintText ?? "";
+  // }
+
   @override
   Widget build(BuildContext context) {
+    widget.textEditingController.text = widget.hintText ?? "";
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Directionality(
-        textDirection: textDirection,
+        textDirection: widget.textDirection,
         child: TextFormField(
-          validator: validator,
+          validator: widget.validator,
           maxLines: 4,
           minLines: 1,
-          controller: textEditingController,
+          controller: widget.textEditingController,
+          onFieldSubmitted: (value) {
+            widget.textEditingController.text = value;
+          },
           onSaved: (newValue) {
-            textEditingController.text = newValue!;
+            widget.textEditingController.text = newValue!;
           },
           cursorColor: AppColors.primarycolor,
-          keyboardType: textInputType,
+          keyboardType: widget.textInputType,
           smartQuotesType: SmartQuotesType.enabled,
           decoration: InputDecoration(
             alignLabelWithHint: true,
@@ -470,8 +488,7 @@ class TextFormFiledStepper extends StatelessWidget {
                 width: 2,
               ),
             ),
-            hintText: hintText,
-            labelText: labelname,
+            labelText: widget.labelname,
             labelStyle: TextStyle(
               color: Colors.black.withOpacity(0.26),
               fontSize: 20,
@@ -520,26 +537,37 @@ class DividerItem extends StatelessWidget {
 }
 
 class DropdownButtonItem extends StatefulWidget {
-  const DropdownButtonItem(
-      {super.key,
-      required this.lableName,
-      required this.itemList,
-      required this.controller,
-      this.textDirection = TextDirection.ltr,
-      this.alignment = Alignment.centerLeft,
-      this.floatingLabelAlignment = FloatingLabelAlignment.center});
-  final String lableName;
+  const DropdownButtonItem({
+    Key? key,
+    required this.labelName,
+    required this.itemList,
+    required this.controller,
+    this.textDirection = TextDirection.ltr,
+    this.alignment = Alignment.centerLeft,
+    this.floatingLabelAlignment = FloatingLabelAlignment.center,
+    // required this.valueChangedCallback, // New callback function
+  }) : super(key: key);
+
+  final String labelName;
   final List<String> itemList;
   final TextEditingController controller;
   final TextDirection textDirection;
   final FloatingLabelAlignment floatingLabelAlignment;
   final AlignmentGeometry? alignment;
+  // final ValueChanged<String?> valueChangedCallback; // New callback function
+
   @override
   State<DropdownButtonItem> createState() => _DropdownButtonItemState();
 }
 
 class _DropdownButtonItemState extends State<DropdownButtonItem> {
-  String? _selectedItem;
+  @override
+  void initState() {
+    super.initState();
+    widget.controller.text = widget.controller.text.isEmpty
+        ? widget.itemList.first
+        : widget.controller.text;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -548,8 +576,7 @@ class _DropdownButtonItemState extends State<DropdownButtonItem> {
       child: DropdownButtonFormField<String>(
         elevation: 0,
         onChanged: (value) {
-          _selectedItem = value!;
-          widget.controller.text = _selectedItem!;
+          widget.controller.text = value!;
         },
         padding: const EdgeInsets.symmetric(vertical: 10),
         isExpanded: true,
@@ -584,11 +611,11 @@ class _DropdownButtonItemState extends State<DropdownButtonItem> {
               width: 2,
             ),
           ),
-          labelText: widget.lableName,
+          labelText: widget.labelName,
           labelStyle:
               TextStyle(color: Colors.black.withOpacity(0.26), fontSize: 20),
         ),
-        value: _selectedItem,
+        value: widget.controller.text,
         items: widget.itemList.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,

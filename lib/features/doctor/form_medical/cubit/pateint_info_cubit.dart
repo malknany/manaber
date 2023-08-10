@@ -21,17 +21,16 @@ class PateintInfoCubit extends Cubit<PateintInfoState> {
         listOfInfoPatient =
             value.map((e) => ModelPatientInfo.fromJson(e)).toList();
 
-        // final listOfInfoPatient = value;
         emit(PateintSuccess(listOfInfoPatient: listOfInfoPatient));
       });
-      // ignore: deprecated_member_use
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         print(e.response!.data);
         print(e.response!.statusCode);
         print(e.response!.statusMessage);
         emit(PateintErrorMsg(msg: e.response!.data['message']));
       } else {
+        emit(PateintErrorMsg(msg: e.error.toString()));
         print(e.message);
       }
     } catch (e) {
@@ -71,14 +70,14 @@ class PateintInfoCubit extends Cubit<PateintInfoState> {
         print(response.statusMessage);
         return response.data;
       }
-      // ignore: deprecated_member_use
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         print(e.response!.data);
         print(e.response!.statusCode);
         print(e.response!.statusMessage);
         emit(PateintErrorMsg(msg: e.response!.data['message']));
       } else {
+        emit(PateintErrorMsg(msg: e.error.toString()));
         print(e.message);
       }
     } catch (e) {

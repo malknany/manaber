@@ -29,10 +29,7 @@ class ChildMedicalAndMedicalHistory extends StatelessWidget {
                 .listOfChildMedicalAndMedicalHistory.length,
             itemBuilder: (context, index) {
               return TextFormFiledStepper(
-                hintText:
-                    childMedicalAndMedicalHistory[index].answer == 'لايوجد'
-                        ? ''
-                        : childMedicalAndMedicalHistory[index].answer,
+                hintText: childMedicalAndMedicalHistory[index].answer,
                 textDirection: TextDirection.rtl,
                 textEditingController: controleConversational
                     .listOfChildMedicalAndMedicalHistory[index].controle,

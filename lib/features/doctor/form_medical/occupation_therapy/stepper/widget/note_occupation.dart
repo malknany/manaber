@@ -25,6 +25,11 @@ class NoteOccupation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context, 'refresh');
+            },
+            icon: const Icon(Icons.arrow_back_ios_new)),
         title: const Text('Note'),
         backgroundColor: Colors.white,
         foregroundColor: AppColors.primarycolor,
@@ -40,7 +45,7 @@ class NoteOccupation extends StatelessWidget {
               children: [
                 TextFormFiledStepper(
                     hintText: noteOccupation.last.answer ?? '',
-                    labelname: 'Note ',
+                    labelname: 'Note',
                     textEditingController:
                         controleOccupation.controleOccupationPreformance.note),
                 ButtonText(
@@ -53,10 +58,84 @@ class NoteOccupation extends StatelessWidget {
                         if (person is ModelDropDownOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
-                              question: person.lableName,
+                              questionId: i,
+                              answer: person.textEditingController.text.isEmpty
+                                  ? null
+                                  : person.textEditingController.text,
+                            ).toJson(),
+                          );
+                          i++;
+                        }
+                        if (person is ModelTextFiledOccupation) {
+                          listOfAnswer.add(
+                            ModelPatientInfo(
                               questionId: i,
                               answer: person.textEditingController.text.isEmpty
                                   ? 'null'
+                                  : person.textEditingController.text,
+                            ).toJson(),
+                          );
+                          i++;
+                        }
+                      }
+                      for (final person
+                          in controleOccupation.listOfBodyFunctionStrucer) {
+                        if (person is ModelDropDownOccupation) {
+                          listOfAnswer.add(
+                            ModelPatientInfo(
+                              questionId: i,
+                              answer: person.textEditingController.text.isEmpty
+                                  ? null
+                                  : person.textEditingController.text,
+                            ).toJson(),
+                          );
+                          i++;
+                        }
+                        if (person is ModelTextFiledOccupation) {
+                          listOfAnswer.add(
+                            ModelPatientInfo(
+                              questionId: i,
+                              answer: person.textEditingController.text.isEmpty
+                                  ? 'null'
+                                  : person.textEditingController.text,
+                            ).toJson(),
+                          );
+                          i++;
+                        }
+                      }
+                      for (final person
+                          in controleOccupation.listOfBehaviorADLS) {
+                        if (person is ModelDropDownOccupation) {
+                          listOfAnswer.add(
+                            ModelPatientInfo(
+                              questionId: i,
+                              answer: person.textEditingController.text.isEmpty
+                                  ? null
+                                  : person.textEditingController.text,
+                            ).toJson(),
+                          );
+                          i++;
+                        }
+                        if (person is ModelTextFiledOccupation) {
+                          listOfAnswer.add(
+                            ModelPatientInfo(
+                              questionId: i,
+                              answer: person.textEditingController.text.isEmpty
+                                  ? 'null'
+                                  : person.textEditingController.text,
+                            ).toJson(),
+                          );
+                          i++;
+                        }
+                      }
+                      for (final person
+                          in controleOccupation.listOfAssociatedDisorders) {
+                        if (person is ModelDropDownOccupation) {
+                          listOfAnswer.add(
+                            ModelPatientInfo(
+                              questionId: i,
+                              answer: person.textEditingController.text.isEmpty
+                                  ? null
                                   : person.textEditingController.text
                                       .toString(),
                             ).toJson(),
@@ -66,7 +145,6 @@ class NoteOccupation extends StatelessWidget {
                         if (person is ModelTextFiledOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
-                              question: person.labelname,
                               questionId: i,
                               answer: person.textEditingController.text.isEmpty
                                   ? 'null'
@@ -78,16 +156,14 @@ class NoteOccupation extends StatelessWidget {
                         }
                       }
                       for (final person
-                          in controleOccupation.listOfAssociatedDisorders) {
+                          in controleOccupation.listOfOccupationPreformance) {
                         if (person is ModelDropDownOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
-                              question: person.lableName,
                               questionId: i,
                               answer: person.textEditingController.text.isEmpty
-                                  ? 'null'
-                                  : person.textEditingController.text
-                                      .toString(),
+                                  ? null
+                                  : person.textEditingController.text,
                             ).toJson(),
                           );
                           i++;
@@ -95,107 +171,21 @@ class NoteOccupation extends StatelessWidget {
                         if (person is ModelTextFiledOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
-                              question: person.labelname,
                               questionId: i,
                               answer: person.textEditingController.text.isEmpty
                                   ? 'null'
-                                  : person.textEditingController.text
-                                      .toString(),
+                                  : person.textEditingController.text,
                             ).toJson(),
                           );
                           i++;
                         }
                       }
-                      // for (final person
-                      //     in controleOccupation.listOfBodyFunctionStrucer) {
-                      //   if (person is ModelDropDownOccupation) {
-                      //     listOfAnswer.add(
-                      //       ModelPatientInfo(
-                      //         question: person.lableName,
-                      //         questionId: i,
-                      //         answer: person.textEditingController.text.isEmpty
-                      //             ? 'لايوجد'
-                      //             : person.textEditingController.text,
-                      //       ).toJson(),
-                      //     );
-                      //     i++;
-                      //   }
-                      //   if (person is ModelTextFiledOccupation) {
-                      //     listOfAnswer.add(
-                      //       ModelPatientInfo(
-                      //         question: person.labelname,
-                      //         questionId: i,
-                      //         answer: person.textEditingController.text.isEmpty
-                      //             ? 'لايوجد'
-                      //             : person.textEditingController.text,
-                      //       ).toJson(),
-                      //     );
-                      //     i++;
-                      //   }
-                      // }
-                      // for (final person
-                      //     in controleOccupation.listOfBehaviorADLS) {
-                      //   if (person is ModelDropDownOccupation) {
-                      //     listOfAnswer.add(
-                      //       ModelPatientInfo(
-                      //         question: person.lableName,
-                      //         questionId: i,
-                      //         answer: person.textEditingController.text.isEmpty
-                      //             ? 'لايوجد'
-                      //             : person.textEditingController.text,
-                      //       ).toJson(),
-                      //     );
-                      //     i++;
-                      //   }
-                      //   if (person is ModelTextFiledOccupation) {
-                      //     listOfAnswer.add(
-                      //       ModelPatientInfo(
-                      //         question: person.labelname,
-                      //         questionId: i,
-                      //         answer: person.textEditingController.text.isEmpty
-                      //             ? 'لايوجد'
-                      //             : person.textEditingController.text,
-                      //       ).toJson(),
-                      //     );
-                      //     i++;
-                      //   }
-                      // }
-                      // for (final person
-                      //     in controleOccupation.listOfOccupationPreformance) {
-                      //   if (person is ModelDropDownOccupation) {
-                      //     listOfAnswer.add(
-                      //       ModelPatientInfo(
-                      //         question: person.lableName,
-                      //         questionId: i,
-                      //         answer: person.textEditingController.text.isEmpty
-                      //             ? 'لايوجد'
-                      //             : person.textEditingController.text,
-                      //       ).toJson(),
-                      //     );
-                      //     i++;
-                      //   }
-                      //   if (person is ModelTextFiledOccupation) {
-                      //     listOfAnswer.add(
-                      //       ModelPatientInfo(
-                      //         question: person.labelname,
-                      //         questionId: i,
-                      //         answer: person.textEditingController.text.isEmpty
-                      //             ? 'لايوجد'
-                      //             : person.textEditingController.text,
-                      //       ).toJson(),
-                      //     );
-                      //     i++;
-                      //   }
-                      // }
-                      listOfAnswer.forEach((element) {
+                      for (var element in listOfAnswer) {
                         print(element);
-                      });
+                      }
                       print(listOfAnswer);
                       BlocProvider.of<PateintInfoCubit>(context)
                           .postAnswerToApi(id, listOfAnswer);
-                      // Future.delayed(const Duration(seconds: 3), () {
-                      //   Navigator.pop(context, 'refresh');
-                      // });
                     }),
                 BlocBuilder<PateintInfoCubit, PateintInfoState>(
                   builder: (context, state) {

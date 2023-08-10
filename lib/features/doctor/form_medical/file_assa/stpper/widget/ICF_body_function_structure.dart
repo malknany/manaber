@@ -4,17 +4,18 @@
 import 'package:flutter/material.dart';
 import 'package:manaber/features/doctor/form_medical/file_assa/stpper/controller.dart';
 import 'package:manaber/features/doctor/form_medical/file_assa/stpper/model.dart';
+import 'package:manaber/features/doctor/form_medical/model.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
 class ICFBodyfunctionAndstructure extends StatelessWidget {
   const ICFBodyfunctionAndstructure(
       {super.key,
-      // required this.controlBodyFunction,
+      required this.iCFBodyfunction,
       required this.controleFileAssesment});
 
-  // final StepperControlBodyFunction controlBodyFunction;
   final ControleFileAssesment controleFileAssesment;
+  final List<ModelPatientInfo> iCFBodyfunction;
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +48,13 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
                   if (model is DropdownButtonItemModel) {
                     return DropdownButtonItem(
                       controller: model.controller,
-                      lableName: model.labelName,
+                      labelName: model.labelName,
                       itemList: model.itemList,
                     );
                   }
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
+                        hintText: iCFBodyfunction[index].answer,
                         labelname: model.labelName,
                         textEditingController: model.textEditingController);
                   }
@@ -73,6 +75,7 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
                                     final item = model.itemList[idx];
                                     if (item is TextFormFiledStepperModel) {
                                       return TextFormFiledStepper(
+                                          hintText: iCFBodyfunction[idx].answer,
                                           labelname: item.labelName,
                                           textEditingController:
                                               item.textEditingController);
@@ -80,7 +83,7 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
                                     if (item is DropdownButtonItemModel) {
                                       return DropdownButtonItem(
                                         controller: item.controller,
-                                        lableName: item.labelName,
+                                        labelName: item.labelName,
                                         itemList: item.itemList,
                                       );
                                     }

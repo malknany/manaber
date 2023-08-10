@@ -17,19 +17,9 @@ import '../../../../../shared/styles/images.dart';
 
 class FileAssassemntView extends StatefulWidget {
   const FileAssassemntView(
-      {super.key,
-      required this.id,
-      required this.control,
-      required this.controlBodyFunction,
-      required this.controlGoalsAndNote,
-      required this.controlActivityAndActivityLimitation,required this.controleFileAssesment});
+      {super.key, required this.id, required this.controleFileAssesment});
 
-  final StepperControlPatientInfo control;
-  final StepperControlBodyFunction controlBodyFunction;
-  final StepperControlGoalsAndNote controlGoalsAndNote;
-  final StepperControlActivityAndActivityLimitation
-      controlActivityAndActivityLimitation;
-    final ControleFileAssesment controleFileAssesment;
+  final ControleFileAssesment controleFileAssesment;
 
   final String id;
   @override
@@ -51,16 +41,16 @@ class _FileAssassemntViewState extends State<FileAssassemntView> {
             final result = await navigateTo(
               context,
               FileStteper(
-                controleFileAssesment:widget.controleFileAssesment ,
-                  // controle: widget.control,
-                  // controlBodyFunction: widget.controlBodyFunction,
-                  // controlActivityAndActivityLimitation:
-                  //     widget.controlActivityAndActivityLimitation,
-                  // controlGoalsAndNote: widget.controlGoalsAndNote
-                  ),
+                listOfInfoFileAssessment:
+                    BlocProvider.of<PateintInfoCubit>(context)
+                        .listOfInfoPatient,
+                id: widget.id,
+                controleFileAssesment: widget.controleFileAssesment,
+              ),
             );
             if (result == 'refresh') {
-              setState(() {});
+              BlocProvider.of<PateintInfoCubit>(context)
+                  .getPatinetFromApi(widget.id);
             }
           },
           backgroundColor: AppColors.primarycolor,
@@ -114,24 +104,31 @@ class _FileAssassemntViewState extends State<FileAssassemntView> {
                     }
                     if (state is PateintSuccess) {
                       final List<ModelPatientInfo> personalHistory = [];
-                      final List<ModelPatientInfo> medicalGenetic = [];
-                      final List<ModelPatientInfo> childMedical = [];
-                      final List<ModelPatientInfo> childDevelopment = [];
+                      final List<ModelPatientInfo> iCFBodyFunction = [];
+                      final List<ModelPatientInfo> activity = [];
+                      final List<ModelPatientInfo> goals = [];
                       final List<ModelPatientInfo> note = [];
                       for (final person in state.listOfInfoPatient) {
                         if (person.section == 'Patient Information') {
                           personalHistory.add(person);
                         }
-                        if (person.section == 'ICF Body Function and Structure') {
-                          medicalGenetic.add(person);
+                        if (person.section ==
+                                'ICF Body Function and Structure' ||
+                            person.section == 'Neurological Examination' ||
+                            person.section == 'Motor System' ||
+                            person.section == 'Rom' ||
+                            person.section == 'Level of Selectivity' ||
+                            person.section == 'Muscloskeletal Examination') {
+                          iCFBodyFunction.add(person);
                         }
-                        if (person.section == 'child_medical') {
-                          childMedical.add(person);
+                        if (person.section == 'Activity') {
+                          activity.add(person);
                         }
-                        if (person.section == 'child_development') {
-                          childDevelopment.add(person);
+                        if (person.section == 'Goals') {
+                          goals.add(person);
                         }
-                        if (person.section == 'note') {
+
+                        if (person.section == 'Note') {
                           note.add(person);
                         }
                       }
@@ -141,55 +138,55 @@ class _FileAssassemntViewState extends State<FileAssassemntView> {
                               text: 'Patient Information',
                               onPressed: () {
                                 navigateTo(
-                                    context,
-                                    PatientInfoView(
-                                      personalHistory: personalHistory,
-                                      // stepperControl: widget.control,
-                                    ));
+                                  context,
+                                  PatientInfoView(
+                                    personalHistory: personalHistory,
+                                  ),
+                                );
                               },
                               borderRadius: 7),
                           ButtonText(
                               text: 'ICF Body function And structure',
                               onPressed: () {
                                 navigateTo(
-                                    context,
-                                    ICFBodyView(
-                                      controlBodyFunction:
-                                          widget.controlBodyFunction,
-                                    ));
+                                  context,
+                                  ICFBodyView(
+                                    iCFBodyFunction: iCFBodyFunction,
+                                  ),
+                                );
                               },
                               borderRadius: 7),
                           ButtonText(
                               text: 'Participation',
                               onPressed: () {
                                 navigateTo(
-                                    context,
-                                    ActivityAndActivityLimitationView(
-                                      controlActivityAndActivityLimitation: widget
-                                          .controlActivityAndActivityLimitation,
-                                    ));
+                                  context,
+                                  ActivityAndActivityLimitationView(
+                                    activity: activity,
+                                  ),
+                                );
                               },
                               borderRadius: 7),
                           ButtonText(
                               text: 'Goals',
                               onPressed: () {
                                 navigateTo(
-                                    context,
-                                    GoalsView(
-                                      controlGoalsAndNote:
-                                          widget.controlGoalsAndNote,
-                                    ));
+                                  context,
+                                  GoalsView(
+                                    goals: goals,
+                                  ),
+                                );
                               },
                               borderRadius: 7),
                           ButtonText(
                               text: 'Note',
                               onPressed: () {
                                 navigateTo(
-                                    context,
-                                    NoteView(
-                                      controlGoalsAndNote:
-                                          widget.controlGoalsAndNote,
-                                    ));
+                                  context,
+                                  NoteView(
+                                    note: note,
+                                  ),
+                                );
                               },
                               borderRadius: 7),
                         ],
