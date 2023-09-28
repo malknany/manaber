@@ -1,4 +1,4 @@
-package com.example.manaber
+package com.manaber.manaber
 
 import io.flutter.embedding.android.FlutterActivity
 
