@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>193370104077-cnvv4tr8m5jpo40cds8qek6enatv7pbm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.193370104077-cnvv4tr8m5jpo40cds8qek6enatv7pbm</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAOXjws_MVMklVcyacbkgxvI3dJmY_NSj4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>193370104077</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.manaber</string>
+	<key>PROJECT_ID</key>
+	<string>manaber-190f7</string>
+	<key>STORAGE_BUCKET</key>
+	<string>manaber-190f7.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:193370104077:ios:2ecf62730208fc1c4ad044</string>
+</dict>
+</plist>

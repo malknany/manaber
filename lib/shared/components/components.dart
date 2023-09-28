@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
 import '../styles/colors.dart';
+
 import '../styles/styles.dart';
-import 'constants.dart';
 
 class ButtonTemplate extends StatelessWidget {
-  ButtonTemplate({
+  const ButtonTemplate({
     Key? key,
     required this.color,
     required this.text1,
@@ -17,15 +16,15 @@ class ButtonTemplate extends StatelessWidget {
     this.minheight = 60,
     this.fontSize = 18,
   }) : super(key: key);
-  Color color;
-  String text1;
-  String text2;
-  String text3;
-  double minwidth;
-  double minheight;
-  double fontSize;
-  IconData? icon;
-  void Function()? onPressed;
+  final Color color;
+  final String text1;
+  final String text2;
+  final String text3;
+  final double minwidth;
+  final double minheight;
+  final double fontSize;
+  final IconData? icon;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -41,21 +40,19 @@ class ButtonTemplate extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             icon == null
-
-                ? SizedBox()
+                ? const SizedBox()
                 : Center(
-              child: Icon(icon, size: 21, color: AppColors.white),
-            ),
-            SizedBox(
+                    child: Icon(icon, size: 21, color: Colors.white),
+                  ),
+            const SizedBox(
               width: 5,
             ),
-
             Center(
               child: Text(text1,
                   textAlign: TextAlign.center,
                   style: AppTextStyles.boldtitlesButton.copyWith(
-                 fontSize: 17,
-                    color: AppColors.white,
+                    fontSize: 17,
+                    color: Colors.white,
                   )),
             ),
           ],
@@ -64,180 +61,444 @@ class ButtonTemplate extends StatelessWidget {
     );
   }
 }
-/////////////////////////
+// /////////////////////////
 
 class TextFieldTemplate extends StatefulWidget {
-  TextFieldTemplate({
-    Key? key,
-    required this.hintText,
-    required this.controller,
-    this.validator,
-    this.isPassword = false,
-    this.icon,
-  }) : super(key: key);
+  const TextFieldTemplate(
+      {Key? key,
+      required this.hintText,
+      this.controller,
+      this.validator,
+      this.isPassword = false,
+      this.suffixIcon,
+      this.prefixIcon,
+      this.textInputType = TextInputType.visiblePassword})
+      : super(key: key);
 
-  String hintText;
-  TextEditingController controller;
-  Function? validator;
-  Widget? icon;
-  bool isPassword;
+  final String hintText;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
+  final Widget? suffixIcon;
+  final bool isPassword;
+  final Widget? prefixIcon;
+  final TextInputType textInputType;
 
   @override
   State<TextFieldTemplate> createState() => _TextFieldTemplateState();
 }
 
 class _TextFieldTemplateState extends State<TextFieldTemplate> {
-  bool _isObscure = true;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-        cursorColor:AppColors.blue ,
-        obscureText: widget.isPassword ? _isObscure : false,
-        controller: widget.controller,
-        validator: (value) => widget.validator!(value),
-        style: AppTextStyles.hittext,
-        decoration: InputDecoration(
-
-
-            prefixIcon: widget.icon,
-            hintText: widget.hintText,
-            border: InputBorder.none,
-            suffixIcon: widget.isPassword
-                ? IconButton(
-                splashRadius: 20,
-                icon: Icon(
-                    _isObscure == true
-                        ?  Icons.visibility_off_outlined
-                        :Icons.visibility_outlined,
-                    color: AppColors.Bluehint),
-                onPressed: () => setState(() => _isObscure = !_isObscure))
-                : null,
-            filled: true,
-            fillColor: AppColors.white,
-
-            labelStyle: AppTextStyles.hittext,
-            hintStyle: AppTextStyles.hittext,
-            enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.all(Radius.circular(15))),
-            focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.all(Radius.circular(15))),
-            errorBorder: const OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.all(Radius.circular(15))),
-            disabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.all(Radius.circular(15)))));
-  }
-}
-
-class BottomText extends StatelessWidget {
-  const BottomText({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      child: RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-              text: "",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 18,
-              ),
-              children: [
-                TextSpan(
-                    text: "FCIS - ",
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                TextSpan(text: "Facult of comuters \n and informatoin science"),
-              ])),
-    );
-  }
-}
-
-void showMyDialog(String _message, BuildContext context) async {
-  return await showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          //  backgroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          contentPadding: EdgeInsets.zero,
-          title: Text("Error"),
-          content: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(_message),
-          ),
-          actions: [
-            Center(
-              child: TextButton(
-                  style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                          ))),
-                  onPressed: () {
-                    Navigator.pop(context, "ok");
-                  },
-                  child: const Text(
-                    "ok",
-                    style:
-                    TextStyle(color: AppColors.primarycolor, fontSize: 22),
-                  )),
-            )
-          ],
-        );
-      });
-}
-
-///
-class NavigateToOption extends StatelessWidget {
-  NavigateToOption({Key? key, required this.name, required this.onPressed})
-      : super(key: key);
-  String name;
-  void Function()? onPressed;
+  // bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.0),
-      child: SizedBox(
-        height: 70,
-        width: 320,
-        child: Material(
-          color: AppColors.materialGrey,
-          borderRadius: BorderRadius.circular(20),
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 20,
+      padding: const EdgeInsets.only(bottom: 10.0),
+      child: TextFormField(
+        validator: widget.validator,
+        controller: widget.controller,
+        obscureText: widget.isPassword,
+        textAlign: TextAlign.right,
+        textDirection: TextDirection.rtl,
+        keyboardType: widget.textInputType,
+        decoration: InputDecoration(
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: AppColors.grey),
+          ),
+          focusedBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: AppColors.grey),
+          ),
+          border: const OutlineInputBorder(
+            borderSide: BorderSide.none,
+          ),
+          hintText: widget.hintText,
+          hintStyle: const TextStyle(
+              color: AppColors.grey,
+              fontFamily: 'Schyler',
+              fontWeight: FontWeight.normal),
+          suffixIcon: widget.suffixIcon,
+          prefixIcon: widget.prefixIcon,
+        ),
+      ),
+    );
+  }
+}
+
+class InfoRowItem extends StatelessWidget {
+  const InfoRowItem({
+    super.key,
+    required this.title,
+    required this.value,
+    this.textDirection = TextDirection.ltr,
+  });
+  final TextDirection textDirection;
+  final String title;
+  final String value;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      textDirection: textDirection,
+      children: [
+        Row(
+          textDirection: textDirection,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width / 2,
+              child: Text(
+                '$title:',
+                textDirection: textDirection,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+              ),
             ),
-            child: Row(
-              children: [
-                Text(name,
-                    style:
-                    TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-                Spacer(),
-                SizedBox(
-                  width: 40,
-                  height: 40,
-                  child: MaterialButton(
-                      padding: EdgeInsets.zero,
-                      color: AppColors.primarycolor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
+            const SizedBox(width: 16.0),
+            Expanded(
+              child: Text(
+                value,
+                softWrap: true,
+                textDirection: textDirection,
+                style: const TextStyle(
+                  fontSize: 15,
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        const Divider(
+          color: AppColors.grey,
+          thickness: 1,
+        ),
+      ],
+    );
+  }
+}
+
+class RowItemRightLeft extends StatelessWidget {
+  const RowItemRightLeft({
+    this.tilteRight = 'Right',
+    this.titleLeft = 'Left',
+    required this.right,
+    required this.left,
+    super.key,
+    required this.title,
+  });
+
+  final String title;
+  final String left;
+  final String right;
+  final String titleLeft;
+  final String tilteRight;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width / 2,
+              child: Text(
+                '$title:',
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+              ),
+            ),
+            const SizedBox(width: 16.0),
+            Expanded(
+              child: Column(children: [
+                Text(
+                  tilteRight,
+                  softWrap: true,
+                  style: const TextStyle(
+                    fontSize: 15,
+                  ),
+                ),
+                Text(
+                  right,
+                  softWrap: true,
+                  style: const TextStyle(
+                    fontSize: 15,
+                  ),
+                ),
+              ]),
+            ),
+            Expanded(
+              child: Column(children: [
+                Text(
+                  titleLeft,
+                  softWrap: true,
+                  style: const TextStyle(
+                    fontSize: 15,
+                  ),
+                ),
+                Text(
+                  left,
+                  softWrap: true,
+                  style: const TextStyle(
+                    fontSize: 15,
+                  ),
+                ),
+              ]),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 5,
+        ),
+        const Divider(
+          color: AppColors.grey,
+          thickness: 1,
+        ),
+      ],
+    );
+  }
+}
+
+class RightLeftTextFiled extends StatelessWidget {
+  const RightLeftTextFiled({
+    super.key,
+    required this.title,
+    required this.controllerRight,
+    required this.controllerLeft,
+  });
+
+  final String title;
+  final TextEditingController controllerRight;
+  final TextEditingController controllerLeft;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const SizedBox(height: 16.0),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width / 2,
+              child: Text(
+                '$title:',
+                style:
+                    const TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+              ),
+            ),
+            const SizedBox(width: 16.0),
+            Expanded(
+              child: SizedBox(
+                height: 40,
+                width: 40,
+                child: TextFormField(
+                  autofocus: false,
+                  cursorColor: AppColors.primarycolor,
+                  keyboardType: TextInputType.number,
+                  // textInputAction: TextInputAction.go,
+                  onSaved: (newValue) {
+                    controllerRight.text = newValue!;
+                  },
+                  controller: controllerRight,
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(
+                        color: AppColors.primarycolor,
+                        width: 2,
                       ),
-                      onPressed: onPressed),
-                )
-              ],
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(
+                        color: AppColors.primarycolor,
+                        width: 2,
+                      ),
+                    ),
+                    labelText: 'Right',
+                    labelStyle: TextStyle(
+                        color: Colors.black.withOpacity(0.26), fontSize: 15),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(
+                        color: AppColors.primarycolor,
+                        width: 2,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(width: 16.0),
+            Expanded(
+              child: SizedBox(
+                height: 40,
+                width: 40,
+                child: TextFormField(
+                  autofocus: false,
+                  cursorColor: AppColors.primarycolor,
+                  keyboardType: TextInputType.number,
+                  // textInputAction: TextInputAction.go,
+                  onSaved: (newValue) {
+                    controllerLeft.text = newValue!;
+                  },
+                  controller: controllerLeft,
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(
+                        color: AppColors.primarycolor,
+                        width: 2,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(
+                        color: AppColors.primarycolor,
+                        width: 2,
+                      ),
+                    ),
+                    labelText: 'Left',
+                    labelStyle: TextStyle(
+                        color: Colors.black.withOpacity(0.26), fontSize: 15),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(
+                        color: AppColors.primarycolor,
+                        width: 2,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8.0),
+        const Divider(
+          color: AppColors.grey,
+          thickness: 1,
+        ),
+      ],
+    );
+  }
+}
+
+class ButtonText extends StatelessWidget {
+  const ButtonText(
+      {super.key,
+      required this.text,
+      required this.onPressed,
+      this.borderRadius = 16});
+  final String text;
+  final void Function()? onPressed;
+  final double borderRadius;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 14.0),
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          fixedSize: Size(
+            MediaQuery.of(context).size.width,
+            MediaQuery.sizeOf(context).height / 16,
+          ),
+          elevation: 0,
+          backgroundColor: AppColors.primarycolor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+          ),
+        ),
+        child: Text(
+          text,
+          style: const TextStyle(
+            fontSize: 20,
+            color: Colors.white,
+            fontFamily: 'Schyler',
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class TextFormFiledStepper extends StatefulWidget {
+  const TextFormFiledStepper(
+      {super.key,
+      this.hintText,
+      this.validator,
+      // this.initialValue = '',
+      required this.textEditingController,
+      required this.labelname,
+      this.textInputType = TextInputType.text,
+      this.textDirection = TextDirection.ltr});
+  final String labelname;
+  final String? Function(String?)? validator;
+  final TextInputType textInputType;
+  final TextEditingController textEditingController;
+  final TextDirection textDirection;
+  final String? hintText;
+
+  @override
+  State<TextFormFiledStepper> createState() => _TextFormFiledStepperState();
+}
+
+class _TextFormFiledStepperState extends State<TextFormFiledStepper> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   widget.textEditingController.text = widget.hintText ?? "";
+  // }
+
+  @override
+  Widget build(BuildContext context) {
+    widget.textEditingController.text = widget.hintText ?? "";
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Directionality(
+        textDirection: widget.textDirection,
+        child: TextFormField(
+          validator: widget.validator,
+          maxLines: 4,
+          minLines: 1,
+          controller: widget.textEditingController,
+          onFieldSubmitted: (value) {
+            widget.textEditingController.text = value;
+          },
+          onSaved: (newValue) {
+            widget.textEditingController.text = newValue!;
+          },
+          cursorColor: AppColors.primarycolor,
+          keyboardType: widget.textInputType,
+          smartQuotesType: SmartQuotesType.enabled,
+          decoration: InputDecoration(
+            alignLabelWithHint: true,
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5),
+              borderSide: const BorderSide(
+                color: AppColors.primarycolor,
+                width: 2,
+              ),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5),
+              borderSide: const BorderSide(
+                color: AppColors.primarycolor,
+                width: 2,
+              ),
+            ),
+            labelText: widget.labelname,
+            labelStyle: TextStyle(
+              color: Colors.black.withOpacity(0.26),
+              fontSize: 20,
+            ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5),
+              borderSide: const BorderSide(
+                color: AppColors.primarycolor,
+                width: 2,
+              ),
             ),
           ),
         ),
@@ -246,38 +507,192 @@ class NavigateToOption extends StatelessWidget {
   }
 }
 
-class TeamsName extends StatelessWidget {
-  TeamsName({Key? key, required this.name, required this.onPressed})
-      : super(key: key);
-  String name;
-
-  void Function()? onPressed;
+class DividerItem extends StatelessWidget {
+  const DividerItem({super.key, required this.text});
+  final String text;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10.0),
-      child: Container(
-        height: 100,
-        width: 1,
-        child: MaterialButton(
-            padding: EdgeInsets.all(10),
-            color: AppColors.materialGrey,
-            shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            child: RichText(
-              text: TextSpan(
-                text: 'Team ',
-                style: AppTextStyles.w300.apply(
-                  color: Colors.black,
-                ),
-                children: <TextSpan>[
-                  TextSpan(text: name, style: AppTextStyles.lrTitles),
-                ],
+    return Row(
+      children: [
+        const Expanded(
+          child: Divider(
+            color: AppColors.grey,
+            thickness: 1,
+          ),
+        ),
+        Text(
+          text,
+          style: const TextStyle(fontSize: 16),
+        ),
+        const Expanded(
+          child: Divider(
+            color: AppColors.grey,
+            thickness: 1,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class DropdownButtonItem extends StatefulWidget {
+  const DropdownButtonItem({
+    Key? key,
+    required this.labelName,
+    required this.itemList,
+    required this.controller,
+    this.textDirection = TextDirection.ltr,
+    this.alignment = Alignment.centerLeft,
+    this.floatingLabelAlignment = FloatingLabelAlignment.center,
+    // required this.valueChangedCallback, // New callback function
+  }) : super(key: key);
+
+  final String labelName;
+  final List<String> itemList;
+  final TextEditingController controller;
+  final TextDirection textDirection;
+  final FloatingLabelAlignment floatingLabelAlignment;
+  final AlignmentGeometry? alignment;
+  // final ValueChanged<String?> valueChangedCallback; // New callback function
+
+  @override
+  State<DropdownButtonItem> createState() => _DropdownButtonItemState();
+}
+
+class _DropdownButtonItemState extends State<DropdownButtonItem> {
+  @override
+  void initState() {
+    super.initState();
+    widget.controller.text = widget.controller.text.isEmpty
+        ? widget.itemList.first
+        : widget.controller.text;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Directionality(
+      textDirection: widget.textDirection,
+      child: DropdownButtonFormField<String>(
+        elevation: 0,
+        onChanged: (value) {
+          widget.controller.text = value!;
+        },
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        isExpanded: true,
+        iconEnabledColor: AppColors.primarycolor,
+        decoration: InputDecoration(
+          floatingLabelAlignment: widget.floatingLabelAlignment,
+          disabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: const BorderSide(
+              color: AppColors.primarycolor,
+              width: 2,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: const BorderSide(
+              color: AppColors.primarycolor,
+              width: 2,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: const BorderSide(
+              color: AppColors.primarycolor,
+              width: 2,
+            ),
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: const BorderSide(
+              color: AppColors.primarycolor,
+              width: 2,
+            ),
+          ),
+          labelText: widget.labelName,
+          labelStyle:
+              TextStyle(color: Colors.black.withOpacity(0.26), fontSize: 20),
+        ),
+        value: widget.controller.text,
+        items: widget.itemList.map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Container(
+              alignment: widget.alignment,
+              child: Text(
+                // textDirection: widget.textDirection,
+                value,
               ),
             ),
-            onPressed: onPressed),
+          );
+        }).toList(),
       ),
     );
   }
+}
+
+Future showBottomSheetItem(context, Widget content) {
+  return showModalBottomSheet(
+    isScrollControlled: true,
+    shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10), topRight: Radius.circular(10))),
+    context: context,
+    builder: (context) {
+      return DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: 0.8,
+        builder: (context, scrollController) =>
+            SingleChildScrollView(controller: scrollController, child: content),
+      );
+    },
+  );
+}
+
+class ShowBottomSheetItems extends StatelessWidget {
+  const ShowBottomSheetItems(
+      {super.key, required this.contecnt, required this.name});
+  final Widget contecnt;
+  final String name;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: ListTile(
+        shape: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
+          borderSide: const BorderSide(
+            width: 2,
+            color: AppColors.primarycolor,
+          ),
+        ),
+        title: Text(
+          name,
+          style: TextStyle(color: Colors.black.withOpacity(0.26), fontSize: 20),
+        ),
+        trailing: IconButton(
+          onPressed: () => showBottomSheetItem(context, contecnt),
+          icon: const Icon(
+            Icons.add,
+            color: AppColors.primarycolor,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+itemSnackBar(context, String title, Color color) {
+  final snackBar = SnackBar(
+    duration: const Duration(seconds: 2),
+    content: Text(
+      textDirection: TextDirection.rtl,
+      title,
+      style: AppTextStyles.lrTitles.copyWith(color: Colors.white, fontSize: 15),
+    ),
+    backgroundColor: color,
+  );
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
