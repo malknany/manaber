@@ -24,6 +24,24 @@ class ReceptionistDataEntry extends StatefulWidget {
 class _ReceptionistDataEntryState extends State<ReceptionistDataEntry> {
   @override
   Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constraints) {
+        if (constraints.maxWidth > 600) {
+          return desktopUI(context);
+        } else {
+          return mobileUI(context);
+        }
+      },
+    );
+  }
+
+  Widget desktopUI(BuildContext context) {
+    return const Scaffold(
+      body: Column(),
+    );
+  }
+
+  Widget mobileUI(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('البیانات الأولیة'),

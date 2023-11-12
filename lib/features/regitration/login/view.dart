@@ -47,7 +47,10 @@ class _LogInScreenState extends State<LogInScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               textDirection: TextDirection.rtl,
               children: [
-                Image.asset(AppImages.login1),
+                SizedBox(
+                  width: 300,
+                  child: Image.asset(AppImages.login1),
+                ),
                 Text('تسجيل الدخول ',
                     style: AppTextStyles.boldtitles
                         .copyWith(color: Colors.black, fontSize: 20)),

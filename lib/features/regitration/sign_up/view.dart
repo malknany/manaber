@@ -38,7 +38,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 textDirection: TextDirection.rtl,
                 children: [
-                  Image.asset(AppImages.signup1),
+                  SizedBox(
+                    width: 300,
+                    child: Image.asset(AppImages.signup1),
+                  ),
                   Text(
                     'انشاء حساب جديد',
                     style: AppTextStyles.boldtitles.copyWith(fontSize: 20),
