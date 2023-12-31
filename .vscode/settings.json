@@ -1,6 +1,7 @@
 {
     "editor.codeActionsOnSave": {
-        "source.fixAll": true
+        "source.fixAll": "explicit"
     },
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "cmake.sourceDirectory": "C:/Users/malknany/StudioProjects/manaber/build/windows/extracted/firebase_cpp_sdk"
 }

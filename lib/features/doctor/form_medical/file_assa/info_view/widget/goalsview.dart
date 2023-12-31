@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:manaber/features/doctor/form_medical/model.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
-import '../../../../../../shared/styles/images.dart';
 
 class GoalsView extends StatelessWidget {
   const GoalsView({super.key, required this.goals});
@@ -25,10 +24,10 @@ class GoalsView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SizedBox(
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height / 3.5,
-                    child: Image.asset(AppImages.fileAssessment)),
+                // SizedBox(
+                //     width: double.infinity,
+                //     height: MediaQuery.of(context).size.height / 3.5,
+                //     child: Image.asset(AppImages.fileAssessment)),
                 const Text(
                   "File Assessment",
                   style: TextStyle(

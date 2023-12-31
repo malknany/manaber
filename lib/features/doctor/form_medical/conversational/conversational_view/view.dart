@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manaber/features/doctor/form_medical/file_assa/info_view/widget/data_intry_reception.dart';
+import 'package:manaber/features/doctor/members/model.dart';
 import '../../cubit/pateint_info_cubit.dart';
 import '../../model.dart';
 import '../../../../../shared/components/components.dart';
@@ -20,7 +22,10 @@ class InfoConversationScreen extends StatefulWidget {
     super.key,
     required this.controleConversational,
     required this.id,
+    required this.patientInfo,
   });
+
+  final Patient patientInfo;
 
   final ControleConversational controleConversational;
   final String id;
@@ -69,125 +74,141 @@ class _InfoConversationScreenState extends State<InfoConversationScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+            child: Row(
               children: [
-                SizedBox(
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height / 3.5,
-                    child: Image.asset(AppImages.conversational1)),
-                const Text(
-                  " إستمارة دراسة حالة",
-                  style: TextStyle(
-                      fontSize: 22,
-                      color: Colors.black,
-                      fontFamily: 'Schyler',
-                      fontWeight: FontWeight.bold),
-                ),
-                BlocBuilder<PateintInfoCubit, PateintInfoState>(
-                  builder: (context, state) {
-                    if (state is PateintLoading) {
-                      return const Center(
-                        child: CircularProgressIndicator(
-                            color: AppColors.primarycolor),
-                      );
-                    }
-                    if (state is PateintErrorMsg) {
-                      return Center(
-                        child: Text(
-                          state.msg,
-                          style: AppTextStyles.lrTitles
-                              .copyWith(color: Colors.black),
-                        ),
-                      );
-                    }
-                    if (state is PateintSuccess) {
-                      final List<ModelPatientInfo> personalHistory = [];
-                      final List<ModelPatientInfo> medicalGenetic = [];
-                      final List<ModelPatientInfo> childMedical = [];
-                      final List<ModelPatientInfo> childDevelopment = [];
-                      final List<ModelPatientInfo> note = [];
-                      for (final person in state.listOfInfoPatient) {
-                        if (person.section == 'personal') {
-                          personalHistory.add(person);
-                        }
-                        if (person.section == 'medical_genetic') {
-                          medicalGenetic.add(person);
-                        }
-                        if (person.section == 'child_medical') {
-                          childMedical.add(person);
-                        }
-                        if (person.section == 'child_development') {
-                          childDevelopment.add(person);
-                        }
-                        if (person.section == 'note') {
-                          note.add(person);
-                        }
-                      }
-                      return Column(
-                        children: [
-                          ButtonText(
-                              text: 'البیانات الأولیة',
-                              onPressed: () {
-                                navigateTo(
-                                  context,
-                                  PersonalHistoryConversationalView(
-                                    modelPersonalHistory: personalHistory,
-                                  ),
-                                );
-                              },
-                              borderRadius: 7),
-                          ButtonText(
-                              text: 'التاریخ المرضي والوراثي للعائلة',
-                              onPressed: () {
-                                navigateTo(
-                                    context,
-                                    MedicalAndGeneticHistoryOfTheFamilyView(
-                                      modelMedicalAndGeneticHistory:
-                                          medicalGenetic,
-                                    ));
-                              },
-                              borderRadius: 7),
-                          ButtonText(
-                              text: 'التاریخ الصحي والمرضي للطفل',
-                              onPressed: () {
-                                navigateTo(
-                                  context,
-                                  ChildMedicalAndMedicalHistoryView(
-                                    modelChildMedicalAndMedicalHistory:
-                                        childMedical,
-                                  ),
-                                );
-                              },
-                              borderRadius: 7),
-                          ButtonText(
-                              text: 'تاریخ النمو التطوري للطفل',
-                              onPressed: () {
-                                navigateTo(
-                                  context,
-                                  ChildDevelopmentalHistoryView(
-                                    modelChildDevelopmentalHistory:
-                                        childDevelopment,
-                                  ),
-                                );
-                              },
-                              borderRadius: 7),
-                          ButtonText(
-                              text: 'ملاحظات',
-                              onPressed: () {
-                                navigateTo(
-                                  context,
-                                  NoteConversationalView(
-                                    modelNoteConversational: note,
-                                  ),
-                                );
-                              },
-                              borderRadius: 7),
-                        ],
-                      );
-                    }
-                    return const SizedBox.shrink();
-                  },
+                Expanded(child:Image.asset(AppImages.conversational1) ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // SizedBox(
+                      //     width: double.infinity,
+                      //     height: MediaQuery.of(context).size.height / 3.5,
+                      //     child: Image.asset(AppImages.conversational1)),
+                      const Text(
+                        " إستمارة دراسة حالة",
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
+                            fontFamily: 'Schyler',
+                            fontWeight: FontWeight.bold),
+                      ),
+                      BlocBuilder<PateintInfoCubit, PateintInfoState>(
+                        builder: (context, state) {
+                          if (state is PateintLoading) {
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                  color: AppColors.primarycolor),
+                            );
+                          }
+                          if (state is PateintErrorMsg) {
+                            return Center(
+                              child: Text(
+                                state.msg,
+                                style: AppTextStyles.lrTitles
+                                    .copyWith(color: Colors.black),
+                              ),
+                            );
+                          }
+                          if (state is PateintSuccess) {
+                            final List<ModelPatientInfo> personalHistory = [];
+                            final List<ModelPatientInfo> medicalGenetic = [];
+                            final List<ModelPatientInfo> childMedical = [];
+                            final List<ModelPatientInfo> childDevelopment = [];
+                            final List<ModelPatientInfo> note = [];
+                            for (final person in state.listOfInfoPatient) {
+                              if (person.section == 'personal') {
+                                personalHistory.add(person);
+                              }
+                              if (person.section == 'medical_genetic') {
+                                medicalGenetic.add(person);
+                              }
+                              if (person.section == 'child_medical') {
+                                childMedical.add(person);
+                              }
+                              if (person.section == 'child_development') {
+                                childDevelopment.add(person);
+                              }
+                              if (person.section == 'note') {
+                                note.add(person);
+                              }
+                            }
+                            return Column(
+                              children: [
+                                ButtonText(
+                                    text: 'البیانات الأولیة',
+                                    onPressed: () {
+                                      navigateTo(
+                                        context,
+                                        PersonalHistoryConversationalView(
+                                          modelPersonalHistory: personalHistory,
+                                        ),
+                                      );
+                                    },
+                                    borderRadius: 7),
+                                ButtonText(
+                                    text: 'التاریخ المرضي والوراثي للعائلة',
+                                    onPressed: () {
+                                      navigateTo(
+                                          context,
+                                          MedicalAndGeneticHistoryOfTheFamilyView(
+                                            modelMedicalAndGeneticHistory:
+                                                medicalGenetic,
+                                          ));
+                                    },
+                                    borderRadius: 7),
+                                ButtonText(
+                                    text: 'التاریخ الصحي والمرضي للطفل',
+                                    onPressed: () {
+                                      navigateTo(
+                                        context,
+                                        ChildMedicalAndMedicalHistoryView(
+                                          modelChildMedicalAndMedicalHistory:
+                                              childMedical,
+                                        ),
+                                      );
+                                    },
+                                    borderRadius: 7),
+                                ButtonText(
+                                    text: 'تاریخ النمو التطوري للطفل',
+                                    onPressed: () {
+                                      navigateTo(
+                                        context,
+                                        ChildDevelopmentalHistoryView(
+                                          modelChildDevelopmentalHistory:
+                                              childDevelopment,
+                                        ),
+                                      );
+                                    },
+                                    borderRadius: 7),
+                                ButtonText(
+                                    text: 'ملاحظات',
+                                    onPressed: () {
+                                      navigateTo(
+                                        context,
+                                        NoteConversationalView(
+                                          modelNoteConversational: note,
+                                        ),
+                                      );
+                                    },
+                                    borderRadius: 7),
+                                ButtonText(
+                                    text: 'بيانات من موظف الاستقبال',
+                                    onPressed: () {
+                                      navigateTo(
+                                        context,
+                                        DataIntryFromReception(patientInfo: widget.patientInfo)
+                                      );
+                                    },
+                                    borderRadius: 7),
+                              ],
+                            );
+                          }
+                          return const SizedBox.shrink();
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

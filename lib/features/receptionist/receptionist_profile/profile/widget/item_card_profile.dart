@@ -27,21 +27,21 @@ class ItemProfileCardReception extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 25),
             child: Column(
               textDirection: TextDirection.rtl,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'الاسم:$name',
+                  'الاسم: $name',
                   textDirection: TextDirection.rtl,
                   style: AppTextStyles.lrTitles
                       .copyWith(color: AppColors.primarycolor, fontSize: 18),
                 ),
                 Text(
                   textDirection: TextDirection.rtl,
-                  'رقم الهاتف :$number',
+                  'رقم الهاتف : $number',
                   style: AppTextStyles.lrTitles
                       .copyWith(color: AppColors.primarycolor, fontSize: 18),
                 ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:manaber/features/doctor/form_medical/model.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
-import '../../../../../../shared/styles/images.dart';
 
 class NoteView extends StatelessWidget {
   const NoteView({super.key, required this.note});
@@ -26,10 +25,6 @@ class NoteView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SizedBox(
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height / 3.5,
-                    child: Image.asset(AppImages.fileAssessment)),
                 const Text(
                   "File Assessment",
                   style: TextStyle(

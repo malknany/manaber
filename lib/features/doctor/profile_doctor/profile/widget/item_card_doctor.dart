@@ -28,7 +28,7 @@ class ItemCardDoctor extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 25),
             child: Column(
               textDirection: TextDirection.rtl,
               crossAxisAlignment: CrossAxisAlignment.start,

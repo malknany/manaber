@@ -49,7 +49,7 @@ class MotorSystem extends StatelessWidget {
                         textEditingController: model.textEditingController);
                   }
                   if (model is BottomSheetFileAssModel) {
-                    return ShowBottomSheetItems(
+                    return ShowDialogItems(
                       name: model.name,
                       contecnt: SizedBox(
                         height: MediaQuery.sizeOf(context).height / 1.2,
@@ -105,7 +105,7 @@ class MotorSystem extends StatelessWidget {
 
 }
 
-// ShowBottomSheetItems(
+// ShowDialogItems(
             //   name: ' Muscle strength',
             //   contecnt: SizedBox(
             //     height: MediaQuery.sizeOf(context).height / 1.2,
@@ -217,7 +217,7 @@ class MotorSystem extends StatelessWidget {
             // TextFormFiledStepper(
             //     labelname: 'Muscle Tone',
             //     textEditingController: controlBodyFunction.muscleTon),
-            // ShowBottomSheetItems(
+            // ShowDialogItems(
             //   name: ' Muscle Tone',
             //   contecnt: SizedBox(
             //     height: MediaQuery.sizeOf(context).height / 1.2,

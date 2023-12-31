@@ -459,6 +459,9 @@ class _TextFormFiledStepperState extends State<TextFormFiledStepper> {
       child: Directionality(
         textDirection: widget.textDirection,
         child: TextFormField(
+          onTapOutside: (event) {
+            FocusManager.instance.primaryFocus!.unfocus();
+          },
           validator: widget.validator,
           maxLines: 4,
           minLines: 1,
@@ -633,6 +636,29 @@ class _DropdownButtonItemState extends State<DropdownButtonItem> {
   }
 }
 
+Future showDialogItem(context, Widget content) {
+  return showDialog(
+    context: context,
+    builder: (context) => Dialog.fullscreen(
+      child: Column(
+        children: [
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.close),
+              ),
+            ],
+          ),
+          Expanded(child: content),
+        ],
+      ),
+    ),
+  );
+}
+
 Future showBottomSheetItem(context, Widget content) {
   return showModalBottomSheet(
     isScrollControlled: true,
@@ -651,8 +677,41 @@ Future showBottomSheetItem(context, Widget content) {
   );
 }
 
-class ShowBottomSheetItems extends StatelessWidget {
-  const ShowBottomSheetItems(
+// class ShowBottomSheetItems extends StatelessWidget {
+//   const ShowBottomSheetItems(
+//       {super.key, required this.contecnt, required this.name});
+//   final Widget contecnt;
+//   final String name;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Padding(
+//       padding: const EdgeInsets.symmetric(vertical: 5),
+//       child: ListTile(
+//         shape: OutlineInputBorder(
+//           borderRadius: BorderRadius.circular(5),
+//           borderSide: const BorderSide(
+//             width: 2,
+//             color: AppColors.primarycolor,
+//           ),
+//         ),
+//         title: Text(
+//           name,
+//           style: TextStyle(color: Colors.black.withOpacity(0.26), fontSize: 20),
+//         ),
+//         trailing: IconButton(
+//           // onPressed: () => showBottomSheetItem(context, contecnt),
+//           onPressed: () => showDialogItem(context, contecnt),
+//           icon: const Icon(
+//             Icons.add,
+//             color: AppColors.primarycolor,
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+class ShowDialogItems extends StatelessWidget {
+  const ShowDialogItems(
       {super.key, required this.contecnt, required this.name});
   final Widget contecnt;
   final String name;
@@ -673,7 +732,7 @@ class ShowBottomSheetItems extends StatelessWidget {
           style: TextStyle(color: Colors.black.withOpacity(0.26), fontSize: 20),
         ),
         trailing: IconButton(
-          onPressed: () => showBottomSheetItem(context, contecnt),
+          onPressed: () => showDialogItem(context, contecnt),
           icon: const Icon(
             Icons.add,
             color: AppColors.primarycolor,

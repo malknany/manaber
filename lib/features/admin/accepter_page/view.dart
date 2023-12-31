@@ -66,18 +66,6 @@ class _AdminAcceptUserState extends State<AdminAcceptUser> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          // SizedBox(
-                          //     height:
-                          //         MediaQueryHelper.sizeFromHeight(context, 4.5),
-                          //     width:
-                          //         MediaQueryHelper.sizeFromWidth(context, 1.2),
-                          //     child: Image.asset(AppImages.admin)),
-                          // Text('الادمن',
-                          //     style: AppTextStyles.lrTitles
-                          //         .copyWith(fontSize: 32)),
-                          // const SizedBox(
-                          //   height: 16,
-                          // ),
                           Column(
                             children: List.generate(
                               state.listOfUserspending.length,

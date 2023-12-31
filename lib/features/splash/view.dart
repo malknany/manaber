@@ -26,20 +26,20 @@ class _SplashScreenState extends State<SplashScreen> {
       body: BlocBuilder<SplashCubit, SplashState>(
         builder: (context, state) {
           if (state is SplashLoading) {
-            return SizedBox(
-              height: double.infinity,
-              width: double.infinity,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Center(
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: double.infinity,
+                  width: double.infinity,
+                  child: Center(
                     child: Image.asset(AppImages.logo),
                   ),
-                  const CircularProgressIndicator(
-                    color: AppColors.primarycolor,
-                  )
-                ],
-              ),
+                ),
+                const CircularProgressIndicator(
+                  color: AppColors.primarycolor,
+                )
+              ],
             );
           }
           if (state is SplashSuccess) {

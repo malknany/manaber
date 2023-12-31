@@ -29,42 +29,36 @@ class PatientInformation extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-        child: GestureDetector(
-          // ! it is not work
-          onTap: () {
-            FocusScope.of(context).requestFocus(FocusNode());
-          },
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount:
-                      controleFileAssesment.listPatientInfo.length,
-                  itemBuilder: (context, index) {
-                    var model =
-                        controleFileAssesment.listPatientInfo[index];
-                    if (model is DropdownButtonItemModel) {
-                      return DropdownButtonItem(
-                        controller: model.controller,
-                        labelName: model.labelName,
-                        itemList: model.itemList,
-                      );
-                    }
-                    if (model is TextFormFiledStepperModel) {
-                      return TextFormFiledStepper(
-                          hintText: patientInformation[index].answer,
-                          labelname: model.labelName,
-                          textEditingController: model.textEditingController);
-                    }
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount:
+                    controleFileAssesment.listPatientInfo.length,
+                itemBuilder: (context, index) {
+                  var model =
+                      controleFileAssesment.listPatientInfo[index];
+                  if (model is DropdownButtonItemModel) {
+                    return DropdownButtonItem(
+                      controller: model.controller,
+                      labelName: model.labelName,
+                      itemList: model.itemList,
+                    );
+                  }
+                  if (model is TextFormFiledStepperModel) {
+                    return TextFormFiledStepper(
+                        hintText: patientInformation[index].answer,
+                        labelname: model.labelName,
+                        textEditingController: model.textEditingController);
+                  }
 
-                    return const SizedBox.shrink();
-                  },
-                ),
+                  return const SizedBox.shrink();
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

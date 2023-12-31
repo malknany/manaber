@@ -50,7 +50,7 @@ class NeurologicalExamination extends StatelessWidget {
                         textEditingController: model.textEditingController);
                   }
                   if (model is BottomSheetFileAssModel) {
-                    return ShowBottomSheetItems(
+                    return ShowDialogItems(
                       name: model.name,
                       contecnt: SizedBox(
                         height: MediaQuery.sizeOf(context).height / 1.2,
@@ -117,7 +117,7 @@ class NeurologicalExamination extends StatelessWidget {
 //   labelname: 'Invountary movement',
 //   textEditingController: controlBodyFunction.involantaryMovment,
 // ),
-// ShowBottomSheetItems(
+// ShowDialogItems(
 //   name: 'Primitive Reflexes',
 //   contecnt: SizedBox(
 //     height: MediaQuery.sizeOf(context).height / 1.3,
@@ -228,7 +228,7 @@ class NeurologicalExamination extends StatelessWidget {
 //         )),
 //   ),
 // ),
-// ShowBottomSheetItems(
+// ShowDialogItems(
 //   name: 'Advanced reflex',
 //   contecnt: SizedBox(
 //     height: 500,

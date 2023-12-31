@@ -59,7 +59,7 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
                         textEditingController: model.textEditingController);
                   }
                   if (model is BottomSheetFileAssModel) {
-                    return ShowBottomSheetItems(
+                    return ShowDialogItems(
                       name: model.name,
                       contecnt: SizedBox(
                         height: MediaQuery.sizeOf(context).height / 1.2,
@@ -169,7 +169,7 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
             // TextFormFiledStepper(
             //     labelname: 'Balance',
             //     textEditingController: controlBodyFunction.balance),
-            // ShowBottomSheetItems(
+            // ShowDialogItems(
             //   name: 'Developmental Milestones',
             //   contecnt: SizedBox(
             //     height: MediaQuery.sizeOf(context).height / 1.2,

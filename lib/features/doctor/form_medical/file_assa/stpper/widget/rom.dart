@@ -51,7 +51,7 @@ class Rom extends StatelessWidget {
                         textEditingController: model.textEditingController);
                   }
                   if (model is BottomSheetFileAssModel) {
-                    return ShowBottomSheetItems(
+                    return ShowDialogItems(
                       name: model.name,
                       contecnt: SizedBox(
                         height: MediaQuery.sizeOf(context).height / 1.2,

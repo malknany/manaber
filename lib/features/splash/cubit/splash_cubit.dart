@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manaber/features/admin/our_section_admin/view.dart';
+import 'package:manaber/features/receptionist/our_section_reception/view.dart';
 import '../../doctor/our_sections/view.dart';
 import '../../regitration/login/cubit/log_in_cubit.dart';
 import '../../regitration/login/model.dart';
@@ -17,7 +18,6 @@ part 'splash_state.dart';
 class SplashCubit extends Cubit<SplashState> {
   SplashCubit() : super(SplashInitial());
   final token = CacheHelper.getData(key: AppConstKey.token);
-
   checkToken(
     context,
   ) {
@@ -27,12 +27,17 @@ class SplashCubit extends Cubit<SplashState> {
       print("Refrsh Token====$token");
       if (token[1] == 'DOCTOR') {
         Timer(const Duration(seconds: 4), () {
-          navigateAndFinished(context, const Oursectiosn());
+          navigateAndFinished(context,  Oursectiosn());
         });
       }
       if (token[1] == 'ADMIN') {
         Timer(const Duration(seconds: 4), () {
           navigateAndFinished(context, const AdminHomePage());
+        });
+      }
+      if (token[1] == 'RECEPTIONIST') {
+        Timer(const Duration(seconds: 4), () {
+          navigateAndFinished(context, const OurSectiosnReceptionist());
         });
       }
     } else {

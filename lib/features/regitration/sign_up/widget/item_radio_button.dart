@@ -28,7 +28,7 @@ class ItemRadioButton extends StatelessWidget {
           ),
         ),
         leading: Radio(
-          autofocus: true,
+          autofocus: false,
           activeColor: AppColors.primarycolor,
           value: value,
           groupValue: groupValue,

@@ -22,21 +22,26 @@ class ChildMedicalAndMedicalHistory extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
       ),
-      body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-          child: ListView.builder(
-            itemCount: controleConversational
-                .listOfChildMedicalAndMedicalHistory.length,
-            itemBuilder: (context, index) {
-              return TextFormFiledStepper(
-                hintText: childMedicalAndMedicalHistory[index].answer,
-                textDirection: TextDirection.rtl,
-                textEditingController: controleConversational
-                    .listOfChildMedicalAndMedicalHistory[index].controle,
-                labelname: childMedicalAndMedicalHistory[index].question!,
-              );
-            },
-          )),
+      body: Scrollbar(
+        interactive: true,
+        radius: const Radius.circular(20),
+        thickness: 10,
+        child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
+            child: ListView.builder(
+              itemCount: controleConversational
+                  .listOfChildMedicalAndMedicalHistory.length,
+              itemBuilder: (context, index) {
+                return TextFormFiledStepper(
+                  hintText: childMedicalAndMedicalHistory[index].answer,
+                  textDirection: TextDirection.rtl,
+                  textEditingController: controleConversational
+                      .listOfChildMedicalAndMedicalHistory[index].controle,
+                  labelname: childMedicalAndMedicalHistory[index].question!,
+                );
+              },
+            )),
+      ),
     );
   }
 }

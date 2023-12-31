@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manaber/features/doctor/members/model.dart';
+import 'package:manaber/features/doctor/profile_pationt/last_ressessment/cubit/Last_reassessment_cubit.dart';
+import 'package:manaber/features/doctor/profile_pationt/last_ressessment/view.dart';
 import '../../form_medical/conversational/conversational_view/view.dart';
 import '../../form_medical/conversational/stepper/controler.dart';
 import '../../form_medical/cubit/pateint_info_cubit.dart';
 import '../tretment_plan/cubit/tretment_plan_cubit.dart';
-import '../video/cubit/video_play_cubit.dart';
-import '../x-ray/cubit/xray_cubit.dart';
 import '../../../../shared/network/local/const_key.dart';
 
 import '../../form_medical/file_assa/info_view/view.dart';
@@ -14,16 +15,15 @@ import '../../form_medical/occupation_therapy/info_occupation_view/view.dart';
 import '../../form_medical/occupation_therapy/stepper/controler.dart';
 import 'widget/slection_item_profile.dart';
 import '../tretment_plan/view.dart';
-import '../video/view.dart';
-import '../x-ray/view.dart';
 import '../../../../shared/components/navigator.dart';
 import '../../../../shared/styles/images.dart';
 
 class ProfilePationtScreen extends StatefulWidget {
   const ProfilePationtScreen(
-      {super.key, required this.department, required this.id});
+      {super.key, required this.department, required this.id,required this.pateintInfo});
   final String department;
   final String id;
+  final Patient pateintInfo;
 
   @override
   State<ProfilePationtScreen> createState() => _ProfilePationtScreenState();
@@ -33,8 +33,8 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
   final ControleConversational controleConversational =
       ControleConversational();
 
-  final ControleFileAssesment controleFileAssesment = ControleFileAssesment();
-  final ControleOccupation controleOccupation = ControleOccupation();
+  final ControleFileAssesment controlFileAssesment = ControleFileAssesment();
+  final ControleOccupation controlOccupation = ControleOccupation();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +59,8 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                               BlocProvider(
                                 create: (context) => PateintInfoCubit(),
                                 child: FileAssassemntView(
-                                  controleFileAssesment: controleFileAssesment,
+                                  patientInfo: widget.pateintInfo,
+                                  controleFileAssesment: controlFileAssesment,
                                   id: widget.id,
                                 ),
                               ))
@@ -69,8 +70,9 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                                   BlocProvider(
                                     create: (context) => PateintInfoCubit(),
                                     child: InfoOccupationScreen(
+                                      patientInfo: widget.pateintInfo,
                                       id: widget.id,
-                                      controleOccupation: controleOccupation,
+                                      controleOccupation: controlOccupation,
                                     ),
                                   ))
                               : navigateTo(
@@ -78,6 +80,7 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                                   BlocProvider(
                                     create: (context) => PateintInfoCubit(),
                                     child: InfoConversationScreen(
+                                      patientInfo: widget.pateintInfo,
                                       id: widget.id,
                                       controleConversational:
                                           controleConversational,
@@ -96,48 +99,65 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                             ? AppImages.occupationalTherapy
                             : AppImages.conversational),
                 SlectedItemProfile(
-                    onTap: () {
-                      navigateTo(
-                        context,
-                        BlocProvider(
-                          create: (context) => TretmentPlanCubit(),
-                          child: TretmentPlanView(
-                            id: widget.id,
-                          ),
+                  onTap: () {
+                    navigateTo(
+                      context,
+                      BlocProvider(
+                        create: (context) => TretmentPlanCubit(),
+                        child: TretmentPlanView(
+                          id: widget.id,
                         ),
-                      );
-                    },
-                    sectionname: 'Treatment plan',
-                    image: AppImages.tretmentPlan),
+                      ),
+                    );
+                  },
+                  sectionname: 'Treatment plan',
+                  image: AppImages.tretmentPlan,
+                ),
                 SlectedItemProfile(
-                    onTap: () {
-                      navigateTo(
-                        context,
-                        BlocProvider(
-                          create: (context) => VideoPlayCubit(),
-                          child: VideoScreen(
-                            id: widget.id,
-                          ),
+                  onTap: () {
+                    navigateTo(
+                      context ,
+
+                      BlocProvider(
+                        create: (context) => LastReassessmentCubit(),
+                        child: LastReassessmentView(
+                          id: widget.id,
                         ),
-                      );
-                    },
-                    sectionname: 'Videos',
-                    image: AppImages.video),
-                widget.department == AppConstKey.speechTherapy
-                    ? SizedBox.fromSize()
-                    : SlectedItemProfile(
-                        onTap: () {
-                          navigateTo(
-                              context,
-                              BlocProvider(
-                                create: (context) => XrayCubit(),
-                                child: XrayView(
-                                  id: widget.id,
-                                ),
-                              ));
-                        },
-                        sectionname: 'X-rays',
-                        image: AppImages.xRey),
+                      ),
+                    );
+                  },
+                  sectionname: 'Last Reassessment',
+                  image: AppImages.lastReassessment,
+                ),
+                // SlectedItemProfile(
+                //     onTap: () {
+                //       navigateTo(
+                //         context,
+                //         BlocProvider(
+                //           create: (context) => VideoPlayCubit(),
+                //           child: VideoScreen(
+                //             id: widget.id,
+                //           ),
+                //         ),
+                //       );
+                //     },
+                //     sectionname: 'Videos',
+                //     image: AppImages.video),
+                // widget.department == AppConstKey.speechTherapy
+                //     ? SizedBox.fromSize()
+                //     : SlectedItemProfile(
+                //         onTap: () {
+                //           navigateTo(
+                //               context,
+                //               BlocProvider(
+                //                 create: (context) => XrayCubit(),
+                //                 child: XrayView(
+                //                   id: widget.id,
+                //                 ),
+                //               ));
+                //         },
+                //         sectionname: 'X-rays',
+                //         image: AppImages.xRey),
               ],
             ),
           ),

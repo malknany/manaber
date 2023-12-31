@@ -33,22 +33,27 @@ class AdminHomePage extends StatelessWidget {
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-              child: Column(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SectionItemAdmin(
-                    screen: BlocProvider(
-                      create: (context) => PendingCubit(),
-                      child: const AdminAcceptUser(),
+                  Expanded(
+                    child: SectionItemAdmin(
+                      screen: BlocProvider(
+                        create: (context) => PendingCubit(),
+                        child: const AdminAcceptUser(),
+                      ),
+                      sectionname: 'قبول ورفض الطلبات',
                     ),
-                    sectionname: 'قبول ورفض الطلبات',
                   ),
-                  SectionItemAdmin(
-                    screen: BlocProvider(
-                      create: (context) => DelateUserFromSystemCubit(),
-                      child: const AdminDeleteFromSystem(),
+                  const SizedBox(width: 30,),
+                  Expanded(
+                    child: SectionItemAdmin(
+                      screen: BlocProvider(
+                        create: (context) => DelateUserFromSystemCubit(),
+                        child: const AdminDeleteFromSystem(),
+                      ),
+                      sectionname: 'حذف مستخدم من النظام',
                     ),
-                    sectionname: 'حذف مستخدم من النظام',
                   ),
                 ],
               ),

@@ -43,140 +43,146 @@ class _LogInScreenState extends State<LogInScreen> {
             child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
           child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              textDirection: TextDirection.rtl,
+            child: Row(
               children: [
-                Image.asset(AppImages.login1),
-                Text('تسجيل الدخول ',
-                    style: AppTextStyles.boldtitles
-                        .copyWith(color: Colors.black, fontSize: 20)),
-                TextFieldTemplate(
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'يرجى إدخال رقم الهاتف';
-                    }
-                    if (!RegExp(r'^\+?\d{10,12}$').hasMatch(value)) {
-                      return 'يرجى إدخال رقم هاتف صحيح';
-                    }
-                    return null;
-                  },
-                  controller: phone,
-                  textInputType: TextInputType.number,
-                  hintText: 'رقم الهاتف',
-                  suffixIcon: const Icon(
-                    Icons.phone,
-                    color: AppColors.primarycolor,
-                  ),
-                ),
-                TextFieldTemplate(
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'يرجى إدخال كلمة المرور';
-                    }
-                    if (value.length < 4) {
-                      return 'يجب أن تتكون كلمة المرور من 4 أحرف على الأقل';
-                    }
-                    return null;
-                  },
-                  controller: password,
-                  isPassword: isPassword,
-                  hintText: 'كلمة السر',
-                  suffixIcon: const Icon(
-                    Icons.lock,
-                    color: AppColors.primarycolor,
-                  ),
-                  prefixIcon: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        isPassword = !isPassword;
-                      });
-                    },
-                    icon: Icon(
-                      isPassword ? Icons.visibility : Icons.visibility_off,
-                      color: AppColors.grey,
-                    ),
-                  ),
-                ),
-                ButtonText(
-                  text: 'تسجيل',
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      context.read<LogInCubit>().logInPostData(
-                          phone: phone.text, password: password.text);
-                    }
-                  },
-                ),
-                BlocBuilder<LogInCubit, LoginStates>(
-                  builder: (context, state) {
-                    if (state is LoginLoadingtState) {
-                      return const Center(
-                        child: CircularProgressIndicator(
+                Expanded(child: Image.asset(AppImages.login1),),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    textDirection: TextDirection.rtl,
+                    children: [
+                      Text('تسجيل الدخول ',
+                          style: AppTextStyles.boldtitles
+                              .copyWith(color: Colors.black, fontSize: 20)),
+                      TextFieldTemplate(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'يرجى إدخال رقم الهاتف';
+                          }
+                          if (!RegExp(r'^\+?\d{10,12}$').hasMatch(value)) {
+                            return 'يرجى إدخال رقم هاتف صحيح';
+                          }
+                          return null;
+                        },
+                        controller: phone,
+                        textInputType: TextInputType.number,
+                        hintText: 'رقم الهاتف',
+                        suffixIcon: const Icon(
+                          Icons.phone,
                           color: AppColors.primarycolor,
                         ),
-                      );
-                    }
-                    if (state is LoginSuccessState) {
-                      if (state.usersModel.role == 'DOCTOR') {
-                        WidgetsBinding.instance
-                            .addPostFrameCallback((timeStamp) {
-                          navigateAndFinished(context, const Oursectiosn());
-                        });
-                      }
-                      if (state.usersModel.role == 'RECEPTIONIST') {
-                        WidgetsBinding.instance
-                            .addPostFrameCallback((timeStamp) {
-                          navigateAndFinished(
-                              context, OurSectiosnReceptionist());
-                        });
-                      }
-                      if (state.usersModel.role == 'ADMIN') {
-                        Future.delayed(
-                          const Duration(seconds: 1),
-                          () {
-                            navigateAndFinished(context, const AdminHomePage());
-                          },
-                        );
-                      }
-                      return const Center(
-                          child: Icon(
-                        Icons.check,
-                        color: AppColors.primarycolor,
-                      ));
-                    }
-                    if (state is LoginErrorState) {
-                      return Text(
-                        state.msg,
-                        textDirection: TextDirection.rtl,
-                        style: AppTextStyles.lrTitles
-                            .copyWith(color: Colors.red, fontSize: 15),
-                      );
-                    }
-                    return const SizedBox.shrink();
-                  },
-                ),
-                Text(
-                  'او',
-                  style: AppTextStyles.boldtitles.copyWith(color: Colors.black),
-                ),
-                TextButton(
-                  style: const ButtonStyle(
-                    enableFeedback: false,
-                    overlayColor: MaterialStatePropertyAll(Colors.transparent),
-                  ),
-                  onPressed: () {
-                    navigateTo(
-                      context,
-                      BlocProvider(
-                        create: (context) => SignUpCubit(),
-                        child: const SignUpScreen(),
                       ),
-                    );
-                  },
-                  child: Text('تسجيل حساب جديد',
-                      style: AppTextStyles.boldtitles
-                          .copyWith(color: Colors.black)),
-                )
+                      TextFieldTemplate(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'يرجى إدخال كلمة المرور';
+                          }
+                          if (value.length < 4) {
+                            return 'يجب أن تتكون كلمة المرور من 4 أحرف على الأقل';
+                          }
+                          return null;
+                        },
+                        controller: password,
+                        isPassword: isPassword,
+                        hintText: 'كلمة السر',
+                        suffixIcon: const Icon(
+                          Icons.lock,
+                          color: AppColors.primarycolor,
+                        ),
+                        prefixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              isPassword = !isPassword;
+                            });
+                          },
+                          icon: Icon(
+                            isPassword ? Icons.visibility : Icons.visibility_off,
+                            color: AppColors.grey,
+                          ),
+                        ),
+                      ),
+                      ButtonText(
+                        text: 'تسجيل',
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            context.read<LogInCubit>().logInPostData(
+                                phone: phone.text, password: password.text);
+                          }
+                        },
+                      ),
+                      BlocBuilder<LogInCubit, LoginStates>(
+                        builder: (context, state) {
+                          if (state is LoginLoadingtState) {
+                            return const Center(
+                              child: CircularProgressIndicator(
+                                color: AppColors.primarycolor,
+                              ),
+                            );
+                          }
+                          if (state is LoginSuccessState) {
+                            if (state.usersModel.role == 'DOCTOR') {
+                              WidgetsBinding.instance
+                                  .addPostFrameCallback((timeStamp) {
+                                navigateAndFinished(context,  Oursectiosn());
+                              });
+                            }
+                            if (state.usersModel.role == 'RECEPTIONIST') {
+                              WidgetsBinding.instance
+                                  .addPostFrameCallback((timeStamp) {
+                                navigateAndFinished(
+                                    context, OurSectiosnReceptionist());
+                              });
+                            }
+                            if (state.usersModel.role == 'ADMIN') {
+                              Future.delayed(
+                                const Duration(seconds: 1),
+                                () {
+                                  navigateAndFinished(context, const AdminHomePage());
+                                },
+                              );
+                            }
+                            return const Center(
+                                child: Icon(
+                              Icons.check,
+                              color: AppColors.primarycolor,
+                            ));
+                          }
+                          if (state is LoginErrorState) {
+                            return Text(
+                              state.msg,
+                              textDirection: TextDirection.rtl,
+                              style: AppTextStyles.lrTitles
+                                  .copyWith(color: Colors.red, fontSize: 15),
+                            );
+                          }
+                          return const SizedBox.shrink();
+                        },
+                      ),
+                      Text(
+                        'او',
+                        style: AppTextStyles.boldtitles.copyWith(color: Colors.black),
+                      ),
+                      TextButton(
+                        style: const ButtonStyle(
+                          enableFeedback: false,
+                          overlayColor: MaterialStatePropertyAll(Colors.transparent),
+                        ),
+                        onPressed: () {
+                          navigateTo(
+                            context,
+                            BlocProvider(
+                              create: (context) => SignUpCubit(),
+                              child: const SignUpScreen(),
+                            ),
+                          );
+                        },
+                        child: Text('تسجيل حساب جديد',
+                            style: AppTextStyles.boldtitles
+                                .copyWith(color: Colors.black)),
+                      )
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

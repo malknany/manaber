@@ -23,19 +23,24 @@ class PersonalHistoryConversational extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
       ),
-      body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-          child: ListView(
-            children: List.generate(
-                controleConversational.listOfPersonal.length, (index) {
-              return TextFormFiledStepper(
-                  hintText: personalHistory[index].answer,
-                  textDirection: TextDirection.rtl,
-                  textEditingController:
-                      controleConversational.listOfPersonal[index].controle,
-                  labelname: personalHistory[index].question!);
-            }),
-          )),
+      body: Scrollbar(
+        interactive: true,
+        radius: const Radius.circular(20),
+        thickness: 10,
+        child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
+            child: ListView(
+              children: List.generate(
+                  controleConversational.listOfPersonal.length, (index) {
+                return TextFormFiledStepper(
+                    hintText: personalHistory[index].answer,
+                    textDirection: TextDirection.rtl,
+                    textEditingController:
+                        controleConversational.listOfPersonal[index].controle,
+                    labelname: personalHistory[index].question!);
+              }),
+            )),
+      ),
     );
   }
 }

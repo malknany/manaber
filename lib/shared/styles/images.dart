@@ -21,4 +21,5 @@ class AppImages {
   static const String conversational1 = "assets/image/conversation1.jpg";
   static const String ux = "assets/image/ux.png";
   static const String user = "assets/image/user.png";
+  static const String lastReassessment = "assets/image/lastReassessment.png";
 }

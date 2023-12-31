@@ -23,31 +23,36 @@ class ChildDevelopmentalHistory extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
       ),
-      body: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-          child: ListView.separated(
-              itemBuilder: (context, index) {
-                return TextFormFiledStepper(
-                    hintText: childDevelopmentalHistory[index].answer,
-                    textDirection: TextDirection.rtl,
-                    textEditingController: controleConversational
-                        .listOfChildDevelopmentalHistory[index].controle,
-                    labelname: childDevelopmentalHistory[index].question!);
-              },
-              separatorBuilder: (context, index) {
-                if (index == 3) {
-                  return const Column(
-                    children: [
-                      DividerItem(text: 'المشكلات السلوكیھ للطفل'),
-                      Text('ھل یعاني الطفل من المشكلات السلوكیة التالیة')
-                    ],
-                  );
-                } else {
-                  return const SizedBox.shrink();
-                }
-              },
-              itemCount: controleConversational
-                  .listOfChildDevelopmentalHistory.length)),
+      body: Scrollbar(
+        interactive: true,
+        radius: const Radius.circular(20),
+        thickness: 10,
+        child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
+            child: ListView.separated(
+                itemBuilder: (context, index) {
+                  return TextFormFiledStepper(
+                      hintText: childDevelopmentalHistory[index].answer,
+                      textDirection: TextDirection.rtl,
+                      textEditingController: controleConversational
+                          .listOfChildDevelopmentalHistory[index].controle,
+                      labelname: childDevelopmentalHistory[index].question!);
+                },
+                separatorBuilder: (context, index) {
+                  if (index == 3) {
+                    return const Column(
+                      children: [
+                        DividerItem(text: 'المشكلات السلوكیھ للطفل'),
+                        Text('ھل یعاني الطفل من المشكلات السلوكیة التالیة')
+                      ],
+                    );
+                  } else {
+                    return const SizedBox.shrink();
+                  }
+                },
+                itemCount: controleConversational
+                    .listOfChildDevelopmentalHistory.length)),
+      ),
     );
   }
 }

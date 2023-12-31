@@ -51,7 +51,7 @@ class LevelofSelectivity extends StatelessWidget {
                         textEditingController: model.textEditingController);
                   }
                   if (model is BottomSheetFileAssModel) {
-                    return ShowBottomSheetItems(
+                    return ShowDialogItems(
                       name: model.name,
                       contecnt: SizedBox(
                         height: MediaQuery.sizeOf(context).height / 1.2,
@@ -116,7 +116,7 @@ class LevelofSelectivity extends StatelessWidget {
                 lableName: 'Lower limb ',
                 itemList: const ['No', 'Poor', 'Moderate', 'Normal']),
             // !
-            ShowBottomSheetItems(
+            ShowDialogItems(
               name: ' Muscle ',
               contecnt: SizedBox(
                 height: MediaQuery.of(context).size.height / 1.2,
