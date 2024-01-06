@@ -19,30 +19,19 @@ class LastReassessmentDataEntry extends StatefulWidget {
 }
 
 class _LastReassessmentDataEntryState extends State<LastReassessmentDataEntry> {
-  List<TextEditingController> controllers = [];
-  List<String> listOfLastReassessment = [];
-  int counter = 1;
+  List<String> listOfPlans = [];
   final TextEditingController titleNameControle = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    controllers.add(TextEditingController());
-    setState(() {});
-  }
 
   void _addTextField() {
     setState(() {
-      controllers.add(TextEditingController());
+      listOfPlans.add('');
     });
-    counter++;
   }
 
   void _removeTextField() {
-    if (controllers.length > 1) {
+    if (listOfPlans.isNotEmpty) {
       setState(() {
-        controllers.removeLast();
-        counter--;
+        listOfPlans.removeLast();
       });
     }
   }
@@ -53,18 +42,38 @@ class _LastReassessmentDataEntryState extends State<LastReassessmentDataEntry> {
       appBar: AppBar(
         title: const Text('Entry Data'),
         backgroundColor: Colors.white,
+        leading: IconButton(onPressed: () {
+          Navigator.pop(context, 'refresh');
+        }, icon: const Icon(Icons.arrow_back,color: AppColors.primarycolor,)),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: ListView(
           children: [
             TextFormFiledStepper(
-                textEditingController: titleNameControle,
-                labelname: ' title '),
-            ...controllers.map((controller) => TextFormFiledStepper(
-                  labelname: "Step$counter",
-                  textEditingController: controller,
-                )),
+              textEditingController: titleNameControle,
+              labelname: 'Title of Last Reassessment',
+              onFieldSubmitted: (value) {
+                setState(() {
+                  titleNameControle.text = value!;
+                });
+              },
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: listOfPlans.length,
+              itemBuilder: (context, index) => 
+              TextFormFiledStepper(
+                textEditingController: TextEditingController(
+                  text: listOfPlans[index],
+                ),
+                labelname: "Step ${index + 1}",
+                onChanged: (value) {
+                  listOfPlans[index] = value!;
+                },
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -81,14 +90,11 @@ class _LastReassessmentDataEntryState extends State<LastReassessmentDataEntry> {
             ButtonText(
               text: 'Save',
               onPressed: () {
-                for (final control in controllers) {
-                  listOfLastReassessment.add(control.text);
-                }
                 context.read<LastReassessmentCubit>().postLastReassessment(
-                    id: widget.id,
-                    titleName: titleNameControle.text,
-                    listofPlans: listOfLastReassessment);
-                
+                      id: widget.id,
+                      titleName: titleNameControle.text,
+                      listofPlans: listOfPlans,
+                    );
               },
             ),
             BlocBuilder<LastReassessmentCubit, LastReassessmentState>(
@@ -104,7 +110,7 @@ class _LastReassessmentDataEntryState extends State<LastReassessmentDataEntry> {
                   Future.delayed(
                     const Duration(seconds: 1),
                     () {
-                      itemSnackBar(context, 'تم اضافه بنجاح',
+                      itemSnackBar(context, 'تم اضافه خطه علاجيه جديده',
                           AppColors.primarycolor);
                       Navigator.pop(context, 'refresh');
                     },
@@ -133,9 +139,7 @@ class _LastReassessmentDataEntryState extends State<LastReassessmentDataEntry> {
 
   @override
   void dispose() {
-    for (var controller in controllers) {
-      controller.dispose();
-    }
+    titleNameControle.dispose();
     super.dispose();
   }
 }

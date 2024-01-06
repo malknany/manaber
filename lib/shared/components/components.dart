@@ -431,6 +431,8 @@ class TextFormFiledStepper extends StatefulWidget {
       // this.initialValue = '',
       required this.textEditingController,
       required this.labelname,
+      this.onChanged,
+      this.onFieldSubmitted,
       this.textInputType = TextInputType.text,
       this.textDirection = TextDirection.ltr});
   final String labelname;
@@ -439,6 +441,8 @@ class TextFormFiledStepper extends StatefulWidget {
   final TextEditingController textEditingController;
   final TextDirection textDirection;
   final String? hintText;
+  final void Function(String?)? onChanged;
+  final void Function(String?)? onFieldSubmitted;
 
   @override
   State<TextFormFiledStepper> createState() => _TextFormFiledStepperState();
@@ -453,12 +457,16 @@ class _TextFormFiledStepperState extends State<TextFormFiledStepper> {
 
   @override
   Widget build(BuildContext context) {
-    widget.textEditingController.text = widget.hintText ?? "";
+    // widget.textEditingController.text = widget.hintText ?? "";
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Directionality(
         textDirection: widget.textDirection,
         child: TextFormField(
+          onChanged: widget.onChanged,
+          // onChanged: (value) {
+          //   widget.textEditingController.text=value??'null';
+          // },
           onTapOutside: (event) {
             FocusManager.instance.primaryFocus!.unfocus();
           },
@@ -466,15 +474,16 @@ class _TextFormFiledStepperState extends State<TextFormFiledStepper> {
           maxLines: 4,
           minLines: 1,
           controller: widget.textEditingController,
-          onFieldSubmitted: (value) {
-            widget.textEditingController.text = value;
-          },
+          onFieldSubmitted: widget.onFieldSubmitted,
+          // onFieldSubmitted: (value) {
+          //   widget.textEditingController.text = value;
+          // },
           onSaved: (newValue) {
             widget.textEditingController.text = newValue!;
           },
           cursorColor: AppColors.primarycolor,
           keyboardType: widget.textInputType,
-          smartQuotesType: SmartQuotesType.enabled,
+          // smartQuotesType: SmartQuotesType.enabled,
           decoration: InputDecoration(
             alignLabelWithHint: true,
             focusedBorder: OutlineInputBorder(

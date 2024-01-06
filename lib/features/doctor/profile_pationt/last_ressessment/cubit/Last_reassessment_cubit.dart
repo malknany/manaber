@@ -92,7 +92,7 @@ class LastReassessmentCubit extends Cubit<LastReassessmentState> {
   void postLastReassessment({titleName, id, listofPlans}) async {
     emit(LastReassessmentLoading());
     try {
-      final response = await DioHelper.putdata(
+      final response = await DioHelper.postdata(
         url: patients + id + lastReassessment,
         posteddata: {"name": titleName, "steps": listofPlans},
         headers: {'Authorization': 'Bearer ${token[0]}'},

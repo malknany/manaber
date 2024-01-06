@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manaber/features/doctor/profile_pationt/last_ressessment/cubit/Last_reassessment_cubit.dart';
 import 'package:manaber/features/doctor/profile_pationt/last_ressessment/widget/item_plan.dart';
-import 'package:manaber/features/doctor/profile_pationt/last_ressessment/widget/tretment_plan_entry_data.dart';
+import 'package:manaber/features/doctor/profile_pationt/last_ressessment/widget/last_reassessment_entry_data.dart';
 import 'package:manaber/shared/components/navigator.dart';
 import 'package:manaber/shared/styles/colors.dart';
 import 'package:manaber/shared/styles/styles.dart';
