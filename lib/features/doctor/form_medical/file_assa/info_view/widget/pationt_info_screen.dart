@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../model.dart';
+
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
+import '../../../model.dart';
 
 class PatientInfoView extends StatelessWidget {
   const PatientInfoView({

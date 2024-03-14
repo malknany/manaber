@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'model.dart';
 // import 'package:manaber/features/file_assa/stpper/widget/ICF_body_function_structure.dart';
 
@@ -186,12 +187,12 @@ class StepperControlBodyFunction {
   final rt = TextEditingController();
   final lf = TextEditingController();
   //
-  final hip = TextEditingController();
-  final knee = TextEditingController();
-  final ankle = TextEditingController();
-  final shoulder = TextEditingController();
-  final elbow = TextEditingController();
-  final note = TextEditingController();
+  final romHip = TextEditingController();
+  final romKnee = TextEditingController();
+  final romAnkle = TextEditingController();
+  final romShoulder = TextEditingController();
+  final romElbow = TextEditingController();
+  final romNote = TextEditingController();
 }
 
 class StepperControlActivityAndActivityLimitation {
@@ -326,7 +327,7 @@ class ControleFileAssesment {
           labelName: 'Function of Cardiovascular',
           textEditingController:
               controlBodyFunction.functionOfCardiovascularRespiration),
-      DividerFileAssModel(text: 'Sensory Examination'),
+      // DividerFileAssModel(text: 'Sensory Examination'),
       TextFormFiledStepperModel(
           labelName: 'Superficial',
           textEditingController: controlBodyFunction.superficial),
@@ -342,7 +343,7 @@ class ControleFileAssesment {
       TextFormFiledStepperModel(
           labelName: 'Note',
           textEditingController: controlBodyFunction.gaitnote),
-      DividerFileAssModel(text: 'GaiT Problems'),
+      // DividerFileAssModel(text: 'GaiT Problems'),
       TextFormFiledStepperModel(
           labelName: 'Stance phase',
           textEditingController: controlBodyFunction.stancePhase),
@@ -352,32 +353,33 @@ class ControleFileAssesment {
       TextFormFiledStepperModel(
           labelName: 'Balance',
           textEditingController: controlBodyFunction.balance),
-      BottomSheetFileAssModel(
-        name: 'Developmental Milestones',
-        itemList: <TextFormFiledStepperModel>[
-          TextFormFiledStepperModel(
-              labelName: 'Head control',
-              textEditingController: controlBodyFunction.headControl),
-          TextFormFiledStepperModel(
-              labelName: 'Rolling',
-              textEditingController: controlBodyFunction.rolling),
-          TextFormFiledStepperModel(
-              labelName: 'Creeping',
-              textEditingController: controlBodyFunction.creeping),
-          TextFormFiledStepperModel(
-              labelName: 'Crawling',
-              textEditingController: controlBodyFunction.crawling),
-          TextFormFiledStepperModel(
-              labelName: 'Sitting',
-              textEditingController: controlBodyFunction.sitting),
-          TextFormFiledStepperModel(
-              labelName: 'Standing',
-              textEditingController: controlBodyFunction.standing),
-          TextFormFiledStepperModel(
-              labelName: 'Walking',
-              textEditingController: controlBodyFunction.walking),
-        ],
-      ),
+      // BottomSheetFileAssModel(
+      //   name: 'Developmental Milestones',
+      //   itemList: <TextFormFiledStepperModel>[
+
+      //   ],
+      // ),
+      TextFormFiledStepperModel(
+          labelName: 'Head control',
+          textEditingController: controlBodyFunction.headControl),
+      TextFormFiledStepperModel(
+          labelName: 'Rolling',
+          textEditingController: controlBodyFunction.rolling),
+      TextFormFiledStepperModel(
+          labelName: 'Creeping',
+          textEditingController: controlBodyFunction.creeping),
+      TextFormFiledStepperModel(
+          labelName: 'Crawling',
+          textEditingController: controlBodyFunction.crawling),
+      TextFormFiledStepperModel(
+          labelName: 'Sitting',
+          textEditingController: controlBodyFunction.sitting),
+      TextFormFiledStepperModel(
+          labelName: 'Standing',
+          textEditingController: controlBodyFunction.standing),
+      TextFormFiledStepperModel(
+          labelName: 'Walking',
+          textEditingController: controlBodyFunction.walking),
       TextFormFiledStepperModel(
           labelName: 'Fine Motor Function (Hand Function)',
           textEditingController:
@@ -393,65 +395,67 @@ class ControleFileAssesment {
       TextFormFiledStepperModel(
           labelName: 'Invountary movement',
           textEditingController: controlBodyFunction.involantaryMovment),
-      BottomSheetFileAssModel(name: 'Primitive Reflexes', itemList: [
-        DropdownButtonItemModel(
-            labelName: 'Palmar reflex',
-            controller: controlBodyFunction.palmarReflex,
-            itemList: ['integrated', 'Not integrated', 'Not Tested']),
-        DropdownButtonItemModel(
-            labelName: 'Planter reflex',
-            controller: controlBodyFunction.planterReflex,
-            itemList: ['integrated', 'Not integrated', 'Not Tested']),
-        DropdownButtonItemModel(
-            labelName: 'Rooting reflex',
-            controller: controlBodyFunction.rootingReflex,
-            itemList: ['integrated', 'Not integrated', 'Not Tested']),
-        DropdownButtonItemModel(
-            labelName: 'Sucking reflex',
-            controller: controlBodyFunction.suckingReflex,
-            itemList: ['integrated', 'Not integrated', 'Not Tested']),
-        DropdownButtonItemModel(
-            labelName: 'Supine labyrinthine',
-            controller: controlBodyFunction.supineLabyrinthine,
-            itemList: ['integrated', 'Not integrated', 'Not Tested']),
-        DropdownButtonItemModel(
-            labelName: 'Prone labyrinthine',
-            controller: controlBodyFunction.proneLabyrinthine,
-            itemList: ['integrated', 'Not integrated', 'Not Tested']),
-        DropdownButtonItemModel(
-            labelName: 'Symmetrical tonic neck reflex',
-            controller: controlBodyFunction.symmetricalTonicNeckReflex,
-            itemList: ['integrated', 'Not integrated', 'Not Tested']),
-        DropdownButtonItemModel(
-            labelName: 'Asymmetrical tonic neck reflex',
-            controller: controlBodyFunction.asymmetricalTonicNeckReflex,
-            itemList: ['integrated', 'Not integrated', 'Not Tested']),
-        DropdownButtonItemModel(
-            labelName: 'Foot-hand replacement',
-            controller: controlBodyFunction.footHandReplacement,
-            itemList: ['integrated', 'Not integrated', 'Not Tested']),
-        DropdownButtonItemModel(
-            labelName: 'Moro reflex',
-            controller: controlBodyFunction.moroReflex,
-            itemList: ['integrated', 'Not integrated', 'Not Tested']),
-        DropdownButtonItemModel(
-            labelName: 'Landau reflex',
-            controller: controlBodyFunction.moroReflex,
-            itemList: ['integrated', 'Not integrated', 'Not Tested']),
-      ]),
-      BottomSheetFileAssModel(name: 'Advanced reflex', itemList: [
-        DropdownButtonItemModel(
-            labelName: 'Protective',
-            controller: controlBodyFunction.protective,
-            itemList: ['integrated', 'weak', 'Not integrated']),
-        DropdownButtonItemModel(
-            labelName: 'Righting and Equilibrium reflex',
-            controller: controlBodyFunction.rightingAndEquilibriumReflex,
-            itemList: ['integrated', 'weak', 'Not integrated']),
-      ]),
+      // TableDataFileAssModel(name: 'Primitive Reflexes', itemList: [
+
+      // ]),
+      DropdownButtonItemModel(
+          labelName: 'Palmar reflex',
+          controller: controlBodyFunction.palmarReflex,
+          itemList: ['integrated', 'Not integrated', 'Not Tested']),
+      DropdownButtonItemModel(
+          labelName: 'Planter reflex',
+          controller: controlBodyFunction.planterReflex,
+          itemList: ['integrated', 'Not integrated', 'Not Tested']),
+      DropdownButtonItemModel(
+          labelName: 'Rooting reflex',
+          controller: controlBodyFunction.rootingReflex,
+          itemList: ['integrated', 'Not integrated', 'Not Tested']),
+      DropdownButtonItemModel(
+          labelName: 'Sucking reflex',
+          controller: controlBodyFunction.suckingReflex,
+          itemList: ['integrated', 'Not integrated', 'Not Tested']),
+      DropdownButtonItemModel(
+          labelName: 'Supine labyrinthine',
+          controller: controlBodyFunction.supineLabyrinthine,
+          itemList: ['integrated', 'Not integrated', 'Not Tested']),
+      DropdownButtonItemModel(
+          labelName: 'Prone labyrinthine',
+          controller: controlBodyFunction.proneLabyrinthine,
+          itemList: ['integrated', 'Not integrated', 'Not Tested']),
+      DropdownButtonItemModel(
+          labelName: 'Symmetrical tonic neck reflex',
+          controller: controlBodyFunction.symmetricalTonicNeckReflex,
+          itemList: ['integrated', 'Not integrated', 'Not Tested']),
+      DropdownButtonItemModel(
+          labelName: 'Asymmetrical tonic neck reflex',
+          controller: controlBodyFunction.asymmetricalTonicNeckReflex,
+          itemList: ['integrated', 'Not integrated', 'Not Tested']),
+      DropdownButtonItemModel(
+          labelName: 'Foot-hand replacement',
+          controller: controlBodyFunction.footHandReplacement,
+          itemList: ['integrated', 'Not integrated', 'Not Tested']),
+      DropdownButtonItemModel(
+          labelName: 'Moro reflex',
+          controller: controlBodyFunction.moroReflex,
+          itemList: ['integrated', 'Not integrated', 'Not Tested']),
+      DropdownButtonItemModel(
+          labelName: 'Landau reflex',
+          controller: controlBodyFunction.landauReflex,
+          itemList: ['integrated', 'Not integrated', 'Not Tested']),
+      // TableDataFileAssModel(name: 'Advanced reflex', itemList: [
+
+      // ]),
+      DropdownButtonItemModel(
+          labelName: 'Protective',
+          controller: controlBodyFunction.protective,
+          itemList: ['integrated', 'weak', 'Not integrated']),
+      DropdownButtonItemModel(
+          labelName: 'Righting and Equilibrium reflex',
+          controller: controlBodyFunction.rightingAndEquilibriumReflex,
+          itemList: ['integrated', 'weak', 'Not integrated']),
     ];
     listMotor = [
-      BottomSheetFileAssModel(
+      TableDataFileAssModel(
         name: 'Muscle strength',
         itemList: [
           TextFormFiledRightLiftModel(
@@ -459,9 +463,10 @@ class ControleFileAssesment {
               controllerLeft: controlBodyFunction.glutealLeft,
               controllerRight: controlBodyFunction.glutealRight),
           TextFormFiledRightLiftModel(
-              labelName: 'Abductors',
-              controllerLeft: controlBodyFunction.abductorsLeft,
-              controllerRight: controlBodyFunction.abductorsRight),
+            labelName: 'Abductors',
+            controllerLeft: controlBodyFunction.abductorsLeft,
+            controllerRight: controlBodyFunction.abductorsRight,
+          ),
           TextFormFiledRightLiftModel(
               labelName: 'Adductor',
               controllerLeft: controlBodyFunction.adductorsLeft,
@@ -535,7 +540,7 @@ class ControleFileAssesment {
       TextFormFiledStepperModel(
           labelName: 'Muscle Tone',
           textEditingController: controlBodyFunction.muscleTon),
-      BottomSheetFileAssModel(itemList: [
+      TableDataFileAssModel(itemList: [
         TextFormFiledRightLiftModel(
             labelName: 'Adductors (Knee flexion)',
             controllerRight: controlBodyFunction.adductorsKneeFlexionTonRight,
@@ -623,7 +628,7 @@ class ControleFileAssesment {
           controller: controlBodyFunction.lowerLimb,
           labelName: 'Lower limb ',
           itemList: const ['No', 'Poor', 'Moderate', 'Normal']),
-      BottomSheetFileAssModel(itemList: [
+      TableDataFileAssModel(itemList: [
         TextFormFiledRightLiftModel(
             labelName: 'Gluteal',
             controllerRight: controlBodyFunction.glutealMuscleRight,
@@ -698,7 +703,7 @@ class ControleFileAssesment {
       TextFormFiledStepperModel(
           labelName: 'Deformities',
           textEditingController: controlBodyFunction.deformities),
-      DividerFileAssModel(text: 'Posture And Alignment'),
+      // DividerFileAssModel(text: 'Posture And Alignment'),
       TextFormFiledStepperModel(
           labelName: 'From Sitting',
           textEditingController: controlBodyFunction.fromSitting),
@@ -713,7 +718,7 @@ class ControleFileAssesment {
       TextFormFiledStepperModel(
           labelName: 'Leg Length Discrepancy ',
           textEditingController: controlBodyFunction.legLengthDiscrepancy),
-      DividerFileAssModel(text: 'Hip'),
+      // DividerFileAssModel(text: 'Hip'),
       DropdownButtonItemModel(
           controller: controlBodyFunction.rt,
           labelName: 'Right',
@@ -725,28 +730,28 @@ class ControleFileAssesment {
     ];
     listRom = [
       DropdownButtonItemModel(
-        controller: controlBodyFunction.hip,
+        controller: controlBodyFunction.romHip,
         labelName: 'Hip',
-        itemList: const ['restricted', 'Normal', 'hyper', 'flexibility'],
+        itemList: const ['restricted', 'Normal', 'hyper flexibility'],
       ),
       DropdownButtonItemModel(
-          controller: controlBodyFunction.knee,
+          controller: controlBodyFunction.romKnee,
           labelName: 'Knee',
-          itemList: const ['restricted', 'Normal', 'hyper', 'flexibility']),
+          itemList: const ['restricted', 'Normal', 'hyper flexibility']),
       DropdownButtonItemModel(
-          controller: controlBodyFunction.ankle,
+          controller: controlBodyFunction.romAnkle,
           labelName: 'Ankle',
-          itemList: const ['restricted', 'Normal', 'hyper', 'flexibility']),
+          itemList: const ['restricted', 'Normal', 'hyper flexibility']),
       DropdownButtonItemModel(
-          controller: controlBodyFunction.shoulder,
+          controller: controlBodyFunction.romShoulder,
           labelName: 'shoulder',
-          itemList: const ['restricted', 'Normal', 'hyper', 'flexibility']),
+          itemList: const ['restricted', 'Normal', 'hyper flexibility']),
       DropdownButtonItemModel(
-          controller: controlBodyFunction.elbow,
+          controller: controlBodyFunction.romElbow,
           labelName: 'elbow',
-          itemList: const ['restricted', 'Normal', 'hyper', 'flexibility']),
+          itemList: const ['restricted', 'Normal', 'hyper flexibility']),
       TextFormFiledStepperModel(
-          labelName: 'Note', textEditingController: controlBodyFunction.note),
+          labelName: 'Note', textEditingController: controlBodyFunction.romNote),
     ];
     listParticipation = [
       TextFormFiledStepperModel(

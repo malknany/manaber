@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/receptionist/insert_data/cubit/reception_cubit.dart';
-import 'package:manaber/features/receptionist/insert_data/view.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import '../insert_data/cubit/reception_cubit.dart';
+import '../insert_data/view.dart';
+import '../../../shared/styles/colors.dart';
 import '../receptionist_profile/profile/cubit/receptionist_profile_cubit.dart';
 import '../receptionist_profile/profile/view.dart';
 import '../../../shared/network/local/const_key.dart';

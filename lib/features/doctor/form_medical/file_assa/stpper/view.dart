@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/form_medical/cubit/pateint_info_cubit.dart';
-import 'package:manaber/features/doctor/form_medical/keep_alive.dart';
-import 'package:manaber/features/doctor/form_medical/model.dart';
+import '../../cubit/pateint_info_cubit.dart';
+import '../../model.dart';
 import 'controller.dart';
 import 'widget/ICF_body_function_structure.dart';
 import 'widget/Muscloskeletal_Examination.dart';
@@ -100,67 +99,82 @@ class FileStteper extends StatelessWidget {
             child: PageView(
               controller: _pageController,
               children: [
-                KeepAliveScreen(
-                  page: PatientInformation(
+                BlocProvider(
+                  create: (context) => PateintInfoCubit(),
+                  child: PatientInformation(
+                      id: id,
                       patientInformation: personalHistory,
                       controleFileAssesment: controleFileAssesment),
                 ),
-                KeepAliveScreen(
-                  page: ICFBodyfunctionAndstructure(
+                BlocProvider(
+                  create: (context) => PateintInfoCubit(),
+                  child: ICFBodyfunctionAndstructure(
+                    id: id,
                     iCFBodyfunction: iCFBodyFunction,
-                    controleFileAssesment: controleFileAssesment,
-                  ),
-                ),
-                KeepAliveScreen(
-                  page: NeurologicalExamination(
-                    neurologicalExamination: neurologicalExamination,
-                    controleFileAssesment: controleFileAssesment,
-                  ),
-                ),
-                KeepAliveScreen(
-                  page: MotorSystem(
-                    motor: motor,
-                    controleFileAssesment: controleFileAssesment,
-                  ),
-                ),
-                KeepAliveScreen(
-                  page: LevelofSelectivity(
-                    levelofSelectivity: levelofSelectivity,
-                    controleFileAssesment: controleFileAssesment,
-                  ),
-                ),
-                KeepAliveScreen(
-                  page: MuscloskeletalExamination(
-                    muscloskeletalExamination: muscloskeletalExamination,
-                    controleFileAssesment: controleFileAssesment,
-                  ),
-                ),
-                KeepAliveScreen(
-                  page: Rom(
-                    rom: rom,
-                    controleFileAssesment: controleFileAssesment,
-                  ),
-                ),
-                KeepAliveScreen(
-                  page: Activity(
-                    activity: activity,
-                    controleFileAssesment: controleFileAssesment,
-                  ),
-                ),
-                KeepAliveScreen(
-                  page: Goals(
-                    goals: goals,
                     controleFileAssesment: controleFileAssesment,
                   ),
                 ),
                 BlocProvider(
                   create: (context) => PateintInfoCubit(),
-                  child: KeepAliveScreen(
-                    page: Note(
-                      note: note,
-                      id: id,
-                      controleFileAssesment: controleFileAssesment,
-                    ),
+                  child: NeurologicalExamination(
+                    id: id,
+                    neurologicalExamination: neurologicalExamination,
+                    controleFileAssesment: controleFileAssesment,
+                  ),
+                ),
+                BlocProvider(
+                  create: (context) => PateintInfoCubit(),
+                  child: MotorSystem(
+                    id: id,
+                    motor: motor,
+                    controleFileAssesment: controleFileAssesment,
+                  ),
+                ),
+                BlocProvider(
+                  create: (context) => PateintInfoCubit(),
+                  child: LevelofSelectivity(
+                    id: id,
+                    levelofSelectivity: levelofSelectivity,
+                    controleFileAssesment: controleFileAssesment,
+                  ),
+                ),
+                BlocProvider(
+                  create: (context) => PateintInfoCubit(),
+                  child: MuscloskeletalExamination(
+                    id: id,
+                    muscloskeletalExamination: muscloskeletalExamination,
+                    controleFileAssesment: controleFileAssesment,
+                  ),
+                ),
+                BlocProvider(
+                  create: (context) => PateintInfoCubit(),
+                  child: Rom(
+                    id: id,
+                    rom: rom,
+                    controleFileAssesment: controleFileAssesment,
+                  ),
+                ),
+                BlocProvider(
+                  create: (context) => PateintInfoCubit(),
+                  child: Activity(
+                    id: id,
+                    activity: activity,
+                    controleFileAssesment: controleFileAssesment,
+                  ),
+                ),
+                Goals(
+                  goals: goals,
+                  controleFileAssesment: controleFileAssesment,
+                ),
+                BlocProvider(
+                  create: (context) => PateintInfoCubit(),
+                  child: Note(
+                    iCFBodyFunction: iCFBodyFunction,
+                    personalHistory: personalHistory,
+                    motor: motor,
+                    note: note,
+                    id: id,
+                    controleFileAssesment: controleFileAssesment,
                   ),
                 ),
               ],

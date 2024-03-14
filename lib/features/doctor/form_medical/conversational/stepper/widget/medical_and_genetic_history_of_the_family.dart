@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../model.dart';
+
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
+import '../../../model.dart';
 import '../controler.dart';
 
 class MedicalAndGeneticHistoryOfTheFamily extends StatelessWidget {
@@ -29,9 +30,14 @@ class MedicalAndGeneticHistoryOfTheFamily extends StatelessWidget {
         child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
             child: ListView.separated(
+                addAutomaticKeepAlives: true,
                 itemBuilder: (context, index) {
                   return TextFormFiledStepper(
-                      hintText:
+                      onChanged: (p0) {
+                        medicalAndGeneticHistoryOfTheFamily[index].answer =
+                            p0 ?? "null";
+                      },
+                      initialValue:
                           medicalAndGeneticHistoryOfTheFamily[index].answer,
                       textDirection: TextDirection.rtl,
                       labelname:

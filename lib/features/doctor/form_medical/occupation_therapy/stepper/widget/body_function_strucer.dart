@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:manaber/features/sample.dart';
 import '../../../model.dart';
 import '../model.dart';
 import '../controler.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 
-class BodyFunctionStrucer extends StatelessWidget {
-  const BodyFunctionStrucer(
+class BodyFunctionStrucer extends StatefulWidget {
+  BodyFunctionStrucer(
       {super.key,
       required this.controleOccupation,
       required this.bodyFunctionStrucer});
   final ControleOccupation controleOccupation;
   final List<ModelPatientInfo> bodyFunctionStrucer;
+
+  @override
+  State<BodyFunctionStrucer> createState() => _BodyFunctionStrucerState();
+}
+
+class _BodyFunctionStrucerState extends State<BodyFunctionStrucer> {
+  final List<String> listTitleSprated = ['Neuromuscular Status', 'Balance'];
 
   @override
   Widget build(BuildContext context) {
@@ -25,30 +33,61 @@ class BodyFunctionStrucer extends StatelessWidget {
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
-          child: ListView(
-            children: List.generate(bodyFunctionStrucer.length, (index) {
-              var model =
-                  controleOccupation.listOfBodyFunctionStrucer[index];
+          child: ListView.separated(
+            separatorBuilder: (context, index) {
+              if (index == 2) {
+                return DividerItem(text: listTitleSprated[1]);
+              }
+
+              return const SizedBox.shrink();
+            },
+            itemCount: widget.controleOccupation.listOfBodyFunctionStrucer.length,
+            itemBuilder: (context, index) {
+              // if (index == 0) {
+              //   return DividerItem(text: listTitleSprated[0]);
+              // }
+              var model = widget.controleOccupation.listOfBodyFunctionStrucer[index];
               if (model is ModelDropDownOccupation) {
-                return DropdownButtonItem(
-                  controller: model.textEditingController,
-                  labelName: model.lableName,
-                  itemList: model.itemList,
+                model.textEditingController.text =
+                    widget.bodyFunctionStrucer[index].answer ?? model.itemList.first;
+                return 
+                CustomDropdownButton2(
+                  hint: model.lableName,
+                  value: model.textEditingController.text,
+                  dropdownItems: model.itemList,
+                  onChanged: (value) {
+                    setState(() {
+                    widget.bodyFunctionStrucer[index].answer = value ?? "null";  
+                    });
+                    
+                  },
                 );
+                // DropdownButtonItem(
+                //   onChanged: (p0) {
+                //     bodyFunctionStrucer[index].answer = p0 ?? "null";
+                //   },
+                //   controller: model.textEditingController,
+                //   labelName: model.lableName,
+                //   itemList: model.itemList,
+                // );
               }
               if (model is ModelTextFiledOccupation) {
                 return TextFormFiledStepper(
-                    hintText: bodyFunctionStrucer[index].answer,
+                    onChanged: (p0) {
+                      widget.bodyFunctionStrucer[index].answer = p0 ?? "null";
+                    },
+                    initialValue: widget.bodyFunctionStrucer[index].answer,
                     textInputType: model.textInputType,
                     labelname: model.labelname,
                     textEditingController: model.textEditingController);
               }
-              if (model is ModelDividerOccupation) {
-                return DividerItem(text: model.text);
-              }
+              // if (model is ModelDividerOccupation) {
+              //   return DividerItem(text: model.text);
+              // }
 
               return const SizedBox.shrink();
-            }),
+            },
+            addAutomaticKeepAlives: true,
           )),
     );
   }

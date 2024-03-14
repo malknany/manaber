@@ -1,22 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/model.dart';
-import '../model.dart';
-import '../controller.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manaber/features/doctor/form_medical/cubit/pateint_info_cubit.dart';
+import 'package:manaber/features/sample.dart';
+import 'package:manaber/shared/styles/styles.dart';
+import '../../../model.dart';
+
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
+import '../controller.dart';
+import '../model.dart';
 
-class Rom extends StatelessWidget {
+class Rom extends StatefulWidget {
   const Rom(
-      {super.key, required this.rom, required this.controleFileAssesment});
+      {super.key,
+      required this.id,
+      required this.rom,
+      required this.controleFileAssesment});
 
   final ControleFileAssesment controleFileAssesment;
   final List<ModelPatientInfo> rom;
+  final String id;
 
+  @override
+  State<Rom> createState() => _RomState();
+}
+
+class _RomState extends State<Rom> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context, 'refresh');
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+          ),
+        ),
         title: const Text('Rom'),
         backgroundColor: Colors.white,
         foregroundColor: AppColors.primarycolor,
@@ -31,76 +53,121 @@ class Rom extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: controleFileAssesment.listRom.length,
+                addAutomaticKeepAlives: true,
+                itemCount: widget.controleFileAssesment.listRom.length,
                 itemBuilder: (context, index) {
-                  var model = controleFileAssesment.listRom[index];
-                  if (model is DividerFileAssModel) {
-                    return DividerItem(text: model.text);
-                  }
+                  var model = widget.controleFileAssesment.listRom[index];
+                  print(widget.controleFileAssesment.listRom.length);
+                  print(widget.rom.length);
                   if (model is DropdownButtonItemModel) {
-                    return DropdownButtonItem(
-                      controller: model.controller,
-                      labelName: model.labelName,
-                      itemList: model.itemList,
+                    model.controller.text =
+                        widget.rom[index].answer ?? model.itemList.first;
+                    return CustomDropdownButton2(
+                      hint: model.labelName,
+                      value: model.controller.text,
+                      dropdownItems: model.itemList,
+                      onChanged: (value) {
+                        setState(() {
+                          widget.rom[index].answer = value ?? "null";
+                        });
+                      },
                     );
+                    // DropdownButtonItem(
+                    //   onChanged: (p0) {
+                    //     rom[index].answer = p0 ?? "null";
+                    //     print(rom[index].answer);
+                    //   },
+                    //   controller: model.controller,
+                    //   labelName: model.labelName,
+                    //   itemList: model.itemList,
+                    // );
                   }
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
-                        hintText: rom[index].answer,
+                        onChanged: (p0) {
+                          widget.rom[index].answer = p0 ?? "null";
+                        },
+                        initialValue: widget.rom[index].answer,
                         labelname: model.labelName,
                         textEditingController: model.textEditingController);
                   }
-                  if (model is BottomSheetFileAssModel) {
-                    return ShowDialogItems(
-                      name: model.name,
-                      contecnt: SizedBox(
-                        height: MediaQuery.sizeOf(context).height / 1.2,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: ListView.builder(
-                                  itemCount: model.itemList.length,
-                                  itemBuilder: (context, idx) {
-                                    final item = model.itemList[idx];
-                                    if (item is TextFormFiledStepperModel) {
-                                      return TextFormFiledStepper(
-                                          labelname: item.labelName,
-                                          textEditingController:
-                                              item.textEditingController);
-                                    }
-                                    if (item is TextFormFiledRightLiftModel) {
-                                      return RightLeftTextFiled(
-                                        title: item.labelName,
-                                        controllerRight: item.controllerRight,
-                                        controllerLeft: item.controllerLeft,
-                                      );
-                                    }
-                                    return const SizedBox.shrink();
-                                  },
-                                ),
-                              ),
-                              ButtonText(
-                                  text: 'Save',
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  }),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  }
+
                   return const SizedBox.shrink();
                 },
               ),
+            ),
+            ButtonText(
+              text: 'Save',
+              onPressed: () {
+                dynamic listOfAnswer =
+                    _sendDataPateintInfo(widget.controleFileAssesment);
+                BlocProvider.of<PateintInfoCubit>(context)
+                    .postAnswerToApi(widget.id, listOfAnswer);
+              },
+            ),
+            BlocBuilder<PateintInfoCubit, PateintInfoState>(
+              builder: (context, state) {
+                if (state is PateintLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.primarycolor,
+                    ),
+                  );
+                }
+                if (state is PateintSuccess) {
+                  return const Center(
+                      child: Icon(
+                    Icons.check,
+                    color: AppColors.primarycolor,
+                  ));
+                }
+                if (state is PateintErrorMsg) {
+                  return Text(
+                    state.msg,
+                    textDirection: TextDirection.rtl,
+                    style: AppTextStyles.lrTitles
+                        .copyWith(color: Colors.red, fontSize: 15),
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
           ],
         ),
       ),
     );
   }
+}
 
+_sendDataPateintInfo(ControleFileAssesment controleFileAssesment) {
+  List<Map> listOfAnswer = [];
+  int i = 121;
+  for (final person in controleFileAssesment.listRom) {
+    if (person is TextFormFiledStepperModel) {
+      listOfAnswer.add(
+        ModelPatientInfo(
+          id: i,
+          questionId: i,
+          answer: person.textEditingController.text.isEmpty
+              ? 'null'
+              : person.textEditingController.text,
+        ).toJson(),
+      );
+      i++;
+    }
+    if (person is DropdownButtonItemModel) {
+      listOfAnswer.add(
+        ModelPatientInfo(
+          id: i,
+          // question: person.labelName,
+          questionId: i,
+          answer: person.controller.text.isEmpty
+              ? person.itemList.first
+              : person.controller.text,
+        ).toJson(),
+      );
+      i++;
+    }
+  }
+  return listOfAnswer;
 }

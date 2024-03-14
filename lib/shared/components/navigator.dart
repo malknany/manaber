@@ -16,13 +16,16 @@ navigateAndFinished(context, screen) =>
     Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (_) => screen), (route) => false);
 
-void signout(context) {
-  CacheHelper.removeToken(key: AppConstKey.token).then((value) {
-    navigateAndFinished(
+void signOut(context) {
+  CacheHelper.removeToken(key: AppConstKey.token).then(
+    (value) {
+      navigateAndFinished(
         context,
         BlocProvider(
           create: (context) => LogInCubit(),
           child: const LogInScreen(),
-        ));
-  });
+        ),
+      );
+    },
+  );
 }

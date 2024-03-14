@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/admin/accepter_page/model.dart';
+
 import '../../../../shared/network/local/const_key.dart';
 import '../../../../shared/network/local/shared_preferences.dart';
 import '../../../../shared/network/remote/dio_helper.dart';
 import '../../../../shared/network/remote/end_points.dart';
+import '../../accepter_page/model.dart';
 
 part 'delate_user_from_system_state.dart';
 

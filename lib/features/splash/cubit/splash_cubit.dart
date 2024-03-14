@@ -1,18 +1,21 @@
 import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/admin/our_section_admin/view.dart';
-import 'package:manaber/features/receptionist/our_section_reception/view.dart';
-import '../../doctor/our_sections/view.dart';
-import '../../regitration/login/cubit/log_in_cubit.dart';
-import '../../regitration/login/model.dart';
-import '../../regitration/login/view.dart';
+
 import '../../../shared/components/navigator.dart';
 import '../../../shared/network/local/const_key.dart';
 import '../../../shared/network/local/shared_preferences.dart';
 import '../../../shared/network/remote/dio_helper.dart';
 import '../../../shared/network/remote/end_points.dart';
+import '../../admin/our_section_admin/view.dart';
+import '../../doctor/our_sections/view.dart';
+import '../../receptionist/our_section_reception/view.dart';
+import '../../regitration/login/cubit/log_in_cubit.dart';
+import '../../regitration/login/model.dart';
+import '../../regitration/login/view.dart';
+
 part 'splash_state.dart';
 
 class SplashCubit extends Cubit<SplashState> {

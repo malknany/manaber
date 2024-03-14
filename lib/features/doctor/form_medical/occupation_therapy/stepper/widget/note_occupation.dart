@@ -44,7 +44,12 @@ class NoteOccupation extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 TextFormFiledStepper(
-                    hintText: noteOccupation.last.answer ?? '',
+                    textInputAction: TextInputAction.newline,
+                    textInputType: TextInputType.multiline,
+                    onChanged: (p0) {
+                      noteOccupation.last.answer = p0 ?? "null";
+                    },
+                    initialValue: noteOccupation.last.answer ?? '',
                     labelname: 'Note',
                     textEditingController:
                         controleOccupation.controleOccupationPreformance.note),
@@ -60,7 +65,7 @@ class NoteOccupation extends StatelessWidget {
                             ModelPatientInfo(
                               questionId: i,
                               answer: person.textEditingController.text.isEmpty
-                                  ? null
+                                  ? person.itemList.first
                                   : person.textEditingController.text,
                             ).toJson(),
                           );
@@ -71,7 +76,7 @@ class NoteOccupation extends StatelessWidget {
                             ModelPatientInfo(
                               questionId: i,
                               answer: person.textEditingController.text.isEmpty
-                                  ? 'null'
+                                  ? '-'
                                   : person.textEditingController.text,
                             ).toJson(),
                           );
@@ -85,7 +90,7 @@ class NoteOccupation extends StatelessWidget {
                             ModelPatientInfo(
                               questionId: i,
                               answer: person.textEditingController.text.isEmpty
-                                  ? null
+                                  ? person.itemList.first
                                   : person.textEditingController.text,
                             ).toJson(),
                           );
@@ -96,7 +101,7 @@ class NoteOccupation extends StatelessWidget {
                             ModelPatientInfo(
                               questionId: i,
                               answer: person.textEditingController.text.isEmpty
-                                  ? 'null'
+                                  ? '-'
                                   : person.textEditingController.text,
                             ).toJson(),
                           );
@@ -110,7 +115,7 @@ class NoteOccupation extends StatelessWidget {
                             ModelPatientInfo(
                               questionId: i,
                               answer: person.textEditingController.text.isEmpty
-                                  ? null
+                                  ? person.itemList.first
                                   : person.textEditingController.text,
                             ).toJson(),
                           );
@@ -121,7 +126,7 @@ class NoteOccupation extends StatelessWidget {
                             ModelPatientInfo(
                               questionId: i,
                               answer: person.textEditingController.text.isEmpty
-                                  ? 'null'
+                                  ? '-'
                                   : person.textEditingController.text,
                             ).toJson(),
                           );
@@ -135,7 +140,7 @@ class NoteOccupation extends StatelessWidget {
                             ModelPatientInfo(
                               questionId: i,
                               answer: person.textEditingController.text.isEmpty
-                                  ? null
+                                  ? person.itemList.first
                                   : person.textEditingController.text
                                       .toString(),
                             ).toJson(),
@@ -147,7 +152,7 @@ class NoteOccupation extends StatelessWidget {
                             ModelPatientInfo(
                               questionId: i,
                               answer: person.textEditingController.text.isEmpty
-                                  ? 'null'
+                                  ? '-'
                                   : person.textEditingController.text
                                       .toString(),
                             ).toJson(),
@@ -162,7 +167,7 @@ class NoteOccupation extends StatelessWidget {
                             ModelPatientInfo(
                               questionId: i,
                               answer: person.textEditingController.text.isEmpty
-                                  ? null
+                                  ? person.itemList.first
                                   : person.textEditingController.text,
                             ).toJson(),
                           );
@@ -173,7 +178,7 @@ class NoteOccupation extends StatelessWidget {
                             ModelPatientInfo(
                               questionId: i,
                               answer: person.textEditingController.text.isEmpty
-                                  ? 'null'
+                                  ? '-'
                                   : person.textEditingController.text,
                             ).toJson(),
                           );

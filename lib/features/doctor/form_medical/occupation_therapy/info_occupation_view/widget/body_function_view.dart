@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../model.dart';
+
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 import '../../../../../../shared/styles/images.dart';
+import '../../../model.dart';
 
 class BodyFunctionAndStrucerView extends StatelessWidget {
   const BodyFunctionAndStrucerView(

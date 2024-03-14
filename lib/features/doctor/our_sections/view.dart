@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../profile_doctor/profile/cubit/profile_doctor_cubit.dart';
-import '../../../shared/network/local/const_key.dart';
-import 'widgets/section_item.dart';
-import '../profile_doctor/profile/view.dart';
+
 import '../../../shared/components/navigator.dart';
+import '../../../shared/network/local/const_key.dart';
 import '../../../shared/styles/images.dart';
 import '../../../shared/styles/styles.dart';
+import '../profile_doctor/profile/cubit/profile_doctor_cubit.dart';
+import '../profile_doctor/profile/view.dart';
+import 'widgets/section_item.dart';
 
 class Oursectiosn extends StatelessWidget {
   const Oursectiosn({Key? key}) : super(key: key);

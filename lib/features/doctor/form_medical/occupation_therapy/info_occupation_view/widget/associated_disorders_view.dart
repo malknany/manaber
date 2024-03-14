@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../model.dart';
 
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 import '../../../../../../shared/styles/images.dart';
+import '../../../model.dart';
 
 class AssociatedDisordersView extends StatelessWidget {
   const AssociatedDisordersView(
@@ -54,12 +54,12 @@ class AssociatedDisordersView extends StatelessWidget {
                 const SizedBox(height: 16.0),
                 ListView.separated(
                   separatorBuilder: (context, index) {
-                    if (index == 3) {
+                    if (index == 2) {
                       return const DividerItem(
                         text: 'Developmental milestone',
                       );
                     }
-                    if (index == 10) {
+                    if (index == 9) {
                       return const DividerItem(
                         text: 'sensory skills',
                       );

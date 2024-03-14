@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import '../styles/colors.dart';
+import 'package:flutter/services.dart';
+import 'package:manaber/features/sample.dart';
 
+import '../styles/colors.dart';
 import '../styles/styles.dart';
 
 class ButtonTemplate extends StatelessWidget {
@@ -211,14 +213,14 @@ class RowItemRightLeft extends StatelessWidget {
             Expanded(
               child: Column(children: [
                 Text(
-                  tilteRight,
+                  titleLeft,
                   softWrap: true,
                   style: const TextStyle(
                     fontSize: 15,
                   ),
                 ),
                 Text(
-                  right,
+                  left,
                   softWrap: true,
                   style: const TextStyle(
                     fontSize: 15,
@@ -229,14 +231,14 @@ class RowItemRightLeft extends StatelessWidget {
             Expanded(
               child: Column(children: [
                 Text(
-                  titleLeft,
+                  tilteRight,
                   softWrap: true,
                   style: const TextStyle(
                     fontSize: 15,
                   ),
                 ),
                 Text(
-                  left,
+                  right,
                   softWrap: true,
                   style: const TextStyle(
                     fontSize: 15,
@@ -258,122 +260,121 @@ class RowItemRightLeft extends StatelessWidget {
   }
 }
 
-class RightLeftTextFiled extends StatelessWidget {
+class RightLeftTextFiled extends StatefulWidget {
   const RightLeftTextFiled({
-    super.key,
+    Key? key,
     required this.title,
     required this.controllerRight,
     required this.controllerLeft,
-  });
+    this.onChangedRight,
+    this.onChangedLeft,
+    this.initialValueLeft,
+    this.initialValueRight,
+  }) : super(key: key);
 
   final String title;
+  final String? initialValueLeft;
+  final String? initialValueRight;
   final TextEditingController controllerRight;
   final TextEditingController controllerLeft;
+  final void Function(String?)? onChangedRight;
+  final void Function(String?)? onChangedLeft;
+
+  @override
+  _RightLeftTextFiledState createState() => _RightLeftTextFiledState();
+}
+
+class _RightLeftTextFiledState extends State<RightLeftTextFiled> {
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 16.0),
+        const SizedBox(height: 8.0),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              width: MediaQuery.sizeOf(context).width / 2,
+            Expanded(
+              flex: 4,
               child: Text(
-                '$title:',
+                '${widget.title}:',
                 style:
                     const TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
               ),
             ),
-            const SizedBox(width: 16.0),
+            const SizedBox(width: 8.0),
             Expanded(
-              child: SizedBox(
-                height: 40,
-                width: 40,
-                child: TextFormField(
-                  autofocus: false,
-                  cursorColor: AppColors.primarycolor,
-                  keyboardType: TextInputType.number,
-                  // textInputAction: TextInputAction.go,
-                  onSaved: (newValue) {
-                    controllerRight.text = newValue!;
-                  },
-                  controller: controllerRight,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      borderSide: const BorderSide(
-                        color: AppColors.primarycolor,
-                        width: 2,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      borderSide: const BorderSide(
-                        color: AppColors.primarycolor,
-                        width: 2,
-                      ),
-                    ),
-                    labelText: 'Right',
-                    labelStyle: TextStyle(
-                        color: Colors.black.withOpacity(0.26), fontSize: 15),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      borderSide: const BorderSide(
-                        color: AppColors.primarycolor,
-                        width: 2,
-                      ),
-                    ),
-                  ),
-                ),
+              flex: 3,
+              child: TextFormFiledStepper(
+                maxLength: 4,
+                textInputType: TextInputType.number,
+                textEditingController: widget.controllerRight,
+                labelname: "Right",
+                initialValue: widget.initialValueRight,
               ),
             ),
             const SizedBox(width: 16.0),
             Expanded(
-              child: SizedBox(
-                height: 40,
-                width: 40,
-                child: TextFormField(
-                  autofocus: false,
-                  cursorColor: AppColors.primarycolor,
-                  keyboardType: TextInputType.number,
-                  // textInputAction: TextInputAction.go,
-                  onSaved: (newValue) {
-                    controllerLeft.text = newValue!;
-                  },
-                  controller: controllerLeft,
-                  decoration: InputDecoration(
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      borderSide: const BorderSide(
-                        color: AppColors.primarycolor,
-                        width: 2,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      borderSide: const BorderSide(
-                        color: AppColors.primarycolor,
-                        width: 2,
-                      ),
-                    ),
-                    labelText: 'Left',
-                    labelStyle: TextStyle(
-                        color: Colors.black.withOpacity(0.26), fontSize: 15),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      borderSide: const BorderSide(
-                        color: AppColors.primarycolor,
-                        width: 2,
-                      ),
-                    ),
-                  ),
-                ),
+              flex: 3,
+              child: TextFormFiledStepper(
+                textInputType: TextInputType.number,
+                maxLength: 4,
+                textEditingController: widget.controllerLeft,
+                labelname: "Left",
+                initialValue: widget.initialValueLeft,
               ),
             ),
           ],
         ),
+        const SizedBox(height: 4.0),
+        const Divider(
+          color: AppColors.grey,
+          thickness: 1,
+        ),
+      ],
+    );
+  }
+}
+
+class RightLeftDropdownButton extends StatefulWidget {
+  const RightLeftDropdownButton(
+      {Key? key,
+      required this.title,
+      required this.customDropdownButtonLeft,
+      required this.customDropdownButtonRight})
+      : super(key: key);
+
+  final String title;
+  final Widget customDropdownButtonLeft;
+  final Widget customDropdownButtonRight;
+
+  @override
+  _RightLeftDropdownButtonState createState() => _RightLeftDropdownButtonState();
+}
+
+class _RightLeftDropdownButtonState extends State<RightLeftDropdownButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
         const SizedBox(height: 8.0),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              flex: 4,
+              child: Text(
+                '${widget.title}:',
+                style:
+                    const TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+              ),
+            ),
+            const SizedBox(width: 8.0),
+            Expanded(flex: 3, child: widget.customDropdownButtonLeft),
+            const SizedBox(width: 16.0),
+            Expanded(flex: 3, child: widget.customDropdownButtonRight),
+          ],
+        ),
+        const SizedBox(height: 4.0),
         const Divider(
           color: AppColors.grey,
           thickness: 1,
@@ -423,50 +424,62 @@ class ButtonText extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class TextFormFiledStepper extends StatefulWidget {
-  const TextFormFiledStepper(
-      {super.key,
-      this.hintText,
-      this.validator,
-      // this.initialValue = '',
-      required this.textEditingController,
-      required this.labelname,
-      this.onChanged,
-      this.onFieldSubmitted,
-      this.textInputType = TextInputType.text,
-      this.textDirection = TextDirection.ltr});
+  TextFormFiledStepper({
+    super.key,
+    required this.labelname,
+    this.hintText,
+    this.validator,
+    this.initialValue,
+    required this.textEditingController,
+    this.onChanged,
+    this.onSaved,
+    this.maxLength,
+    this.onFieldSubmitted,
+    this.maxLengthEnforcement = MaxLengthEnforcement.enforced,
+    this.textInputType = TextInputType.text,
+    this.textInputAction = TextInputAction.done,
+    this.textDirection = TextDirection.ltr,
+  });
+
   final String labelname;
+  final String? initialValue;
   final String? Function(String?)? validator;
   final TextInputType textInputType;
-  final TextEditingController textEditingController;
+  late TextEditingController textEditingController;
   final TextDirection textDirection;
   final String? hintText;
   final void Function(String?)? onChanged;
   final void Function(String?)? onFieldSubmitted;
+  final TextInputAction textInputAction;
+  final void Function(String?)? onSaved;
+  final int? maxLength;
+  final MaxLengthEnforcement maxLengthEnforcement;
 
   @override
   State<TextFormFiledStepper> createState() => _TextFormFiledStepperState();
 }
 
 class _TextFormFiledStepperState extends State<TextFormFiledStepper> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   widget.textEditingController.text = widget.hintText ?? "";
-  // }
+  @override
+  void initState() {
+    super.initState();
+    widget.textEditingController.text = widget.initialValue ?? "";
+    // widget.textEditingController=TextEditingController(text: widget.initialValue);
+  }
 
   @override
   Widget build(BuildContext context) {
-    // widget.textEditingController.text = widget.hintText ?? "";
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Directionality(
         textDirection: widget.textDirection,
         child: TextFormField(
+          maxLengthEnforcement: widget.maxLengthEnforcement,
+          maxLength: widget.maxLength,
+          textInputAction: widget.textInputAction,
           onChanged: widget.onChanged,
-          // onChanged: (value) {
-          //   widget.textEditingController.text=value??'null';
-          // },
           onTapOutside: (event) {
             FocusManager.instance.primaryFocus!.unfocus();
           },
@@ -475,15 +488,9 @@ class _TextFormFiledStepperState extends State<TextFormFiledStepper> {
           minLines: 1,
           controller: widget.textEditingController,
           onFieldSubmitted: widget.onFieldSubmitted,
-          // onFieldSubmitted: (value) {
-          //   widget.textEditingController.text = value;
-          // },
-          onSaved: (newValue) {
-            widget.textEditingController.text = newValue!;
-          },
+          onSaved: widget.onSaved,
           cursorColor: AppColors.primarycolor,
           keyboardType: widget.textInputType,
-          // smartQuotesType: SmartQuotesType.enabled,
           decoration: InputDecoration(
             alignLabelWithHint: true,
             focusedBorder: OutlineInputBorder(
@@ -512,6 +519,7 @@ class _TextFormFiledStepperState extends State<TextFormFiledStepper> {
                 width: 2,
               ),
             ),
+            hintText: widget.hintText,
           ),
         ),
       ),
@@ -554,6 +562,7 @@ class DropdownButtonItem extends StatefulWidget {
     required this.labelName,
     required this.itemList,
     required this.controller,
+    this.onChanged,
     this.textDirection = TextDirection.ltr,
     this.alignment = Alignment.centerLeft,
     this.floatingLabelAlignment = FloatingLabelAlignment.center,
@@ -566,6 +575,7 @@ class DropdownButtonItem extends StatefulWidget {
   final TextDirection textDirection;
   final FloatingLabelAlignment floatingLabelAlignment;
   final AlignmentGeometry? alignment;
+  final void Function(String?)? onChanged;
   // final ValueChanged<String?> valueChangedCallback; // New callback function
 
   @override
@@ -586,10 +596,12 @@ class _DropdownButtonItemState extends State<DropdownButtonItem> {
     return Directionality(
       textDirection: widget.textDirection,
       child: DropdownButtonFormField<String>(
+        focusColor: Colors.transparent,
         elevation: 0,
-        onChanged: (value) {
-          widget.controller.text = value!;
-        },
+        onChanged: widget.onChanged,
+        // onChanged: (value) {
+        //   widget.controller.text = value!;
+        // },
         padding: const EdgeInsets.symmetric(vertical: 10),
         isExpanded: true,
         iconEnabledColor: AppColors.primarycolor,
@@ -669,7 +681,8 @@ Future showDialogItem(context, Widget content) {
 }
 
 Future showBottomSheetItem(context, Widget content) {
-  return showModalBottomSheet(
+  return 
+  showModalBottomSheet(
     isScrollControlled: true,
     shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(

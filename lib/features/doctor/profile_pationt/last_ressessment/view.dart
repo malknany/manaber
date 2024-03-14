@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/profile_pationt/last_ressessment/cubit/Last_reassessment_cubit.dart';
-import 'package:manaber/features/doctor/profile_pationt/last_ressessment/widget/item_plan.dart';
-import 'package:manaber/features/doctor/profile_pationt/last_ressessment/widget/last_reassessment_entry_data.dart';
-import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import 'cubit/Last_reassessment_cubit.dart';
+import 'widget/item_plan.dart';
+import 'widget/last_reassessment_entry_data.dart';
+import '../../../../shared/components/navigator.dart';
+import '../../../../shared/styles/colors.dart';
+import '../../../../shared/styles/styles.dart';
 
 class LastReassessmentView extends StatefulWidget {
   @override
@@ -70,46 +70,99 @@ class _LastReassessmentViewState extends State<LastReassessmentView> {
             );
           }
           if (state is LastReassessmentSuccess) {
-            final model = state.listOfModelLastReassessment;
+             final model = state.listOfModelLastReassessment;
             return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: ItemLastReassessment(
-                  modelLastReassessment: model,
-                ));
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: ListView.builder(
+                itemCount: model.length,
+                itemBuilder: (ctx, index) {
+                  return ItemLastReassessment(
+                      onDismissed: (p0) {
+                        // model.removeAt(model[index]);
+                        print(widget.id);
+                        print(model[index].id);
+                        print(model[index].patientId);
+                        context.read<LastReassessmentCubit>().delatePlan(
+                                model[index].patientId, model[index].id);
+                      },
+                      modelLastReassessment: model[index]);
+                },
+              ),
+            );
+            // final model = state.listOfModelLastReassessment;
+            // return Padding(
+            //     padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            //     child: ListView.builder(
+            //       // itemCount: model.,
+            //       itemBuilder: (context, idx) {
+            //         return ItemLastReassessment(
+            //         onDismissed: (p0) {
+            //           print(widget.id);
+            //               print(model[idx].id);
+            //               print(model[idx].patientId);
+            //               context.read<LastReassessmentCubit>().delatePlan(
+            //                       model[idx].patientId, model[idx].id);
+            //         },
+            //         modelLastReassessment: model,
+            //       );
+            //       },
+                  
+            //     ));
           }
           return const SizedBox.shrink();
         },
       ),
-      floatingActionButton: BlocBuilder<LastReassessmentCubit,LastReassessmentState>(
-        builder: (context, state) {
-          if (state is LastReassessmentEmpty) {
-            return FloatingActionButton(
-              backgroundColor: AppColors.primarycolor,
-              child: const Icon(Icons.add, color: Colors.white),
-              onPressed: () async {
-                final refresh = await navigateTo(
-                  context,
-                  BlocProvider(
-                    create: (context) => LastReassessmentCubit(),
-                    child: LastReassessmentDataEntry(
-                      id: widget.id,
-                    ),
-                  ),
-                );
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.primarycolor,
+        child: const Icon(Icons.add, color: Colors.white),
+        onPressed: () async {
+          final refresh = await navigateTo(
+              context,
+              BlocProvider(
+                create: (context) => LastReassessmentCubit(),
+                child: LastReassessmentDataEntry(
+                  id: widget.id,
+                ),
+              ));
 
-                if (refresh == 'refresh') {
-                  // ignore: use_build_context_synchronously
-                  context
-                      .read<LastReassessmentCubit>()
-                      .getLastReassessment(widget.id);
-                }
-              },
-            );
-          } else {
-            return const SizedBox.shrink();
+          if (refresh == 'refresh') {
+            // ignore: use_build_context_synchronously
+            context
+                .read<LastReassessmentCubit>()
+                .getLastReassessment(widget.id);
           }
         },
       ),
+      // BlocBuilder<LastReassessmentCubit,LastReassessmentState>(
+      //   builder: (context, state) {
+      //     if (state is LastReassessmentEmpty) {
+      //       return FloatingActionButton(
+      //         backgroundColor: AppColors.primarycolor,
+      //         child: const Icon(Icons.add, color: Colors.white),
+      //         onPressed: () async {
+      //           final refresh = await navigateTo(
+      //             context,
+      //             BlocProvider(
+      //               create: (context) => LastReassessmentCubit(),
+      //               child: LastReassessmentDataEntry(
+      //                 id: widget.id,
+      //               ),
+      //             ),
+      //           );
+
+      //           if (refresh == 'refresh') {
+      //             // ignore: use_build_context_synchronously
+      //             context
+      //                 .read<LastReassessmentCubit>()
+      //                 .getLastReassessment(widget.id);
+      //           }
+      //         },
+      //       );
+      //     } else {
+      //       return const SizedBox.shrink();
+      //     }
+      //   },
+      // ),
     );
   }
 }

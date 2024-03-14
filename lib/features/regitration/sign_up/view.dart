@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/regitration/sign_up/widget/item_radio_button.dart';
+import 'widget/item_radio_button.dart';
 import 'cubit/sign_up_cubit.dart';
 import '../../../shared/styles/styles.dart';
 import '../../../shared/components/components.dart';

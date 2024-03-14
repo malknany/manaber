@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../cubit/pateint_info_cubit.dart';
-import '../../../model.dart';
+
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 import '../../../../../../shared/styles/styles.dart';
+import '../../../cubit/pateint_info_cubit.dart';
+import '../../../model.dart';
 import '../controler.dart';
 
 class NoteConversation extends StatelessWidget {
@@ -40,7 +41,10 @@ class NoteConversation extends StatelessWidget {
                 children: List.generate(
                   controleConversational.listOfNoteConversation.length,
                   (index) => TextFormFiledStepper(
-                    hintText: noteConversation[index].answer,
+                    onChanged: (p0) {
+                      noteConversation[index].answer = p0 ?? "null";
+                    },
+                    initialValue: noteConversation[index].answer,
                     textDirection: TextDirection.rtl,
                     textEditingController: controleConversational
                         .listOfNoteConversation[index].controle,

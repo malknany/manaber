@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/members/model.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
+import '../../../../members/model.dart';
+import '../../../../../../shared/components/components.dart';
+import '../../../../../../shared/styles/colors.dart';
 
 class DataIntryFromReception extends StatelessWidget {
   const DataIntryFromReception({super.key, required this.patientInfo});

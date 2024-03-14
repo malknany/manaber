@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../model.dart';
+
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
-
+import '../../../model.dart';
 import '../controler.dart';
 
 class ChildDevelopmentalHistory extends StatelessWidget {
@@ -30,13 +30,18 @@ class ChildDevelopmentalHistory extends StatelessWidget {
         child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
             child: ListView.separated(
+                addAutomaticKeepAlives: true,
                 itemBuilder: (context, index) {
                   return TextFormFiledStepper(
-                      hintText: childDevelopmentalHistory[index].answer,
-                      textDirection: TextDirection.rtl,
-                      textEditingController: controleConversational
-                          .listOfChildDevelopmentalHistory[index].controle,
-                      labelname: childDevelopmentalHistory[index].question!);
+                    onChanged: (p0) {
+                      childDevelopmentalHistory[index].answer = p0 ?? "null";
+                    },
+                    initialValue: childDevelopmentalHistory[index].answer,
+                    textDirection: TextDirection.rtl,
+                    textEditingController: controleConversational
+                        .listOfChildDevelopmentalHistory[index].controle,
+                    labelname: childDevelopmentalHistory[index].question!,
+                  );
                 },
                 separatorBuilder: (context, index) {
                   if (index == 3) {

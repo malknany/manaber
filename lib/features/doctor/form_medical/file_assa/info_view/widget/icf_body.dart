@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/model.dart';
+import '../../../model.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 
@@ -165,7 +165,7 @@ class ICFBodyView extends StatelessWidget {
                         ),
                       );
                     }
-                    if (index == 94) {
+                    if (index == 93) {
                       return const Text(
                         'Posture And Alignment',
                         textAlign: TextAlign.center,

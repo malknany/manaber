@@ -106,7 +106,7 @@ class ControleOccupation {
           textEditingController: controlePersonalHistory.surgery),
     ];
     listOfBodyFunctionStrucer = [
-      ModelDividerOccupation(text: 'Neuromuscular Status'),
+      // ModelDividerOccupation(text: 'Neuromuscular Status'),
       ModelDropDownOccupation(
           lableName: 'Upper limb',
           itemList: ["Spastic", "Flaccid", "Normal"],
@@ -121,7 +121,7 @@ class ControleOccupation {
           labelname: 'Note',
           textEditingController:
               controleBodyFunctionStrucer.neuromuscularStatusNote),
-      ModelDividerOccupation(text: 'Balance'),
+      // ModelDividerOccupation(text: 'Balance'),
       ModelTextFiledOccupation(
           labelname: 'Sitting Balance Static',
           textEditingController:
@@ -160,7 +160,7 @@ class ControleOccupation {
           textEditingController: controleBodyFunctionStrucer.assistiveDevices),
     ];
     listOfBehaviorADLS = [
-      ModelDividerOccupation(text: 'Behavior'),
+      // ModelDividerOccupation(text: 'Behavior'),
       ModelDropDownOccupation(
           lableName: 'Aggression',
           itemList: ["Yes", "No"],
@@ -182,7 +182,7 @@ class ControleOccupation {
           lableName: 'Discipline',
           itemList: ['Yes', 'No'],
           textEditingController: controleBehaviorADLS.discipline),
-      ModelDividerOccupation(text: 'A.D.L.S'),
+      // ModelDividerOccupation(text: 'A.D.L.S'),
       ModelDropDownOccupation(
           lableName: 'Feeding',
           itemList: ["Can't do", "Can do", "With assistance"],
@@ -210,7 +210,7 @@ class ControleOccupation {
       ModelTextFiledOccupation(
           labelname: 'Speech',
           textEditingController: controleAssociatedDisorders.speech),
-      ModelDividerOccupation(text: 'Developmental milestone'),
+      // ModelDividerOccupation(text: 'Developmental milestone'),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.headControl,
           lableName: 'Head control ',
@@ -239,7 +239,7 @@ class ControleOccupation {
           textEditingController: controleAssociatedDisorders.walking,
           lableName: 'Walking ',
           itemList: const ["can't do", "can do", "can do it with assistance"]),
-      ModelDividerOccupation(text: 'sensory skills'),
+      // ModelDividerOccupation(text: 'sensory skills'),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.tactile,
           lableName: 'Tactile ',

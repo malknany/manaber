@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/model.dart';
+import '../../../model.dart';
 import '../model.dart';
 import '../controller.dart';
 import '../../../../../../shared/components/components.dart';
@@ -30,22 +30,18 @@ class Goals extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
+                addAutomaticKeepAlives: true,
                 itemCount: controleFileAssesment.listGoal.length - 1,
                 itemBuilder: (context, index) {
                   var model = controleFileAssesment.listGoal[index];
-                  if (model is DividerFileAssModel) {
-                    return DividerItem(text: model.text);
-                  }
-                  if (model is DropdownButtonItemModel) {
-                    return DropdownButtonItem(
-                      controller: model.controller,
-                      labelName: model.labelName,
-                      itemList: model.itemList,
-                    );
-                  }
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
-                        hintText: goals[index].answer,
+                        textInputType: TextInputType.multiline,
+                        textInputAction: TextInputAction.newline,
+                        onChanged: (p0) {
+                          goals[index].answer = p0 ?? "null";
+                        },
+                        initialValue: goals[index].answer,
                         labelname: model.labelName,
                         textEditingController: model.textEditingController);
                   }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../shared/components/navigator.dart';
+import '../../../shared/styles/colors.dart';
+import '../profile_pationt/profile_view/view.dart';
 import 'cubit/patients_department_cubit.dart';
 import 'widget/item_member.dart';
 import 'widget/item_sersh.dart';
-import '../profile_pationt/profile_view/view.dart';
-import '../../../shared/components/navigator.dart';
-import '../../../shared/styles/colors.dart';
 
 class MembersScreen extends StatefulWidget {
   const MembersScreen({Key? key, required this.department}) : super(key: key);

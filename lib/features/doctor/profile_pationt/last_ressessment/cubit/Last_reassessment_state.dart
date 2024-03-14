@@ -21,7 +21,7 @@ class LastReassessmentError extends LastReassessmentState {
 }
 
 class LastReassessmentSuccess extends LastReassessmentState {
-  final ModelLastReassessment listOfModelLastReassessment;
+  final List<ModelLastReassessment> listOfModelLastReassessment;
   LastReassessmentSuccess({
     required this.listOfModelLastReassessment,
   });

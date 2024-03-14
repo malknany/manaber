@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/form_medical/keep_alive.dart';
+
+import '../../../../../shared/styles/colors.dart';
 import '../../cubit/pateint_info_cubit.dart';
 import '../../model.dart';
 import 'controler.dart';
@@ -10,7 +11,6 @@ import 'widget/body_function_strucer.dart';
 import 'widget/note_occupation.dart';
 import 'widget/occupational_perform.dart';
 import 'widget/personal_history_stepper.dart';
-import '../../../../../shared/styles/colors.dart';
 
 class StepperOccupation extends StatefulWidget {
   const StepperOccupation(
@@ -76,39 +76,27 @@ class _StepperOccupationState extends State<StepperOccupation>
             child: PageView(
               controller: _pageController,
               children: [
-                KeepAliveScreen(
-                  page: PersonalHistory(
-                      personalHistory: personalHistory,
-                      controleOccupation: widget.controleOccupation),
-                ),
-                KeepAliveScreen(
-                  page: AssociatedDisorders(
-                      controleOccupation: widget.controleOccupation,
-                      associatedDisorders: associatedDisorders),
-                ),
-                KeepAliveScreen(
-                  page: BodyFunctionStrucer(
-                      controleOccupation: widget.controleOccupation,
-                      bodyFunctionStrucer: bodyFunctionAndStrucer),
-                ),
-                KeepAliveScreen(
-                  page: BehaviorADLS(
-                      controleOccupation: widget.controleOccupation,
-                      behaviorADLS: behaviorAndADLS),
-                ),
-                KeepAliveScreen(
-                  page: OccupationalPerformance(
-                      controleOccupation: widget.controleOccupation,
-                      occupationalPerformance: note),
-                ),
+                PersonalHistory(
+                    personalHistory: personalHistory,
+                    controleOccupation: widget.controleOccupation),
+                AssociatedDisorders(
+                    controleOccupation: widget.controleOccupation,
+                    associatedDisorders: associatedDisorders),
+                BodyFunctionStrucer(
+                    controleOccupation: widget.controleOccupation,
+                    bodyFunctionStrucer: bodyFunctionAndStrucer),
+                BehaviorADLS(
+                    controleOccupation: widget.controleOccupation,
+                    behaviorADLS: behaviorAndADLS),
+                OccupationalPerformance(
+                    controleOccupation: widget.controleOccupation,
+                    occupationalPerformance: note),
                 BlocProvider(
                   create: (context) => PateintInfoCubit(),
-                  child: KeepAliveScreen(
-                    page: NoteOccupation(
-                        noteOccupation: note,
-                        controleOccupation: widget.controleOccupation,
-                        id: widget.id),
-                  ),
+                  child: NoteOccupation(
+                      noteOccupation: note,
+                      controleOccupation: widget.controleOccupation,
+                      id: widget.id),
                 ),
               ],
             ),

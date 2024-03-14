@@ -41,11 +41,11 @@ class DropdownButtonItemModel extends FileAssessmentModel {
   });
 }
 
-class BottomSheetFileAssModel {
+class TableDataFileAssModel {
   final String name;
   final List<FileAssessmentModel> itemList;
 
-  BottomSheetFileAssModel({
+  TableDataFileAssModel({
     required this.itemList,
     required this.name,
   });

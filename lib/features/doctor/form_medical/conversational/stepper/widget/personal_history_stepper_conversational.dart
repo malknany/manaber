@@ -1,9 +1,9 @@
-import '../../../model.dart';
+import 'package:flutter/material.dart';
+
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
-
+import '../../../model.dart';
 import '../controler.dart';
-import 'package:flutter/material.dart';
 
 class PersonalHistoryConversational extends StatelessWidget {
   const PersonalHistoryConversational(
@@ -30,10 +30,14 @@ class PersonalHistoryConversational extends StatelessWidget {
         child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
             child: ListView(
+              addAutomaticKeepAlives: true,
               children: List.generate(
                   controleConversational.listOfPersonal.length, (index) {
                 return TextFormFiledStepper(
-                    hintText: personalHistory[index].answer,
+                    onChanged: (p0) {
+                      personalHistory[index].answer = p0 ?? "null";
+                    },
+                    initialValue: personalHistory[index].answer,
                     textDirection: TextDirection.rtl,
                     textEditingController:
                         controleConversational.listOfPersonal[index].controle,

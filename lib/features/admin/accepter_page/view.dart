@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'cubit/pending_cubit.dart';
-import '../../../shared/components/components.dart';
 
-import 'widget/item_card_accept.dart';
+import '../../../shared/components/components.dart';
 import '../../../shared/styles/colors.dart';
 import '../../../shared/styles/styles.dart';
+import 'cubit/pending_cubit.dart';
+import 'widget/item_card_accept.dart';
 
 class AdminAcceptUser extends StatefulWidget {
   const AdminAcceptUser({super.key});

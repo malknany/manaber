@@ -1,12 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'cubit/reception_cubit.dart';
-import 'model.dart';
-import 'controler.dart';
 
 import '../../../shared/components/components.dart';
 import '../../../shared/styles/colors.dart';
 import '../../../shared/styles/styles.dart';
+import 'controler.dart';
+import 'cubit/reception_cubit.dart';
+import 'model.dart';
 
 class ReceptionistDataEntry extends StatefulWidget {
   const ReceptionistDataEntry(
@@ -53,6 +55,10 @@ class _ReceptionistDataEntryState extends State<ReceptionistDataEntry> {
                     }
                     if (model is DropDowneReception) {
                       return DropdownButtonItem(
+                        onChanged: (value) {
+                          model.controller.text = value!;
+                          log(model.controller.text);
+                        },
                         alignment: Alignment.bottomRight,
                         textDirection: TextDirection.rtl,
                         labelName: model.lable,
@@ -66,8 +72,6 @@ class _ReceptionistDataEntryState extends State<ReceptionistDataEntry> {
                 ButtonText(
                   text: 'حفظ',
                   onPressed: () {
-                    // print(widget.controleReceptionist.nameController.text);
-                    // print(widget.controleReceptionist.phoneNumberController.text);
                     final modelReception = ModelReceptiona(
                         name: widget.controleReceptionist.nameController.text,
                         phoneNumber: widget

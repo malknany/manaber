@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/admin/our_section_admin/view.dart';
+import '../../admin/our_section_admin/view.dart';
 import '../../receptionist/our_section_reception/view.dart';
 import 'cubit/log_in_cubit.dart';
 import '../sign_up/cubit/sign_up_cubit.dart';

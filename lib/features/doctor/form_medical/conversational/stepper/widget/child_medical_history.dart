@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../model.dart';
+
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
+import '../../../model.dart';
 import '../controler.dart';
 
 class ChildMedicalAndMedicalHistory extends StatelessWidget {
@@ -29,11 +30,15 @@ class ChildMedicalAndMedicalHistory extends StatelessWidget {
         child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
             child: ListView.builder(
+              addAutomaticKeepAlives: true,
               itemCount: controleConversational
                   .listOfChildMedicalAndMedicalHistory.length,
               itemBuilder: (context, index) {
                 return TextFormFiledStepper(
-                  hintText: childMedicalAndMedicalHistory[index].answer,
+                  onChanged: (p0) {
+                    childMedicalAndMedicalHistory[index].answer = p0 ?? "null";
+                  },
+                  initialValue: childMedicalAndMedicalHistory[index].answer,
                   textDirection: TextDirection.rtl,
                   textEditingController: controleConversational
                       .listOfChildMedicalAndMedicalHistory[index].controle,

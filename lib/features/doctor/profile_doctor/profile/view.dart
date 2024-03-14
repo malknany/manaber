@@ -32,7 +32,7 @@ class _ProfileDoctorScreenState extends State<ProfileDoctorScreen> {
         actions: [
           IconButton(
               onPressed: () {
-                signout(context);
+                signOut(context);
               },
               icon: const Icon(
                 Icons.logout,

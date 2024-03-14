@@ -2,26 +2,50 @@
 // ignore_for_file: file_names, duplicate_ignore
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manaber/features/doctor/form_medical/cubit/pateint_info_cubit.dart';
 import 'package:manaber/features/doctor/form_medical/file_assa/stpper/controller.dart';
 import 'package:manaber/features/doctor/form_medical/file_assa/stpper/model.dart';
 import 'package:manaber/features/doctor/form_medical/model.dart';
+import 'package:manaber/features/sample.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
+import 'package:manaber/shared/styles/styles.dart';
 
-class ICFBodyfunctionAndstructure extends StatelessWidget {
+class ICFBodyfunctionAndstructure extends StatefulWidget {
   const ICFBodyfunctionAndstructure(
       {super.key,
+      required this.id,
       required this.iCFBodyfunction,
       required this.controleFileAssesment});
 
   final ControleFileAssesment controleFileAssesment;
   final List<ModelPatientInfo> iCFBodyfunction;
+  final String id;
+
+  @override
+  State<ICFBodyfunctionAndstructure> createState() =>
+      _ICFBodyfunctionAndstructureState();
+}
+
+class _ICFBodyfunctionAndstructureState
+    extends State<ICFBodyfunctionAndstructure> {
+  final List<String> listTitleSprated = [
+    'Sensory Examination',
+    'GaiT Problems',
+    'Developmental Milestones'
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context, 'refresh');
+            },
+            icon: const Icon(Icons.arrow_back_ios_new)),
         title: const Text('ICF Body function And Structure'),
         backgroundColor: Colors.white,
         foregroundColor: AppColors.primarycolor,
@@ -38,74 +62,98 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Expanded(
-              child: ListView.builder(
-                itemCount: controleFileAssesment.listicfBody.length,
-                itemBuilder: (context, index) {
-                  var model = controleFileAssesment.listicfBody[index];
-                  if (model is DividerFileAssModel) {
-                    return DividerItem(text: model.text);
+              child: ListView.separated(
+                separatorBuilder: (context, index) {
+                  if (index == 3) {
+                    return DividerItem(text: listTitleSprated[0]);
                   }
+                  if (index == 8) {
+                    return DividerItem(text: listTitleSprated[1]);
+                  }
+                  if (index == 11) {
+                    return DividerItem(text: listTitleSprated[2]);
+                  }
+
+                  return const SizedBox.shrink();
+                },
+                addAutomaticKeepAlives: true,
+                itemCount: widget.controleFileAssesment.listicfBody.length,
+                itemBuilder: (context, index) {
+                  var model = widget.controleFileAssesment.listicfBody[index];
+
                   if (model is DropdownButtonItemModel) {
-                    return DropdownButtonItem(
-                      controller: model.controller,
-                      labelName: model.labelName,
-                      itemList: model.itemList,
+                    model.controller.text =
+                        widget.iCFBodyfunction[index].answer ??
+                            model.itemList.first;
+                    return CustomDropdownButton2(
+                      hint: model.labelName,
+                      value: model.controller.text,
+                      dropdownItems: model.itemList,
+                      onChanged: (value) {
+                        setState(() {
+                          widget.iCFBodyfunction[index].answer =
+                              value ?? "null";
+                        });
+                      },
                     );
+                    // DropdownButtonItem(
+                    //   onChanged: (p0) {
+                    //     iCFBodyfunction[index].answer = p0 ?? "null";
+                    //   },
+                    //   controller: model.controller,
+                    //   labelName: model.labelName,
+                    //   itemList: model.itemList,
+                    // );
                   }
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
-                        hintText: iCFBodyfunction[index].answer,
+                        initialValue: widget.iCFBodyfunction[index].answer,
+                        onChanged: (p0) {
+                          widget.iCFBodyfunction[index].answer = p0 ?? "-";
+                        },
                         labelname: model.labelName,
                         textEditingController: model.textEditingController);
-                  }
-                  if (model is BottomSheetFileAssModel) {
-                    return ShowDialogItems(
-                      name: model.name,
-                      contecnt: SizedBox(
-                        height: MediaQuery.sizeOf(context).height / 1.2,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: ListView.builder(
-                                  itemCount: model.itemList.length,
-                                  itemBuilder: (context, idx) {
-                                    final item = model.itemList[idx];
-                                    if (item is TextFormFiledStepperModel) {
-                                      return TextFormFiledStepper(
-                                          hintText: iCFBodyfunction[idx].answer,
-                                          labelname: item.labelName,
-                                          textEditingController:
-                                              item.textEditingController);
-                                    }
-                                    if (item is DropdownButtonItemModel) {
-                                      return DropdownButtonItem(
-                                        controller: item.controller,
-                                        labelName: item.labelName,
-                                        itemList: item.itemList,
-                                      );
-                                    }
-                                    return const SizedBox.shrink();
-                                  },
-                                ),
-                              ),
-                              ButtonText(
-                                  text: 'Save',
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  }),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
                   }
 
                   return const SizedBox.shrink();
                 },
               ),
+            ),
+            ButtonText(
+              text: 'Save',
+              onPressed: () {
+                dynamic listOfAnswer =
+                    _sendDataPateintInfo(widget.controleFileAssesment);
+                BlocProvider.of<PateintInfoCubit>(context)
+                    .postAnswerToApi(widget.id, listOfAnswer);
+              },
+            ),
+            BlocBuilder<PateintInfoCubit, PateintInfoState>(
+              builder: (context, state) {
+                if (state is PateintLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.primarycolor,
+                    ),
+                  );
+                }
+                if (state is PateintSuccess) {
+                  return const Center(
+                      child: Icon(
+                    Icons.check,
+                    color: AppColors.primarycolor,
+                  ));
+                }
+                if (state is PateintErrorMsg) {
+                  return Text(
+                    state.msg,
+                    textDirection: TextDirection.rtl,
+                    style: AppTextStyles.lrTitles
+                        .copyWith(color: Colors.red, fontSize: 15),
+                  );
+                }
+                return const SizedBox.shrink();
+              },
             ),
           ],
         ),
@@ -114,6 +162,61 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
   }
 }
 
+_sendDataPateintInfo(ControleFileAssesment controleFileAssesment) {
+  List<Map> listOfAnswer = [];
+  int i = 19;
+  for (final person in controleFileAssesment.listicfBody) {
+    if (person is DropdownButtonItemModel) {
+      listOfAnswer.add(
+        ModelPatientInfo(
+          id: i,
+          // question: person.labelName,
+          questionId: i,
+          answer: person.controller.text.isEmpty
+              ? person.itemList.first
+              : person.controller.text,
+        ).toJson(),
+      );
+      i++;
+    }
+    if (person is TextFormFiledStepperModel) {
+      listOfAnswer.add(
+        ModelPatientInfo(
+          id: i,
+          questionId: i,
+          answer: person.textEditingController.text.isEmpty
+              ? ' '
+              : person.textEditingController.text,
+        ).toJson(),
+      );
+      i++;
+    }
+    // if (person is TableDataFileAssModel) {
+    //   for (final item in person.itemList) {
+    //     if (item is TextFormFiledRightLiftModel) {
+    //       listOfAnswer.add(
+    //         ModelPatientInfo(
+    //                 id: i,
+    //                 questionId: i,
+    //                 left: item.controllerLeft.text.isEmpty
+    //                     ? 0
+    //                     : int.parse(item.controllerLeft.text),
+    //                 right: item.controllerRight.text.isEmpty
+    //                     ? 0
+    //                     : int.parse(item.controllerRight.text)
+    //                 //answer: item.textEditingController.text.isEmpty
+    //                 //  ? 'null'
+    //                 // : item.textEditingController.text,
+    //                 )
+    //             .toJson(),
+    //       );
+    //       i++;
+    //     }
+    //   }
+    // }
+  }
+  return listOfAnswer;
+}
 // DropdownButtonItem(
             //     controller: controlBodyFunction.mentalStatus,
             //     lableName: 'Mental status',

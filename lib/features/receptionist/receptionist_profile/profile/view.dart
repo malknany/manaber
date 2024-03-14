@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../edite_profile/cubit/edite_profile_cubit.dart';
-import '../edite_profile/view.dart';
-import 'cubit/receptionist_profile_cubit.dart';
-import 'widget/item_card_profile.dart';
+
 import '../../../../shared/components/navigator.dart';
 import '../../../../shared/styles/colors.dart';
 import '../../../../shared/styles/images.dart';
 import '../../../../shared/styles/styles.dart';
+import '../edite_profile/cubit/edite_profile_cubit.dart';
+import '../edite_profile/view.dart';
+import 'cubit/receptionist_profile_cubit.dart';
+import 'widget/item_card_profile.dart';
 
 class ReceptionistProfileScreen extends StatefulWidget {
   const ReceptionistProfileScreen({
@@ -34,7 +35,7 @@ class _ReceptionistProfileScreenState extends State<ReceptionistProfileScreen> {
         actions: [
           IconButton(
               onPressed: () {
-                signout(context);
+                signOut(context);
               },
               icon: const Icon(
                 Icons.logout,

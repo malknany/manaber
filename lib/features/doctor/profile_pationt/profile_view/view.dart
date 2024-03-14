@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/members/model.dart';
-import 'package:manaber/features/doctor/profile_pationt/last_ressessment/cubit/Last_reassessment_cubit.dart';
-import 'package:manaber/features/doctor/profile_pationt/last_ressessment/view.dart';
+import '../../members/model.dart';
+import '../last_ressessment/cubit/Last_reassessment_cubit.dart';
+import '../last_ressessment/view.dart';
 import '../../form_medical/conversational/conversational_view/view.dart';
 import '../../form_medical/conversational/stepper/controler.dart';
 import '../../form_medical/cubit/pateint_info_cubit.dart';

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'cubit/edite_profile_doctor_cubit.dart';
+
 import '../../../../models/profile.dart';
+import '../../../../shared/components/components.dart';
 import '../../../../shared/styles/colors.dart';
 import '../../../../shared/styles/styles.dart';
-import '../../../../shared/components/components.dart';
+import 'cubit/edite_profile_doctor_cubit.dart';
 
 class EditeProfileDoctorScreen extends StatelessWidget {
   final TextEditingController controllerName = TextEditingController();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/form_medical/file_assa/info_view/widget/data_intry_reception.dart';
-import 'package:manaber/features/doctor/members/model.dart';
+import 'widget/data_intry_reception.dart';
+import '../../../members/model.dart';
 import '../../cubit/pateint_info_cubit.dart';
 import '../../model.dart';
 import '../../../../../shared/styles/styles.dart';

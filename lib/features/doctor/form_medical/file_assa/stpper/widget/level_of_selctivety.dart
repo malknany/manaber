@@ -1,23 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/model.dart';
-import '../model.dart';
-import '../controller.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:manaber/features/doctor/form_medical/cubit/pateint_info_cubit.dart';
+import 'package:manaber/features/doctor/form_medical/file_assa/stpper/widget/motor_system.dart';
+import 'package:manaber/features/sample.dart';
+import 'package:manaber/shared/styles/styles.dart';
+
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
+import '../../../model.dart';
+import '../controller.dart';
+import '../model.dart';
 
-class LevelofSelectivity extends StatelessWidget {
+class LevelofSelectivity extends StatefulWidget {
   const LevelofSelectivity(
       {super.key,
+      required this.id,
       required this.levelofSelectivity,
       required this.controleFileAssesment});
   final List<ModelPatientInfo> levelofSelectivity;
+  final String id;
   final ControleFileAssesment controleFileAssesment;
 
+  @override
+  State<LevelofSelectivity> createState() => _LevelofSelectivityState();
+}
+
+class _LevelofSelectivityState extends State<LevelofSelectivity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context, 'refresh');
+            },
+            icon: const Icon(Icons.arrow_back_ios_new)),
         title: const Text('Level of Selectivity'),
         backgroundColor: Colors.white,
         foregroundColor: AppColors.primarycolor,
@@ -30,68 +48,85 @@ class LevelofSelectivity extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: controleFileAssesment.listlevelOfSelctivity.length,
+                addAutomaticKeepAlives: true,
+                itemCount:
+                    widget.controleFileAssesment.listlevelOfSelctivity.length,
                 itemBuilder: (context, index) {
                   var model =
-                      controleFileAssesment.listlevelOfSelctivity[index];
+                      widget.controleFileAssesment.listlevelOfSelctivity[index];
                   if (model is DividerFileAssModel) {
                     return DividerItem(text: model.text);
                   }
                   if (model is DropdownButtonItemModel) {
-                    return DropdownButtonItem(
-                      controller: model.controller,
-                      labelName: model.labelName,
-                      itemList: model.itemList,
+                    model.controller.text =
+                        widget.levelofSelectivity[index].answer ??
+                            model.itemList.first;
+                    return CustomDropdownButton2(
+                      hint: model.labelName,
+                      value: model.controller.text,
+                      dropdownItems: model.itemList,
+                      onChanged: (value) {
+                        setState(() {
+                          widget.levelofSelectivity[index].answer =
+                              value ?? "null";
+                        });
+                      },
                     );
                   }
-                  if (model is TextFormFiledStepperModel) {
-                    return TextFormFiledStepper(
-                        hintText: levelofSelectivity[index].answer,
-                        labelname: model.labelName,
-                        textEditingController: model.textEditingController);
-                  }
-                  if (model is BottomSheetFileAssModel) {
-                    return ShowDialogItems(
-                      name: model.name,
-                      contecnt: SizedBox(
-                        height: MediaQuery.sizeOf(context).height / 1.2,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: ListView.builder(
-                                  itemCount: model.itemList.length,
-                                  itemBuilder: (context, idx) {
-                                    final item = model.itemList[idx];
-                                    if (item is TextFormFiledStepperModel) {
-                                      return TextFormFiledStepper(
-                                          hintText:
-                                              levelofSelectivity[idx].answer,
-                                          labelname: item.labelName,
-                                          textEditingController:
-                                              item.textEditingController);
-                                    }
-                                    if (item is TextFormFiledRightLiftModel) {
-                                      return RightLeftTextFiled(
-                                        title: item.labelName,
-                                        controllerRight: item.controllerRight,
-                                        controllerLeft: item.controllerLeft,
-                                      );
-                                    }
-                                    return const SizedBox.shrink();
+
+                  if (model is TableDataFileAssModel) {
+                    return DataTable(
+                      showBottomBorder: true,
+                      dataRowMinHeight: 35,
+                      headingRowColor: const MaterialStatePropertyAll(
+                          AppColors.primarycolor),
+                      columns: [
+                        DataColumn(
+                            label: Text(
+                          model.name,
+                          style: const TextStyle(color: Colors.white),
+                        )),
+                        const DataColumn(
+                            label: Text('Left',
+                                style: TextStyle(color: Colors.white)),
+                            numeric: true),
+                        const DataColumn(
+                            label: Text('Right',
+                                style: TextStyle(color: Colors.white)),
+                            numeric: true),
+                      ],
+                      rows: List<DataRow>.generate(
+                        model.itemList.length,
+                        (index) {
+                          final item = model.itemList[index];
+                          if (item is TextFormFiledRightLiftModel) {
+                            String left = widget.levelofSelectivity[index].left
+                                .toString();
+                            String right = widget
+                                .levelofSelectivity[index].right
+                                .toString();
+                            return DataRow(
+                              cells: [
+                                DataCell(Text(item.labelName)),
+                                DataCell(TextFormFiledTableData(
+                                  onChanged: (p0) {
+                                    left = p0;
                                   },
-                                ),
-                              ),
-                              ButtonText(
-                                  text: 'Save',
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  }),
-                            ],
-                          ),
-                        ),
+                                  textEditingController: item.controllerLeft,
+                                  initialValue: left,
+                                )),
+                                DataCell(TextFormFiledTableData(
+                                  onChanged: (p0) {
+                                    right = p0;
+                                  },
+                                  textEditingController: item.controllerRight,
+                                  initialValue: right,
+                                )),
+                              ],
+                            );
+                          }
+                          return const DataRow(cells: []);
+                        },
                       ),
                     );
                   }
@@ -99,14 +134,87 @@ class LevelofSelectivity extends StatelessWidget {
                 },
               ),
             ),
+            ButtonText(
+              text: 'Save',
+              onPressed: () {
+                dynamic listOfAnswer =
+                    _sendDataPateintInfo(widget.controleFileAssesment);
+                BlocProvider.of<PateintInfoCubit>(context)
+                    .postAnswerToApi(widget.id, listOfAnswer);
+              },
+            ),
+            BlocBuilder<PateintInfoCubit, PateintInfoState>(
+              builder: (context, state) {
+                if (state is PateintLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.primarycolor,
+                    ),
+                  );
+                }
+                if (state is PateintSuccess) {
+                  return const Center(
+                      child: Icon(
+                    Icons.check,
+                    color: AppColors.primarycolor,
+                  ));
+                }
+                if (state is PateintErrorMsg) {
+                  return Text(
+                    state.msg,
+                    textDirection: TextDirection.rtl,
+                    style: AppTextStyles.lrTitles
+                        .copyWith(color: Colors.red, fontSize: 15),
+                  );
+                }
+                return const SizedBox.shrink();
+              },
+            ),
           ],
         ),
       ),
     );
   }
-
 }
 
+_sendDataPateintInfo(ControleFileAssesment controleFileAssesment) {
+  List<Map> listOfAnswer = [];
+  int i = 94;
+  for (final person in controleFileAssesment.listlevelOfSelctivity) {
+    if (person is DropdownButtonItemModel) {
+      listOfAnswer.add(
+        ModelPatientInfo(
+          id: i,
+          questionId: i,
+          answer: person.controller.text.isEmpty
+              ? person.itemList.first
+              : person.controller.text,
+        ).toJson(),
+      );
+      i++;
+    }
+    if (person is TableDataFileAssModel) {
+      for (final item in person.itemList) {
+        if (item is TextFormFiledRightLiftModel) {
+          listOfAnswer.add(
+            ModelPatientInfo(
+              id: i,
+              questionId: i,
+              left: item.controllerLeft.text.isEmpty
+                  ? 0
+                  : int.parse(item.controllerLeft.text),
+              right: item.controllerRight.text.isEmpty
+                  ? 0
+                  : int.parse(item.controllerRight.text),
+            ).toJson(),
+          );
+          i++;
+        }
+      }
+    }
+  }
+  return listOfAnswer;
+}
 /*DropdownButtonItem(
                 controller: controlBodyFunction.upperLimb,
                 lableName: 'Upper limb',
