@@ -8,9 +8,9 @@ import '../../../../../../shared/styles/colors.dart';
 class OccupationalPerformance extends StatelessWidget {
   const OccupationalPerformance(
       {super.key,
-      required this.controleOccupation,
+      required this.controlOccupation,
       required this.occupationalPerformance});
-  final ControleOccupation controleOccupation;
+  final ControlOccupation controlOccupation;
   final List<ModelPatientInfo> occupationalPerformance;
 
   @override
@@ -19,7 +19,7 @@ class OccupationalPerformance extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Occupational Performance'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -27,13 +27,13 @@ class OccupationalPerformance extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
           child: ListView(
             children: List.generate(
-                controleOccupation.listOfOccupationPreformance.length - 1,
+                controlOccupation.listOfOccupationPerformance.length - 1,
                 (index) {
-              var model = controleOccupation.listOfOccupationPreformance[index];
+              var model = controlOccupation.listOfOccupationPerformance[index];
               if (model is ModelDropDownOccupation) {
                 return DropdownButtonItem(
                   controller: model.textEditingController,
-                  labelName: model.lableName,
+                  labelName: model.labelName,
                   itemList: model.itemList,
                 );
               }
@@ -41,7 +41,7 @@ class OccupationalPerformance extends StatelessWidget {
                 return TextFormFiledStepper(
                     hintText: occupationalPerformance[index].answer,
                     textInputType: model.textInputType,
-                    labelname: model.labelname,
+                    labelName: model.labelname,
                     textEditingController: model.textEditingController);
               }
               if (model is ModelDividerOccupation) {

@@ -41,9 +41,9 @@ class PendingCubit extends Cubit<PendingState> {
   postApprove(
     id,
   ) async {
-    final response = await DioHelper.postdata(
+    final response = await DioHelper.postData(
         url: approve,
-        posteddata: {'userId': id},
+        postedData: {'userId': id},
         headers: {'Authorization': 'Bearer ${token[0]}'});
     debugPrint(response.data);
     debugPrint(response.statusCode.toString());
@@ -58,9 +58,9 @@ class PendingCubit extends Cubit<PendingState> {
   postDisApprove(
     id,
   ) async {
-    final response = await DioHelper.postdata(
+    final response = await DioHelper.postData(
         url: disapprove,
-        posteddata: {'userId': id},
+        postedData: {'userId': id},
         headers: {'Authorization': 'Bearer ${token[0]}'});
     debugPrint(response.data);
     debugPrint(response.statusCode.toString());
@@ -74,7 +74,7 @@ class PendingCubit extends Cubit<PendingState> {
 }
 
 Future<List<dynamic>> getPendingFromApi(token) async {
-  final response = await DioHelper.getdata(
+  final response = await DioHelper.getData(
       url: pendingUsers, headers: {'Authorization': 'Bearer $token'});
   if (response.statusCode == 200) {
     debugPrint(response.data.toString());

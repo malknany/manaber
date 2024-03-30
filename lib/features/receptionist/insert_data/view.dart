@@ -10,12 +10,12 @@ import '../../../shared/styles/styles.dart';
 
 class ReceptionistDataEntry extends StatefulWidget {
   const ReceptionistDataEntry(
-      {required this.controleReceptionist,
+      {required this.controlReceptionist,
       super.key,
       required this.department});
   final String department;
 
-  final StepperReceptionist controleReceptionist;
+  final StepperReceptionist controlReceptionist;
 
   @override
   State<ReceptionistDataEntry> createState() => _ReceptionistDataEntryState();
@@ -28,7 +28,7 @@ class _ReceptionistDataEntryState extends State<ReceptionistDataEntry> {
       appBar: AppBar(
         title: const Text('البیانات الأولیة'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -39,19 +39,19 @@ class _ReceptionistDataEntryState extends State<ReceptionistDataEntry> {
             children: [
               Column(
                 children: List.generate(
-                    widget.controleReceptionist.lisOfModel.length, (index) {
-                  final model = widget.controleReceptionist.lisOfModel[index];
+                    widget.controlReceptionist.lisOfModel.length, (index) {
+                  final model = widget.controlReceptionist.lisOfModel[index];
                   if (model is TextFormFiledReception) {
                     return TextFormFiledStepper(
                         textDirection: TextDirection.rtl,
                         textEditingController: model.controller,
-                        labelname: model.lable);
+                        labelName: model.lable);
                   }
-                  if (model is DropDowneReception) {
+                  if (model is DropDownReception) {
                     return DropdownButtonItem(
                       alignment: Alignment.bottomRight,
                       textDirection: TextDirection.rtl,
-                      labelName: model.lable,
+                      labelName: model.label,
                       itemList: model.listOfItem!,
                       controller: model.controller,
                     );
@@ -62,38 +62,38 @@ class _ReceptionistDataEntryState extends State<ReceptionistDataEntry> {
               ButtonText(
                 text: 'حفظ',
                 onPressed: () {
-                  print(widget.controleReceptionist.nameController.text);
-                  print(widget.controleReceptionist.phoneNumberController.text);
+                  print(widget.controlReceptionist.nameController.text);
+                  print(widget.controlReceptionist.phoneNumberController.text);
                   final modelReception = ModelReceptiona(
-                      name: widget.controleReceptionist.nameController.text,
+                      name: widget.controlReceptionist.nameController.text,
                       phoneNumber: widget
-                          .controleReceptionist.phoneNumberController.text,
-                      gender: widget.controleReceptionist.genderController.text ==
+                          .controlReceptionist.phoneNumberController.text,
+                      gender: widget.controlReceptionist.genderController.text ==
                               'ذكر'
                           ? "MALE"
                           : "FEMALE",
                       department: widget.department,
                       consanguinity: widget
-                          .controleReceptionist.consanguinityController.text,
-                      cramps: widget.controleReceptionist.crampsController.text,
-                      currentMedication: widget.controleReceptionist
+                          .controlReceptionist.consanguinityController.text,
+                      cramps: widget.controlReceptionist.crampsController.text,
+                      currentMedication: widget.controlReceptionist
                           .currentMedicationController.text,
                       geneAnalysis: widget
-                          .controleReceptionist.geneAnalysisController.text,
+                          .controlReceptionist.geneAnalysisController.text,
                       geneProblem: widget
-                          .controleReceptionist.geneProblemController.text,
+                          .controlReceptionist.geneProblemController.text,
                       otherProblems: widget
-                          .controleReceptionist.otherProblemsController.text,
+                          .controlReceptionist.otherProblemsController.text,
                       pregnancyProblem: widget
-                          .controleReceptionist.pregnancyProblemController.text,
-                      sameProblemInFamily: widget.controleReceptionist
+                          .controlReceptionist.pregnancyProblemController.text,
+                      sameProblemInFamily: widget.controlReceptionist
                                   .sameProblemInFamilyController.text ==
                               'نعم'
                           ? true
                           : false,
                       vaccinations:
-                          widget.controleReceptionist.vaccinationsController.text,
-                      weigthAtBirth: widget.controleReceptionist.weigthAtBirthController.text);
+                          widget.controlReceptionist.vaccinationsController.text,
+                      weigthAtBirth: widget.controlReceptionist.weigthAtBirthController.text);
                   context
                       .read<ReceptionCubit>()
                       .receptionPostData(modelReception);
@@ -104,7 +104,7 @@ class _ReceptionistDataEntryState extends State<ReceptionistDataEntry> {
                   if (state is ReceptionLoading) {
                     return const Center(
                       child: CircularProgressIndicator(
-                        color: AppColors.primarycolor,
+                        color: AppColors.primaryColor,
                       ),
                     );
                   }
@@ -113,7 +113,7 @@ class _ReceptionistDataEntryState extends State<ReceptionistDataEntry> {
                       const Duration(seconds: 2),
                       () {
                         itemSnackBar(context, 'تم رفع المعلومات',
-                            AppColors.primarycolor);
+                            AppColors.primaryColor);
                         Navigator.pop(context);
                       },
                     );
@@ -124,7 +124,7 @@ class _ReceptionistDataEntryState extends State<ReceptionistDataEntry> {
                         'تم رفع المعلومات ',
                         textDirection: TextDirection.rtl,
                         style: AppTextStyles.lrTitles.copyWith(
-                            color: AppColors.primarycolor, fontSize: 15),
+                            color: AppColors.primaryColor, fontSize: 15),
                       ),
                     );
                   }
@@ -148,18 +148,18 @@ class _ReceptionistDataEntryState extends State<ReceptionistDataEntry> {
 
   @override
   void dispose() {
-    widget.controleReceptionist.nameController.clear();
-    widget.controleReceptionist.phoneNumberController.clear();
-    widget.controleReceptionist.genderController.clear();
-    widget.controleReceptionist.consanguinityController.clear();
-    widget.controleReceptionist.crampsController.clear();
-    widget.controleReceptionist.currentMedicationController.clear();
-    widget.controleReceptionist.geneAnalysisController.clear();
-    widget.controleReceptionist.geneProblemController.clear();
-    widget.controleReceptionist.otherProblemsController.clear();
-    widget.controleReceptionist.pregnancyProblemController.clear();
-    widget.controleReceptionist.vaccinationsController.clear();
-    widget.controleReceptionist.weigthAtBirthController.clear();
+    widget.controlReceptionist.nameController.clear();
+    widget.controlReceptionist.phoneNumberController.clear();
+    widget.controlReceptionist.genderController.clear();
+    widget.controlReceptionist.consanguinityController.clear();
+    widget.controlReceptionist.crampsController.clear();
+    widget.controlReceptionist.currentMedicationController.clear();
+    widget.controlReceptionist.geneAnalysisController.clear();
+    widget.controlReceptionist.geneProblemController.clear();
+    widget.controlReceptionist.otherProblemsController.clear();
+    widget.controlReceptionist.pregnancyProblemController.clear();
+    widget.controlReceptionist.vaccinationsController.clear();
+    widget.controlReceptionist.weigthAtBirthController.clear();
     super.dispose();
   }
 }

@@ -9,9 +9,9 @@ class PatientsDepartmentLoading extends PatientsDepartmentState {}
 
 class PatientsDepartmentEmpty extends PatientsDepartmentState {}
 
-class PatientsDepartmentErorr extends PatientsDepartmentState {
+class PatientsDepartmentError extends PatientsDepartmentState {
   final String msg;
-  PatientsDepartmentErorr({
+  PatientsDepartmentError({
     required this.msg,
   });
 }

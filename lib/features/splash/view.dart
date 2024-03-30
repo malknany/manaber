@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     child: Image.asset(AppImages.logo),
                   ),
                   const CircularProgressIndicator(
-                    color: AppColors.primarycolor,
+                    color: AppColors.primaryColor,
                   )
                 ],
               ),

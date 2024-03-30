@@ -10,10 +10,10 @@ import 'package:manaber/shared/styles/colors.dart';
 class BehaviorADLS extends StatelessWidget {
   const BehaviorADLS(
       {super.key,
-      required this.controleOccupation,
+      required this.controlOccupation,
       required this.behaviorADLS});
   final List<ModelPatientInfo> behaviorADLS;
-  final ControleOccupation controleOccupation;
+  final ControlOccupation controlOccupation;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class BehaviorADLS extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Behavior And ADLS'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -29,12 +29,12 @@ class BehaviorADLS extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
           child: ListView(
             children: List.generate(
-                controleOccupation.listOfBehaviorADLS.length, (index) {
-              var model = controleOccupation.listOfBehaviorADLS[index];
+                controlOccupation.listOfBehaviorADLS.length, (index) {
+              var model = controlOccupation.listOfBehaviorADLS[index];
               if (model is ModelDropDownOccupation) {
                 return DropdownButtonItem(
                   controller: model.textEditingController,
-                  labelName: model.lableName,
+                  labelName: model.labelName,
                   itemList: model.itemList,
                 );
               }
@@ -42,7 +42,7 @@ class BehaviorADLS extends StatelessWidget {
                 return TextFormFiledStepper(
                     hintText: behaviorADLS[index].answer,
                     textInputType: model.textInputType,
-                    labelname: model.labelname,
+                    labelName: model.labelname,
                     textEditingController: model.textEditingController);
               }
               if (model is ModelDividerOccupation) {

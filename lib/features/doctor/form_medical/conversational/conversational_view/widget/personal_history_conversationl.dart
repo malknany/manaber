@@ -19,7 +19,7 @@ class PersonalHistoryConversationalView extends StatelessWidget {
         title: const Text(
           'البیانات الأولیة',
           style: TextStyle(
-            color: AppColors.primarycolor,
+            color: AppColors.primaryColor,
           ),
         ),
       ),

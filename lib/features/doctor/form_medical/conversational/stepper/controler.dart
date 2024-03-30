@@ -64,7 +64,7 @@ class StepperNoteConversation {
   final note = TextEditingController();
 }
 
-class ControleConversational {
+class ControlConversational {
   final StepperPersonalHistoryConversational controle =
       StepperPersonalHistoryConversational();
   final StepperMedicalAndGeneticHistoryOfTheFamily controleMedical =
@@ -80,142 +80,142 @@ class ControleConversational {
   List<ModelConversational> listOfChildMedicalAndMedicalHistory = [];
   List<ModelConversational> listOfChildDevelopmentalHistory = [];
   List<ModelConversational> listOfNoteConversation = [];
-  ControleConversational() {
+  ControlConversational() {
     listOfPersonal = [
-      ModelConversational(lable: 'اسم الطفل/ة', controle: controle.childsName),
+      ModelConversational(lable: 'اسم الطفل/ة', control: controle.childsName),
       ModelConversational(
-          lable: 'تاریخ المیلاد', controle: controle.dateOfBirth),
-      ModelConversational(lable: 'العمر الزمني', controle: controle.age),
+          lable: 'تاریخ المیلاد', control: controle.dateOfBirth),
+      ModelConversational(lable: 'العمر الزمني', control: controle.age),
       ModelConversational(
-          lable: 'حاله الطفل', controle: controle.childCondition),
+          lable: 'حاله الطفل', control: controle.childCondition),
       ModelConversational(
-          lable: 'تاریخ الكشف', controle: controle.examinationDate),
+          lable: 'تاریخ الكشف', control: controle.examinationDate),
       ModelConversational(
-          lable: 'اسم ولي الامر', controle: controle.parentsName),
+          lable: 'اسم ولي الامر', control: controle.parentsName),
       ModelConversational(
-          lable: 'مستوي تعلیم الأب', controle: controle.fathersEducationLevel),
+          lable: 'مستوي تعلیم الأب', control: controle.fathersEducationLevel),
       ModelConversational(
-          lable: 'مستوى تعلیم الأم', controle: controle.motherEducationLevel),
+          lable: 'مستوى تعلیم الأم', control: controle.motherEducationLevel),
       ModelConversational(
-          lable: 'عمل الأب', controle: controle.fathersOccupation),
+          lable: 'عمل الأب', control: controle.fathersOccupation),
       ModelConversational(
-          lable: 'عمل الأم', controle: controle.mothersOccupation),
+          lable: 'عمل الأم', control: controle.mothersOccupation),
       ModelConversational(
-          lable: 'عدد أفراد الاسرة', controle: controle.numberOfFamilyMembers),
+          lable: 'عدد أفراد الاسرة', control: controle.numberOfFamilyMembers),
       ModelConversational(
-          lable: 'ترتیب الطفل بین أخواتھ', controle: controle.childsBirthOrder),
+          lable: 'ترتیب الطفل بین أخواتھ', control: controle.childsBirthOrder),
       ModelConversational(
           lable: 'ھل یوجد درجه القرابه بین الوالدین',
-          controle: controle.relationshipBetweenTheParents),
+          control: controle.relationshipBetweenTheParents),
       ModelConversational(
           lable: 'مع من یقیم الطفل',
-          controle: controle.placeOfResidenceOfTheChild),
+          control: controle.placeOfResidenceOfTheChild),
       ModelConversational(
           lable: 'المسؤول عن رعایة الطفل في المنزل',
-          controle: controle.childCareAtHome),
+          control: controle.childCareAtHome),
       ModelConversational(
           lable: 'ھل الطفل متكیف  في الاسرة',
-          controle: controle.childAdaptedToTheFamily),
+          control: controle.childAdaptedToTheFamily),
       ModelConversational(
           lable: 'ھل توجد أمراض وراثیة في الأسرة',
-          controle: controle.hereditaryDiseases),
+          control: controle.hereditaryDiseases),
     ];
     listOfMedicalAndGeneticHistoryOfTheFamily = [
       ModelConversational(
           lable: 'ھل یوجد أي حالات مشابه أو أعاقات أخرى',
-          controle: controleMedical.controle1),
+          control: controleMedical.controle1),
       ModelConversational(
           lable: 'ھل أجرى الأب والأم الصفوحات الجینیة',
-          controle: controleMedical.controle2),
+          control: controleMedical.controle2),
       ModelConversational(
           lable: 'ھل یعتقد الأطباء الاضطراب ناتج عن عوامل وراثیة',
-          controle: controleMedical.controle3),
+          control: controleMedical.controle3),
       ModelConversational(
-          lable: 'عمر الأم عند الولادة', controle: controleMedical.controle4),
+          lable: 'عمر الأم عند الولادة', control: controleMedical.controle4),
       ModelConversational(
-          lable: 'طول فتره الحمل', controle: controleMedical.controle5),
+          lable: 'طول فتره الحمل', control: controleMedical.controle5),
       ModelConversational(
           lable: 'ھل عانت الأم من أي امراض قبل الحمل',
-          controle: controleMedical.controle6),
+          control: controleMedical.controle6),
       ModelConversational(
           lable: 'ھل اصیبت الأم من أي أمراض اثناء الحمل',
-          controle: controleMedical.controle7),
+          control: controleMedical.controle7),
       ModelConversational(
           lable: 'ھل عانت الأم من التعب والارھاق الحاد اثناء فترة الحمل',
-          controle: controleMedical.controle8),
+          control: controleMedical.controle8),
     ];
     listOfChildMedicalAndMedicalHistory = [
       ModelConversational(
           lable: 'متى اكتشفت الأسرة الاضطراب',
-          controle: childMedicalAndMedicalHistory.controle1),
+          control: childMedicalAndMedicalHistory.controle1),
       ModelConversational(
           lable: 'ھل أصیب الطفل بأي أمراض حادة أو حوادث أثرت على تطوره ونموه',
-          controle: childMedicalAndMedicalHistory.controle2),
+          control: childMedicalAndMedicalHistory.controle2),
       ModelConversational(
           lable: 'ھل یعاني الطفل من مشكلات سمعیة',
-          controle: childMedicalAndMedicalHistory.controle3),
+          control: childMedicalAndMedicalHistory.controle3),
       ModelConversational(
           lable: 'ھل یعاني الطفل من مشكلات بصریة',
-          controle: childMedicalAndMedicalHistory.controle4),
+          control: childMedicalAndMedicalHistory.controle4),
       ModelConversational(
           lable: 'ھل یعاني الطفل من أي تشوھات خلقیھ',
-          controle: childMedicalAndMedicalHistory.controle5),
+          control: childMedicalAndMedicalHistory.controle5),
       ModelConversational(
           lable: 'ھل یعاني الطفل من مشكلات في تناول الطعام أو الشراب',
-          controle: childMedicalAndMedicalHistory.controle6),
+          control: childMedicalAndMedicalHistory.controle6),
       ModelConversational(
           lable: 'ھل یعاني الطفل من نوبات تشنجات',
-          controle: childMedicalAndMedicalHistory.controle7),
+          control: childMedicalAndMedicalHistory.controle7),
       ModelConversational(
           lable: 'ھل یعاني الطفل من الحساسیة لأدویھ أو أطعمھ معینه',
-          controle: childMedicalAndMedicalHistory.controle8),
+          control: childMedicalAndMedicalHistory.controle8),
       ModelConversational(
           lable: 'ھل أجري الطفل عملیات جراحیة',
-          controle: childMedicalAndMedicalHistory.controle9),
+          control: childMedicalAndMedicalHistory.controle9),
       ModelConversational(
           lable: 'ھل یتناول الطفل أدویھ أو عقاقیر حالیا',
-          controle: childMedicalAndMedicalHistory.controle10),
+          control: childMedicalAndMedicalHistory.controle10),
       ModelConversational(
           lable: 'ھل مازال الطفل یستخدم الحفاظ',
-          controle: childMedicalAndMedicalHistory.controle11),
+          control: childMedicalAndMedicalHistory.controle11),
     ];
     listOfChildDevelopmentalHistory = [
       ModelConversational(
           lable: 'مستوى النمو اللغوي الحالي',
-          controle: contolrChildDevelopmentalHistory.controle1),
+          control: contolrChildDevelopmentalHistory.controle1),
       ModelConversational(
           lable: 'مستوى النمو الحركي الحالي',
-          controle: contolrChildDevelopmentalHistory.controle2),
+          control: contolrChildDevelopmentalHistory.controle2),
       ModelConversational(
           lable: 'مستوى المھارات الوظیفیة الاستقلالیة الحالیة',
-          controle: contolrChildDevelopmentalHistory.controle3),
+          control: contolrChildDevelopmentalHistory.controle3),
       ModelConversational(
           lable: 'مستوى المھارات الادراكیة والمعرفیة الحالیة',
-          controle: contolrChildDevelopmentalHistory.controle4),
+          control: contolrChildDevelopmentalHistory.controle4),
       ModelConversational(
           lable: 'نشاط حركي زائد',
-          controle: contolrChildDevelopmentalHistory.controle5),
+          control: contolrChildDevelopmentalHistory.controle5),
       ModelConversational(
           lable: 'تشتت انتباه والتركیز',
-          controle: contolrChildDevelopmentalHistory.controle6),
+          control: contolrChildDevelopmentalHistory.controle6),
       ModelConversational(
           lable: 'سلوك عدواني',
-          controle: contolrChildDevelopmentalHistory.controle7),
+          control: contolrChildDevelopmentalHistory.controle7),
       ModelConversational(
           lable: 'سلوك العناد',
-          controle: contolrChildDevelopmentalHistory.controle8),
+          control: contolrChildDevelopmentalHistory.controle8),
       ModelConversational(
           lable: 'سلوكیات أخرى',
-          controle: contolrChildDevelopmentalHistory.controle9),
+          control: contolrChildDevelopmentalHistory.controle9),
     ];
     listOfNoteConversation = [
       ModelConversational(
-          lable: 'المعززات', controle: controleNoteConversation.reinforcers),
+          lable: 'المعززات', control: controleNoteConversation.reinforcers),
       ModelConversational(
           lable: 'الاھداف المبدئیة',
-          controle: controleNoteConversation.initialGoals),
+          control: controleNoteConversation.initialGoals),
       ModelConversational(
-          lable: 'ملاحظات', controle: controleNoteConversation.note),
+          lable: 'ملاحظات', control: controleNoteConversation.note),
     ];
   }
 }

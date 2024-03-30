@@ -8,9 +8,9 @@ import '../controler.dart';
 class ChildDevelopmentalHistory extends StatelessWidget {
   const ChildDevelopmentalHistory(
       {super.key,
-      required this.controleConversational,
+      required this.controlConversational,
       required this.childDevelopmentalHistory});
-  final ControleConversational controleConversational;
+  final ControlConversational controlConversational;
   final List<ModelPatientInfo> childDevelopmentalHistory;
 
   @override
@@ -19,7 +19,7 @@ class ChildDevelopmentalHistory extends StatelessWidget {
       appBar: AppBar(
         title: const Text('تاریخ النمو التطوري للطفل'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -30,9 +30,9 @@ class ChildDevelopmentalHistory extends StatelessWidget {
                 return TextFormFiledStepper(
                     hintText: childDevelopmentalHistory[index].answer,
                     textDirection: TextDirection.rtl,
-                    textEditingController: controleConversational
-                        .listOfChildDevelopmentalHistory[index].controle,
-                    labelname: childDevelopmentalHistory[index].question!);
+                    textEditingController: controlConversational
+                        .listOfChildDevelopmentalHistory[index].control,
+                    labelName: childDevelopmentalHistory[index].question!);
               },
               separatorBuilder: (context, index) {
                 if (index == 3) {
@@ -46,7 +46,7 @@ class ChildDevelopmentalHistory extends StatelessWidget {
                   return const SizedBox.shrink();
                 }
               },
-              itemCount: controleConversational
+              itemCount: controlConversational
                   .listOfChildDevelopmentalHistory.length)),
     );
   }

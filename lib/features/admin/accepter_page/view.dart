@@ -42,7 +42,7 @@ class _AdminAcceptUserState extends State<AdminAcceptUser> {
               );
             } else if (state is PendingLoading) {
               return const Center(
-                child: CircularProgressIndicator(color: AppColors.primarycolor),
+                child: CircularProgressIndicator(color: AppColors.primaryColor),
               );
             } else if (state is PendingErorr) {
               return Center(
@@ -53,7 +53,7 @@ class _AdminAcceptUserState extends State<AdminAcceptUser> {
               );
             } else if (state is PendingSuccess) {
               return RefreshIndicator(
-                color: AppColors.primarycolor,
+                color: AppColors.primaryColor,
                 onRefresh: () {
                   return context.read<PendingCubit>().getPendingUsers();
                 },
@@ -100,7 +100,7 @@ class _AdminAcceptUserState extends State<AdminAcceptUser> {
                                       state.listOfUserspending.removeAt(index);
                                     });
                                     itemSnackBar(context, 'تم مقبول',
-                                        AppColors.primarycolor);
+                                        AppColors.primaryColor);
                                   },
                                   name: state.listOfUserspending[index].name!,
                                   job: state.listOfUserspending[index].role! ==

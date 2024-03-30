@@ -14,11 +14,11 @@ class ReceptionistProfileCubit extends Cubit<ReceptionistProfileState> {
 
   final token = CacheHelper.getData(key: AppConstKey.token);
 
-  void getInfoPatinet() async {
+  void getInfoPatient() async {
     emit(ReceptionistProfileLoading());
     try {
-      final response = await DioHelper.getdata(
-          url: patientinfo, headers: {'Authorization': 'Bearer ${token[0]}'});
+      final response = await DioHelper.getData(
+          url: patientInfo, headers: {'Authorization': 'Bearer ${token[0]}'});
       if (response.statusCode == 200) {
         print(response.data);
         print(response.statusCode);
@@ -27,7 +27,7 @@ class ReceptionistProfileCubit extends Cubit<ReceptionistProfileState> {
             modelReceptionistProfile:
                 ModelProfile.fromJson(response.data)));
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
         print(e.response!.data);
         print(e.response!.statusCode);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/form_medical/cubit/pateint_info_cubit.dart';
-import 'package:manaber/features/doctor/form_medical/model.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../../cubit/pateint_info_cubit.dart';
+import '../../../model.dart';
+import '../../../../../../shared/styles/styles.dart';
 import '../model.dart';
 import '../controller.dart';
 import '../../../../../../shared/components/components.dart';
@@ -12,10 +12,10 @@ class Note extends StatelessWidget {
   const Note(
       {super.key,
       required this.note,
-      required this.controleFileAssesment,
+      required this.controlFileAssessment,
       required this.id});
   final String id;
-  final ControleFileAssesment controleFileAssesment;
+  final ControlFileAssessment controlFileAssessment;
   final List<ModelPatientInfo> note;
 
   @override
@@ -30,7 +30,7 @@ class Note extends StatelessWidget {
             icon: const Icon(Icons.arrow_back_ios_new)),
         title: const Text('Note'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -44,40 +44,40 @@ class Note extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 1,
                 itemBuilder: (context, index) {
-                  var model = controleFileAssesment.listGoal.last;
+                  var model = controlFileAssessment.listGoal.last;
                   if (model is TextFormFiledStepperModel) {
                     return Column(
                       children: [
                         TextFormFiledStepper(
                             hintText: note[0].answer,
-                            labelname: model.labelName,
+                            labelName: model.labelName,
                             textEditingController: model.textEditingController),
                         ButtonText(
                           text: 'Save',
                           onPressed: () {
                             final listOfAnswer = _sendData();
-                            BlocProvider.of<PateintInfoCubit>(context)
+                            BlocProvider.of<PatientInfoCubit>(context)
                                 .postAnswerToApi(id, listOfAnswer);
                             // Navigator.pop(context, 'refresh');
                           },
                         ),
-                        BlocBuilder<PateintInfoCubit, PateintInfoState>(
+                        BlocBuilder<PatientInfoCubit, PatientInfoState>(
                           builder: (context, state) {
-                            if (state is PateintLoading) {
+                            if (state is PatientLoading) {
                               return const Center(
                                 child: CircularProgressIndicator(
-                                  color: AppColors.primarycolor,
+                                  color: AppColors.primaryColor,
                                 ),
                               );
                             }
-                            if (state is PateintSuccess) {
+                            if (state is PatientSuccess) {
                               return const Center(
                                   child: Icon(
                                 Icons.check,
-                                color: AppColors.primarycolor,
+                                color: AppColors.primaryColor,
                               ));
                             }
-                            if (state is PateintErrorMsg) {
+                            if (state is PatientErrorMsg) {
                               return Text(
                                 state.msg,
                                 textDirection: TextDirection.rtl,
@@ -104,7 +104,7 @@ class Note extends StatelessWidget {
   _sendData() {
     List<Map> listOfAnswer = [];
     int i = 1;
-    for (final person in controleFileAssesment.listPatientInfo) {
+    for (final person in controlFileAssessment.listPatientInfo) {
       if (person is DropdownButtonItemModel) {
         listOfAnswer.add(
           ModelPatientInfo(
@@ -128,7 +128,7 @@ class Note extends StatelessWidget {
       }
     }
 
-    for (final person in controleFileAssesment.listicfBody) {
+    for (final person in controlFileAssessment.listicfBody) {
       if (person is DropdownButtonItemModel) {
         listOfAnswer.add(
           ModelPatientInfo(
@@ -167,7 +167,7 @@ class Note extends StatelessWidget {
         }
       }
     }
-    for (final person in controleFileAssesment.listNeurological) {
+    for (final person in controlFileAssessment.listNeurological) {
       if (person is TextFormFiledStepperModel) {
         listOfAnswer.add(
           ModelPatientInfo(
@@ -195,7 +195,7 @@ class Note extends StatelessWidget {
         }
       }
     }
-    for (final person in controleFileAssesment.listMotor) {
+    for (final person in controlFileAssessment.listMotor) {
       if (person is DropdownButtonItemModel) {
         listOfAnswer.add(
           ModelPatientInfo(
@@ -238,7 +238,7 @@ class Note extends StatelessWidget {
         }
       }
     }
-    for (final person in controleFileAssesment.listlevelOfSelctivity) {
+    for (final person in controlFileAssessment.listlevelOfSelctivity) {
       if (person is DropdownButtonItemModel) {
         listOfAnswer.add(
           ModelPatientInfo(
@@ -270,7 +270,7 @@ class Note extends StatelessWidget {
         }
       }
     }
-    for (final person in controleFileAssesment.listMuscloskelton) {
+    for (final person in controlFileAssessment.listMuscloskelton) {
       if (person is TextFormFiledStepperModel) {
         listOfAnswer.add(
           ModelPatientInfo(
@@ -294,7 +294,7 @@ class Note extends StatelessWidget {
         i++;
       }
     }
-    for (final person in controleFileAssesment.listRom) {
+    for (final person in controlFileAssessment.listRom) {
       if (person is TextFormFiledStepperModel) {
         listOfAnswer.add(
           ModelPatientInfo(
@@ -318,7 +318,7 @@ class Note extends StatelessWidget {
         i++;
       }
     }
-    for (final person in controleFileAssesment.listParticipation) {
+    for (final person in controlFileAssessment.listParticipation) {
       if (person is TextFormFiledStepperModel) {
         listOfAnswer.add(
           ModelPatientInfo(
@@ -331,7 +331,7 @@ class Note extends StatelessWidget {
         i++;
       }
     }
-    for (final person in controleFileAssesment.listGoal) {
+    for (final person in controlFileAssessment.listGoal) {
       if (person is TextFormFiledStepperModel) {
         listOfAnswer.add(
           ModelPatientInfo(

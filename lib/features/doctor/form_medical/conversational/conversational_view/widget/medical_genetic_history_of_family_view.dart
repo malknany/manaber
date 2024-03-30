@@ -20,7 +20,7 @@ class MedicalAndGeneticHistoryOfTheFamilyView extends StatelessWidget {
         title: const Text(
           'التاریخ المرضي والوراثي للعائلة',
           style: TextStyle(
-            color: AppColors.primarycolor,
+            color: AppColors.primaryColor,
           ),
         ),
       ),

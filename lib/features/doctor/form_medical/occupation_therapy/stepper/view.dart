@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/form_medical/keep_alive.dart';
+import '../../keep_alive.dart';
 import '../../cubit/pateint_info_cubit.dart';
 import '../../model.dart';
 import 'controler.dart';
@@ -20,7 +20,7 @@ class StepperOccupation extends StatefulWidget {
       required this.listOfInfoPatient});
   final String id;
   final List<ModelPatientInfo> listOfInfoPatient;
-  final ControleOccupation controleOccupation;
+  final ControlOccupation controleOccupation;
 
   @override
   State<StepperOccupation> createState() => _StepperOccupationState();
@@ -79,34 +79,34 @@ class _StepperOccupationState extends State<StepperOccupation>
                 KeepAliveScreen(
                   page: PersonalHistory(
                       personalHistory: personalHistory,
-                      controleOccupation: widget.controleOccupation),
+                      controlOccupation: widget.controleOccupation),
                 ),
                 KeepAliveScreen(
                   page: AssociatedDisorders(
-                      controleOccupation: widget.controleOccupation,
+                      controlOccupation: widget.controleOccupation,
                       associatedDisorders: associatedDisorders),
                 ),
                 KeepAliveScreen(
                   page: BodyFunctionStrucer(
-                      controleOccupation: widget.controleOccupation,
+                      controlOccupation: widget.controleOccupation,
                       bodyFunctionStrucer: bodyFunctionAndStrucer),
                 ),
                 KeepAliveScreen(
                   page: BehaviorADLS(
-                      controleOccupation: widget.controleOccupation,
+                      controlOccupation: widget.controleOccupation,
                       behaviorADLS: behaviorAndADLS),
                 ),
                 KeepAliveScreen(
                   page: OccupationalPerformance(
-                      controleOccupation: widget.controleOccupation,
+                      controlOccupation: widget.controleOccupation,
                       occupationalPerformance: note),
                 ),
                 BlocProvider(
-                  create: (context) => PateintInfoCubit(),
+                  create: (context) => PatientInfoCubit(),
                   child: KeepAliveScreen(
                     page: NoteOccupation(
                         noteOccupation: note,
-                        controleOccupation: widget.controleOccupation,
+                        controlOccupation: widget.controleOccupation,
                         id: widget.id),
                   ),
                 ),
@@ -118,7 +118,7 @@ class _StepperOccupationState extends State<StepperOccupation>
             children: [
               TextButton(
                 style: TextButton.styleFrom(
-                  backgroundColor: AppColors.primarycolor,
+                  backgroundColor: AppColors.primaryColor,
                 ),
                 onPressed: () {
                   _navigateToPreviousPage();
@@ -131,7 +131,7 @@ class _StepperOccupationState extends State<StepperOccupation>
               ),
               TextButton(
                 style: TextButton.styleFrom(
-                  backgroundColor: AppColors.primarycolor,
+                  backgroundColor: AppColors.primaryColor,
                 ),
                 onPressed: () {
                   _navigateToNextPage();

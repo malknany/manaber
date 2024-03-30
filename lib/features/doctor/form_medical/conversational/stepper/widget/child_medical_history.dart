@@ -7,9 +7,9 @@ import '../controler.dart';
 class ChildMedicalAndMedicalHistory extends StatelessWidget {
   const ChildMedicalAndMedicalHistory(
       {super.key,
-      required this.controleConversational,
+      required this.controlConversational,
       required this.childMedicalAndMedicalHistory});
-  final ControleConversational controleConversational;
+  final ControlConversational controlConversational;
   final List<ModelPatientInfo> childMedicalAndMedicalHistory;
 
   @override
@@ -18,22 +18,22 @@ class ChildMedicalAndMedicalHistory extends StatelessWidget {
       appBar: AppBar(
         title: const Text('التاریخ الصحي والمرضي للطفل'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
       body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
           child: ListView.builder(
-            itemCount: controleConversational
+            itemCount: controlConversational
                 .listOfChildMedicalAndMedicalHistory.length,
             itemBuilder: (context, index) {
               return TextFormFiledStepper(
                 hintText: childMedicalAndMedicalHistory[index].answer,
                 textDirection: TextDirection.rtl,
-                textEditingController: controleConversational
-                    .listOfChildMedicalAndMedicalHistory[index].controle,
-                labelname: childMedicalAndMedicalHistory[index].question!,
+                textEditingController: controlConversational
+                    .listOfChildMedicalAndMedicalHistory[index].control,
+                labelName: childMedicalAndMedicalHistory[index].question!,
               );
             },
           )),

@@ -1,12 +1,13 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/admin/our_section_admin/view.dart';
+import '../../admin/our_section_admin/view.dart';
 import '../../doctor/our_sections/view.dart';
-import '../../regitration/login/cubit/log_in_cubit.dart';
-import '../../regitration/login/model.dart';
-import '../../regitration/login/view.dart';
+import '../../registration/login/cubit/log_in_cubit.dart';
+import '../../registration/login/model.dart';
+import '../../registration/login/view.dart';
 import '../../../shared/components/navigator.dart';
 import '../../../shared/network/local/const_key.dart';
 import '../../../shared/network/local/shared_preferences.dart';
@@ -21,13 +22,13 @@ class SplashCubit extends Cubit<SplashState> {
   checkToken(
     context,
   ) {
-    print("Token====$token");
+    log("Token====$token");
     if (token != null) {
       _refreshToken();
-      print("Refrsh Token====$token");
+      // log("Refresh Token====$token");
       if (token[1] == 'DOCTOR') {
         Timer(const Duration(seconds: 4), () {
-          navigateAndFinished(context, const Oursectiosn());
+          navigateAndFinished(context, const OurSections());
         });
       }
       if (token[1] == 'ADMIN') {
@@ -50,22 +51,22 @@ class SplashCubit extends Cubit<SplashState> {
   _refreshToken() async {
     emit(SplashLoading());
     try {
-      final response = await DioHelper.postdata(
-          url: refresh, posteddata: {"token": token[0]});
+      final response = await DioHelper.postData(
+          url: refresh, postedData: {"token": token[0]});
       if (response.statusCode == 200) {
-        print(response.data);
-        print(response.statusCode);
-        print(response.statusMessage);
+        // print(response.data);
+        // print(response.statusCode);
+        // print(response.statusMessage);
         final userModel = UsersModel.fromJson(response.data);
         CacheHelper.saveData(
             key: AppConstKey.token, value: [userModel.token, userModel.role]);
-        print(
+        log(
             "Token and Role =====${CacheHelper.getData(key: AppConstKey.token)}");
         emit(SplashSuccess());
       }
     } on DioException catch (e) {
       if (e.response != null) {
-        print(e.response!.data);
+        log(e.response!.data);
         print(e.response!.statusCode);
         print(e.response!.statusMessage);
       } else {

@@ -2,24 +2,24 @@
 part of 'pateint_info_cubit.dart';
 
 @immutable
-abstract class PateintInfoState {}
+abstract class PatientInfoState {}
 
-class PateintInitial extends PateintInfoState {}
+class PateintInitial extends PatientInfoState {}
 
-class PateintLoading extends PateintInfoState {}
+class PatientLoading extends PatientInfoState {}
 
-class PateintErrorMsg extends PateintInfoState {
+class PatientErrorMsg extends PatientInfoState {
   final String msg;
-  PateintErrorMsg({
+  PatientErrorMsg({
     required this.msg,
   });
 }
 
-class PateintEmpty extends PateintInfoState {}
+class PateintEmpty extends PatientInfoState {}
 
-class PateintSuccess extends PateintInfoState {
+class PatientSuccess extends PatientInfoState {
   final List<ModelPatientInfo> listOfInfoPatient;  
-  PateintSuccess({
+  PatientSuccess({
     required this.listOfInfoPatient,
   });
 }

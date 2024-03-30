@@ -10,10 +10,10 @@ import '../controler.dart';
 class NoteConversation extends StatelessWidget {
   const NoteConversation(
       {super.key,
-      required this.controleConversational,
+      required this.controlConversational,
       required this.id,
       required this.noteConversation});
-  final ControleConversational controleConversational;
+  final ControlConversational controlConversational;
   final String id;
   final List<ModelPatientInfo> noteConversation;
   @override
@@ -27,7 +27,7 @@ class NoteConversation extends StatelessWidget {
             icon: const Icon(Icons.arrow_back_ios_new)),
         title: const Text('ملاحظات'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -38,13 +38,13 @@ class NoteConversation extends StatelessWidget {
             children: [
               Column(
                 children: List.generate(
-                  controleConversational.listOfNoteConversation.length,
+                  controlConversational.listOfNoteConversation.length,
                   (index) => TextFormFiledStepper(
                     hintText: noteConversation[index].answer,
                     textDirection: TextDirection.rtl,
-                    textEditingController: controleConversational
-                        .listOfNoteConversation[index].controle,
-                    labelname: noteConversation[index].question!,
+                    textEditingController: controlConversational
+                        .listOfNoteConversation[index].control,
+                    labelName: noteConversation[index].question!,
                   ),
                 ),
               ),
@@ -54,61 +54,61 @@ class NoteConversation extends StatelessWidget {
                     List<Map> listOfAnswer = [];
                     int i = 1;
                     for (final person
-                        in controleConversational.listOfPersonal) {
+                        in controlConversational.listOfPersonal) {
                       listOfAnswer.add(
                         ModelPatientInfo(
                           questionId: i,
-                          answer: person.controle.text.isEmpty
+                          answer: person.control.text.isEmpty
                               ? 'لايوجد'
-                              : person.controle.text,
+                              : person.control.text,
                         ).toJson(),
                       );
                       i++;
                     }
-                    for (final person in controleConversational
+                    for (final person in controlConversational
                         .listOfMedicalAndGeneticHistoryOfTheFamily) {
                       listOfAnswer.add(
                         ModelPatientInfo(
                           questionId: i,
-                          answer: person.controle.text.isEmpty
+                          answer: person.control.text.isEmpty
                               ? 'لايوجد'
-                              : person.controle.text,
+                              : person.control.text,
                         ).toJson(),
                       );
                       i++;
                     }
-                    for (final person in controleConversational
+                    for (final person in controlConversational
                         .listOfChildMedicalAndMedicalHistory) {
                       listOfAnswer.add(
                         ModelPatientInfo(
                           questionId: i,
-                          answer: person.controle.text.isEmpty
+                          answer: person.control.text.isEmpty
                               ? 'لايوجد'
-                              : person.controle.text,
+                              : person.control.text,
                         ).toJson(),
                       );
                       i++;
                     }
-                    for (final person in controleConversational
+                    for (final person in controlConversational
                         .listOfChildDevelopmentalHistory) {
                       listOfAnswer.add(
                         ModelPatientInfo(
                           questionId: i,
-                          answer: person.controle.text.isEmpty
+                          answer: person.control.text.isEmpty
                               ? 'لايوجد'
-                              : person.controle.text,
+                              : person.control.text,
                         ).toJson(),
                       );
                       i++;
                     }
                     for (final person
-                        in controleConversational.listOfNoteConversation) {
+                        in controlConversational.listOfNoteConversation) {
                       listOfAnswer.add(
                         ModelPatientInfo(
                           questionId: i,
-                          answer: person.controle.text.isEmpty
+                          answer: person.control.text.isEmpty
                               ? 'لايوجد'
-                              : person.controle.text,
+                              : person.control.text,
                         ).toJson(),
                       );
                       i++;
@@ -118,26 +118,26 @@ class NoteConversation extends StatelessWidget {
                     }
                     debugPrint(listOfAnswer.toString());
 
-                    BlocProvider.of<PateintInfoCubit>(context)
+                    BlocProvider.of<PatientInfoCubit>(context)
                         .postAnswerToApi(id, listOfAnswer);
                   }),
-              BlocBuilder<PateintInfoCubit, PateintInfoState>(
+              BlocBuilder<PatientInfoCubit, PatientInfoState>(
                 builder: (context, state) {
-                  if (state is PateintLoading) {
+                  if (state is PatientLoading) {
                     return const Center(
                       child: CircularProgressIndicator(
-                        color: AppColors.primarycolor,
+                        color: AppColors.primaryColor,
                       ),
                     );
                   }
-                  if (state is PateintSuccess) {
+                  if (state is PatientSuccess) {
                     return const Center(
                         child: Icon(
                       Icons.check,
-                      color: AppColors.primarycolor,
+                      color: AppColors.primaryColor,
                     ));
                   }
-                  if (state is PateintErrorMsg) {
+                  if (state is PatientErrorMsg) {
                     return Text(
                       state.msg,
                       textDirection: TextDirection.rtl,

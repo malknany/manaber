@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/doctor/form_medical/keep_alive.dart';
+import '../../keep_alive.dart';
 import '../../cubit/pateint_info_cubit.dart';
 import '../../model.dart';
 import '../../../../../shared/styles/colors.dart';
@@ -18,7 +18,7 @@ class StepperConversational extends StatelessWidget {
       required this.controleConversational,
       required this.listOfModelPatenitInfo});
   final PageController _pageController = PageController();
-  final ControleConversational controleConversational;
+  final ControlConversational controleConversational;
   final List<ModelPatientInfo> listOfModelPatenitInfo;
   final String id;
 
@@ -70,30 +70,30 @@ class StepperConversational extends StatelessWidget {
                 KeepAliveScreen(
                   page: PersonalHistoryConversational(
                     personalHistory: personalHistory,
-                    controleConversational: controleConversational,
+                    controlConversational: controleConversational,
                   ),
                 ),
                 KeepAliveScreen(
                   page: MedicalAndGeneticHistoryOfTheFamily(
                       medicalAndGeneticHistoryOfTheFamily: medicalGenetic,
-                      controleConversational: controleConversational),
+                      controlConversational: controleConversational),
                 ),
                 KeepAliveScreen(
                   page: ChildMedicalAndMedicalHistory(
                       childMedicalAndMedicalHistory: childMedical,
-                      controleConversational: controleConversational),
+                      controlConversational: controleConversational),
                 ),
                 KeepAliveScreen(
                   page: ChildDevelopmentalHistory(
                       childDevelopmentalHistory: childDevelopment,
-                      controleConversational: controleConversational),
+                      controlConversational: controleConversational),
                 ),
                 BlocProvider(
-                  create: (context) => PateintInfoCubit(),
+                  create: (context) => PatientInfoCubit(),
                   child: KeepAliveScreen(
                     page: NoteConversation(
                       noteConversation: note,
-                      controleConversational: controleConversational,
+                      controlConversational: controleConversational,
                       id: id,
                     ),
                   ),
@@ -108,7 +108,7 @@ class StepperConversational extends StatelessWidget {
               children: [
                 TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: AppColors.primarycolor,
+                    backgroundColor: AppColors.primaryColor,
                   ),
                   onPressed: () {
                     _navigateToPreviousPage();
@@ -121,7 +121,7 @@ class StepperConversational extends StatelessWidget {
                 ),
                 TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: AppColors.primarycolor,
+                    backgroundColor: AppColors.primaryColor,
                   ),
                   onPressed: () {
                     _navigateToNextPage();

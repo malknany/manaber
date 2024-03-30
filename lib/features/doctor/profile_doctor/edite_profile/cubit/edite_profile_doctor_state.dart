@@ -1,17 +1,17 @@
 part of 'edite_profile_doctor_cubit.dart';
 
 @immutable
-abstract class EditeProfileDoctorState {}
+abstract class EditProfileDoctorState {}
 
-class EditeProfileDoctorInitial extends EditeProfileDoctorState {}
+class EditProfileDoctorInitial extends EditProfileDoctorState {}
 
-class EditeProfileDoctorLoading extends EditeProfileDoctorState {}
+class EditProfileDoctorLoading extends EditProfileDoctorState {}
 
-class EditeProfileDoctorSuccess extends EditeProfileDoctorState {}
+class EditProfileDoctorSuccess extends EditProfileDoctorState {}
 
-class EditeProfileDoctorError extends EditeProfileDoctorState {
+class EditProfileDoctorError extends EditProfileDoctorState {
   final String msg;
-  EditeProfileDoctorError({
+  EditProfileDoctorError({
     required this.msg,
   });
 }

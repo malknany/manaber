@@ -2,35 +2,35 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../model.dart';
 import '../../../../shared/network/local/const_key.dart';
 import '../../../../shared/network/local/shared_preferences.dart';
 import '../../../../shared/network/remote/dio_helper.dart';
 import '../../../../shared/network/remote/end_points.dart';
+import '../model.dart';
 
 part 'pateint_info_state.dart';
 
-class PateintInfoCubit extends Cubit<PateintInfoState> {
-  PateintInfoCubit() : super(PateintInitial());
+class PatientInfoCubit extends Cubit<PatientInfoState> {
+  PatientInfoCubit() : super(PateintInitial());
   final token = CacheHelper.getData(key: AppConstKey.token);
   List<ModelPatientInfo> listOfInfoPatient = [];
   getPatinetFromApi(id) async {
-    emit(PateintLoading());
+    emit(PatientLoading());
     try {
       _getModelApi(id).then((value) {
         listOfInfoPatient =
             value.map((e) => ModelPatientInfo.fromJson(e)).toList();
 
-        emit(PateintSuccess(listOfInfoPatient: listOfInfoPatient));
+        emit(PatientSuccess(listOfInfoPatient: listOfInfoPatient));
       });
     } on DioException catch (e) {
       if (e.response != null) {
         print(e.response!.data);
         print(e.response!.statusCode);
         print(e.response!.statusMessage);
-        emit(PateintErrorMsg(msg: e.response!.data['message']));
+        emit(PatientErrorMsg(msg: e.response!.data['message']));
       } else {
-        emit(PateintErrorMsg(msg: e.error.toString()));
+        emit(PatientErrorMsg(msg: e.error.toString()));
         print(e.message);
       }
     } catch (e) {
@@ -39,7 +39,7 @@ class PateintInfoCubit extends Cubit<PateintInfoState> {
   }
 
   Future<List> _getModelApi(id) async {
-    final response = await DioHelper.getdata(
+    final response = await DioHelper.getData(
         url: '$patients$id/answers',
         headers: {'Authorization': 'Bearer ${token[0]}'});
     if (response.statusCode == 200) {
@@ -53,7 +53,7 @@ class PateintInfoCubit extends Cubit<PateintInfoState> {
   }
 
   postAnswerToApi(id, List<Map> listOfAnswer) async {
-    emit(PateintLoading());
+    emit(PatientLoading());
     try {
       final response = await Dio().post(
           'http://manaberdev.duckdns.org/$patients$id/answers',
@@ -63,7 +63,7 @@ class PateintInfoCubit extends Cubit<PateintInfoState> {
       //     url: '$patients$id/answers',
       //     posteddata: listOfAnswer!.map((e) => null),
       //     headers: {'Authorization': 'Bearer ${token[0]}'});
-      emit(PateintSuccess(listOfInfoPatient: listOfInfoPatient));
+      emit(PatientSuccess(listOfInfoPatient: listOfInfoPatient));
       if (response.statusCode == 200) {
         print(response.data);
         print(response.statusCode);
@@ -75,9 +75,9 @@ class PateintInfoCubit extends Cubit<PateintInfoState> {
         print(e.response!.data);
         print(e.response!.statusCode);
         print(e.response!.statusMessage);
-        emit(PateintErrorMsg(msg: e.response!.data['message']));
+        emit(PatientErrorMsg(msg: e.response!.data['message']));
       } else {
-        emit(PateintErrorMsg(msg: e.error.toString()));
+        emit(PatientErrorMsg(msg: e.error.toString()));
         print(e.message);
       }
     } catch (e) {

@@ -21,7 +21,7 @@ class ItemDeleteAdmin extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Material(
-        shadowColor: AppColors.primarycolor,
+        shadowColor: AppColors.primaryColor,
         elevation: 10,
         borderRadius: BorderRadius.circular(20),
         child: Container(
@@ -38,7 +38,7 @@ class ItemDeleteAdmin extends StatelessWidget {
                 textDirection: TextDirection.rtl,
                 name,
                 style: AppTextStyles.lrTitles.copyWith(
-                  color: AppColors.primarycolor,
+                  color: AppColors.primaryColor,
                 ),
               ),
               const SizedBox(height: 8),
@@ -46,7 +46,7 @@ class ItemDeleteAdmin extends StatelessWidget {
                 textDirection: TextDirection.rtl,
                 job,
                 style: AppTextStyles.lrTitles.copyWith(
-                  color: AppColors.primarycolor,
+                  color: AppColors.primaryColor,
                 ),
               ),
               const SizedBox(height: 8),
@@ -54,7 +54,7 @@ class ItemDeleteAdmin extends StatelessWidget {
                 textDirection: TextDirection.rtl,
                 number,
                 style: AppTextStyles.lrTitles.copyWith(
-                  color: AppColors.primarycolor,
+                  color: AppColors.primaryColor,
                 ),
               ),
               const SizedBox(height: 16),

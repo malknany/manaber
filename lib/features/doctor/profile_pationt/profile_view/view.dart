@@ -30,11 +30,11 @@ class ProfilePationtScreen extends StatefulWidget {
 }
 
 class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
-  final ControleConversational controleConversational =
-      ControleConversational();
+  final ControlConversational controleConversational =
+      ControlConversational();
 
-  final ControleFileAssesment controleFileAssesment = ControleFileAssesment();
-  final ControleOccupation controleOccupation = ControleOccupation();
+  final ControlFileAssessment controleFileAssesment = ControlFileAssessment();
+  final ControlOccupation controleOccupation = ControlOccupation();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +57,7 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                           ? navigateTo(
                               context,
                               BlocProvider(
-                                create: (context) => PateintInfoCubit(),
+                                create: (context) => PatientInfoCubit(),
                                 child: FileAssassemntView(
                                   controleFileAssesment: controleFileAssesment,
                                   id: widget.id,
@@ -67,7 +67,7 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                               ? navigateTo(
                                   context,
                                   BlocProvider(
-                                    create: (context) => PateintInfoCubit(),
+                                    create: (context) => PatientInfoCubit(),
                                     child: InfoOccupationScreen(
                                       id: widget.id,
                                       controleOccupation: controleOccupation,
@@ -76,7 +76,7 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                               : navigateTo(
                                   context,
                                   BlocProvider(
-                                    create: (context) => PateintInfoCubit(),
+                                    create: (context) => PatientInfoCubit(),
                                     child: InfoConversationScreen(
                                       id: widget.id,
                                       controleConversational:
@@ -100,7 +100,7 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                       navigateTo(
                         context,
                         BlocProvider(
-                          create: (context) => TretmentPlanCubit(),
+                          create: (context) => TreatmentPlanCubit(),
                           child: TretmentPlanView(
                             id: widget.id,
                           ),
@@ -108,7 +108,7 @@ class _ProfilePationtScreenState extends State<ProfilePationtScreen> {
                       );
                     },
                     sectionname: 'Treatment plan',
-                    image: AppImages.tretmentPlan),
+                    image: AppImages.treatmentPlan),
                 SlectedItemProfile(
                     onTap: () {
                       navigateTo(

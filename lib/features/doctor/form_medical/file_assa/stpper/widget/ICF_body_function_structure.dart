@@ -8,14 +8,14 @@ import 'package:manaber/features/doctor/form_medical/model.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
-class ICFBodyfunctionAndstructure extends StatelessWidget {
-  const ICFBodyfunctionAndstructure(
+class ICFBodyFunctionAndstructure extends StatelessWidget {
+  const ICFBodyFunctionAndstructure(
       {super.key,
-      required this.iCFBodyfunction,
-      required this.controleFileAssesment});
+      required this.iCFBodyFunction,
+      required this.controlFileAssessment});
 
-  final ControleFileAssesment controleFileAssesment;
-  final List<ModelPatientInfo> iCFBodyfunction;
+  final ControlFileAssessment controlFileAssessment;
+  final List<ModelPatientInfo> iCFBodyFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
       appBar: AppBar(
         title: const Text('ICF Body function And Structure'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -39,9 +39,9 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: controleFileAssesment.listicfBody.length,
+                itemCount: controlFileAssessment.listicfBody.length,
                 itemBuilder: (context, index) {
-                  var model = controleFileAssesment.listicfBody[index];
+                  var model = controlFileAssessment.listicfBody[index];
                   if (model is DividerFileAssModel) {
                     return DividerItem(text: model.text);
                   }
@@ -54,14 +54,14 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
                   }
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
-                        hintText: iCFBodyfunction[index].answer,
-                        labelname: model.labelName,
+                        hintText: iCFBodyFunction[index].answer,
+                        labelName: model.labelName,
                         textEditingController: model.textEditingController);
                   }
                   if (model is BottomSheetFileAssModel) {
                     return ShowBottomSheetItems(
                       name: model.name,
-                      contecnt: SizedBox(
+                      content: SizedBox(
                         height: MediaQuery.sizeOf(context).height / 1.2,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -75,8 +75,8 @@ class ICFBodyfunctionAndstructure extends StatelessWidget {
                                     final item = model.itemList[idx];
                                     if (item is TextFormFiledStepperModel) {
                                       return TextFormFiledStepper(
-                                          hintText: iCFBodyfunction[idx].answer,
-                                          labelname: item.labelName,
+                                          hintText: iCFBodyFunction[idx].answer,
+                                          labelName: item.labelName,
                                           textEditingController:
                                               item.textEditingController);
                                     }

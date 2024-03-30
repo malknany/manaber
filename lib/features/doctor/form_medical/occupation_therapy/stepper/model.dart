@@ -15,11 +15,11 @@ class ModelTextFiledOccupation extends ModelOccupation {
 }
 
 class ModelDropDownOccupation extends ModelOccupation {
-  final String lableName;
+  final String labelName;
   final List<String> itemList;
   final TextEditingController textEditingController;
   ModelDropDownOccupation({
-    required this.lableName,
+    required this.labelName,
     required this.itemList,
     required this.textEditingController,
   });

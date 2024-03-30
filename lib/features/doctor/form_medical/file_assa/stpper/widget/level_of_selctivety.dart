@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/model.dart';
+import '../../../model.dart';
 import '../model.dart';
 import '../controller.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 
-class LevelofSelectivity extends StatelessWidget {
-  const LevelofSelectivity(
+class LevelOfSelectivity extends StatelessWidget {
+  const LevelOfSelectivity(
       {super.key,
-      required this.levelofSelectivity,
-      required this.controleFileAssesment});
-  final List<ModelPatientInfo> levelofSelectivity;
-  final ControleFileAssesment controleFileAssesment;
+      required this.levelOfSelectivity,
+      required this.controlFileAssessment});
+  final List<ModelPatientInfo> levelOfSelectivity;
+  final ControlFileAssessment controlFileAssessment;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class LevelofSelectivity extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Level of Selectivity'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -30,10 +30,10 @@ class LevelofSelectivity extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: controleFileAssesment.listlevelOfSelctivity.length,
+                itemCount: controlFileAssessment.listlevelOfSelctivity.length,
                 itemBuilder: (context, index) {
                   var model =
-                      controleFileAssesment.listlevelOfSelctivity[index];
+                      controlFileAssessment.listlevelOfSelctivity[index];
                   if (model is DividerFileAssModel) {
                     return DividerItem(text: model.text);
                   }
@@ -46,14 +46,14 @@ class LevelofSelectivity extends StatelessWidget {
                   }
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
-                        hintText: levelofSelectivity[index].answer,
-                        labelname: model.labelName,
+                        hintText: levelOfSelectivity[index].answer,
+                        labelName: model.labelName,
                         textEditingController: model.textEditingController);
                   }
                   if (model is BottomSheetFileAssModel) {
                     return ShowBottomSheetItems(
                       name: model.name,
-                      contecnt: SizedBox(
+                      content: SizedBox(
                         height: MediaQuery.sizeOf(context).height / 1.2,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -68,8 +68,8 @@ class LevelofSelectivity extends StatelessWidget {
                                     if (item is TextFormFiledStepperModel) {
                                       return TextFormFiledStepper(
                                           hintText:
-                                              levelofSelectivity[idx].answer,
-                                          labelname: item.labelName,
+                                              levelOfSelectivity[idx].answer,
+                                          labelName: item.labelName,
                                           textEditingController:
                                               item.textEditingController);
                                     }

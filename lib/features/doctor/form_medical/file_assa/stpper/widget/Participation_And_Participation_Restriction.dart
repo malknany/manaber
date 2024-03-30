@@ -10,9 +10,9 @@ import '../controller.dart';
 
 class Activity extends StatelessWidget {
   const Activity(
-      {super.key, required this.activity, required this.controleFileAssesment});
+      {super.key, required this.activity, required this.controlFileAssessment});
 
-  final ControleFileAssesment controleFileAssesment;
+  final ControlFileAssessment controlFileAssessment;
   final List<ModelPatientInfo> activity;
 
   @override
@@ -23,7 +23,7 @@ class Activity extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Activity'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -35,9 +35,9 @@ class Activity extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: controleFileAssesment.listParticipation.length,
+                itemCount: controlFileAssessment.listParticipation.length,
                 itemBuilder: (context, index) {
-                  var model = controleFileAssesment.listParticipation[index];
+                  var model = controlFileAssessment.listParticipation[index];
                   if (model is DividerFileAssModel) {
                     return DividerItem(text: model.text);
                   }
@@ -51,13 +51,13 @@ class Activity extends StatelessWidget {
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
                         hintText: activity[index].answer,
-                        labelname: model.labelName,
+                        labelName: model.labelName,
                         textEditingController: model.textEditingController);
                   }
                   if (model is BottomSheetFileAssModel) {
                     return ShowBottomSheetItems(
                       name: model.name,
-                      contecnt: SizedBox(
+                      content: SizedBox(
                         height: MediaQuery.sizeOf(context).height / 1.2,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -71,7 +71,7 @@ class Activity extends StatelessWidget {
                                     final item = model.itemList[idx];
                                     if (item is TextFormFiledStepperModel) {
                                       return TextFormFiledStepper(
-                                          labelname: item.labelName,
+                                          labelName: item.labelName,
                                           textEditingController:
                                               item.textEditingController);
                                     }

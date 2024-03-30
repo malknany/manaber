@@ -60,13 +60,13 @@ class _VideoPlayScreenState extends State<VideoPlayScreen> {
                     )
                   : const Center(
                       child: CircularProgressIndicator(
-                          color: AppColors.primarycolor)),
+                          color: AppColors.primaryColor)),
               VideoProgressIndicator(
                 _controller,
                 padding: const EdgeInsets.all(10),
                 allowScrubbing: true,
                 colors: const VideoProgressColors(
-                  playedColor: AppColors.primarycolor,
+                  playedColor: AppColors.primaryColor,
                 ),
               ),
             ],

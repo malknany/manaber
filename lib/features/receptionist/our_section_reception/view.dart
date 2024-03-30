@@ -10,11 +10,11 @@ import '../../../shared/styles/styles.dart';
 import '../insert_data/controler.dart';
 import 'widgets/section_item.dart';
 
-class OurSectiosnReceptionist extends StatelessWidget {
-  OurSectiosnReceptionist({
+class OurSectionsReceptionist extends StatelessWidget {
+  OurSectionsReceptionist({
     Key? key,
   }) : super(key: key);
-  final StepperReceptionist controleReceptionist = StepperReceptionist();
+  final StepperReceptionist controlReceptionist = StepperReceptionist();
   // final UsersModel usersModel;
 
   @override
@@ -51,18 +51,18 @@ class OurSectiosnReceptionist extends StatelessWidget {
                     SectionItemReceptionist(
                         department: AppConstKey.physicalTherapy,
                         image: AppImages.login1,
-                        sectionname: 'العلاج الطبيعي',
-                        controleReceptionist: controleReceptionist),
+                        sectionName: 'العلاج الطبيعي',
+                        controlReceptionist: controlReceptionist),
                     SectionItemReceptionist(
                         department: AppConstKey.occupationalTherapy,
                         image: AppImages.signup1,
-                        sectionname: 'العلاج الوظيفي',
-                        controleReceptionist: controleReceptionist),
+                        sectionName: 'العلاج الوظيفي',
+                        controlReceptionist: controlReceptionist),
                     SectionItemReceptionist(
                       department: AppConstKey.speechTherapy,
                       image: AppImages.conversational1,
-                      sectionname: 'تعديل سلوك',
-                      controleReceptionist: controleReceptionist,
+                      sectionName: 'تعديل سلوك',
+                      controlReceptionist: controlReceptionist,
                     )
                   ],
                 )

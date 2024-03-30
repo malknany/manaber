@@ -7,9 +7,9 @@ import '../controler.dart';
 class MedicalAndGeneticHistoryOfTheFamily extends StatelessWidget {
   const MedicalAndGeneticHistoryOfTheFamily(
       {super.key,
-      required this.controleConversational,
+      required this.controlConversational,
       required this.medicalAndGeneticHistoryOfTheFamily});
-  final ControleConversational controleConversational;
+  final ControlConversational controlConversational;
   final List<ModelPatientInfo> medicalAndGeneticHistoryOfTheFamily;
 
   @override
@@ -18,7 +18,7 @@ class MedicalAndGeneticHistoryOfTheFamily extends StatelessWidget {
       appBar: AppBar(
         title: const Text('التاریخ المرضي والوراثي للعائلة'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -29,11 +29,11 @@ class MedicalAndGeneticHistoryOfTheFamily extends StatelessWidget {
                 return TextFormFiledStepper(
                     hintText: medicalAndGeneticHistoryOfTheFamily[index].answer,
                     textDirection: TextDirection.rtl,
-                    labelname:
+                    labelName:
                         medicalAndGeneticHistoryOfTheFamily[index].question!,
-                    textEditingController: controleConversational
+                    textEditingController: controlConversational
                         .listOfMedicalAndGeneticHistoryOfTheFamily[index]
-                        .controle);
+                        .control);
               },
               separatorBuilder: (context, index) {
                 if (index == 2) {
@@ -42,7 +42,7 @@ class MedicalAndGeneticHistoryOfTheFamily extends StatelessWidget {
                   return const SizedBox.shrink();
                 }
               },
-              itemCount: controleConversational
+              itemCount: controlConversational
                   .listOfMedicalAndGeneticHistoryOfTheFamily.length)),
     );
   }

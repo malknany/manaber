@@ -8,20 +8,19 @@ import 'package:manaber/shared/styles/styles.dart';
 
 import '../../../../../shared/components/components.dart';
 
-class TrentmentPlanDataEntry extends StatefulWidget {
-  const TrentmentPlanDataEntry({super.key, required this.id});
+class TreatmentPlanDataEntry extends StatefulWidget {
+  const TreatmentPlanDataEntry({super.key, required this.id});
   final String id;
 
   @override
-  _TrentmentPlanDataEntryState createState() => _TrentmentPlanDataEntryState();
-  // final TretmentPlanControle planControle;
+  _TreatmentPlanDataEntryState createState() => _TreatmentPlanDataEntryState();
 }
 
-class _TrentmentPlanDataEntryState extends State<TrentmentPlanDataEntry> {
+class _TreatmentPlanDataEntryState extends State<TreatmentPlanDataEntry> {
   List<TextEditingController> controllers = [];
   List<String> listOfPlans = [];
   int counter = 1;
-  final TextEditingController titleNameControle = TextEditingController();
+  final TextEditingController titleNameControl = TextEditingController();
 
   @override
   void initState() {
@@ -58,10 +57,10 @@ class _TrentmentPlanDataEntryState extends State<TrentmentPlanDataEntry> {
         child: ListView(
           children: [
             TextFormFiledStepper(
-                textEditingController: titleNameControle,
-                labelname: ' title of plan'),
+                textEditingController: titleNameControl,
+                labelName: ' title of plan'),
             ...controllers.map((controller) => TextFormFiledStepper(
-                  labelname: "Step$counter",
+                  labelName: "Step$counter",
                   textEditingController: controller,
                 )),
             Row(
@@ -83,37 +82,37 @@ class _TrentmentPlanDataEntryState extends State<TrentmentPlanDataEntry> {
                 for (final control in controllers) {
                   listOfPlans.add(control.text);
                 }
-                context.read<TretmentPlanCubit>().postPlan(
+                context.read<TreatmentPlanCubit>().postPlan(
                     id: widget.id,
-                    titleName: titleNameControle.text,
+                    titleName: titleNameControl.text,
                     listofPlans: listOfPlans);
                 // Navigator.pop(context, 'refresh');
               },
             ),
-            BlocBuilder<TretmentPlanCubit, TretmentPlanState>(
+            BlocBuilder<TreatmentPlanCubit, TreatmentPlanState>(
               builder: (context, state) {
-                if (state is TretmentPlanLoading) {
+                if (state is TreatmentPlanLoading) {
                   return const Center(
                     child: CircularProgressIndicator(
-                      color: AppColors.primarycolor,
+                      color: AppColors.primaryColor,
                     ),
                   );
                 }
-                if (state is TretmentPlanSuccessUpLoade) {
+                if (state is TreatmentPlanSuccessUpLoaded) {
                   Future.delayed(
                     const Duration(seconds: 1),
                     () {
                       itemSnackBar(context, 'تم اضافه خطه علاجيه جديده',
-                          AppColors.primarycolor);
+                          AppColors.primaryColor);
                       Navigator.pop(context, 'refresh');
                     },
                   );
                   return const Icon(
                     Icons.check,
-                    color: AppColors.primarycolor,
+                    color: AppColors.primaryColor,
                   );
                 }
-                if (state is TretmentPlanError) {
+                if (state is TreatmentPlanError) {
                   return Text(
                     state.msg,
                     textDirection: TextDirection.rtl,

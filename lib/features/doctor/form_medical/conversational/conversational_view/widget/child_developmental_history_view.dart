@@ -23,7 +23,7 @@ class ChildDevelopmentalHistoryView extends StatelessWidget {
         title: const Text(
           'تاریخ النمو التطوري للطفل',
           style: TextStyle(
-            color: AppColors.primarycolor,
+            color: AppColors.primaryColor,
           ),
         ),
       ),

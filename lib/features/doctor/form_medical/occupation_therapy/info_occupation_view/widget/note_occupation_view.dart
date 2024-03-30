@@ -16,7 +16,7 @@ class NoteOccupationalView extends StatelessWidget {
         title: const Text(
           'Note',
           style: TextStyle(
-            color: AppColors.primarycolor,
+            color: AppColors.primaryColor,
           ),
         ),
       ),

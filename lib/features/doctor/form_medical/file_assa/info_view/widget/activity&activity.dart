@@ -18,7 +18,7 @@ class ActivityAndActivityLimitationView extends StatelessWidget {
           backgroundColor: Colors.white,
           title: const Text('Patient Data',
               style: TextStyle(
-                color: AppColors.primarycolor,
+                color: AppColors.primaryColor,
               )),
         ),
         body: Padding(

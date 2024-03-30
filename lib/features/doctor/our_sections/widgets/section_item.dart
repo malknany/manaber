@@ -9,12 +9,12 @@ import '../../../../shared/styles/styles.dart';
 
 class SectionItem extends StatelessWidget {
   const SectionItem({
-    required this.sectionname,
+    required this.sectionName,
     Key? key,
     required this.image,
     required this.department,
   }) : super(key: key);
-  final String sectionname;
+  final String sectionName;
   final String image;
   final String department;
 
@@ -34,7 +34,7 @@ class SectionItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Material(
-          shadowColor: AppColors.primarycolor,
+          shadowColor: AppColors.primaryColor,
           elevation: 10,
           borderRadius: BorderRadius.circular(20),
           child: Container(
@@ -55,9 +55,9 @@ class SectionItem extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  sectionname,
+                  sectionName,
                   style: AppTextStyles.lrTitles
-                      .copyWith(color: AppColors.primarycolor),
+                      .copyWith(color: AppColors.primaryColor),
                 )
               ],
             ),

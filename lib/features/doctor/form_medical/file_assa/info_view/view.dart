@@ -19,7 +19,7 @@ class FileAssassemntView extends StatefulWidget {
   const FileAssassemntView(
       {super.key, required this.id, required this.controleFileAssesment});
 
-  final ControleFileAssesment controleFileAssesment;
+  final ControlFileAssessment controleFileAssesment;
 
   final String id;
   @override
@@ -29,7 +29,7 @@ class FileAssassemntView extends StatefulWidget {
 class _FileAssassemntViewState extends State<FileAssassemntView> {
   @override
   void initState() {
-    BlocProvider.of<PateintInfoCubit>(context).getPatinetFromApi(widget.id);
+    BlocProvider.of<PatientInfoCubit>(context).getPatinetFromApi(widget.id);
     super.initState();
   }
 
@@ -42,18 +42,18 @@ class _FileAssassemntViewState extends State<FileAssassemntView> {
               context,
               FileStteper(
                 listOfInfoFileAssessment:
-                    BlocProvider.of<PateintInfoCubit>(context)
+                    BlocProvider.of<PatientInfoCubit>(context)
                         .listOfInfoPatient,
                 id: widget.id,
-                controleFileAssesment: widget.controleFileAssesment,
+                controlFileAssessment: widget.controleFileAssesment,
               ),
             );
             if (result == 'refresh') {
-              BlocProvider.of<PateintInfoCubit>(context)
+              BlocProvider.of<PatientInfoCubit>(context)
                   .getPatinetFromApi(widget.id);
             }
           },
-          backgroundColor: AppColors.primarycolor,
+          backgroundColor: AppColors.primaryColor,
           elevation: 0,
           child: const Icon(Icons.edit_outlined)),
       body: SizedBox(
@@ -85,15 +85,15 @@ class _FileAssassemntViewState extends State<FileAssassemntView> {
                       fontFamily: 'Schyler',
                       fontWeight: FontWeight.normal),
                 ),
-                BlocBuilder<PateintInfoCubit, PateintInfoState>(
+                BlocBuilder<PatientInfoCubit, PatientInfoState>(
                   builder: (context, state) {
-                    if (state is PateintLoading) {
+                    if (state is PatientLoading) {
                       return const Center(
                         child: CircularProgressIndicator(
-                            color: AppColors.primarycolor),
+                            color: AppColors.primaryColor),
                       );
                     }
-                    if (state is PateintErrorMsg) {
+                    if (state is PatientErrorMsg) {
                       return Center(
                         child: Text(
                           state.msg,
@@ -102,7 +102,7 @@ class _FileAssassemntViewState extends State<FileAssassemntView> {
                         ),
                       );
                     }
-                    if (state is PateintSuccess) {
+                    if (state is PatientSuccess) {
                       final List<ModelPatientInfo> personalHistory = [];
                       final List<ModelPatientInfo> iCFBodyFunction = [];
                       final List<ModelPatientInfo> activity = [];
@@ -201,7 +201,7 @@ class _FileAssassemntViewState extends State<FileAssassemntView> {
         ),
       ),
       appBar: AppBar(
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         backgroundColor: Colors.white,
         elevation: 0,
       ),

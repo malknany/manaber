@@ -13,12 +13,12 @@ import '../../../../../../shared/styles/colors.dart';
 class NoteOccupation extends StatelessWidget {
   const NoteOccupation({
     super.key,
-    required this.controleOccupation,
+    required this.controlOccupation,
     required this.id,
     required this.noteOccupation,
   });
   final String id;
-  final ControleOccupation controleOccupation;
+  final ControlOccupation controlOccupation;
   final List<ModelPatientInfo> noteOccupation;
 
   @override
@@ -32,7 +32,7 @@ class NoteOccupation extends StatelessWidget {
             icon: const Icon(Icons.arrow_back_ios_new)),
         title: const Text('Note'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -45,16 +45,16 @@ class NoteOccupation extends StatelessWidget {
               children: [
                 TextFormFiledStepper(
                     hintText: noteOccupation.last.answer ?? '',
-                    labelname: 'Note',
+                    labelName: 'Note',
                     textEditingController:
-                        controleOccupation.controleOccupationPreformance.note),
+                        controlOccupation.controlOccupationPerformance.note),
                 ButtonText(
                     text: "Save",
                     onPressed: () {
                       List<Map> listOfAnswer = [];
                       int i = 1;
                       for (final person
-                          in controleOccupation.listOfPationHistory) {
+                          in controlOccupation.listOfPationHistory) {
                         if (person is ModelDropDownOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
@@ -79,7 +79,7 @@ class NoteOccupation extends StatelessWidget {
                         }
                       }
                       for (final person
-                          in controleOccupation.listOfBodyFunctionStrucer) {
+                          in controlOccupation.listOfBodyFunctionStrucer) {
                         if (person is ModelDropDownOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
@@ -104,7 +104,7 @@ class NoteOccupation extends StatelessWidget {
                         }
                       }
                       for (final person
-                          in controleOccupation.listOfBehaviorADLS) {
+                          in controlOccupation.listOfBehaviorADLS) {
                         if (person is ModelDropDownOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
@@ -129,7 +129,7 @@ class NoteOccupation extends StatelessWidget {
                         }
                       }
                       for (final person
-                          in controleOccupation.listOfAssociatedDisorders) {
+                          in controlOccupation.listOfAssociatedDisorders) {
                         if (person is ModelDropDownOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
@@ -156,7 +156,7 @@ class NoteOccupation extends StatelessWidget {
                         }
                       }
                       for (final person
-                          in controleOccupation.listOfOccupationPreformance) {
+                          in controlOccupation.listOfOccupationPerformance) {
                         if (person is ModelDropDownOccupation) {
                           listOfAnswer.add(
                             ModelPatientInfo(
@@ -184,26 +184,26 @@ class NoteOccupation extends StatelessWidget {
                         print(element);
                       }
                       print(listOfAnswer);
-                      BlocProvider.of<PateintInfoCubit>(context)
+                      BlocProvider.of<PatientInfoCubit>(context)
                           .postAnswerToApi(id, listOfAnswer);
                     }),
-                BlocBuilder<PateintInfoCubit, PateintInfoState>(
+                BlocBuilder<PatientInfoCubit, PatientInfoState>(
                   builder: (context, state) {
-                    if (state is PateintLoading) {
+                    if (state is PatientLoading) {
                       return const Center(
                         child: CircularProgressIndicator(
-                          color: AppColors.primarycolor,
+                          color: AppColors.primaryColor,
                         ),
                       );
                     }
-                    if (state is PateintSuccess) {
+                    if (state is PatientSuccess) {
                       return const Center(
                           child: Icon(
                         Icons.check,
-                        color: AppColors.primarycolor,
+                        color: AppColors.primaryColor,
                       ));
                     }
-                    if (state is PateintErrorMsg) {
+                    if (state is PatientErrorMsg) {
                       return Text(
                         state.msg,
                         textDirection: TextDirection.rtl,

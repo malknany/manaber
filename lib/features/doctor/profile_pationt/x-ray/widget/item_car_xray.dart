@@ -25,7 +25,7 @@ class ItemCardXray extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: Material(
-          shadowColor: AppColors.primarycolor,
+          shadowColor: AppColors.primaryColor,
           elevation: 10,
           borderRadius: BorderRadius.circular(20),
           child: Dismissible(
@@ -62,7 +62,7 @@ class ItemCardXray extends StatelessWidget {
                 child: Text(
                   name,
                   style: AppTextStyles.lrTitles
-                      .copyWith(color: AppColors.primarycolor),
+                      .copyWith(color: AppColors.primaryColor),
                 ),
               ),
             ),

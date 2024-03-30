@@ -20,7 +20,7 @@ class OccupationalPerformanceView extends StatelessWidget {
         title: const Text(
           'Occupational Performance',
           style: TextStyle(
-            color: AppColors.primarycolor,
+            color: AppColors.primaryColor,
           ),
         ),
       ),

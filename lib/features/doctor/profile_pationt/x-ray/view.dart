@@ -44,7 +44,7 @@ class _XrayViewState extends State<XrayView> {
         //       },
         //       icon: const Icon(
         //         Icons.delete,
-        //         color: AppColors.primarycolor,
+        //         color: AppColors.primaryColor,
         //       ))
         // ],
         title: const Text('X-ray'),
@@ -60,7 +60,7 @@ class _XrayViewState extends State<XrayView> {
           if (state is XrayLoading) {
             return const Center(
               child: CircularProgressIndicator(
-                color: AppColors.primarycolor,
+                color: AppColors.primaryColor,
               ),
             );
           }
@@ -107,7 +107,7 @@ class _XrayViewState extends State<XrayView> {
       ),
       //
       floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.primarycolor,
+        backgroundColor: AppColors.primaryColor,
         onPressed: () async {
           final result = await navigateTo(
               context,
@@ -150,7 +150,7 @@ class _XrayViewState extends State<XrayView> {
 //                 child: Padding(
 //                   padding: const EdgeInsets.symmetric(vertical: 10),
 //                   child: Material(
-//                     shadowColor: AppColors.primarycolor,
+//                     shadowColor: AppColors.primaryColor,
 //                     elevation: 10,
 //                     borderRadius: BorderRadius.circular(20),
 //                     child: Container(
@@ -167,7 +167,7 @@ class _XrayViewState extends State<XrayView> {
 //                               child: Text(
 //                                 "X_ray${index + 1}",
 //                                 style: AppTextStyles.lrTitles.copyWith(
-//                                     color: AppColors.primarycolor),
+//                                     color: AppColors.primaryColor),
 //                               ),
 //                             ),
 //                           ),

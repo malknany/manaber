@@ -8,8 +8,8 @@ import '../../../shared/components/navigator.dart';
 import '../../../shared/styles/images.dart';
 import '../../../shared/styles/styles.dart';
 
-class Oursectiosn extends StatelessWidget {
-  const Oursectiosn({Key? key}) : super(key: key);
+class OurSections extends StatelessWidget {
+  const OurSections({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,17 +45,17 @@ class Oursectiosn extends StatelessWidget {
                   children: [
                     SectionItem(
                       department: AppConstKey.physicalTherapy,
-                      sectionname: 'العلاج الطبيعي',
+                      sectionName: 'العلاج الطبيعي',
                       image: AppImages.login1,
                     ),
                     SectionItem(
                       department: AppConstKey.occupationalTherapy,
-                      sectionname: 'العلاج الوظيفي',
+                      sectionName: 'العلاج الوظيفي',
                       image: AppImages.signup1,
                     ),
                     SectionItem(
                       department: AppConstKey.speechTherapy,
-                      sectionname: 'تعديل سلوك ',
+                      sectionName: 'تعديل سلوك ',
                       image: AppImages.conversational1,
                     )
                   ],

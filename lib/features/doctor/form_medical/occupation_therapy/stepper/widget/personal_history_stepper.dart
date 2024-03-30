@@ -8,9 +8,9 @@ import '../../../../../../shared/styles/colors.dart';
 class PersonalHistory extends StatelessWidget {
   const PersonalHistory(
       {super.key,
-      required this.controleOccupation,
+      required this.controlOccupation,
       required this.personalHistory});
-  final ControleOccupation controleOccupation;
+  final ControlOccupation controlOccupation;
   final List<ModelPatientInfo> personalHistory;
 
   @override
@@ -19,7 +19,7 @@ class PersonalHistory extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Personal History'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -27,12 +27,12 @@ class PersonalHistory extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
           child: ListView(
             children: List.generate(
-                controleOccupation.listOfPationHistory.length, (index) {
-              var model = controleOccupation.listOfPationHistory[index];
+                controlOccupation.listOfPationHistory.length, (index) {
+              var model = controlOccupation.listOfPationHistory[index];
               if (model is ModelDropDownOccupation) {
                 return DropdownButtonItem(
                   controller: model.textEditingController,
-                  labelName: model.lableName,
+                  labelName: model.labelName,
                   itemList: model.itemList,
                 );
               }
@@ -41,7 +41,7 @@ class PersonalHistory extends StatelessWidget {
                     hintText: personalHistory[index].answer,
                     textInputType: model.textInputType,
                     // textInputType: model.textInputType,
-                    labelname: model.labelname,
+                    labelName: model.labelname,
                     textEditingController: model.textEditingController);
               }
 

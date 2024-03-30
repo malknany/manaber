@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/shared/components/constants.dart';
-import 'package:manaber/shared/components/navigator.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import '../../../../shared/components/constants.dart';
+import '../../../../shared/components/navigator.dart';
+import '../../../../shared/styles/colors.dart';
+import '../../../../shared/styles/styles.dart';
 
 class SectionItemAdmin extends StatelessWidget {
   const SectionItemAdmin({
-    required this.sectionname,
+    required this.sectionName,
     Key? key,
     required this.screen,
     // required this.image,
     // required this.department,
   }) : super(key: key);
-  final String sectionname;
+  final String sectionName;
   // final String image;
   // final String department;
   final Widget screen;
@@ -26,7 +26,7 @@ class SectionItemAdmin extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Material(
-          shadowColor: AppColors.primarycolor,
+          shadowColor: AppColors.primaryColor,
           elevation: 10,
           borderRadius: BorderRadius.circular(20),
           child: Container(
@@ -40,9 +40,9 @@ class SectionItemAdmin extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  sectionname,
+                  sectionName,
                   style: AppTextStyles.lrTitles
-                      .copyWith(color: AppColors.primarycolor),
+                      .copyWith(color: AppColors.primaryColor),
                 )
               ],
             ),

@@ -12,16 +12,16 @@ class ButtonTemplate extends StatelessWidget {
     this.text2 = "",
     this.text3 = "",
     this.icon,
-    this.minwidth = 318,
-    this.minheight = 60,
+    this.minWidth = 318,
+    this.minHeight = 60,
     this.fontSize = 18,
   }) : super(key: key);
   final Color color;
   final String text1;
   final String text2;
   final String text3;
-  final double minwidth;
-  final double minheight;
+  final double minWidth;
+  final double minHeight;
   final double fontSize;
   final IconData? icon;
   final void Function()? onPressed;
@@ -29,8 +29,8 @@ class ButtonTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      minWidth: minwidth,
-      height: minheight,
+      minWidth: minWidth,
+      height: minHeight,
       onPressed: onPressed,
       color: color,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -50,7 +50,7 @@ class ButtonTemplate extends StatelessWidget {
             Center(
               child: Text(text1,
                   textAlign: TextAlign.center,
-                  style: AppTextStyles.boldtitlesButton.copyWith(
+                  style: AppTextStyles.boldTitlesButton.copyWith(
                     fontSize: 17,
                     color: Colors.white,
                   )),
@@ -179,7 +179,7 @@ class InfoRowItem extends StatelessWidget {
 
 class RowItemRightLeft extends StatelessWidget {
   const RowItemRightLeft({
-    this.tilteRight = 'Right',
+    this.titleRight = 'Right',
     this.titleLeft = 'Left',
     required this.right,
     required this.left,
@@ -191,7 +191,7 @@ class RowItemRightLeft extends StatelessWidget {
   final String left;
   final String right;
   final String titleLeft;
-  final String tilteRight;
+  final String titleRight;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -211,7 +211,7 @@ class RowItemRightLeft extends StatelessWidget {
             Expanded(
               child: Column(children: [
                 Text(
-                  tilteRight,
+                  titleRight,
                   softWrap: true,
                   style: const TextStyle(
                     fontSize: 15,
@@ -292,7 +292,7 @@ class RightLeftTextFiled extends StatelessWidget {
                 width: 40,
                 child: TextFormField(
                   autofocus: false,
-                  cursorColor: AppColors.primarycolor,
+                  cursorColor: AppColors.primaryColor,
                   keyboardType: TextInputType.number,
                   // textInputAction: TextInputAction.go,
                   onSaved: (newValue) {
@@ -303,14 +303,14 @@ class RightLeftTextFiled extends StatelessWidget {
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
                       borderSide: const BorderSide(
-                        color: AppColors.primarycolor,
+                        color: AppColors.primaryColor,
                         width: 2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
                       borderSide: const BorderSide(
-                        color: AppColors.primarycolor,
+                        color: AppColors.primaryColor,
                         width: 2,
                       ),
                     ),
@@ -320,7 +320,7 @@ class RightLeftTextFiled extends StatelessWidget {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
                       borderSide: const BorderSide(
-                        color: AppColors.primarycolor,
+                        color: AppColors.primaryColor,
                         width: 2,
                       ),
                     ),
@@ -335,7 +335,7 @@ class RightLeftTextFiled extends StatelessWidget {
                 width: 40,
                 child: TextFormField(
                   autofocus: false,
-                  cursorColor: AppColors.primarycolor,
+                  cursorColor: AppColors.primaryColor,
                   keyboardType: TextInputType.number,
                   // textInputAction: TextInputAction.go,
                   onSaved: (newValue) {
@@ -346,14 +346,14 @@ class RightLeftTextFiled extends StatelessWidget {
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
                       borderSide: const BorderSide(
-                        color: AppColors.primarycolor,
+                        color: AppColors.primaryColor,
                         width: 2,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
                       borderSide: const BorderSide(
-                        color: AppColors.primarycolor,
+                        color: AppColors.primaryColor,
                         width: 2,
                       ),
                     ),
@@ -363,7 +363,7 @@ class RightLeftTextFiled extends StatelessWidget {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
                       borderSide: const BorderSide(
-                        color: AppColors.primarycolor,
+                        color: AppColors.primaryColor,
                         width: 2,
                       ),
                     ),
@@ -379,6 +379,59 @@ class RightLeftTextFiled extends StatelessWidget {
           thickness: 1,
         ),
       ],
+    );
+  }
+}
+
+class NetworkImageCustom extends StatelessWidget {
+  final String? imageUrl;
+  final double width;
+  final double height;
+  final BoxFit? fit;
+
+  const NetworkImageCustom({
+    Key? key,
+    this.width = double.infinity,
+    this.height = double.infinity / 4,
+    required this.imageUrl,
+    this.fit = BoxFit.cover,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return imageUrl != null && imageUrl!.isNotEmpty
+        ? Image.network(
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress == null) {
+                return child;
+              } else {
+                return Center(
+                  child: CircularProgressIndicator(
+                      color: Theme.of(context).colorScheme.primary),
+                );
+              }
+            },
+            imageUrl!,
+            width: width,
+            height: height,
+            fit: fit,
+            errorBuilder: (context, error, stackTrace) {
+              return _buildErrorContainer(context);
+            },
+          )
+        : _buildErrorContainer(context);
+  }
+
+  Widget _buildErrorContainer(context) {
+    return Container(
+      width: width,
+      height: height,
+      color: Theme.of(context).colorScheme.outline, // Gray color as placeholder
+      child: const Icon(
+        Icons.error_outline,
+        color: Colors.white,
+        size: 48.0, // Adjust size as needed
+      ),
     );
   }
 }
@@ -404,7 +457,7 @@ class ButtonText extends StatelessWidget {
             MediaQuery.sizeOf(context).height / 16,
           ),
           elevation: 0,
-          backgroundColor: AppColors.primarycolor,
+          backgroundColor: AppColors.primaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),
           ),
@@ -430,10 +483,10 @@ class TextFormFiledStepper extends StatefulWidget {
       this.validator,
       // this.initialValue = '',
       required this.textEditingController,
-      required this.labelname,
+      required this.labelName,
       this.textInputType = TextInputType.text,
       this.textDirection = TextDirection.ltr});
-  final String labelname;
+  final String labelName;
   final String? Function(String?)? validator;
   final TextInputType textInputType;
   final TextEditingController textEditingController;
@@ -469,7 +522,7 @@ class _TextFormFiledStepperState extends State<TextFormFiledStepper> {
           onSaved: (newValue) {
             widget.textEditingController.text = newValue!;
           },
-          cursorColor: AppColors.primarycolor,
+          cursorColor: AppColors.primaryColor,
           keyboardType: widget.textInputType,
           smartQuotesType: SmartQuotesType.enabled,
           decoration: InputDecoration(
@@ -477,18 +530,18 @@ class _TextFormFiledStepperState extends State<TextFormFiledStepper> {
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
               borderSide: const BorderSide(
-                color: AppColors.primarycolor,
+                color: AppColors.primaryColor,
                 width: 2,
               ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
               borderSide: const BorderSide(
-                color: AppColors.primarycolor,
+                color: AppColors.primaryColor,
                 width: 2,
               ),
             ),
-            labelText: widget.labelname,
+            labelText: widget.labelName,
             labelStyle: TextStyle(
               color: Colors.black.withOpacity(0.26),
               fontSize: 20,
@@ -496,7 +549,7 @@ class _TextFormFiledStepperState extends State<TextFormFiledStepper> {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
               borderSide: const BorderSide(
-                color: AppColors.primarycolor,
+                color: AppColors.primaryColor,
                 width: 2,
               ),
             ),
@@ -580,34 +633,34 @@ class _DropdownButtonItemState extends State<DropdownButtonItem> {
         },
         padding: const EdgeInsets.symmetric(vertical: 10),
         isExpanded: true,
-        iconEnabledColor: AppColors.primarycolor,
+        iconEnabledColor: AppColors.primaryColor,
         decoration: InputDecoration(
           floatingLabelAlignment: widget.floatingLabelAlignment,
           disabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
             borderSide: const BorderSide(
-              color: AppColors.primarycolor,
+              color: AppColors.primaryColor,
               width: 2,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
             borderSide: const BorderSide(
-              color: AppColors.primarycolor,
+              color: AppColors.primaryColor,
               width: 2,
             ),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
             borderSide: const BorderSide(
-              color: AppColors.primarycolor,
+              color: AppColors.primaryColor,
               width: 2,
             ),
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
             borderSide: const BorderSide(
-              color: AppColors.primarycolor,
+              color: AppColors.primaryColor,
               width: 2,
             ),
           ),
@@ -653,8 +706,8 @@ Future showBottomSheetItem(context, Widget content) {
 
 class ShowBottomSheetItems extends StatelessWidget {
   const ShowBottomSheetItems(
-      {super.key, required this.contecnt, required this.name});
-  final Widget contecnt;
+      {super.key, required this.content, required this.name});
+  final Widget content;
   final String name;
   @override
   Widget build(BuildContext context) {
@@ -665,7 +718,7 @@ class ShowBottomSheetItems extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           borderSide: const BorderSide(
             width: 2,
-            color: AppColors.primarycolor,
+            color: AppColors.primaryColor,
           ),
         ),
         title: Text(
@@ -673,10 +726,10 @@ class ShowBottomSheetItems extends StatelessWidget {
           style: TextStyle(color: Colors.black.withOpacity(0.26), fontSize: 20),
         ),
         trailing: IconButton(
-          onPressed: () => showBottomSheetItem(context, contecnt),
+          onPressed: () => showBottomSheetItem(context, content),
           icon: const Icon(
             Icons.add,
-            color: AppColors.primarycolor,
+            color: AppColors.primaryColor,
           ),
         ),
       ),

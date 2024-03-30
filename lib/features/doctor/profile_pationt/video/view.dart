@@ -41,7 +41,7 @@ class _VideoScreenState extends State<VideoScreen> {
           if (state is VideoPlayLoading) {
             return const Center(
               child: CircularProgressIndicator(
-                color: AppColors.primarycolor,
+                color: AppColors.primaryColor,
               ),
             );
           }
@@ -90,13 +90,13 @@ class _VideoScreenState extends State<VideoScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.primarycolor,
+        backgroundColor: AppColors.primaryColor,
         onPressed: () async {
           final resulte = await navigateTo(
               context,
               BlocProvider(
                 create: (context) => VideoPlayCubit(),
-                child: SlectedVideo(
+                child: SelectedVideo(
                   id: widget.id,
                 ),
               ));

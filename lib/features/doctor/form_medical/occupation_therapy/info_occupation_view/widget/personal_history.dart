@@ -22,7 +22,7 @@ class PersonalHistoryView extends StatelessWidget {
         title: const Text(
           'Patient Data',
           style: TextStyle(
-            color: AppColors.primarycolor,
+            color: AppColors.primaryColor,
           ),
         ),
       ),

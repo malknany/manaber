@@ -16,8 +16,8 @@ class DoctorProfileCubit extends Cubit<DoctorProfileState> {
   void getProfileDoctor() async {
     emit(DoctorProfileLoading());
     try {
-      final response = await DioHelper.getdata(
-          url: patientinfo, headers: {'Authorization': 'Bearer ${token[0]}'});
+      final response = await DioHelper.getData(
+          url: patientInfo, headers: {'Authorization': 'Bearer ${token[0]}'});
       if (response.statusCode == 200) {
         print(response.data);
         print(response.statusCode);

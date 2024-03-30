@@ -9,12 +9,12 @@ ThemeData lightTheme = ThemeData(
   scaffoldBackgroundColor:Colors.white,
   platform: TargetPlatform.iOS,
   fontFamily: "Schyler",
-  primaryColor: AppColors.primarycolor,
+  primaryColor: AppColors.primaryColor,
  // primarySwatch: Colors.green,
-  iconTheme: const IconThemeData(color: AppColors.primarycolor),
+  iconTheme: const IconThemeData(color: AppColors.primaryColor),
   buttonTheme: const ButtonThemeData(
-    splashColor: AppColors.primarycolor,
-    focusColor: AppColors.primarycolor,
+    splashColor: AppColors.primaryColor,
+    focusColor: AppColors.primaryColor,
   ),
 
   // textTheme: const TextTheme(
@@ -36,23 +36,23 @@ ThemeData lightTheme = ThemeData(
         toolbarHeight: 60,
         elevation: 0,
         centerTitle: true,
-        iconTheme: IconThemeData(color: AppColors.primarycolor, size: 30),
+        iconTheme: IconThemeData(color: AppColors.primaryColor, size: 30),
         titleTextStyle: TextStyle(
-          color: AppColors.primarycolor,
+          color: AppColors.primaryColor,
           fontSize: 20,
           fontWeight: FontWeight.w500,
 
         ),)
   //       systemOverlayStyle: SystemUiOverlayStyle(
-  //           statusBarColor: AppColors.primarycolor,
+  //           statusBarColor: AppColors.primaryColor,
   //           statusBarIconBrightness: Brightness.light)),
   //   sliderTheme: const SliderThemeData(
-  //       valueIndicatorColor: AppColors.primarycolor,
+  //       valueIndicatorColor: AppColors.primaryColor,
   //       inactiveTickMarkColor: AppColors.slidergrey,
-  //       activeTrackColor: AppColors.primarycolor,
-  //       activeTickMarkColor: AppColors.primarycolor,
+  //       activeTrackColor: AppColors.primaryColor,
+  //       activeTickMarkColor: AppColors.primaryColor,
   //       disabledInactiveTrackColor: Colors.blue,
-  //       thumbColor: AppColors.primarycolor,
+  //       thumbColor: AppColors.primaryColor,
   //       rangeTrackShape: RectangularRangeSliderTrackShape(),
   //       rangeValueIndicatorShape: PaddleRangeSliderValueIndicatorShape(),
   //       rangeTickMarkShape: RoundRangeSliderTickMarkShape(tickMarkRadius: 1.2),
@@ -64,15 +64,15 @@ ThemeData lightTheme = ThemeData(
 
 
     //       systemOverlayStyle: SystemUiOverlayStyle(
-    //           statusBarColor: AppColors.primarycolor,
+    //           statusBarColor: AppColors.primaryColor,
     //           statusBarIconBrightness: Brightness.light)),
     //   sliderTheme: const SliderThemeData(
-    //       valueIndicatorColor: AppColors.primarycolor,
+    //       valueIndicatorColor: AppColors.primaryColor,
     //       inactiveTickMarkColor: AppColors.slidergrey,
-    //       activeTrackColor: AppColors.primarycolor,
-    //       activeTickMarkColor: AppColors.primarycolor,
+    //       activeTrackColor: AppColors.primaryColor,
+    //       activeTickMarkColor: AppColors.primaryColor,
     //       disabledInactiveTrackColor: Colors.blue,
-    //       thumbColor: AppColors.primarycolor,
+    //       thumbColor: AppColors.primaryColor,
     //       rangeTrackShape: RectangularRangeSliderTrackShape(),
     //       rangeValueIndicatorShape: PaddleRangeSliderValueIndicatorShape(),
     //       rangeTickMarkShape: RoundRangeSliderTickMarkShape(tickMarkRadius: 1.2),

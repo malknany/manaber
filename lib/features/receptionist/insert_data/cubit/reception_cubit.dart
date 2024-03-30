@@ -19,9 +19,9 @@ class ReceptionCubit extends Cubit<ReceptionState> {
   void receptionPostData(ModelReceptiona modelReceptiona) async {
     emit(ReceptionLoading());
     try {
-      final response = await DioHelper.postdata(
+      final response = await DioHelper.postData(
           url: createReception,
-          posteddata: modelReceptiona.toJson(),
+          postedData: modelReceptiona.toJson(),
           headers: {'Authorization': 'Bearer ${token[0]}'});
       if (response.statusCode == 200) {
         print(response.data);

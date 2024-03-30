@@ -23,7 +23,7 @@ class _TretmentPlanViewState extends State<TretmentPlanView> {
 
   @override
   void initState() {
-    context.read<TretmentPlanCubit>().getTretmentPlan(widget.id);
+    context.read<TreatmentPlanCubit>().getTretmentPlan(widget.id);
     super.initState();
   }
 
@@ -34,20 +34,20 @@ class _TretmentPlanViewState extends State<TretmentPlanView> {
         title: const Text('Tretment Plans'),
         backgroundColor: Colors.white,
       ),
-      body: BlocBuilder<TretmentPlanCubit, TretmentPlanState>(
+      body: BlocBuilder<TreatmentPlanCubit, TreatmentPlanState>(
         builder: (context, state) {
-          if (state is TretmentPlanLoading) {
+          if (state is TreatmentPlanLoading) {
             return const SizedBox(
               height: double.infinity,
               width: double.infinity,
               child: Center(
                 child: CircularProgressIndicator(
-                  color: AppColors.primarycolor,
+                  color: AppColors.primaryColor,
                 ),
               ),
             );
           }
-          if (state is TretmentPlanError) {
+          if (state is TreatmentPlanError) {
             return SizedBox(
               height: double.infinity,
               width: double.infinity,
@@ -84,7 +84,7 @@ class _TretmentPlanViewState extends State<TretmentPlanView> {
                         print(widget.id);
                         print(model[index].id);
                         print(model[index].patientId);
-                        context.read<TretmentPlanCubit>().delatePlan(
+                        context.read<TreatmentPlanCubit>().delatePlan(
                                 model[index].patientId, model[index].id);
                       },
                       modelTretmentPlan: model[index]);
@@ -96,21 +96,21 @@ class _TretmentPlanViewState extends State<TretmentPlanView> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.primarycolor,
+        backgroundColor: AppColors.primaryColor,
         child: const Icon(Icons.add, color: Colors.white),
         onPressed: () async {
           final refresh = await navigateTo(
               context,
               BlocProvider(
-                create: (context) => TretmentPlanCubit(),
-                child: TrentmentPlanDataEntry(
+                create: (context) => TreatmentPlanCubit(),
+                child: TreatmentPlanDataEntry(
                   id: widget.id,
                 ),
               ));
 
           if (refresh == 'refresh') {
             // ignore: use_build_context_synchronously
-            context.read<TretmentPlanCubit>().getTretmentPlan(widget.id);
+            context.read<TreatmentPlanCubit>().getTretmentPlan(widget.id);
           }
         },
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../shared/styles/colors.dart';
 
 class ItemSearch extends StatelessWidget {
@@ -24,13 +25,13 @@ class ItemSearch extends StatelessWidget {
           decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(30),
-                borderSide: const BorderSide(color: AppColors.primarycolor)),
+                borderSide: const BorderSide(color: AppColors.primaryColor)),
             border: OutlineInputBorder(
-              borderSide: const BorderSide(color: AppColors.primarycolor),
+              borderSide: const BorderSide(color: AppColors.primaryColor),
               borderRadius: BorderRadius.circular(30),
             ),
             hintText: "أدخل الاسم..",
-            prefixIcon: const Icon(Icons.search, color: AppColors.primarycolor),
+            prefixIcon: const Icon(Icons.search, color: AppColors.primaryColor),
           ),
         ),
       ),

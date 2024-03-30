@@ -7,7 +7,7 @@ abstract class VideoPlayState {}
 class VideoPlayInitial extends VideoPlayState {}
 
 class VideoPlayLoading extends VideoPlayState {}
-class VideoPlaySlected extends VideoPlayState {}
+class VideoPlaySelected extends VideoPlayState {}
 
 class VideoPlayError extends VideoPlayState {
   final String msg;
