@@ -1,19 +1,21 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../model.dart';
+
 import '../../../../../shared/network/local/const_key.dart';
 import '../../../../../shared/network/local/shared_preferences.dart';
 import '../../../../../shared/network/remote/dio_helper.dart';
 import '../../../../../shared/network/remote/end_points.dart';
+import '../model.dart';
+
 part 'tretment_plan_state.dart';
 
-class TretmentPlanCubit extends Cubit<TretmentPlanState> {
-  TretmentPlanCubit() : super(TretmentPlanInitial());
+class TreatmentPlanCubit extends Cubit<TreatmentPlanState> {
+  TreatmentPlanCubit() : super(TretmentPlanInitial());
   final token = CacheHelper.getData(key: AppConstKey.token);
   List<ModelTretmentPlan> listOfModelTretmentPlan = [];
   Future<List<dynamic>> _getPlansFromApi(id, token) async {
-    final response = await DioHelper.getdata(
+    final response = await DioHelper.getData(
         url: treatments + id, headers: {'Authorization': 'Bearer $token'});
     if (response.statusCode == 200) {
       print(response.data);
@@ -26,7 +28,7 @@ class TretmentPlanCubit extends Cubit<TretmentPlanState> {
   }
 
   void getTretmentPlan(id) async {
-    emit(TretmentPlanLoading());
+    emit(TreatmentPlanLoading());
     try {
       _getPlansFromApi(id, token[0]).then((value) {
         listOfModelTretmentPlan =
@@ -44,7 +46,7 @@ class TretmentPlanCubit extends Cubit<TretmentPlanState> {
         print(e.response!.data);
         print(e.response!.statusCode);
         print(e.response!.statusMessage);
-        emit(TretmentPlanError(msg: e.response!.data['message']));
+        emit(TreatmentPlanError(msg: e.response!.data['message']));
       } else {
         print(e.message);
       }
@@ -81,28 +83,28 @@ class TretmentPlanCubit extends Cubit<TretmentPlanState> {
   }
 
   void postPlan({titleName, id, listofPlans}) async {
-    emit(TretmentPlanLoading());
+    emit(TreatmentPlanLoading());
     try {
-      final response = await DioHelper.putdata(
+      final response = await DioHelper.putData(
         url: treatments + id,
-        posteddata: {"name": titleName, "steps": listofPlans},
+        postedData: {"name": titleName, "steps": listofPlans},
         headers: {'Authorization': 'Bearer ${token[0]}'},
       );
       if (response.statusCode == 200) {
         print(response.data);
         print(response.statusCode);
         print(response.statusMessage);
-        emit(TretmentPlanSuccessUpLoade());
+        emit(TreatmentPlanSuccessUpLoaded());
       }
     } on DioException catch (e) {
       if (e.response != null) {
         print(e.response!.data);
         print(e.response!.statusCode);
         print(e.response!.statusMessage);
-        emit(TretmentPlanError(msg: e.response!.data['message']));
+        emit(TreatmentPlanError(msg: e.response!.data['message']));
       } else {
         print(e.message);
-        emit(TretmentPlanError(msg: e.error.toString()));
+        emit(TreatmentPlanError(msg: e.error.toString()));
       }
     } catch (e) {
       print(e.toString());

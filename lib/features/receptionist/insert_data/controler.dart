@@ -26,8 +26,8 @@ class StepperReceptionist {
         lable: 'رقم الهاتف',
         controller: phoneNumberController,
       ),
-      DropDowneReception(
-        lable: 'الجنس',
+      DropDownReception(
+        label: 'الجنس',
         controller: genderController,
         listOfItem: ['ذكر', 'انثى'],
       ),
@@ -60,8 +60,8 @@ class StepperReceptionist {
             'هل لدية مشاكل اخرى غير المشاكل الحركية (مثل مشاكل بالرئة او القلب)',
         controller: otherProblemsController,
       ),
-      DropDowneReception(
-        lable: 'هل يوجد اطفال يعانون من نفس المشكلة بالعائلة',
+      DropDownReception(
+        label: 'هل يوجد اطفال يعانون من نفس المشكلة بالعائلة',
         controller: sameProblemInFamilyController,
         listOfItem: ['نعم', 'لا'],
       ),

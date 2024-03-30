@@ -19,7 +19,7 @@ class _MembersScreenState extends State<MembersScreen> {
   @override
   void initState() {
     BlocProvider.of<PatientsDepartmentCubit>(context)
-        .getPationtDepartment(widget.department);
+        .getPatientDepartment(widget.department);
     super.initState();
   }
 
@@ -46,7 +46,7 @@ class _MembersScreenState extends State<MembersScreen> {
                     return const Expanded(
                       child: Center(
                         child: CircularProgressIndicator(
-                          color: AppColors.primarycolor,
+                          color: AppColors.primaryColor,
                         ),
                       ),
                     );
@@ -62,7 +62,7 @@ class _MembersScreenState extends State<MembersScreen> {
                       ),
                     );
                   }
-                  if (state is PatientsDepartmentErorr) {
+                  if (state is PatientsDepartmentError) {
                     return Expanded(
                       child: Center(
                         child: Text(
@@ -82,12 +82,13 @@ class _MembersScreenState extends State<MembersScreen> {
                             navigateTo(
                               context,
                               ProfilePationtScreen(
-                                id: state.listOfPationt[index].id,
+                                id: state.listOfPationt[index].id ?? "1",
                                 department: widget.department,
                               ),
                             );
                           },
-                          patientName: state.listOfPationt[index].name,
+                          patientName:
+                              state.listOfPationt[index].name ?? "Empty",
                         ),
                         separatorBuilder: (BuildContext context, int index) {
                           return const SizedBox(

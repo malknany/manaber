@@ -11,14 +11,14 @@ import '../../insert_data/view.dart';
 
 class SectionItemReceptionist extends StatelessWidget {
   const SectionItemReceptionist(
-      {required this.sectionname,
+      {required this.sectionName,
       required this.image,
       Key? key,
-      required this.controleReceptionist,
+      required this.controlReceptionist,
       required this.department})
       : super(key: key);
-  final String sectionname;
-  final StepperReceptionist controleReceptionist;
+  final String sectionName;
+  final StepperReceptionist controlReceptionist;
   final String image;
   final String department;
 
@@ -31,7 +31,7 @@ class SectionItemReceptionist extends StatelessWidget {
             BlocProvider(
               create: (context) => ReceptionCubit(),
               child: ReceptionistDataEntry(
-                controleReceptionist: controleReceptionist,
+                controlReceptionist: controlReceptionist,
                 department: department,
               ),
             ));
@@ -39,7 +39,7 @@ class SectionItemReceptionist extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Material(
-          shadowColor: AppColors.primarycolor,
+          shadowColor: AppColors.primaryColor,
           elevation: 10,
           borderRadius: BorderRadius.circular(20),
           child: Container(
@@ -60,9 +60,9 @@ class SectionItemReceptionist extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  sectionname,
+                  sectionName,
                   style: AppTextStyles.lrTitles
-                      .copyWith(color: AppColors.primarycolor),
+                      .copyWith(color: AppColors.primaryColor),
                 )
               ],
             ),

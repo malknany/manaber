@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/admin/accepter_page/model.dart';
+import '../../accepter_page/model.dart';
 import '../../../../shared/network/local/const_key.dart';
 import '../../../../shared/network/local/shared_preferences.dart';
 import '../../../../shared/network/remote/dio_helper.dart';
@@ -56,7 +56,7 @@ class DelateUserFromSystemCubit extends Cubit<DelateUserFromSystemState> {
 }
 
 Future<List<dynamic>> _getAllUserFromApi(token) async {
-  final response = await DioHelper.getdata(
+  final response = await DioHelper.getData(
       url: allUsers, headers: {'Authorization': 'Bearer $token'});
   if (response.statusCode == 200) {
     debugPrint(response.data.toString());

@@ -7,23 +7,23 @@ import 'package:manaber/features/doctor/form_medical/model.dart';
 import 'package:manaber/shared/components/components.dart';
 import 'package:manaber/shared/styles/colors.dart';
 
-class MuscloskeletalExamination extends StatelessWidget {
-  const MuscloskeletalExamination(
+class MusculoskeletalExamination extends StatelessWidget {
+  const MusculoskeletalExamination(
       {super.key,
-      required this.muscloskeletalExamination,
-      required this.controleFileAssesment});
+      required this.musculoskeletalExamination,
+      required this.controlFileAssessment});
 
-  final List<ModelPatientInfo> muscloskeletalExamination;
-  final ControleFileAssesment controleFileAssesment;
+  final List<ModelPatientInfo> musculoskeletalExamination;
+  final ControlFileAssessment controlFileAssessment;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Muscloskeletal Examination'),
+        title: const Text('Musculoskeletal Examination'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -33,9 +33,9 @@ class MuscloskeletalExamination extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: controleFileAssesment.listMuscloskelton.length,
+                itemCount: controlFileAssessment.listMuscloskelton.length,
                 itemBuilder: (context, index) {
-                  var model = controleFileAssesment.listMuscloskelton[index];
+                  var model = controlFileAssessment.listMuscloskelton[index];
                   if (model is DividerFileAssModel) {
                     return DividerItem(text: model.text);
                   }
@@ -48,14 +48,14 @@ class MuscloskeletalExamination extends StatelessWidget {
                   }
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
-                        hintText: muscloskeletalExamination[index].answer,
-                        labelname: model.labelName,
+                        hintText: musculoskeletalExamination[index].answer,
+                        labelName: model.labelName,
                         textEditingController: model.textEditingController);
                   }
                   if (model is BottomSheetFileAssModel) {
                     return ShowBottomSheetItems(
                       name: model.name,
-                      contecnt: SizedBox(
+                      content: SizedBox(
                         height: MediaQuery.sizeOf(context).height / 1.2,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -70,9 +70,9 @@ class MuscloskeletalExamination extends StatelessWidget {
                                     if (item is TextFormFiledStepperModel) {
                                       return TextFormFiledStepper(
                                           hintText:
-                                              muscloskeletalExamination[idx]
+                                              musculoskeletalExamination[idx]
                                                   .answer,
-                                          labelname: item.labelName,
+                                          labelName: item.labelName,
                                           textEditingController:
                                               item.textEditingController);
                                     }

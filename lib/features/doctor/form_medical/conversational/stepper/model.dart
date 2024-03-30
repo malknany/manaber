@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 class ModelConversational {
   final String lable;
-  final TextEditingController controle;
+  final TextEditingController control;
   ModelConversational({
     required this.lable,
-    required this.controle,
+    required this.control,
   });
 }

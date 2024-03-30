@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/admin/accepter_page/cubit/pending_cubit.dart';
-import 'package:manaber/features/admin/accepter_page/view.dart';
-import 'package:manaber/features/admin/delete_from_system/cubit/delate_user_from_system_cubit.dart';
-import 'package:manaber/features/admin/delete_from_system/view.dart';
-import 'package:manaber/features/admin/our_section_admin/widget/item_sectione_admin.dart';
-import 'package:manaber/shared/components/navigator.dart';
+import '../accepter_page/cubit/pending_cubit.dart';
+import '../accepter_page/view.dart';
+import '../delete_from_system/cubit/delate_user_from_system_cubit.dart';
+import '../delete_from_system/view.dart';
+import 'widget/item_sectione_admin.dart';
+import '../../../shared/components/navigator.dart';
 
 class AdminHomePage extends StatelessWidget {
   const AdminHomePage({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class AdminHomePage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              signout(context);
+              signOut(context);
             },
             icon: const Icon(
               Icons.output,
@@ -41,14 +41,14 @@ class AdminHomePage extends StatelessWidget {
                       create: (context) => PendingCubit(),
                       child: const AdminAcceptUser(),
                     ),
-                    sectionname: 'قبول ورفض الطلبات',
+                    sectionName: 'قبول ورفض الطلبات',
                   ),
                   SectionItemAdmin(
                     screen: BlocProvider(
                       create: (context) => DelateUserFromSystemCubit(),
                       child: const AdminDeleteFromSystem(),
                     ),
-                    sectionname: 'حذف مستخدم من النظام',
+                    sectionName: 'حذف مستخدم من النظام',
                   ),
                 ],
               ),

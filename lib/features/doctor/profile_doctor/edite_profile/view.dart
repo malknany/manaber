@@ -6,14 +6,14 @@ import '../../../../shared/styles/colors.dart';
 import '../../../../shared/styles/styles.dart';
 import '../../../../shared/components/components.dart';
 
-class EditeProfileDoctorScreen extends StatelessWidget {
+class EditProfileDoctorScreen extends StatelessWidget {
   final TextEditingController controllerName = TextEditingController();
 
   final TextEditingController controllerPassword = TextEditingController();
   final ModelProfile modelProfileDoctor;
   final _formKey = GlobalKey<FormState>();
 
-  EditeProfileDoctorScreen({
+  EditProfileDoctorScreen({
     required this.modelProfileDoctor,
     super.key,
   });
@@ -42,7 +42,7 @@ class EditeProfileDoctorScreen extends StatelessWidget {
                 TextFormFiledStepper(
                     textDirection: TextDirection.rtl,
                     textEditingController: controllerName,
-                    labelname: modelProfileDoctor.name),
+                    labelName: modelProfileDoctor.name),
                 TextFormFiledStepper(
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -60,38 +60,38 @@ class EditeProfileDoctorScreen extends StatelessWidget {
                     },
                     textDirection: TextDirection.rtl,
                     textEditingController: controllerPassword,
-                    labelname: 'كلمة السر'),
+                    labelName: 'كلمة السر'),
                 ButtonText(
                     text: 'حفظ',
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         context
-                            .read<EditeProfileDoctorCubit>()
-                            .postEditeProfile(
+                            .read<EditProfileDoctorCubit>()
+                            .postEditProfile(
                                 name: controllerName.text,
                                 password: controllerPassword.text);
                       }
                     }),
-                BlocBuilder<EditeProfileDoctorCubit, EditeProfileDoctorState>(
+                BlocBuilder<EditProfileDoctorCubit, EditProfileDoctorState>(
                   builder: (context, state) {
-                    if (state is EditeProfileDoctorLoading) {
+                    if (state is EditProfileDoctorLoading) {
                       return const Center(
                         child: CircularProgressIndicator(
-                          color: AppColors.primarycolor,
+                          color: AppColors.primaryColor,
                         ),
                       );
                     }
-                    if (state is EditeProfileDoctorSuccess) {
+                    if (state is EditProfileDoctorSuccess) {
                       return Center(
                         child: Text(
                           'تم تعديل البيانات ',
                           textDirection: TextDirection.rtl,
                           style: AppTextStyles.lrTitles.copyWith(
-                              color: AppColors.primarycolor, fontSize: 15),
+                              color: AppColors.primaryColor, fontSize: 15),
                         ),
                       );
                     }
-                    if (state is EditeProfileDoctorError) {
+                    if (state is EditProfileDoctorError) {
                       return Text(
                         state.msg,
                         textDirection: TextDirection.rtl,

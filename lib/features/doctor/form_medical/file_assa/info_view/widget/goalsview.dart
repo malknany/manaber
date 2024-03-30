@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/model.dart';
+import '../../../model.dart';
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 import '../../../../../../shared/styles/images.dart';
@@ -15,7 +15,7 @@ class GoalsView extends StatelessWidget {
           backgroundColor: Colors.white,
           title: const Text('Patient Data',
               style: TextStyle(
-                color: AppColors.primarycolor,
+                color: AppColors.primaryColor,
               )),
         ),
         body: Padding(

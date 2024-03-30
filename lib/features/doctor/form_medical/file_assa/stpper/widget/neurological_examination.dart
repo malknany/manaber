@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/model.dart';
+import '../../../model.dart';
 import '../model.dart';
 import '../controller.dart';
 import '../../../../../../shared/components/components.dart';
@@ -9,8 +9,8 @@ class NeurologicalExamination extends StatelessWidget {
   const NeurologicalExamination(
       {super.key,
       required this.neurologicalExamination,
-      required this.controleFileAssesment});
-  final ControleFileAssesment controleFileAssesment;
+      required this.controlFileAssessment});
+  final ControlFileAssessment controlFileAssessment;
   final List<ModelPatientInfo> neurologicalExamination;
 
   @override
@@ -20,7 +20,7 @@ class NeurologicalExamination extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Neurological Examination'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -30,9 +30,9 @@ class NeurologicalExamination extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: controleFileAssesment.listNeurological.length,
+                itemCount: controlFileAssessment.listNeurological.length,
                 itemBuilder: (context, index) {
-                  var model = controleFileAssesment.listNeurological[index];
+                  var model = controlFileAssessment.listNeurological[index];
                   if (model is DividerFileAssModel) {
                     return DividerItem(text: model.text);
                   }
@@ -46,13 +46,13 @@ class NeurologicalExamination extends StatelessWidget {
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
                         hintText: neurologicalExamination[index].answer,
-                        labelname: model.labelName,
+                        labelName: model.labelName,
                         textEditingController: model.textEditingController);
                   }
                   if (model is BottomSheetFileAssModel) {
                     return ShowBottomSheetItems(
                       name: model.name,
-                      contecnt: SizedBox(
+                      content: SizedBox(
                         height: MediaQuery.sizeOf(context).height / 1.2,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -68,7 +68,7 @@ class NeurologicalExamination extends StatelessWidget {
                                       return TextFormFiledStepper(
                                           hintText: neurologicalExamination[idx]
                                               .answer,
-                                          labelname: item.labelName,
+                                          labelName: item.labelName,
                                           textEditingController:
                                               item.textEditingController);
                                     }

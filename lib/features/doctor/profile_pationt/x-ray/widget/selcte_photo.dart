@@ -35,7 +35,7 @@ class _SlectePhotoViewState extends State<SlectePhotoView> {
 
           isSlected = false;
         },
-        backgroundColor: AppColors.primarycolor,
+        backgroundColor: AppColors.primaryColor,
         child: const Icon(
           Icons.upload,
         ),
@@ -90,7 +90,7 @@ class _SlectePhotoViewState extends State<SlectePhotoView> {
                               fit: BoxFit.fill,
                               errorBuilder: (context, error, stackTrace) {
                                 return Container(
-                                  color: AppColors.primarycolor,
+                                  color: AppColors.primaryColor,
                                   child: const Center(
                                     child: Text(
                                       'Error load image',
@@ -136,14 +136,14 @@ class _SlectePhotoViewState extends State<SlectePhotoView> {
                 if (state is XrayLoading) {
                   return const Center(
                     child: CircularProgressIndicator(
-                        color: AppColors.primarycolor),
+                        color: AppColors.primaryColor),
                   );
                 }
                 if (state is XraySuccess) {
                   return const Center(
                     child: Icon(
                       Icons.check_circle,
-                      color: AppColors.primarycolor,
+                      color: AppColors.primaryColor,
                     ),
                   );
                 }

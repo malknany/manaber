@@ -67,9 +67,9 @@ class XrayCubit extends Cubit<XrayState> {
     emit(XrayLoading());
     await _uploadImages(id).then((url) async {
       try {
-        final response = await DioHelper.putdata(
+        final response = await DioHelper.putData(
             url: media + id,
-            posteddata: {"name": "first xray", "category": "XRAY", "urls": url},
+            postedData: {"name": "first xray", "category": "XRAY", "urls": url},
             headers: {'Authorization': 'Bearer ${token[0]}'});
         if (response.statusCode == 201) {
           print(response.data);
@@ -156,7 +156,7 @@ class XrayCubit extends Cubit<XrayState> {
   }
 
   Future<List<dynamic>> _getXraysApi(id) async {
-    final response = await DioHelper.getdata(
+    final response = await DioHelper.getData(
         url: xray + id, headers: {'Authorization': 'Bearer ${token[0]}'});
     if (response.statusCode == 200) {
       print(response.data);

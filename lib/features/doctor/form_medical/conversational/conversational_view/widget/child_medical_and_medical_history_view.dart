@@ -21,7 +21,7 @@ class ChildMedicalAndMedicalHistoryView extends StatelessWidget {
         title: const Text(
           'التاریخ الصحي والمرضي للطفل',
           style: TextStyle(
-            color: AppColors.primarycolor,
+            color: AppColors.primaryColor,
           ),
         ),
       ),

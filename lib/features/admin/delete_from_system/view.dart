@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manaber/features/admin/delete_from_system/cubit/delate_user_from_system_cubit.dart';
-import 'package:manaber/features/admin/delete_from_system/widget/item_card_accept.dart';
-import 'package:manaber/shared/components/components.dart';
-import 'package:manaber/shared/styles/colors.dart';
-import 'package:manaber/shared/styles/styles.dart';
+import 'cubit/delate_user_from_system_cubit.dart';
+import 'widget/item_card_accept.dart';
+import '../../../shared/components/components.dart';
+import '../../../shared/styles/colors.dart';
+import '../../../shared/styles/styles.dart';
 
 class AdminDeleteFromSystem extends StatefulWidget {
   const AdminDeleteFromSystem({super.key});
@@ -40,7 +40,7 @@ class _AdminDeleteFromSystemState extends State<AdminDeleteFromSystem> {
             );
           } else if (state is DelateUserFromSystemLoading) {
             return const Center(
-              child: CircularProgressIndicator(color: AppColors.primarycolor),
+              child: CircularProgressIndicator(color: AppColors.primaryColor),
             );
           } else if (state is DelateUserFromSystemErorr) {
             return Center(
@@ -51,7 +51,7 @@ class _AdminDeleteFromSystemState extends State<AdminDeleteFromSystem> {
             );
           } else if (state is DelateUserFromSystemSuccess) {
             return RefreshIndicator(
-              color: AppColors.primarycolor,
+              color: AppColors.primaryColor,
               onRefresh: () {
                 return context
                     .read<DelateUserFromSystemCubit>()

@@ -12,12 +12,12 @@ class TextFormFiledReception extends ModelReception {
   });
 }
 
-class DropDowneReception extends ModelReception {
-  final String lable;
+class DropDownReception extends ModelReception {
+  final String label;
   final TextEditingController controller;
   List<String>? listOfItem = [];
-  DropDowneReception({
-    required this.lable,
+  DropDownReception({
+    required this.label,
     required this.controller,
     this.listOfItem,
   });

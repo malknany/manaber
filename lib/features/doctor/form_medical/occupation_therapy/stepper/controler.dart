@@ -67,8 +67,8 @@ class BehaviorADLSTEC {
   final toilet = TextEditingController();
 }
 
-class ControleOccupation {
-  OccupationPreformanceTEC controleOccupationPreformance =
+class ControlOccupation {
+  OccupationPreformanceTEC controlOccupationPerformance =
       OccupationPreformanceTEC();
   BehaviorADLSTEC controleBehaviorADLS = BehaviorADLSTEC();
   AssociatedDisordersTEC controleAssociatedDisorders = AssociatedDisordersTEC();
@@ -78,8 +78,8 @@ class ControleOccupation {
   List<ModelOccupation> listOfBodyFunctionStrucer = [];
   List<ModelOccupation> listOfBehaviorADLS = [];
   List<ModelOccupation> listOfAssociatedDisorders = [];
-  List<ModelOccupation> listOfOccupationPreformance = [];
-  ControleOccupation() {
+  List<ModelOccupation> listOfOccupationPerformance = [];
+  ControlOccupation() {
     listOfPationHistory = [
       ModelTextFiledOccupation(
           labelname: 'Patient name',
@@ -95,7 +95,7 @@ class ControleOccupation {
           labelname: 'Age',
           textEditingController: controlePersonalHistory.age),
       ModelDropDownOccupation(
-          lableName: 'Sex',
+          labelName: 'Sex',
           itemList: ['Male', 'Femal'],
           textEditingController: controlePersonalHistory.sex),
       ModelTextFiledOccupation(
@@ -108,12 +108,12 @@ class ControleOccupation {
     listOfBodyFunctionStrucer = [
       ModelDividerOccupation(text: 'Neuromuscular Status'),
       ModelDropDownOccupation(
-          lableName: 'Upper limb',
+          labelName: 'Upper limb',
           itemList: ["Spastic", "Flaccid", "Normal"],
           textEditingController:
               controleBodyFunctionStrucer.neuromuscularStatusUpperLimb),
       ModelDropDownOccupation(
-          lableName: 'Lower limb',
+          labelName: 'Lower limb',
           itemList: ["Spastic", "Flaccid", "Normal"],
           textEditingController:
               controleBodyFunctionStrucer.neuromuscularStatusLowerLimb),
@@ -140,7 +140,7 @@ class ControleOccupation {
           labelname: 'Deformities',
           textEditingController: controleBodyFunctionStrucer.deformities),
       ModelDropDownOccupation(
-          lableName: 'Muscle bulk',
+          labelName: 'Muscle bulk',
           itemList: [
             "Normal",
             "Atrophy",
@@ -162,41 +162,41 @@ class ControleOccupation {
     listOfBehaviorADLS = [
       ModelDividerOccupation(text: 'Behavior'),
       ModelDropDownOccupation(
-          lableName: 'Aggression',
+          labelName: 'Aggression',
           itemList: ["Yes", "No"],
           textEditingController: controleBehaviorADLS.aggression),
       ModelDropDownOccupation(
-          lableName: 'Hyper activity',
+          labelName: 'Hyper activity',
           itemList: ['Yes', 'No'],
           textEditingController: controleBehaviorADLS.hyperActivity),
       ModelDropDownOccupation(
-          lableName: 'Follow instructions',
+          labelName: 'Follow instructions',
           itemList: ['Yes', 'No'],
           textEditingController: controleBehaviorADLS.followInstructions),
       ModelDropDownOccupation(
-          lableName: 'Instruction with other children',
+          labelName: 'Instruction with other children',
           itemList: ['Yes', 'No'],
           textEditingController:
               controleBehaviorADLS.instructionWithOtherChildren),
       ModelDropDownOccupation(
-          lableName: 'Discipline',
+          labelName: 'Discipline',
           itemList: ['Yes', 'No'],
           textEditingController: controleBehaviorADLS.discipline),
       ModelDividerOccupation(text: 'A.D.L.S'),
       ModelDropDownOccupation(
-          lableName: 'Feeding',
+          labelName: 'Feeding',
           itemList: ["Can't do", "Can do", "With assistance"],
           textEditingController: controleBehaviorADLS.feeding),
       ModelDropDownOccupation(
-          lableName: 'Brushing teeth',
+          labelName: 'Brushing teeth',
           itemList: ["Can't do", "Can do", "With assistance"],
           textEditingController: controleBehaviorADLS.brushingTeeth),
       ModelDropDownOccupation(
-          lableName: 'Dressing',
+          labelName: 'Dressing',
           itemList: ["Can't do", "Can do", "With assistance"],
           textEditingController: controleBehaviorADLS.dressing),
       ModelDropDownOccupation(
-          lableName: 'Toilet',
+          labelName: 'Toilet',
           itemList: ["Can't do", "Can do", "With assistance"],
           textEditingController: controleBehaviorADLS.toilet),
     ];
@@ -213,36 +213,36 @@ class ControleOccupation {
       ModelDividerOccupation(text: 'Developmental milestone'),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.headControl,
-          lableName: 'Head control ',
+          labelName: 'Head control ',
           itemList: const ["Can't do", "Can do", "Can do it with assistance"]),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.rolling,
-          lableName: 'Rolling  ',
+          labelName: 'Rolling  ',
           itemList: const ["Can't do", "Can do", "Can do it with assistance"]),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.sitting,
-          lableName: 'Sitting  ',
+          labelName: 'Sitting  ',
           itemList: const ["Can't do", "Can do", "Can do it with assistance"]),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.creeping,
-          lableName: 'Creeping ',
+          labelName: 'Creeping ',
           itemList: const ["Can't do", "Can do", "Can do it with assistance"]),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.crayoning,
-          lableName: 'Crayoning',
+          labelName: 'Crayoning',
           itemList: const ["Can't do", "Can do", "Can do it with assistance"]),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.standing,
-          lableName: 'Standing ',
+          labelName: 'Standing ',
           itemList: const ["Can't do", "Can do", "Can do it with assistance"]),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.walking,
-          lableName: 'Walking ',
+          labelName: 'Walking ',
           itemList: const ["can't do", "can do", "can do it with assistance"]),
       ModelDividerOccupation(text: 'sensory skills'),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.tactile,
-          lableName: 'Tactile ',
+          labelName: 'Tactile ',
           itemList: const [
             "Hypo response",
             "Hyper response",
@@ -250,7 +250,7 @@ class ControleOccupation {
           ]),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.visual,
-          lableName: 'Visual ',
+          labelName: 'Visual ',
           itemList: const [
             "Hypo response",
             "Hyper response",
@@ -258,7 +258,7 @@ class ControleOccupation {
           ]),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.auditory,
-          lableName: 'Auditory ',
+          labelName: 'Auditory ',
           itemList: const [
             "Hypo response",
             "Hyper response",
@@ -266,26 +266,26 @@ class ControleOccupation {
           ]),
       ModelDropDownOccupation(
           textEditingController: controleAssociatedDisorders.vestibular,
-          lableName: 'Vestibular ',
+          labelName: 'Vestibular ',
           itemList: const [
             "Hypo response",
             "Hyper response",
             "Normal response"
           ]),
     ];
-    listOfOccupationPreformance = [
+    listOfOccupationPerformance = [
       ModelTextFiledOccupation(
           labelname: 'Problem list',
-          textEditingController: controleOccupationPreformance.problemList),
+          textEditingController: controlOccupationPerformance.problemList),
       ModelTextFiledOccupation(
           labelname: 'short term goals',
-          textEditingController: controleOccupationPreformance.shortTermGoal),
+          textEditingController: controlOccupationPerformance.shortTermGoal),
       ModelTextFiledOccupation(
           labelname: 'Long term goals',
-          textEditingController: controleOccupationPreformance.longTermGoal),
+          textEditingController: controlOccupationPerformance.longTermGoal),
       ModelTextFiledOccupation(
           labelname: 'Note ',
-          textEditingController: controleOccupationPreformance.note),
+          textEditingController: controlOccupationPerformance.note),
     ];
   }
 }

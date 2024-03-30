@@ -8,9 +8,9 @@ import '../../../../../../shared/styles/colors.dart';
 class BodyFunctionStrucer extends StatelessWidget {
   const BodyFunctionStrucer(
       {super.key,
-      required this.controleOccupation,
+      required this.controlOccupation,
       required this.bodyFunctionStrucer});
-  final ControleOccupation controleOccupation;
+  final ControlOccupation controlOccupation;
   final List<ModelPatientInfo> bodyFunctionStrucer;
 
   @override
@@ -19,7 +19,7 @@ class BodyFunctionStrucer extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Body Function Strucer'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -28,11 +28,11 @@ class BodyFunctionStrucer extends StatelessWidget {
           child: ListView(
             children: List.generate(bodyFunctionStrucer.length, (index) {
               var model =
-                  controleOccupation.listOfBodyFunctionStrucer[index];
+                  controlOccupation.listOfBodyFunctionStrucer[index];
               if (model is ModelDropDownOccupation) {
                 return DropdownButtonItem(
                   controller: model.textEditingController,
-                  labelName: model.lableName,
+                  labelName: model.labelName,
                   itemList: model.itemList,
                 );
               }
@@ -40,7 +40,7 @@ class BodyFunctionStrucer extends StatelessWidget {
                 return TextFormFiledStepper(
                     hintText: bodyFunctionStrucer[index].answer,
                     textInputType: model.textInputType,
-                    labelname: model.labelname,
+                    labelName: model.labelname,
                     textEditingController: model.textEditingController);
               }
               if (model is ModelDividerOccupation) {

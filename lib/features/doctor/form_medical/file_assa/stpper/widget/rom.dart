@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/model.dart';
-import '../model.dart';
-import '../controller.dart';
+
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
+import '../../../model.dart';
+import '../controller.dart';
+import '../model.dart';
 
 class Rom extends StatelessWidget {
   const Rom(
-      {super.key, required this.rom, required this.controleFileAssesment});
+      {super.key, required this.rom, required this.controlFileAssessment});
 
-  final ControleFileAssesment controleFileAssesment;
+  final ControlFileAssessment controlFileAssessment;
   final List<ModelPatientInfo> rom;
 
   @override
@@ -19,7 +20,7 @@ class Rom extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Rom'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -31,9 +32,9 @@ class Rom extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: controleFileAssesment.listRom.length,
+                itemCount: controlFileAssessment.listRom.length,
                 itemBuilder: (context, index) {
-                  var model = controleFileAssesment.listRom[index];
+                  var model = controlFileAssessment.listRom[index];
                   if (model is DividerFileAssModel) {
                     return DividerItem(text: model.text);
                   }
@@ -47,13 +48,13 @@ class Rom extends StatelessWidget {
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
                         hintText: rom[index].answer,
-                        labelname: model.labelName,
+                        labelName: model.labelName,
                         textEditingController: model.textEditingController);
                   }
                   if (model is BottomSheetFileAssModel) {
                     return ShowBottomSheetItems(
                       name: model.name,
-                      contecnt: SizedBox(
+                      content: SizedBox(
                         height: MediaQuery.sizeOf(context).height / 1.2,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -67,7 +68,7 @@ class Rom extends StatelessWidget {
                                     final item = model.itemList[idx];
                                     if (item is TextFormFiledStepperModel) {
                                       return TextFormFiledStepper(
-                                          labelname: item.labelName,
+                                          labelName: item.labelName,
                                           textEditingController:
                                               item.textEditingController);
                                     }

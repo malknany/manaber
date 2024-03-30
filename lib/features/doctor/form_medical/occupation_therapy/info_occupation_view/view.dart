@@ -22,7 +22,7 @@ class InfoOccupationScreen extends StatefulWidget {
     required this.controleOccupation,
     required this.id,
   });
-  final ControleOccupation controleOccupation;
+  final ControlOccupation controleOccupation;
   final String id;
 
   @override
@@ -32,7 +32,7 @@ class InfoOccupationScreen extends StatefulWidget {
 class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
   @override
   void initState() {
-    BlocProvider.of<PateintInfoCubit>(context).getPatinetFromApi(widget.id);
+    BlocProvider.of<PatientInfoCubit>(context).getPatinetFromApi(widget.id);
     super.initState();
   }
 
@@ -40,7 +40,7 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         backgroundColor: Colors.white,
         elevation: 0,
       ),
@@ -50,16 +50,16 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
                 context,
                 StepperOccupation(
                   listOfInfoPatient:
-                      context.read<PateintInfoCubit>().listOfInfoPatient,
+                      context.read<PatientInfoCubit>().listOfInfoPatient,
                   id: widget.id,
                   controleOccupation: widget.controleOccupation,
                 ));
             if (resulte == 'refresh') {
-              BlocProvider.of<PateintInfoCubit>(context)
+              BlocProvider.of<PatientInfoCubit>(context)
                   .getPatinetFromApi(widget.id);
             }
           },
-          backgroundColor: AppColors.primarycolor,
+          backgroundColor: AppColors.primaryColor,
           elevation: 0,
           child: const Icon(Icons.edit_outlined)),
       body: SizedBox(
@@ -91,15 +91,15 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
                       fontFamily: 'Schyler',
                       fontWeight: FontWeight.normal),
                 ),
-                BlocBuilder<PateintInfoCubit, PateintInfoState>(
+                BlocBuilder<PatientInfoCubit, PatientInfoState>(
                   builder: (context, state) {
-                    if (state is PateintLoading) {
+                    if (state is PatientLoading) {
                       return const Center(
                         child: CircularProgressIndicator(
-                            color: AppColors.primarycolor),
+                            color: AppColors.primaryColor),
                       );
                     }
-                    if (state is PateintErrorMsg) {
+                    if (state is PatientErrorMsg) {
                       return Center(
                         child: Text(
                           state.msg,
@@ -108,7 +108,7 @@ class _InfoOccupationScreenState extends State<InfoOccupationScreen> {
                         ),
                       );
                     }
-                    if (state is PateintSuccess) {
+                    if (state is PatientSuccess) {
                       final List<ModelPatientInfo> personalHistory = [];
                       final List<ModelPatientInfo> associatedDisorders = [];
                       final List<ModelPatientInfo> bodyFunctionAndStrucer = [];

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../edite_profile/cubit/edite_profile_doctor_cubit.dart';
@@ -33,7 +35,7 @@ class _ProfileDoctorScreenState extends State<ProfileDoctorScreen> {
         actions: [
           IconButton(
               onPressed: () {
-                signout(context);
+                signOut(context);
               },
               icon: const Icon(
                 Icons.logout,
@@ -51,14 +53,14 @@ class _ProfileDoctorScreenState extends State<ProfileDoctorScreen> {
               child: Image.asset(AppImages.doctor)),
           Text(
             'الطبيب',
-            style: AppTextStyles.boldtitles.copyWith(fontSize: 32),
+            style: AppTextStyles.boldTitles.copyWith(fontSize: 32),
           ),
           BlocBuilder<DoctorProfileCubit, DoctorProfileState>(
             builder: (context, state) {
               if (state is DoctorProfileLoading) {
                 return const Center(
                   child: CircularProgressIndicator(
-                    color: AppColors.primarycolor,
+                    color: AppColors.primaryColor,
                   ),
                 );
               }
@@ -79,8 +81,8 @@ class _ProfileDoctorScreenState extends State<ProfileDoctorScreen> {
                     final result = await navigateTo(
                         context,
                         BlocProvider(
-                          create: (context) => EditeProfileDoctorCubit(),
-                          child: EditeProfileDoctorScreen(
+                          create: (context) => EditProfileDoctorCubit(),
+                          child: EditProfileDoctorScreen(
                             modelProfileDoctor: model,
                           ),
                         ));

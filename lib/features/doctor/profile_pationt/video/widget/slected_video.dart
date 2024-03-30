@@ -5,15 +5,15 @@ import '../../../../../shared/styles/styles.dart';
 import '../../../../../shared/components/components.dart';
 import '../../../../../shared/styles/colors.dart';
 
-class SlectedVideo extends StatefulWidget {
-  const SlectedVideo({super.key, required this.id});
+class SelectedVideo extends StatefulWidget {
+  const SelectedVideo({super.key, required this.id});
   final String id;
   @override
-  State<SlectedVideo> createState() => _SlectedVideoState();
+  State<SelectedVideo> createState() => _SelectedVideoState();
 }
 
-class _SlectedVideoState extends State<SlectedVideo> {
-  bool isSlected = false;
+class _SelectedVideoState extends State<SelectedVideo> {
+  bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,19 +33,19 @@ class _SlectedVideoState extends State<SlectedVideo> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-          backgroundColor: AppColors.primarycolor,
+          backgroundColor: AppColors.primaryColor,
           child: const Icon(
             Icons.file_upload_rounded,
             color: Colors.white,
           ),
           onPressed: () {
             // ? this line the user can not send the video more then one
-            isSlected
+            isSelected
                 ? context.read<VideoPlayCubit>().sendVideoToApi(
                     id: widget.id,
                     name: context.read<VideoPlayCubit>().controllertitle.text)
                 : null;
-            isSlected = false;
+            isSelected = false;
           }),
       body: SafeArea(
         child: SizedBox(
@@ -58,16 +58,16 @@ class _SlectedVideoState extends State<SlectedVideo> {
                 TextFormFiledStepper(
                   textEditingController:
                       context.read<VideoPlayCubit>().controllertitle,
-                  labelname: 'Title',
+                  labelName: 'Title',
                 ),
                 BlocBuilder<VideoPlayCubit, VideoPlayState>(
                   builder: (context, state) {
-                    if (state is VideoPlaySlected) {
-                      isSlected = true;
+                    if (state is VideoPlaySelected) {
+                      isSelected = true;
                       return Text(
                         'تم اختيار الفديو',
                         style: AppTextStyles.lrTitles
-                            .copyWith(color: AppColors.primarycolor),
+                            .copyWith(color: AppColors.primaryColor),
                       );
                     }
                     if (state is VideoPlayInitial) {
@@ -80,7 +80,7 @@ class _SlectedVideoState extends State<SlectedVideo> {
                     }
                     if (state is VideoPlaySuccess) {
                       return const CircleAvatar(
-                        backgroundColor: AppColors.primarycolor,
+                        backgroundColor: AppColors.primaryColor,
                         child: Icon(
                           Icons.check,
                           color: Colors.white,
@@ -90,7 +90,7 @@ class _SlectedVideoState extends State<SlectedVideo> {
                     if (state is VideoPlayLoading) {
                       return const Center(
                         child: CircularProgressIndicator(
-                            color: AppColors.primarycolor),
+                            color: AppColors.primaryColor),
                       );
                     }
                     return SizedBox.fromSize();
@@ -173,7 +173,7 @@ class _SlectedVideoState extends State<SlectedVideo> {
 //             LinearProgressIndicator(
 //               backgroundColor: AppColors.grey,
 //               value: progress,
-//               color: AppColors.primarycolor,
+//               color: AppColors.primaryColor,
 //             ),
 //             Center(
 //               child: Text(

@@ -20,7 +20,7 @@ class BehaviorADLSView extends StatelessWidget {
         title: const Text(
           'Behavior And ADLS',
           style: TextStyle(
-            color: AppColors.primarycolor,
+            color: AppColors.primaryColor,
           ),
         ),
       ),

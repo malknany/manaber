@@ -42,7 +42,7 @@ class EditeProfileReceptionist extends StatelessWidget {
                 TextFormFiledStepper(
                     textDirection: TextDirection.rtl,
                     textEditingController: controllerName,
-                    labelname: modelReceptionistProfile.name),
+                    labelName: modelReceptionistProfile.name),
                 TextFormFiledStepper(
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -60,36 +60,36 @@ class EditeProfileReceptionist extends StatelessWidget {
                     },
                     textDirection: TextDirection.rtl,
                     textEditingController: controllerPassword,
-                    labelname: 'كلمة السر'),
+                    labelName: 'كلمة السر'),
                 ButtonText(
                     text: 'حفظ',
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        context.read<EditeProfileCubit>().postEditeProfile(
+                        context.read<EditProfileCubit>().postEditeProfile(
                             name: controllerName.text,
                             password: controllerPassword.text);
                       }
                     }),
-                BlocBuilder<EditeProfileCubit, EditeProfileState>(
+                BlocBuilder<EditProfileCubit, EditProfileState>(
                   builder: (context, state) {
-                    if (state is EditeProfileLoading) {
+                    if (state is EditProfileLoading) {
                       return const Center(
                         child: CircularProgressIndicator(
-                          color: AppColors.primarycolor,
+                          color: AppColors.primaryColor,
                         ),
                       );
                     }
-                    if (state is EditeProfileSuccess) {
+                    if (state is EditProfileSuccess) {
                       return Center(
                         child: Text(
                           'تم تعديل البيانات ',
                           textDirection: TextDirection.rtl,
                           style: AppTextStyles.lrTitles.copyWith(
-                              color: AppColors.primarycolor, fontSize: 15),
+                              color: AppColors.primaryColor, fontSize: 15),
                         ),
                       );
                     }
-                    if (state is EditeProfileError) {
+                    if (state is EditProfileError) {
                       return Text(
                         state.msg,
                         textDirection: TextDirection.rtl,

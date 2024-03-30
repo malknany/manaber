@@ -18,7 +18,7 @@ class ItemProfileCardReception extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Material(
-        shadowColor: AppColors.primarycolor,
+        shadowColor: AppColors.primaryColor,
         elevation: 10,
         borderRadius: BorderRadius.circular(20),
         child: Container(
@@ -37,13 +37,13 @@ class ItemProfileCardReception extends StatelessWidget {
                   'الاسم:$name',
                   textDirection: TextDirection.rtl,
                   style: AppTextStyles.lrTitles
-                      .copyWith(color: AppColors.primarycolor, fontSize: 18),
+                      .copyWith(color: AppColors.primaryColor, fontSize: 18),
                 ),
                 Text(
                   textDirection: TextDirection.rtl,
                   'رقم الهاتف :$number',
                   style: AppTextStyles.lrTitles
-                      .copyWith(color: AppColors.primarycolor, fontSize: 18),
+                      .copyWith(color: AppColors.primaryColor, fontSize: 18),
                 ),
                 Align(
                   alignment: Alignment.bottomLeft,

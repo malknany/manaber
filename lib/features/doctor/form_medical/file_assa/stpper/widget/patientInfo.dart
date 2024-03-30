@@ -12,9 +12,9 @@ class PatientInformation extends StatelessWidget {
   const PatientInformation(
       {super.key,
       required this.patientInformation,
-      required this.controleFileAssesment});
+      required this.controlFileAssessment});
   // final StepperControlPatientInfo stepperControl;
-  final ControleFileAssesment controleFileAssesment;
+  final ControlFileAssessment controlFileAssessment;
   final List<ModelPatientInfo> patientInformation;
 
   @override
@@ -23,7 +23,7 @@ class PatientInformation extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Patient Information'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -41,10 +41,10 @@ class PatientInformation extends StatelessWidget {
               Expanded(
                 child: ListView.builder(
                   itemCount:
-                      controleFileAssesment.listPatientInfo.length,
+                      controlFileAssessment.listPatientInfo.length,
                   itemBuilder: (context, index) {
                     var model =
-                        controleFileAssesment.listPatientInfo[index];
+                        controlFileAssessment.listPatientInfo[index];
                     if (model is DropdownButtonItemModel) {
                       return DropdownButtonItem(
                         controller: model.controller,
@@ -55,7 +55,7 @@ class PatientInformation extends StatelessWidget {
                     if (model is TextFormFiledStepperModel) {
                       return TextFormFiledStepper(
                           hintText: patientInformation[index].answer,
-                          labelname: model.labelName,
+                          labelName: model.labelName,
                           textEditingController: model.textEditingController);
                     }
 

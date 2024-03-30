@@ -8,14 +8,14 @@ import '../../../../../shared/network/remote/end_points.dart';
 
 part 'edite_profile_state.dart';
 
-class EditeProfileCubit extends Cubit<EditeProfileState> {
-  EditeProfileCubit() : super(EditeProfileInitial());
+class EditProfileCubit extends Cubit<EditProfileState> {
+  EditProfileCubit() : super(EditeProfileInitial());
   final token = CacheHelper.getData(key: AppConstKey.token);
 
   postEditeProfile({name, password}) async {
-    emit(EditeProfileLoading());
+    emit(EditProfileLoading());
     try {
-      final response = await DioHelper.postdata(url: editProfile, posteddata: {
+      final response = await DioHelper.postData(url: editProfile, postedData: {
         "name": name, //Required even if user doesn't change
         "newPassword": password //Optional
       }, headers: {
@@ -25,14 +25,14 @@ class EditeProfileCubit extends Cubit<EditeProfileState> {
         print(response.data);
         print(response.statusCode);
         print(response.statusMessage);
-        emit(EditeProfileSuccess());
+        emit(EditProfileSuccess());
       }
     } on DioError catch (e) {
       if (e.response != null) {
         print(e.response!.data);
         print(e.response!.statusCode);
         print(e.response!.statusMessage);
-        emit(EditeProfileError(msg: e.response!.data['message']));
+        emit(EditProfileError(msg: e.response!.data['message']));
       } else {
         print(e.message);
       }

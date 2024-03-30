@@ -2,16 +2,16 @@
 part of 'edite_profile_cubit.dart';
 
 @immutable
-abstract class EditeProfileState {}
+abstract class EditProfileState {}
 
-class EditeProfileInitial extends EditeProfileState {}
+class EditeProfileInitial extends EditProfileState {}
 
-class EditeProfileLoading extends EditeProfileState {}
-class EditeProfileSuccess extends EditeProfileState {}
+class EditProfileLoading extends EditProfileState {}
+class EditProfileSuccess extends EditProfileState {}
 
-class EditeProfileError extends EditeProfileState {
+class EditProfileError extends EditProfileState {
   final String msg;
-  EditeProfileError({
+  EditProfileError({
     required this.msg,
   });
 }

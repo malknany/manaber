@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/model.dart';
+import '../../../model.dart';
 import '../model.dart';
 import '../controller.dart';
 import '../../../../../../shared/components/components.dart';
@@ -7,9 +7,9 @@ import '../../../../../../shared/styles/colors.dart';
 
 class Goals extends StatelessWidget {
   const Goals(
-      {super.key, required this.goals, required this.controleFileAssesment});
+      {super.key, required this.goals, required this.controlFileAssessment});
 
-  final ControleFileAssesment controleFileAssesment;
+  final ControlFileAssessment controlFileAssessment;
   final List<ModelPatientInfo> goals;
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class Goals extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Goals'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -30,9 +30,9 @@ class Goals extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: controleFileAssesment.listGoal.length - 1,
+                itemCount: controlFileAssessment.listGoal.length - 1,
                 itemBuilder: (context, index) {
-                  var model = controleFileAssesment.listGoal[index];
+                  var model = controlFileAssessment.listGoal[index];
                   if (model is DividerFileAssModel) {
                     return DividerItem(text: model.text);
                   }
@@ -46,7 +46,7 @@ class Goals extends StatelessWidget {
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
                         hintText: goals[index].answer,
-                        labelname: model.labelName,
+                        labelName: model.labelName,
                         textEditingController: model.textEditingController);
                   }
                   return const SizedBox.shrink();

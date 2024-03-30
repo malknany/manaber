@@ -20,7 +20,7 @@ class BodyFunctionAndStrucerView extends StatelessWidget {
         title: const Text(
           'Body Function And Strucer',
           style: TextStyle(
-            color: AppColors.primarycolor,
+            color: AppColors.primaryColor,
           ),
         ),
       ),

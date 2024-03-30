@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../../model.dart';
+
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 import '../../../../../../shared/styles/images.dart';
 import '../../../../../../shared/styles/styles.dart';
+import '../../../model.dart';
 
 class NoteConversationalView extends StatelessWidget {
   const NoteConversationalView(
@@ -20,7 +21,7 @@ class NoteConversationalView extends StatelessWidget {
         title: const Text(
           'ملاحظات',
           style: TextStyle(
-            color: AppColors.primarycolor,
+            color: AppColors.primaryColor,
           ),
         ),
       ),

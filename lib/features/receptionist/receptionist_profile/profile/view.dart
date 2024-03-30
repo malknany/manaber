@@ -23,7 +23,7 @@ class ReceptionistProfileScreen extends StatefulWidget {
 class _ReceptionistProfileScreenState extends State<ReceptionistProfileScreen> {
   @override
   void initState() {
-    context.read<ReceptionistProfileCubit>().getInfoPatinet();
+    context.read<ReceptionistProfileCubit>().getInfoPatient();
     super.initState();
   }
 
@@ -35,7 +35,7 @@ class _ReceptionistProfileScreenState extends State<ReceptionistProfileScreen> {
         actions: [
           IconButton(
               onPressed: () {
-                signout(context);
+                signOut(context);
               },
               icon: const Icon(
                 Icons.logout,
@@ -53,14 +53,14 @@ class _ReceptionistProfileScreenState extends State<ReceptionistProfileScreen> {
               child: Image.asset(AppImages.receptionist)),
           Text(
             'موظف الاستقبال',
-            style: AppTextStyles.boldtitles.copyWith(fontSize: 32),
+            style: AppTextStyles.boldTitles.copyWith(fontSize: 32),
           ),
           BlocBuilder<ReceptionistProfileCubit, ReceptionistProfileState>(
             builder: (context, state) {
               if (state is ReceptionistProfileLoading) {
                 return const Center(
                   child: CircularProgressIndicator(
-                    color: AppColors.primarycolor,
+                    color: AppColors.primaryColor,
                   ),
                 );
               }
@@ -81,13 +81,13 @@ class _ReceptionistProfileScreenState extends State<ReceptionistProfileScreen> {
                     final result = await navigateTo(
                         context,
                         BlocProvider(
-                          create: (context) => EditeProfileCubit(),
+                          create: (context) => EditProfileCubit(),
                           child: EditeProfileReceptionist(
                             modelReceptionistProfile: model,
                           ),
                         ));
                     if (result == 'refrech') {
-                      context.read<ReceptionistProfileCubit>().getInfoPatinet();
+                      context.read<ReceptionistProfileCubit>().getInfoPatient();
                     }
                   },
                 );

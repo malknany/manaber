@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 abstract class AppTextStyles {
   /// - weight: w200
   /// - family: cairo
-  static TextStyle boldtitles =
+  static TextStyle boldTitles =
   const TextStyle(fontWeight: FontWeight.w900, fontSize: 18, height: 1.7);
 
-  static TextStyle boldtitlesButton =
+  static TextStyle boldTitlesButton =
   const TextStyle(fontWeight: FontWeight.bold, fontSize: 20,);
 
   /// - weight: w300

@@ -21,7 +21,7 @@ class DioHelper {
     }
   }
 
-  static Future<Response> getdata({
+  static Future<Response> getData({
     required String url,
     Map<String, dynamic>? query,
     Map<String, dynamic>? headers,
@@ -39,9 +39,9 @@ class DioHelper {
         queryParameters: query, options: Options(headers: headers));
   }
 
-  static Future<Response> postdata({
+  static Future<Response> postData({
     required String url,
-    Map<String, dynamic>? posteddata,
+    Map<String, dynamic>? postedData,
     Map<String, dynamic>? query,
     headers,
   }) async {
@@ -56,14 +56,14 @@ class DioHelper {
 
     return await dio.post(url,
         queryParameters: query,
-        data: posteddata,
+        data: postedData,
         options: Options(headers: headers));
   }
 
-  static Future<Response> putdata({
+  static Future<Response> putData({
     required String url,
     Map<String, dynamic>? query,
-    required posteddata,
+    required postedData,
     headers,
   }) async {
     // Check internet connectivity
@@ -77,7 +77,7 @@ class DioHelper {
 
     return await dio.put(url,
         queryParameters: query,
-        data: posteddata,
+        data: postedData,
         options: Options(headers: headers));
   }
 

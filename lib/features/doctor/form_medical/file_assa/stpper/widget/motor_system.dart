@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:manaber/features/doctor/form_medical/model.dart';
+import '../../../model.dart';
 
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
@@ -8,8 +8,8 @@ import '../model.dart';
 
 class MotorSystem extends StatelessWidget {
   const MotorSystem(
-      {super.key, required this.controleFileAssesment, required this.motor});
-  final ControleFileAssesment controleFileAssesment;
+      {super.key, required this.controlFileAssessment, required this.motor});
+  final ControlFileAssessment controlFileAssessment;
   final List<ModelPatientInfo> motor;
 
   @override
@@ -19,7 +19,7 @@ class MotorSystem extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Motor System'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -29,9 +29,9 @@ class MotorSystem extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: controleFileAssesment.listMotor.length,
+                itemCount: controlFileAssessment.listMotor.length,
                 itemBuilder: (context, index) {
-                  var model = controleFileAssesment.listMotor[index];
+                  var model = controlFileAssessment.listMotor[index];
                   if (model is DividerFileAssModel) {
                     return DividerItem(text: model.text);
                   }
@@ -45,13 +45,13 @@ class MotorSystem extends StatelessWidget {
                   if (model is TextFormFiledStepperModel) {
                     return TextFormFiledStepper(
                         hintText: motor[index].answer,
-                        labelname: model.labelName,
+                        labelName: model.labelName,
                         textEditingController: model.textEditingController);
                   }
                   if (model is BottomSheetFileAssModel) {
                     return ShowBottomSheetItems(
                       name: model.name,
-                      contecnt: SizedBox(
+                      content: SizedBox(
                         height: MediaQuery.sizeOf(context).height / 1.2,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -66,7 +66,7 @@ class MotorSystem extends StatelessWidget {
                                     if (item is TextFormFiledStepperModel) {
                                       return TextFormFiledStepper(
                                           hintText: motor[index].answer,
-                                          labelname: item.labelName,
+                                          labelName: item.labelName,
                                           textEditingController:
                                               item.textEditingController);
                                     }

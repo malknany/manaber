@@ -8,9 +8,9 @@ import 'package:flutter/material.dart';
 class PersonalHistoryConversational extends StatelessWidget {
   const PersonalHistoryConversational(
       {super.key,
-      required this.controleConversational,
+      required this.controlConversational,
       required this.personalHistory});
-  final ControleConversational controleConversational;
+  final ControlConversational controlConversational;
   final List<ModelPatientInfo> personalHistory;
 
   @override
@@ -19,7 +19,7 @@ class PersonalHistoryConversational extends StatelessWidget {
       appBar: AppBar(
         title: const Text('البیانات الأولیة'),
         backgroundColor: Colors.white,
-        foregroundColor: AppColors.primarycolor,
+        foregroundColor: AppColors.primaryColor,
         elevation: 0,
         centerTitle: true,
       ),
@@ -27,13 +27,13 @@ class PersonalHistoryConversational extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
           child: ListView(
             children: List.generate(
-                controleConversational.listOfPersonal.length, (index) {
+                controlConversational.listOfPersonal.length, (index) {
               return TextFormFiledStepper(
                   hintText: personalHistory[index].answer,
                   textDirection: TextDirection.rtl,
                   textEditingController:
-                      controleConversational.listOfPersonal[index].controle,
-                  labelname: personalHistory[index].question!);
+                      controlConversational.listOfPersonal[index].control,
+                  labelName: personalHistory[index].question!);
             }),
           )),
     );

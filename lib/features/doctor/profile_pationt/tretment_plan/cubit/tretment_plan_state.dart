@@ -2,28 +2,28 @@
 part of 'tretment_plan_cubit.dart';
 
 @immutable
-abstract class TretmentPlanState {}
+abstract class TreatmentPlanState {}
 
-class TretmentPlanInitial extends TretmentPlanState {}
+class TretmentPlanInitial extends TreatmentPlanState {}
 
-class TretmentPlanLoading extends TretmentPlanState {}
+class TreatmentPlanLoading extends TreatmentPlanState {}
 
-class TretmentPlanEmpty extends TretmentPlanState {}
+class TretmentPlanEmpty extends TreatmentPlanState {}
 
-class TretmentPlanSuccessUpLoade extends TretmentPlanState {}
+class TreatmentPlanSuccessUpLoaded extends TreatmentPlanState {}
 // class TretmentPlanSuccessDelate extends TretmentPlanState {}
 // class TretmentPlanLoadingDelate extends TretmentPlanState {}
 // class TretmentPlanIdelDelate extends TretmentPlanState {}
 // class TretmentPlanShowDelateIcon extends TretmentPlanState {}
 
-class TretmentPlanError extends TretmentPlanState {
+class TreatmentPlanError extends TreatmentPlanState {
   final String msg;
-  TretmentPlanError({
+  TreatmentPlanError({
     required this.msg,
   });
 }
 
-class TretmentPlanSuccess extends TretmentPlanState {
+class TretmentPlanSuccess extends TreatmentPlanState {
   final List<ModelTretmentPlan> listOfModelTretmentPlan;
   TretmentPlanSuccess({
     required this.listOfModelTretmentPlan,

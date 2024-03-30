@@ -1,3 +1,6 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,44 +29,44 @@ class PatientsDepartmentCubit extends Cubit<PatientsDepartmentState> {
     } else {
       filteredPatients = listOfUsers
           .where((element) =>
-              element.name.toLowerCase().contains(value.toLowerCase()))
+              element.name!.toLowerCase().contains(value.toLowerCase()))
           .toList();
       emit(PatientsDepartmentSuccess(listOfPationt: filteredPatients));
     }
     // emit(PatientsDepartmentInitial());
   }
 
-  getPationtDepartment(department) async {
+  getPatientDepartment(department) async {
     emit(PatientsDepartmentLoading());
     try {
-      _getPationDepartmentFromApi(token[0], department).then((value) {
+      _getPatientDepartmentFromApi(token[0], department).then((value) {
         listOfUsers = value.map((e) => Patient.fromJson(e)).toList();
         emit(PatientsDepartmentSuccess(listOfPationt: listOfUsers));
       });
     } on DioException catch (e) {
       if (e.response != null) {
-        print(e.response!.data);
-        print(e.response!.statusCode);
-        print(e.response!.statusMessage);
-        emit(PatientsDepartmentErorr(msg: e.response!.data['message']));
+        log(e.response!.data);
+        log("${e.response!.statusCode}");
+        log("${e.response!.statusMessage}");
+        emit(PatientsDepartmentError(msg: e.response!.data['message']));
       } else {
-        emit(PatientsDepartmentErorr(msg: e.error.toString()));
-        print(e.message);
+        emit(PatientsDepartmentError(msg: e.error.toString()));
+        log("${e.message}");
       }
-    } catch (e) {
-      print(e.toString());
+    } on SocketException catch (e) {
+      log(e.toString());
     }
   }
 }
 
-Future<List<dynamic>> _getPationDepartmentFromApi(token, department) async {
-  final response = await DioHelper.getdata(
+Future<List<dynamic>> _getPatientDepartmentFromApi(token, department) async {
+  final response = await DioHelper.getData(
       url: patientsDepartment + department,
       headers: {'Authorization': 'Bearer $token'});
   if (response.statusCode == 200) {
-    print(response.data);
-    print(response.statusCode);
-    print(response.statusMessage);
+    log("${response.data}");
+    log("${response.statusCode}");
+    log("${response.statusMessage}");
     return response.data;
   } else {
     return response.data;

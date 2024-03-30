@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../model.dart';
 
 import '../../../../../../shared/components/components.dart';
 import '../../../../../../shared/styles/colors.dart';
 import '../../../../../../shared/styles/images.dart';
+import '../../../model.dart';
 
 class AssociatedDisordersView extends StatelessWidget {
   const AssociatedDisordersView(
@@ -20,7 +20,7 @@ class AssociatedDisordersView extends StatelessWidget {
         title: const Text(
           'Associated Disorders',
           style: TextStyle(
-            color: AppColors.primarycolor,
+            color: AppColors.primaryColor,
           ),
         ),
       ),

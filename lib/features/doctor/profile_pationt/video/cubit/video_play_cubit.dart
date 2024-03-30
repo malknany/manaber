@@ -31,7 +31,7 @@ class VideoPlayCubit extends Cubit<VideoPlayState> {
     if (result != null) {
       final file = result.files.first;
       video = File(file.path!);
-      emit(VideoPlaySlected());
+      emit(VideoPlaySelected());
     } else {
       // User canceled the picker
     }
@@ -96,9 +96,9 @@ class VideoPlayCubit extends Cubit<VideoPlayState> {
     emit(VideoPlayLoading());
     await uploadVideoToFireBase(id).then((url) async {
       try {
-        final response = await DioHelper.putdata(
+        final response = await DioHelper.putData(
             url: media + id,
-            posteddata: {"name": name, "category": "VIDEO", "urls": url},
+            postedData: {"name": name, "category": "VIDEO", "urls": url},
             headers: {'Authorization': 'Bearer ${token[0]}'});
         if (response.statusCode == 201) {
           debugPrint(response.data);
@@ -150,7 +150,7 @@ class VideoPlayCubit extends Cubit<VideoPlayState> {
   }
 
   Future<List<dynamic>> _getModelApi(id) async {
-    final response = await DioHelper.getdata(
+    final response = await DioHelper.getData(
         url: videos + id, headers: {'Authorization': 'Bearer ${token[0]}'});
     if (response.statusCode == 200) {
       print(response.data.toString());

@@ -205,7 +205,7 @@ class StepperControlGoalsAndNote {
   final note = TextEditingController();
 }
 
-class ControleFileAssesment {
+class ControlFileAssessment {
   final StepperControlPatientInfo controlPatientInfo =
       StepperControlPatientInfo();
   final StepperControlBodyFunction controlBodyFunction =
@@ -224,7 +224,7 @@ class ControleFileAssesment {
   List listRom = [];
   List listParticipation = [];
   List listGoal = [];
-  ControleFileAssesment() {
+  ControlFileAssessment() {
     listPatientInfo = [
       TextFormFiledStepperModel(
         labelName: 'Created by',

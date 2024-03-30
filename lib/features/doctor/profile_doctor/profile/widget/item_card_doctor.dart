@@ -19,7 +19,7 @@ class ItemCardDoctor extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Material(
-        shadowColor: AppColors.primarycolor,
+        shadowColor: AppColors.primaryColor,
         elevation: 10,
         borderRadius: BorderRadius.circular(20),
         child: Container(
@@ -38,14 +38,14 @@ class ItemCardDoctor extends StatelessWidget {
                   textDirection: TextDirection.rtl,
                   style: AppTextStyles.lrTitles.copyWith(
                     fontSize: 18,
-                    color: AppColors.primarycolor,
+                    color: AppColors.primaryColor,
                   ),
                 ),
                 Text(
                   'رقم الهاتف :$phone',
                   textDirection: TextDirection.rtl,
                   style: AppTextStyles.lrTitles.copyWith(
-                    color: AppColors.primarycolor,
+                    color: AppColors.primaryColor,
                     fontSize: 18,
                   ),
                 ),

@@ -1,30 +1,30 @@
-class Model {
-  String? title;
-  // String? image;
+// class Model {
+//   String? title;
+//   // String? image;
 
-  Model(
-    this.title,
-    // this.image,
-  );
-}
+//   Model(
+//     this.title,
+//     // this.image,
+//   );
+// }
 
-List<Model> mainList = [
-  Model(
-    "kinani",
-  ),
-  Model(
-    "ebrahim",
-  ),
-  Model(
-    "hossam ",
-  ),
-  Model(
-    "yousef",
-  ),
-  Model(
-    "محمد الكناني",
-  ),
-];
+// List<Model> mainList = [
+//   Model(
+//     "kinani",
+//   ),
+//   Model(
+//     "ebrahim",
+//   ),
+//   Model(
+//     "hossam ",
+//   ),
+//   Model(
+//     "yousef",
+//   ),
+//   Model(
+//     "محمد الكناني",
+//   ),
+// ];
 
 class Patient {
   Patient({
@@ -38,7 +38,7 @@ class Patient {
     required this.department,
     required this.consanguinity,
     required this.pregnancyProblem,
-    required this.weigthAtBirth,
+    required this.weightAtBirth,
     required this.vaccinations,
     required this.currentMedication,
     required this.cramps,
@@ -47,26 +47,26 @@ class Patient {
     required this.geneAnalysis,
     required this.geneProblem,
   });
-  late final String id;
-  late final String name;
-  late final String gender;
-  late final String phoneNumber;
-  late final String createdById;
-  late final String createdAt;
-  late final String updatedAt;
-  late final String department;
-  late final String consanguinity;
-  late final String pregnancyProblem;
-  late final String weigthAtBirth;
-  late final String vaccinations;
-  late final String currentMedication;
-  late final String cramps;
-  late final String otherProblems;
-  late final bool sameProblemInFamily;
-  late final String geneAnalysis;
-  late final String geneProblem;
-  
-  Patient.fromJson(Map<String, dynamic> json){
+  String? id;
+  String? name;
+  String? gender;
+  String? phoneNumber;
+  String? createdById;
+  String? createdAt;
+  String? updatedAt;
+  String? department;
+  String? consanguinity;
+  String? pregnancyProblem;
+  String? weightAtBirth;
+  String? vaccinations;
+  String? currentMedication;
+  String? cramps;
+  String? otherProblems;
+  bool? sameProblemInFamily;
+  String? geneAnalysis;
+  String? geneProblem;
+
+  Patient.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     gender = json['gender'];
@@ -77,7 +77,7 @@ class Patient {
     department = json['department'];
     consanguinity = json['consanguinity'];
     pregnancyProblem = json['pregnancyProblem'];
-    weigthAtBirth = json['weigthAtBirth'];
+    weightAtBirth = json['weigthAtBirth'];
     vaccinations = json['vaccinations'];
     currentMedication = json['currentMedication'];
     cramps = json['cramps'];
@@ -88,25 +88,25 @@ class Patient {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['name'] = name;
-    _data['gender'] = gender;
-    _data['phoneNumber'] = phoneNumber;
-    _data['createdById'] = createdById;
-    _data['createdAt'] = createdAt;
-    _data['updatedAt'] = updatedAt;
-    _data['department'] = department;
-    _data['consanguinity'] = consanguinity;
-    _data['pregnancyProblem'] = pregnancyProblem;
-    _data['weigthAtBirth'] = weigthAtBirth;
-    _data['vaccinations'] = vaccinations;
-    _data['currentMedication'] = currentMedication;
-    _data['cramps'] = cramps;
-    _data['otherProblems'] = otherProblems;
-    _data['sameProblemInFamily'] = sameProblemInFamily;
-    _data['geneAnalysis'] = geneAnalysis;
-    _data['geneProblem'] = geneProblem;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['gender'] = gender;
+    data['phoneNumber'] = phoneNumber;
+    data['createdById'] = createdById;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['department'] = department;
+    data['consanguinity'] = consanguinity;
+    data['pregnancyProblem'] = pregnancyProblem;
+    data['weigthAtBirth'] = weightAtBirth;
+    data['vaccinations'] = vaccinations;
+    data['currentMedication'] = currentMedication;
+    data['cramps'] = cramps;
+    data['otherProblems'] = otherProblems;
+    data['sameProblemInFamily'] = sameProblemInFamily;
+    data['geneAnalysis'] = geneAnalysis;
+    data['geneProblem'] = geneProblem;
+    return data;
   }
 }
